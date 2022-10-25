@@ -1,0 +1,117 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Une grande partie de la journalisation qui se produit dans VDS n'est pas exposée dans l'interface utilisateur Web en raison du volume pur de celle-ci. Des journaux plus détaillés sont disponibles dans le point final. Ces journaux sont décrits ci-dessous.
+
+Dans VDS v5.4+, les journaux se trouvent dans le chemin de dossier suivant :
+
+ C:\programdata\cloudworkspace
+Dans la version précédente de VDS, ils peuvent résider dans les chemins suivants :
+
+....
+C:\Program Files\CloudWorkspace\
+C:\Program Files\CloudJumper\
+C:\Program Files\IndependenceIT\
+....
+
+NOTE: Le type de fichier varie également en fonction de la version VDS. Les fichiers journaux sont des fichiers .txt ou .log trouvés dans des sous-dossiers du chemin indiqué ci-dessus.
+
+
+
+== Journaux d'automatisation
+
+
+
+=== Journal Service d'automatisation des machines virtuelles CW
+
+ CwVmAutomationService.log
+Le service CW VM Automation est un service Windows chargé de la gestion de toutes les machines virtuelles du déploiement. En tant que service Windows, il est toujours exécuté dans un déploiement, mais possède deux modes de fonctionnement principaux : le mode tâche planifié et le mode événement.
+
+Le mode tâche planifiée comprend les activités effectuées sur les machines virtuelles dans le cadre d'une planification, notamment les données de dimensionnement et de performance de collecte, le redémarrage des machines virtuelles, la vérification de l'état (activation ou désactivation) et les jeux de règles générés par les fonctionnalités de planification des charges de travail et de mise à l'échelle dynamique. Les journaux indiquent ces types d'action dans la 5e colonne avec des noms tels que « actions quotidiennes », « actions hebdomadaires » et « Maintenance quotidienne ». Si vous avez des questions de dépannage telles que « Pourquoi Server X a-t-il redémarré la nuit dernière à 2:00 heures » ou « Pourquoi ce serveur est-il allumé quand je pense qu'il devrait être éteint », alors les tâches planifiées pour ces machines virtuelles spécifiques sont généralement le meilleur endroit à examiner.
+
+Le mode événement est activé lorsqu'un utilisateur ou un autre service VDS tel que le service d'automatisation CW demande la réalisation d'une tâche. Des exemples de ce type d'activité incluent une demande d'utilisateur pour créer un nouveau serveur ou CW Automation demandant le dimensionnement et l'état des serveurs à vérifier parce que d'autres utilisateurs ont été ajoutés à l'espace de travail. Ces événements comportent généralement des entrées de journal avec le nom d’événement “Create Server” et le nom réel de la machine virtuelle juste à côté (ex : create Server NNNXTS2). Lors du dépannage de ces types d'événements, il est généralement préférable de faire défiler l'écran jusqu'en bas du journal, puis de rechercher le nom de la VM vers le haut. Vous pouvez ensuite faire défiler d'autres lignes vers le haut pour voir où le processus a démarré.
+
+
+
+=== Journal Service d'automatisation CW
+
+ CWAutomationService.log
+Le journal CW Automation Service est les principaux services Windows pour la gestion des composants d'un déploiement Workspace. Il exécute les tâches requises pour gérer les utilisateurs, les applications, les terminaux de données et les stratégies. En outre, le service informatique peut créer des tâches pour le service d'automatisation de VM CW lorsque des modifications doivent être apportées à la taille, au nombre ou à l'état des machines virtuelles du déploiement.
+
+Comme le service CW VM Automation, le service CW Automation exécute à la fois des tâches planifiées et des tâches basées sur des événements, ce qui est le type le plus fréquent. Le journal du service d'automatisation CW démarre chaque ligne avec l'entité et l'action en cours de travail (ex : démarrer le serveur NNNNXTS1). Par conséquent, la recherche du nom de l'entité à partir du bas du fichier est le moyen le plus rapide de trouver les lignes de journal spécifiques qui s'appliquent à la tâche.
+
+
+
+=== Registre de service de l'agent CW
+
+ CwAgent.log
+Le Service de l'agent CW exécute toutes les tâches qui sont locales pour un VM spécifique, notamment la vérification des niveaux de ressources et de l'utilisation de la VM, la vérification de la validité du certificat du trafic TLS dans la VM et la vérification de l'atteinte de la période de redémarrage obligatoire. Outre la vérification des informations détaillées sur ces tâches, ce journal peut également être utilisé pour rechercher des redémarrages de machine virtuelle inattendus ou une activité de réseau ou de ressource inattendue.
+
+
+
+=== Journal CWManagerX
+
+ CWManagerX.log
+CWManagerX est un service Web qui fournit la liaison de communication entre le déploiement local et le plan de contrôle global VDS. Les tâches et les demandes de données provenant de l'application Web VDS ou de l'API VDS sont communiquées au déploiement local via ce service Web. À partir de là, les tâches et les demandes sont dirigées vers le service Web approprié (décrit ci-dessus) ou, dans de rares cas, directement à Active Directory. Comme il s'agit essentiellement d'une liaison de communication, il n'y a pas beaucoup de journalisation qui se produit pendant la communication normale, mais ce journal contiendra des erreurs lorsque la liaison de communication est rompue ou ne fonctionne pas correctement.
+
+
+
+=== Journal de configuration DC
+
+ DCConfig.log
+DC Config est une application Windows qui fournit des paramètres de configuration spécifiques au déploiement qui ne sont pas exposés dans l'interface application Web VDS. Le journal de configuration DC détaille les activités exécutées lorsque des modifications de configuration sont apportées dans la configuration DC.
+
+
+
+=== Journal CAVDCDeployment
+
+ CAVDCDeployment.log
+CW VDC Deployment est une application Windows qui exécute les tâches nécessaires à la création d'un déploiement dans Azure. Le journal suit la configuration des services de fenêtres Cloud Workspace, des objets GPO par défaut et des règles de routage et de ressources.
+
+
+
+=== Journaux divers
+
+....
+CwVmAutomationService-Installing.log
+CwAgent-Installing.log
+....
+Les journaux restants suivent l'installation des services Windows et de l'application décrits ci-dessus. Étant donné que les services VDS sont automatiquement mis à jour lorsqu'une nouvelle version est destinée à ce déploiement spécifique, ces journaux suivent le processus de mise à niveau puisque le Service ou l'application doivent généralement être désactivés lors de la mise à niveau. Si les Services sont constamment arrêtés, ces journaux peuvent vous aider à déterminer si une mise à niveau vers un service spécifique a échoué. Dans ces cas, une erreur s'affiche dans ces journaux indiquant pourquoi la mise à niveau a échoué.
+
+
+
+=== Accès aux journaux et consultation des informations
+
++image:troubleshooting1.png[""]
+
+. VDS conserve des journaux détaillés et expose certains d'entre eux dans la section Historique des tâches de la page déploiements dans VDS. Cliquez sur Afficher pour afficher les détails des tâches répertoriées.
++
+image:troubleshooting2.png[""]
+
+. Parfois, l'historique des tâches ne contient pas suffisamment de détails pour identifier la cause profonde. Pour que la section Historique des tâches reste utilisable et ne soit pas dépassée par tous les événements consignés, seul un sous-ensemble d'informations sur les tâches est présenté ici. Pour un examen plus approfondi des fichiers journaux de texte mentionnés ci-dessus, vous pouvez fournir plus de détails.
++
+.. Pour accéder à ce journal, accédez à la section déploiements et cliquez sur l'icône engrenage en regard de la machine virtuelle CWMGR1, puis cliquez sur connecter (ou, dans le cas du journal CwAgent, connectez-vous à la machine virtuelle appropriée)
+
+
++
+image:troubleshooting3.png[""]
+
+. Lorsque vous vous connectez à un serveur de plate-forme (comme le CWMGR1), vous ne serez pas automatiquement connecté au serveur (contrairement à la connexion à un serveur dans le locataire). Vous devrez vous connecter avec un compte .tech de niveau 3.
++
+image:troubleshooting4.png[""]
+
+. Naviguez jusqu'au chemin indiqué ci-dessus et ouvrez le fichier journal.
++
+image:troubleshooting5.png[""]
+
+. Ce fichier texte contient un journal de tous les événements, sous la forme la plus ancienne à la plus récente :
++
+image:troubleshooting6.png[""]
+
+. Lors de l'ouverture d'un dossier de support avec NetApp VDS, la capacité à fournir les erreurs détectées ici accélère CONSIDÉRABLEMENT la résolution des problèmes.
+

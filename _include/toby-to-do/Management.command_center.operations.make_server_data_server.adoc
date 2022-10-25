@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.make_server_data_server-67eee.png[Management.command Center.Operations.meet serveur de données 67eee]

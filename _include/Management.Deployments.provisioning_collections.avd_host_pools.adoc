@@ -1,0 +1,37 @@
+= Processus de mise à jour de l'hôte de session AVD
+:allow-uri-read: 
+
+
+
+
+=== Processus de mise à jour de l'hôte de session AVD
+
+VDS fournit un moyen facile de mettre à jour les hôtes de session dans un pool hôte AVD en utilisant Provisioning Collections et la fonctionnalité *Add session Host*. Ce processus peut être réalisé sans impact sur les utilisateurs finaux et répété à plusieurs reprises avec les mises à jour d'images suivantes, en fonction des itérations d'images précédentes.
+
+.Le processus de mise à jour de l'hôte de session AVD est le suivant :
+. Créez une nouvelle collection de provisionnement VDI, personnalisez et validez la collection conformément aux instructions ci-dessus.
++
+.. Généralement, cette collection de provisionnement sera construite sur le modèle VM précédent, en émulant un processus « Ouvrir, Enregistrer sous ».
+
+
+. Une fois la collection de provisionnement validée, accédez à la page _Workspace > AVD > Host pools_ et cliquez sur le nom du pool d'hôtes
+. Dans la page _Host Pool > session hosts_, cliquez sur *+ Ajouter session Host*
++
+image::Management.Deployments.provisioning_collections-9ed95.png[Management.Deployments.provisioning collections 9ed95]
+
+. Sélectionnez le dernier *modèle VM*. Effectuez les sélections *taille de la machine* et *Type de stockage* appropriées en fonction de vos besoins.
+. Entrez le *nombre d'instances* égal au nombre total d'hôtes de session requis. Il s'agit généralement du même numéro que celui actuellement dans le pool d'hôtes, mais il peut s'agir d'un nombre quelconque.
++
+.. Notez que les hôtes de session actuellement dans le pool hôte seront finalement déclassés après la mise en ligne de ces nouveaux hôtes. Le plan du *nombre d'instances* saisi est suffisant pour prendre en charge l'ensemble de la charge de travail dans ce pool d'hôtes.
+
+
+. Cliquez sur *Enregistrer*, les hôtes de session seront basés sur le modèle de VM sélectionné et seront mis en ligne dès 10-15 minutes (selon l'hyperviseur).
+. Lorsqu'un nouvel hôte est connecté, le paramètre par défaut est de rester dans *interdire nouvelles sessions*. Pour chaque hôte de session, la bascule *Autoriser les nouvelles sessions* peut être utilisée pour gérer les hôtes qui peuvent recevoir de nouvelles sessions utilisateur. Une fois qu'un nombre suffisant d'hôtes a été créé et que la fonctionnalité a été confirmée, ce paramètre peut être géré à la fois sur les hôtes anciens et nouveaux pour acheminer toutes les nouvelles sessions vers les nouveaux hôtes. Les anciens hôtes, avec *Autoriser les nouvelles sessions* définis sur *Désactivé*, peuvent continuer à s'exécuter et héberger les sessions utilisateur existantes.
++
+image::Management.Deployments.provisioning_collections-be47e.png[Management.Deployments.provisioning collections be47e]
+
+. Lorsque les utilisateurs se déconnectent de l'ancien ou des anciens hôtes et qu'aucune nouvelle session utilisateur n'est associée à l'ancien ou aux anciens hôtes, les anciens hôtes où *sessions = 0* peuvent être supprimés en cliquant sur l'icône *actions* et en sélectionnant *supprimer*.
++
+image::Management.Deployments.provisioning_collections-cefb9.png[Management.Deployments.provisioning collections cefb9]
+
+

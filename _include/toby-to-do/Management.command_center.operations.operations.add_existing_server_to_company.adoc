@@ -1,0 +1,13 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.add_existing_server_to_company-f1a26.png[Management.command Center.Operations.Ajouter un serveur existant à la société f1a26]
+
+image::Management.command_center.operations.add_existing_server_to_company-41370.png[Management.command Center.Operations.Ajouter un serveur existant à l'entreprise 41370]
+
+image::Management.command_center.operations.add_existing_server_to_company-10a25.png[Management.command Center.Operations.Ajouter un serveur existant à la société 10a25]

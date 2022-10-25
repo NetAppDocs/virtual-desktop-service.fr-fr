@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.stop_server-57787.png[Management.command Center.Operations.stop Server 57787]

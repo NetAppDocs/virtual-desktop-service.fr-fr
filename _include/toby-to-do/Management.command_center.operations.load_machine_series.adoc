@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_machine_series-fcd2c.png[Management.command Center.Operations.load machine série fcd2c]

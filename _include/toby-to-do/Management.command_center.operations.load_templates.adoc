@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_templates-ef4af.png[Management.command Center.Operations.load templates ef4af]

@@ -1,0 +1,15 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.backup_restore_to_drive-ea361.png[Management.command Center.Operations.backup restore sur le lecteur ea361]
+
+image::Management.command_center.operations.backup_restore_to_drive-7ab14.png[Management.command Center.Operations.backup restore sur le disque 7ab14]
+
+image::Management.command_center.operations.backup_restore_to_drive-0e5fa.png[Management.command Center.Operations.backup restaurer sur le lecteur 0e5fa]
+
+image::Management.command_center.operations.backup_restore_to_drive-231c2.png[Management.command Center.Operations.backup restaurer sur le lecteur 231c2]

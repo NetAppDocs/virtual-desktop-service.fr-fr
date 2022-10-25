@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.AMDRadeonInstinctDrivers.html 
+summary: Documentation de script - pilotes AMD Radeon instinct 
+keywords:  
+---
+= Documentation sur les événements avec script - pilotes d'instinct AMD Radeon
+:allow-uri-read: 
+
+
+
+
+== Présentation des scripts globaux
+
+Les systèmes VDS NetApp comprennent une bibliothèque d'événements prédéfinis utilisant des scripts, qui peuvent être utilisés directement dans les environnements VDS et/ou dupliqués et utilisés comme éléments de base des événements personnalisés basés sur des scripts.
+
+Pour cette application, cet article couvre à la fois l'action installer/activer et désinstaller/désactiver.
+
+
+
+== Utilisation globale du script
+
+Les événements avec script intégrés tels que celui-ci sont pré-remplis, en cochant la case de filtre « global » les affichera.
+
+Les événements avec script global tels que celui-ci sont en lecture seule. Ils peuvent être utilisés en l'état ou la fonction « clone » pour créer une copie du client à des fins de modification et d'utilisation.
+
+Le bouton Cloner se trouve dans le menu action de la page Evénements avec script.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]
+
+
+
+== Vue d'ensemble des pilotes AMD Radeon instinct
+
+Ce script installe/désinstalle _AMD Radeon instinct Drivers_ à l'aide du gestionnaire de paquets Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+
+=== Capture d'écran de la fenêtre Ajouter une activité
+
+image::scriptlibrary.activity.InstallAMDRadeonInstinctDrivers.png[scriptlibrary.Activity.InstallAMDRadeonIntinctDrivers]
+
+
+
+=== Ajouter une activité manuelle
+
+Pour qu'un script dans le référentiel puisse effectuer une action, une activité doit être créée pour associer ce script à un déclencheur sélectionné. Dans cet exemple, l'activité s'exécute lorsque l'administrateur VDS déclenche manuellement le script.
+
+Les événements utilisant des scripts VDS offrent de nombreux autres types de déclencheurs d'activité tels que _Create Server_ qui pourraient être utilisés comme alternative au type d'événement _Manual_. L'utilisation de _Create Server_ doit simplement exécuter ce script sur toutes les machines virtuelles nouvellement créées dans VDS. _Create Server_ et d'autres déclencheurs sont documentés et peuvent être explorés link:Management.Scripted_Events.scripted_events.html["ici"].
+
+.Pour créer une activité et lier ce script à une action :
+. Accédez à la section événements avec script dans VDS
+. Sous _Activities_, cliquez sur _+ Ajouter une activité_
+. Dans la fenêtre de dialogue ouverte, entrez les informations suivantes :
++
+** *Nom:* nommez cette activité
+** *Description:* saisissez éventuellement une description
+** *Déploiement* sélectionnez le déploiement souhaité dans la liste déroulante
+** *Script:* sélectionnez le script d'installation (ou de désinstallation) dans la liste déroulante. Il peut s'agir du script global ou du script client que vous avez cloné et personnalisé.
+** *Arguments:* laisser vide
+** *Case à cocher activée:* `Check` la boîte
+** *Type d'événement:* sélectionnez `Manual` dans la liste déroulante
+** *Type de cible :* sélectionnez le `Servers` bouton radio
+** *Serveurs gérés:* `Check` La boîte pour chaque machine virtuelle qui devrait recevoir cette désinstallation.
+
+
+

@@ -1,0 +1,18 @@
+= Présentation de Microsoft Teams
+:allow-uri-read: 
+
+
+
+
+== Présentation de Microsoft Teams
+
+Ce script installe/désinstalle _Microsoft Teams_ à l'aide du gestionnaire de paquets Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+WARNING: Cette installation de Microsoft Teams est spécialement configurée pour les déploiements dans un environnement RDS. link:scriptlibrary.MicrosoftTeamsAVD.html["Un script Microsoft Teams différent"] Est prévu pour les déploiements AVD.
+
+
+
+=== Chemin de raccourci par défaut
+
+Le chemin de raccourci par défaut sera saisi ci-dessous. Pour cette application, le raccourci est : `\\shortcut\Microsoft Teams.lnk`

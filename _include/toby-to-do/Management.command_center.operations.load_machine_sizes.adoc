@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_machine_sizes-a93bd.png[Management.command Center.Operations.Load machine tailles a93bd]

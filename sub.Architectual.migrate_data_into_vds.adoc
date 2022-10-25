@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: Architectual.migrate_data_into_vds.html 
+summary: Récapitulatif des considérations à prendre en compte lors de la migration des données 
+keywords:  
+---
+= Considérations relatives à la migration des données
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+La migration des données est une exigence quasi universelle lors de la migration vers une solution cloud de tout type. Les administrateurs sont responsables de la migration des données vers leurs postes de travail virtuels, mais l'expérience de NetApp est disponible et elle s'avère extrêmement précieuse pour d'innombrables migrations client. L'environnement de postes de travail virtuels est tout simplement un environnement Windows hébergé, et toute méthode souhaitée peut probablement être prise en charge.
+
+.Données généralement migrées :
+* Profils utilisateur (Bureau, documents, Favoris, etc.)
+* Partages de serveur de fichiers
+* Partages de données (données d'application, bases de données, caches de sauvegarde)
+
+
+.L'environnement de postes de travail virtuels comporte deux emplacements principaux où les données sont stockées et organisées :
+* Le lecteur utilisateur (généralement H:\) : il s'agit du lecteur mappé visible pour chaque utilisateur.
++
+** Ceci est mappé sur le chemin <LECTEUR>:\home\CustomerCode\user.name\
+** Chaque utilisateur dispose de son propre lecteur H:\ et ne peut pas voir un autre utilisateur
+
+
+* Lecteur partagé (généralement i:\) : il s'agit du lecteur mappé partagé visible pour tous les utilisateurs
++
+** Ceci est renvoyé au chemin <LECTEUR>:\data\CustomerCode\
+** Tous les utilisateurs peuvent accéder à ce lecteur. Leur niveau d'accès aux dossiers/fichiers contenus est géré dans la section dossiers de VDS.
+
+
+
+
+
+
+== Processus de migration générique
+
+. Réplication des données dans l'environnement cloud
+. Déplacez les données vers le chemin approprié pour les lecteurs H:\ et i:\
+. Attribuez les autorisations appropriées dans l'environnement de bureau virtuel
+
+
+
+
+== Transferts FTPS et considérations
+
+
+
+=== Migration avec FTPS
+
+. Si le rôle de serveur FTPS a été activé pendant le processus de déploiement CWA, rassemblez les informations d'identification FTPS en vous connectant à VDS, en accédant aux rapports et en exécutant le rapport client principal de votre organisation
+. Charger les données
+. Déplacez les données vers le chemin approprié pour les lecteurs H:\ et i:\
+. Attribuez les autorisations appropriées dans l'environnement Virtual Desktop via le module dossiers
+
+
+
+NOTE: Lors du transfert de données via FTPS, toute interruption empêche le transfert des données comme prévu. Étant donné que les serveurs gérés par Virtual Desktop Services sont redémarrés chaque nuit, la stratégie standard de transmission de nuit sera probablement interrompue. Pour contourner ce problème, les administrateurs peuvent activer le mode migration pour empêcher le redémarrage des ordinateurs virtuels pendant une semaine.
+
+L'activation du mode migration est simple : accédez à l'organisation, faites défiler vers le bas jusqu'à la section Paramètres du bureau virtuel et cochez la case mode migration, puis cliquez sur mettre à jour.
+
+
+NOTE: NetApp recommande aux administrateurs d'activer un paramètre de conformité qui aide les entreprises à respecter les contrôles PCI, HIPAA et NIST via le renforcement des passerelles du déploiement, etc. Il n'autorise pas non plus le rôle de serveur FTP par défaut, si activé, d'accepter les transmissions non chiffrées par défaut via le port 21. FileZilla n'autorise pas SFTP, ce qui signifie que les connexions doivent être effectuées à l'aide de FTPS sur le port 990.
+
+Pour activer ce paramètre, connectez-vous à CWMGR1 et accédez au programme CwVmAutomationService, puis activez la conformité PCI v3.
+
+
+
+== Outils de synchronisation et considérations
+
+La synchronisation et le partage de fichiers d'entreprise, souvent appelés outils EFSS ou de synchronisation, peuvent s'avérer extrêmement utiles pour la migration des données. En effet, l'outil permet d'enregistrer les modifications de chaque côté jusqu'à la mise en service. Des outils comme OneDrive, fourni avec Office 365, peuvent vous aider à synchroniser les données des serveurs de fichiers. Elle s'avère également utile pour les déploiements d'utilisateurs VDI, où il existe une relation 1:1 entre l'utilisateur et la machine virtuelle, tant que l'utilisateur n'essaie pas de synchroniser du contenu partagé sur son serveur VDI lorsque des données partagées peuvent être déployées une fois sur le serveur partagé (en général, I:\) les besoins de l'ensemble de l'entreprise. Migration de SQL et de données similaires (fichiers ouverts)
+
+.Les solutions courantes de synchronisation et/ou de migration ne transfèrent pas de fichiers ouverts, ce qui comprend les types de fichiers suivants :
+* Fichiers de boîte aux lettres (.ost)
+* Fichiers QuickBooks
+* Fichiers Microsoft Access
+* Les bases de données SQL
+
+
+Cela signifie que si un seul élément de l'ensemble du fichier (1 nouvel e-mail apparaît, par exemple) ou de la base de données (1 nouvel enregistrement est entré dans le système d'une application), l'ensemble du fichier est différent et les outils de synchronisation standard (Dropbox, par exemple) je pense qu'il s'agit d'un fichier entièrement nouveau et qu'il doit être redéplacé. Au besoin, des outils spécialisés peuvent être achetés auprès de fournisseurs tiers.
+
+L'accès à un VAR tiers est souvent rationalisé et destiné à importer/exporter des bases de données.
+
+
+
+== Disques d'expédition
+
+De nombreux fournisseurs de data centers n'ont plus de disques durs à expédier, c'est-à-dire, ou ils exigent que vous respectez leurs règles et procédures spécifiques.
+
+Microsoft Azure permet aux entreprises d'utiliser Azure Data Box, dont les administrateurs peuvent bénéficier en assurant la coordination avec leurs représentants Microsoft.

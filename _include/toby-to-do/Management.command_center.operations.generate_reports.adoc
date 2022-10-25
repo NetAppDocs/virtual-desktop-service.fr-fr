@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.generate_reports-9332f.png[Management.command Center.Operations.generate des rapports 9332f]

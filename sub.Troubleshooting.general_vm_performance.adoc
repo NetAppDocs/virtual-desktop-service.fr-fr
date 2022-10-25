@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.general_vm_performance.html 
+summary: Guide étape par étape pour résoudre les problèmes de qualité Internet 
+keywords:  
+---
+= Dépannage des performances des ordinateurs virtuels
+:allow-uri-read: 
+
+
+NetApp fournit aux clients des informations sur la résolution des problèmes liés aux performances des serveurs pour les utilisateurs/applications. Toutes les entreprises consomment les ressources de façon différente en fonction du nombre d'utilisateurs finaux connectés en même temps, de l'utilisation de l'application, si SQL Standard est installé par rapport à SQL Express, etc., il est donc important de pouvoir examiner ce qui se passe quand un utilisateur signale des problèmes de performance.
+
+
+
+== Présentation
+
+Chaque application est différente et même le même logiciel exécuté par le même nombre d'utilisateurs peut avoir des modèles de consommation de ressources différents. C'est pourquoi elle vous aide à comprendre les applications que vos utilisateurs exécutent et ce qui alimente véritablement cette application. S'agit-il du processeur, de la RAM ou du stockage ? Ces considérations vous aideront à cibler votre dépannage.
+
+D'après notre expérience, il s'est avéré que ces affirmations sont généralement vraies pour vous aider à commencer :
+
+....
+CPU: this is usually the culprit/limiting factor if the app in question is home-grown and/or an Excel issue
+RAM: this is usually the culprit/limiting factor if SQL Standard is used
+Storage: this is usually a contributing factor if disk consumption is greater than 90%.
+....
+
+NOTE: Si SQL Express est utilisé, il s'agit probablement d'un facteur limitant : il limite la consommation de RAM à 1 Go, ce qui peut être conforme aux spécifications requises par le fournisseur du logiciel.
+
+
+
+== Utilisation des rapports de ressources nocturnes
+
+VDS envoie des rapports nocturnes avec des informations sur chaque machine virtuelle. Il y a beaucoup d'information utile dans ce rapport, y compris des recommandations sur l'augmentation ou la diminution des ressources. Voici quelques extraits :
+
+Cette image indique si vous devez augmenter ou diminuer le processeur/la RAM sur les machines virtuelles pour un espace de travail donné.image:vm_performance1.png[""]
+
+L'image ci-dessous montre qu'il y a une colonne indiquant la durée de redémarrage du serveur.image:vm_performance2.png[""]
+
+Dans cette image, le stockage provisionné par rapport à Consommé : il s'agit d'un bon sujet pour étudier brièvement au début ou une fois que vous avez confirmé que le problème n'est pas lié au CPU/RAM.image:vm_performance3.png[""]
+
+
+
+== Affichage en temps réel de la consommation des ressources CPU/RAM
+
+. Connectez-vous dans VDS, puis cliquez sur le module organisations et sélectionnez l'organisation en question.
++
+image:vm_performance4.png[""]
+
+. Vous pouvez localiser le serveur auquel l'utilisateur est connecté en les localisant dans la section utilisateurs.
++
+image:vm_performance5.png[""]
+
+. Faites ensuite défiler jusqu'à ce que la section serveurs s'affiche. Recherchez le serveur auquel l'utilisateur signale le problème et cliquez sur la molette de configuration, puis connectez-vous.
++
+image:vm_performance6.png[""]
+
+. Une fois connecté au serveur, cliquez sur le bouton Démarrer. Cliquez ensuite sur Gestionnaire des tâches.
++
+image:vm_performance7.png[""]
+
+. Le gestionnaire des tâches donne une grande visibilité sur ce qui se passe, à ce moment-là. C'est la meilleure façon de voir ce qui affecte vos utilisateurs au moment où ils vous signalent un problème.
+. Vous pouvez examiner les processus en cours d'exécution sur le serveur, identifier les causes du problème et communiquer avec le client ou mettre fin aux processus sur place.
++
+image:vm_performance8.png[""]
+
+. Vous pouvez également afficher l'onglet performances pour afficher ce qui se passe, en direct. Il s'agit d'une étape de dépannage gigantesque, demandant aux utilisateurs de répéter les étapes qu'ils ont prises pour causer un problème de performances, puis d'identifier ce qui se produit. De la même façon, s'ils suivent des conseils d'ordre général (fermez les onglets Chrome en excès, car les onglets Google Chrome sont un consommateur de ressources commun), vous pouvez voir diminuer la consommation des ressources.
++
+image:vm_performance9.png[""]
+
+. L'onglet utilisateurs peut vous indiquer quel utilisateur consomme, le cas échéant, les ressources qui entraînent un pic de consommation.
++
+image:vm_performance10.png[""]
+
+. Vous pouvez développer chaque utilisateur final pour voir quels processus spécifiques ils exécutent et combien chacun consomme.
++
+image:vm_performance11.png[""]
+
+. Une autre option consiste à afficher les services en cours d'exécution.
++
+image:vm_performance12.png[""]
+
+. Les clients peuvent également ouvrir le moniteur de ressources pour étudier plus en détail.
++
+image:vm_performance13.png[""]
+
+
+
+
+
+== Envisager le stockage performacné
+
+L'une des causes les plus courantes des problèmes de performances des machines virtuelles est l'insuffisance des performances des disques. Les disques standard (et même SSD) ne sont pas conçus pour gérer la charge d'E/S élevée demandée par les charges de travail VDS. Les connexions des utilisateurs ont tendance à se produire en cas d'occupation et chacune nécessite des E/S importantes au fur et à mesure que les profils et les paramètres sont chargés. Les technologies de stockage haute performance de NetApp telles que Azure NetApp Files, CVO et CVS sont particulièrement adaptées à ce workload et doivent être considérées comme l'option par défaut pour les workloads VDS.
+
+
+
+== Envisager une consommation du stockage
+
+Microsoft a une bonne pratique de longue date qui consiste à autoriser la consommation de disque sur n'importe quel disque à dépasser 90 %. À leurs yeux, cela engendre une chute des performances et peut engendrer de nombreux autres défis, comme l'absence de stockage suffisant pour les sauvegardes et le fait que les utilisateurs n'aient pas à faire les économies nécessaires.
+
+Les outils RMM peuvent offrir des services de surveillance du stockage, notamment la possibilité de définir des seuils et des alertes. Si le stockage devient un défi pour vous, il est recommandé de collaborer avec votre fournisseur RMM pour activer ces types d'alertes.
+
+Pour une analyse plus approfondie, installez le logiciel pour vérifier la consommation des lecteurs.
+
+Depuis les conversations avec les clients, Windirstat ou TreeSize se sont avérés être les applications préférées pour l'inspection de la consommation de lecteurs.
+
+Windirstat peut inspecter un lecteur complet sur le réseau s'il n'y a pas suffisamment d'espace pour installer/exécuter une application en local ou si la connexion est bloquée :
+
++image:vm_performance14.png[""]

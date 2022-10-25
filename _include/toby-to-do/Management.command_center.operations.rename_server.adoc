@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.rename_server-db4c9.png[Management.command Center.Operations.rename Server db4c9]

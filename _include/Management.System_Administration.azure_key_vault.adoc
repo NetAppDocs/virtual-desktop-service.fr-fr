@@ -1,0 +1,50 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+CWASetup 5.4 est une solution de départ des méthodes de déploiement Azure précédentes. Le processus de configuration et de validation est rationalisé et réduit la quantité d'informations nécessaires au déploiement. Nombre de ces invites supprimées concernent des informations d'identification ou des comptes tels que l'administrateur VM local, le compte SMTP, le compte Tech, SQL sa, etc. Ces comptes sont désormais générés et stockés automatiquement dans un coffre-fort Azure Key. Par défaut, l'accès à ces comptes générés automatiquement nécessite une étape supplémentaire, décrite ci-dessous.
+
+* Recherchez la ressource « coffre-fort de clés » et cliquez dessus :
++
+image:Management.System_Administration.azure_key_vault-4d897.png["largeur=75 %"]
+
+* Sous ‘Paramètress’, cliquez sur ‘tourets’. Vous verrez un message indiquant que vous n'êtes pas autorisé à afficher :
++
+image:Management.System_Administration.azure_key_vault-0f7b9.png["largeur=75 %"]
+
+* Ajoutez une « politique d'accès » pour accorder un compte AD Azure (comme un administrateur global ou un administrateur système) à ces clés sensibles :
++
+image:Management.System_Administration.azure_key_vault-fe473.png["largeur=75 %"]
+
+* Un administrateur global est utilisé dans cet exemple. Après avoir sélectionné le principal, cliquez sur ‘Sélectionner’, puis sur ‘Ajouter’ :
++
+image:Management.System_Administration.azure_key_vault-3ae42.png["largeur=75 %"]
+
+* Cliquez sur « Enregistrer » :
++
+image:Management.System_Administration.azure_key_vault-15c03.png["largeur=75 %"]
+
+* La stratégie d'accès a été ajoutée avec succès :
++
+image:Management.System_Administration.azure_key_vault-770dd.png["largeur=75 %"]
+
+* Revoyez les « tourelles » pour vérifier que le compte a désormais accès aux comptes de déploiement :
++
+image:Management.System_Administration.azure_key_vault-e277a.png["largeur=75 %"]
+
+* Par exemple, si vous avez demandé à l'administrateur de domaine de se connecter à CWMGR1 et de mettre à jour la stratégie de groupe, vérifiez les chaînes sous cjDomainAdministratorName et cjDomainAdministratorPassword en cliquant sur chaque entrée :
++
+image:Management.System_Administration.azure_key_vault-69e35.png["largeur=75 %"]
+
++
+image:Management.System_Administration.azure_key_vault-83926.png["largeur=75 %"]
+
+* Afficher ou copier la valeur :
++
+image:Management.System_Administration.azure_key_vault-c9405.png["largeur=75 %"]
+
+

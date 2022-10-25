@@ -1,0 +1,11 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+VDS dispose d'une opération de réduction du profil intégrée qui s'exécute chaque nuit. Cette automatisation réduit automatiquement le conteneur FSLogix du profil utilisateur si 5 Go ou plus peut être enregistré. Cette automatisation a lieu tous les soirs à 12:01. Le seuil de 5 Go est configurable dans DCConfig, qui se trouve sur le serveur CWMGR1.
+
+image::Advanced.fslogix_profile_shrink-ea982.png[Advanced.fsefix profil rétrécir ea982]

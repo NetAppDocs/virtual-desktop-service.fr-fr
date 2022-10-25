@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.stop_cwagent-09176.png[Management.command Center.Operations.stop cwagent 09176]

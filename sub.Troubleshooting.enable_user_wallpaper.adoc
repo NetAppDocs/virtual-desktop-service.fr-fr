@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.enable_user_wallpaper.html 
+summary: 'Comment activer les fonds d"écran de l"utilisateur' 
+keywords:  
+---
+= Activer le fond d'écran du bureau pour les sessions utilisateur
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Par défaut, l'écran fond d'écran des sessions à distance est désactivé pour améliorer les performances. Le résultat est un fond d'écran noir que les utilisateurs souhaitent souvent personnaliser. Ce paramètre peut être modifié avec une simple modification de GPO
+
+
+
+=== Instructions :
+
+. Connectez-vous à un serveur de plate-forme (par exemple CWMGR1) en utilisant le compte .tech de niveau 3
+. Ouvrez la console de gestion des stratégies de groupe
+. Recherchez le GPO rdsh (appelé "code société" rdsh (par exemple “Xyz1 rdsh”)) cliquez avec le bouton droit de la souris sur “xyz1 rdsh” GPO, choisissez Edit
++
+.. Dans les services de domaine Azure AD, le GPO est appelé « AADDC « Computers > Cloud Workspace Computers »
+
+
+. Modifiez la stratégie : Configuration de l'ordinateur > stratégies > modèles d'administration > composants Windows > Services de bureau à distance > hôte de session de bureau à distance > Environnement de session à distance > Supprimer fond d'écran du bureau distant définissez ceci sur Désactivé
+
+
+image:wallpaper1.png[""]
+image:wallpaper2.png[""]
+image:wallpaper3.png[""]

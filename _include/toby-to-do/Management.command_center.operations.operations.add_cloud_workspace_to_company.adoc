@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.add_cloud_workspace_to_company-5c011.png[Management.command Center.Operations.Ajouter un espace de travail cloud à la société 5c011]

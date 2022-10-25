@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.exclude_server_from_monitoring-f1bdb.png[Management.command Center.Operations.excluez le serveur de la surveillance f1bdb]

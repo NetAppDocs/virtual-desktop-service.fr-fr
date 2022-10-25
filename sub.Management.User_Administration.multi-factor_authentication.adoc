@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.multi-factor_authentication.html 
+summary: 'Configuration de l"authentification multifacteur (MFA)' 
+keywords:  
+---
+= Authentification multifacteur (MFA)
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Le service NetApp Virtual Desktop Service (VDS) comprend un service MFA basé sur des SMS/e-mails sans frais supplémentaires. Ce service est indépendant de tout autre service (p. ex. Azure conditionnel Access) et peut être utilisé pour sécuriser les connexions d'administrateur dans VDS et les connexions utilisateur aux postes de travail virtuels.
+
+
+
+== Principes de base de l'authentification multifacteur
+
+* VDS MFA peut être attribuée aux utilisateurs admin, aux utilisateurs finaux individuels ou à tous les utilisateurs finaux
+* VDS MFA peut envoyer des notifications par SMS ou par e-mail
+* VDS MFA dispose d'une fonction de configuration initiale et de réinitialisation en libre-service
+
+
+
+
+== Portée du guide
+
+Ce guide vous guide tout au long de la configuration de l'authentification multifacteur, ainsi qu'une illustration de l'expérience utilisateur
+
+.Ce guide aborde les sujets suivants :
+.  MFA for Individual Users,Activation de l'authentification multifacteur pour les utilisateurs individuels
+.  MFA for All Users,Nécessite MFA pour tous les utilisateurs
+.  MFA for Individual Administrators ,Activation de l'authentification multifacteur pour les administrateurs individuels
+.  User Initial Setup,Configuration initiale de l'utilisateur final
+
+
+
+
+== Activation de l'authentification multifacteur pour les utilisateurs individuels
+
+L'authentification multifacteur peut être activée pour les utilisateurs individuels sur la page de détails de l'utilisateur en cliquant sur _authentification multi-facteurs activée_
+
+Espaces de travail > Nom de l'espace de travail > utilisateurs et groupes > Nom d'utilisateur > autorisation multi-facteurs activée > mettre à jour
+
+L'authentification multifacteur peut également être attribuée à tous les utilisateurs. Si ce paramètre est en place, la case à cocher sera activée et _(via les paramètres du client)_ sera ajouté à l'étiquette de la case à cocher.
+
+
+
+== Nécessite MFA pour tous les utilisateurs
+
+L'authentification multifacteur peut être activée et appliquée à tous les utilisateurs de la page de détails de l'espace de travail en cliquant sur _MFA pour tous les utilisateurs activés_
+
+Espaces de travail > Nom de l'espace de travail > MFA pour tous les utilisateurs activés > mettre à jour
+
+
+
+== Activation de l'authentification multifacteur pour les différents administrateurs
+
+L'authentification multifacteur est également disponible pour les comptes d'administrateur accédant au portail VDS. Cette option peut être activée par administrateur sur la page de détails administrateur. Admins > Nom d'administrateur > authentification multifacteur requise > mettre à jour
+
+
+
+== Configuration initiale
+
+Lors de la première connexion après l'activation de l'authentification multifacteur, l'utilisateur ou l'administrateur est invité à saisir une adresse électronique ou un numéro de téléphone portable. Ils recevront un code de confirmation pour saisir et confirmer la réussite de l'inscription.

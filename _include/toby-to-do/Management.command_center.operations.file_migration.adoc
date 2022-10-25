@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.file_migration-43065.png[Management.command migration de centre.Operations.file 43065]

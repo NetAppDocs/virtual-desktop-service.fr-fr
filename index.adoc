@@ -1,0 +1,112 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+summary: Bienvenue sur le portail de documentation de Virtual Desktop Service. 
+keywords:  
+---
+= Documentation sur Virtual Desktop Service
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Virtual Desktop Service (VDS) de NetApp résout la complexité du déploiement et de la gestion des postes de travail virtuels dans le cloud public, fournis à la fois en tant que service logiciel flexible de gestion de votre infrastructure de postes de travail virtuels (VDI) ou en tant que plateforme VDI en tant que service entièrement gérée. Grâce au service de postes de travail virtuels, il n'est plus nécessaire de déployer des postes de travail dans le cloud, ce qui prenait 2-3 jours pour les déployer en quelques heures seulement.
+
+
+
+=== Avantages des services de postes de travail virtuels :
+
+* *Réduire les coûts d'infrastructure*
++
+Notre système personnalisable de planification des ressources permet d'optimiser les dépenses d'infrastructure jusqu'à 50 %.
+
+* *Réduire le risque*
++
+Déployez vos postes de travail dans des workflows logiques conformément aux bonnes pratiques de cloud, comme les bonnes pratiques de Microsoft pour Azure Virtual Desktop (AVD).
+
+* *Automatisation personnalisée*
++
+Un moteur d'automatisation et d'orchestration piloté par des événements qui exploite vos scripts actuels. Les administrateurs INFORMATIQUES peuvent ainsi gérer vos postes de travail cloud facilement.
+
+* *Multi-Cloud*
++
+Contrôlez plusieurs locataires sur AWS, Azure et Google à partir d'une seule interface graphique.
+
+* *Contrôle flexible*
++
+Optimisez la flexibilité de votre entreprise grâce à un portail unique permettant de contrôler chaque couche de votre pile technologique.
+
+
+
+En savoir plus : https://cloud.netapp.com/virtual-desktop-service[]
+
+
+
+== Obtenir de l'aide
+
+Assistance par courriel : support@spotpc.netapp.com
+
+Assistance téléphonique : 844.645.6789
+
+link:https://support.spot.io["Portail de support VDS"]
+
+Heures d'ouverture normales : du lundi au vendredi, de 7 h à 7 h, heure centrale.
+
+* Assistance en dehors des heures de bureau (sur appel) disponible uniquement par téléphone.
+
+
+
+
+== Ressources supplémentaires
+
+
+
+=== Calculateurs de coût
+
+
+
+==== Azure
+
+* https://manage.vds.netapp.com/azure-cost-estimator[]
+
+
+
+
+==== Google Cloud
+
+* https://manage.vds.netapp.com/google-cost-estimator[]
+
+
+
+
+=== Téléchargements
+
+
+
+==== Clients RDS (Remote Desktop Services
+
+* link:https://bin.vdsclient.app/v5client/cwc-win-setup.exe["Client RDS VDS pour Windows"]
+* link:https://login.cloudworkspace.com/["Client Web VDS"]
+* link:https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-clients["Client Microsoft RD"]
+
+
+
+
+==== Clients Azure Virtual Desktop (AVD
+
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-windows-7-10["Microsoft AVD pour Windows client"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-web["Client Web Microsoft AVD"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-android["Microsoft AVD pour Android client"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-macos["Microsoft AVD pour MacOS client"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-ios["Microsoft AVD pour le client iOS"]
+
+
+
+
+==== Autres téléchargements
+
+* link:https://cloudjumper.com/wp-content/uploads/2019/12/RemoteScanEnterpriseUser.zip["Client RemoteScan"]
+* link:https://bin.vdsclient.app/v5client/cwc-designer-win-setup.exe["VDS RDS Windows client Designer"]
+

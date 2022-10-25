@@ -1,0 +1,15 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_resource_pool_data-e7092.png[Management.command Center.Operations.load des données de pool de ressources e7092]
+
+image::Management.command_center.operations.load_resource_pool_data-c9810.png[Management.command Center.Operations.load des données de pool de ressources c9810]
+
+image::Management.command_center.operations.load_resource_pool_data-cb3a8.png[Management.command Center.Operations.load des données de pool de ressources m3 3a8]
+
+image::Management.command_center.operations.load_resource_pool_data-6ae0e.png[Management.command Center.Operations.load Resource pool data 6ae0e]

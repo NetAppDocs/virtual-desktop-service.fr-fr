@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_AVDRDS_app_management_54.html 
+summary: Automatisez la gestion des applications pour AVD et RDS avec NetApp VDS v5.4 
+keywords:  
+---
+= Automatisez la gestion des applications pour AVD et RDS avec NetApp VDS v5.4
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+video::19NpO8v15BE[youtube]

@@ -1,0 +1,15 @@
+= Présentation des pilotes DE GRID NVIDIA
+:allow-uri-read: 
+
+
+
+
+== Présentation des pilotes DE GRID NVIDIA
+
+Ce script installe/désinstalle _Nvidia GRID Drivers_ à l'aide du gestionnaire de package Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+
+=== Capture d'écran de la fenêtre Ajouter une activité
+
+image::scriptlibrary.activity.InstallNvidiaGridDrivers.png[scriptlibrary.Activity.NVIDIA InstalldiaGridDrivers]

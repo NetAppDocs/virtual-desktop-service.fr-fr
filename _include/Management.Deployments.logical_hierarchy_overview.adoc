@@ -1,0 +1,72 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+VDS organise les concepts en plusieurs couches d'une hiérarchie logique. Cet article vous permet de présenter leur association.
+
+
+
+=== Schéma organisationnel VDS
+
+Le portail de gestion VDS est accessible à l'adresse https://manage.vds.netapp.com[]. Cette interface Web est une fenêtre unique permettant de gérer tous les objets liés au VDS. Dans l'interface utilisateur Web VDS, il existe la hiérarchie suivante de composants et de conteneurs logiques.
+
+
+
+==== Déploiement VDS
+
+Le _Deployment_ est un concept VDS qui a organisé et contenant _VDS Workspace(s)_. Dans certaines architectures de déploiement, un déploiement peut contenir plusieurs espaces de travail VDS.
+
+
+NOTE: L'exécution de plusieurs espaces de travail VDS dans un déploiement unique est appelée « colocation ». Elle n'est qu'une option dans les déploiements RDS, les déploiements AVD ne prennent pas en charge cette approche.
+
+Un déploiement est défini par son domaine Active Directory et il existe une relation 1:1 entre le domaine AD et un déploiement.
+
+Certaines ressources de machine virtuelle sont déployées pour prendre en charge un déploiement partagé entre tous les espaces de travail VDS dans le déploiement. Par exemple, chaque déploiement contient une machine virtuelle nommée « CWMGR1 », qui est un serveur qui exécute des applications VDS, une base de données SQL Express et facilite la gestion des espaces de travail VDS (et des ressources contenues) au sein du déploiement.
+
+
+
+==== Espace de travail VDS
+
+
+WARNING: Il y a une différence entre un espace de travail "*VDS*" et un espace de travail "*AVD*".
+
+Un espace de travail VDS est un conteneur logique dans le déploiement des ressources client (utilisateur final). Ces ressources comprennent les ordinateurs virtuels (pour les hôtes de session, les serveurs d'applications, les serveurs de base de données, les serveurs de fichiers, etc.), la mise en réseau virtuelle, le stockage et une autre infrastructure hyper-viseur.
+
+VDS Workspace contient également des fonctions de gestion permettant de gérer les utilisateurs, les groupes de sécurité, la planification des charges de travail, les applications, l'automatisation, Les machines virtuelles et la configuration AVD.
+
+En général, un espace de travail VDS est aligné avec une seule société ou (dans les déploiements d'entreprise), une unité commerciale.
+
+
+
+==== Sites VDS
+
+Dans le cadre d'un déploiement, plusieurs sites peuvent être créés pour représenter différents fournisseurs d'infrastructure, tous gérés dans un seul déploiement.
+
+Cette approche est utile lorsqu'une seule entreprise ou une seule unité commerciale doit héberger des utilisateurs et des applications sur plusieurs sites physiques (par exemple en Amérique du Nord et en Europe, au Moyen-Orient et en Afrique), des abonnements à d'hyperviseurs (pour aligner les coûts sur les unités commerciales) et même des hyperviseurs (par exemple, des utilisateurs sur Azure, Google Compute et HCI sur site sur vSphere).
+
+
+
+==== Espaces de travail AVD
+
+
+WARNING: Il y a une différence entre un espace de travail "*VDS*" et un espace de travail "*AVD*".
+
+Un espace de travail AVD est un conteneur logique qui se trouve à l'intérieur d'un espace de travail VDS et d'un site VDS. Il peut être utilisé de façon similaire à un site VDS pour segmenter les stratégies de gestion et d'exploitation dans le même déploiement.
+
+
+
+==== Pools hôtes AVD
+
+Les pools d'hôtes AVD sont des conteneurs logiques situés à l'intérieur d'un espace de travail AVD et qui contiennent les hôtes de session et les groupes d'applications pour Server les sessions utilisateur et contrôler l'accès aux ressources individuelles.
+
+
+
+==== Groupes d'applications AVD
+
+Chaque pool d'hôtes AVD commence par un seul groupe d'applications de bureau. Des utilisateurs et/ou des groupes peuvent être affectés à ce (ou à d'autres) groupe d'applications pour permettre l'accès aux ressources du groupe d'applications aux utilisateurs affectés.
+
+Des groupes d'applications supplémentaires peuvent être créés dans un pool hôte dans VDS. Tous les autres groupes d'applications sont des groupes d'applications « RemoteApp » et prennent en charge les ressources RemoteApp par opposition à une expérience de poste de travail complète avec Windows.

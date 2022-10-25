@@ -1,0 +1,15 @@
+= Vue d'ensemble des pilotes AMD Radeon instinct
+:allow-uri-read: 
+
+
+
+
+== Vue d'ensemble des pilotes AMD Radeon instinct
+
+Ce script installe/désinstalle _AMD Radeon instinct Drivers_ à l'aide du gestionnaire de paquets Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+
+=== Capture d'écran de la fenêtre Ajouter une activité
+
+image::scriptlibrary.activity.InstallAMDRadeonInstinctDrivers.png[scriptlibrary.Activity.InstallAMDRadeonIntinctDrivers]

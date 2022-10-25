@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: Management.Scripted_Events.scripted_events.html 
+summary: Événements avec script 
+keywords:  
+---
+= Événements avec script
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Les événements avec script fournissent à l'administrateur avancé un mécanisme permettant de créer une automatisation personnalisée pour la maintenance du système, les alertes utilisateur, la gestion des stratégies de groupe ou d'autres événements. Les scripts peuvent être désignés pour s'exécuter en tant que processus exécutable avec des arguments ou être utilisés comme arguments pour un programme exécutable différent. Cette fonctionnalité permet de combiner et d'imbriquer des scripts pour prendre en charge des besoins complexes en matière de personnalisation et d'intégration.
+
+Un exemple détaillé d'événements avec script en action se trouve dans le link:Management.Applications.application_entitlement_workflow.html["Guide des droits d'application"].
+
+En outre, les événements avec script permettent la création d'une automatisation qui ne nécessite pas de script pour le traitement, mais le flux d'automatisation est lancé par un déclencheur système et exécute un programme ou utilitaire système existant avec des arguments facultatifs.
+
+Scripts événements contient à la fois un *référentiel* de scripts et *activités*. Les scripts contiennent les instructions sur *ce que* faire pendant que les activités relient les scripts avec le déclencheur et la cible appropriés (*quand et où*) pour le script.
+
+
+
+=== Référentiel
+
+L'onglet référentiel affiche la liste de tous les scripts disponibles à déployer à partir de votre compte VDS. Il s'agit d'un référentiel personnalisé partagé par tous les administrateurs de votre instance VDS. L'accès aux événements avec script peut être géré sur la page _VDS > Admins > autorisations_.
+
+image::sub.Management.Scripted_Events.scripted_events-1ce76.png[Sub.Management.Scripted Events.script Events 1ce76]
+
+
+
+==== Filtre client
+
+Chaque organisation administrateur VDS dispose d'une bibliothèque privée de scripts créés et/ou personnalisés par son organisation. Ces scripts sont définis comme type de script « client ». Les scripts client doivent être supprimés et modifiés par tout administrateur VDS disposant des autorisations d'administration appropriées à la section événements avec script.
+
+
+
+==== Filtre global
+
+NetApp publie et conserve également une bibliothèque de scripts « globaux », qui est la même pour toutes les organisations d'administrateurs VDS. Ces scripts sont définis comme le type de script « Global ». Les scripts globaux ne peuvent pas être modifiés ni supprimés par un administrateur VDS. Au contraire, les scripts globaux peuvent être "clonés" et le script résultant est un script "client" qui peut être édité et utilisé.
+
+
+
+==== Télécharger le script
+
+La possibilité de télécharger le fichier script associé à un événement script permet à l'administrateur VDS d'examiner et de modifier le fichier script sous-jacent avant le déploiement. L'exécution d'un script que vous ne comprenez pas entièrement n'est jamais recommandée.
+
+image::sub.Management.Scripted_Events.scripted_events-02a9b.png[Sub.Management.Scripted Events.Scripted Events 02a9b]
+
+
+
+==== Ajouter un script
+
+Cliquez sur le bouton _+ Ajouter un script_ pour ouvrir une nouvelle page permettant de créer un script et de l'enregistrer dans le référentiel.
+
+image::Management.Scripted_Events.scripted_events-a53fa.png[Management.script Events.script events a53fa]
+
+Les champs suivants doivent être renseignés pour créer un nouveau script :
+
+* *Nom*
+* *Inclure fichier script*
++
+** Oui - permet de télécharger et d'exécuter un fichier script (par exemple un fichier .ps1) par l'exécutable « Exécuter avec ».
+** Non - supprime le champ « fichier script » (ci-dessous) et exécute simplement la commande « Exécuter avec » et « arguments »
+
+
+* *Fichier script*
++
+** Si _inclure un fichier script = Oui_ ce champ est visible et permet le téléchargement d'un fichier script.
+
+
+* *Exécuter avec*
++
+** Définit le chemin d'accès de l'exécutable utilisé pour exécuter le fichier script ou la commande exécutée.
+** Par exemple, pour exécuter avec PowerShell, la valeur « Exécuter avec » est _C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe_
+
+
+* *Arguments*
++
+** Définit tout argument supplémentaire exécuté par rapport à la commande « s'exécute avec ».
+** VDS offre certaines variables contextuelles qui peuvent être utilisées, notamment :
++
+*** %Company code% - Code de la société à l'exécution
+*** %Servername% - nom de la machine virtuelle au moment de l'exécution
+*** %samaccountname% - <username>.<code société>
+*** %Applicationname% - nom de l'application demandé lors de l'exécution
+*** %Scriptname% - Nom du script à l'exécution
+*** %username% - username@loginidentifier au moment de l'exécution
+
+
+
+
+* *URL de documentation*
++
+** Ce champ permet au rédacteur du script de le lier à la documentation trouvée en dehors de VDS, comme un système de base de connaissances utilisé par l'organisation des administrateurs VDS.
+
+
+
+
+
+
+==== Modifier le script
+
+Un clic sur le nom d'un script dans le référentiel ouvre une nouvelle page avec des détails sur le script et un bouton d'action à *éditer*.
+
+Lors de la modification d'un script, les mêmes champs sont modifiables comme indiqué ci-dessus dans link:#add-script["Ajouter un script"] section.
+
+Sur cette page de détails de script, vous pouvez aussi *supprimer* le script et *télécharger* tout fichier de script téléchargé.
+
+image::Management.Scripted_Events.scripted_events-3e756.png[Management.script Events.script Events 3e756]
+
+
+
+=== Activités
+
+Les activités relient un script du référentiel à un déploiement, un sous-ensemble de machines virtuelles et un événement déclencheur.
+
+image::Management.Scripted_Events.scripted_events-f971c.png[Management.Scripted Events.script events f971c]
+
+
+
+==== Ajouter une activité
+
+Cliquez sur le bouton _+ Ajouter une activité_ pour ouvrir une nouvelle page permettant de créer une activité.
+
+image::Management.Scripted_Events.scripted_events-02ef8.png[Management.script Events.script Events 02ef8]
+
+Les champs suivants doivent être renseignés pour créer une nouvelle activité :
+
+* *Nom*
+* *Description* (facultatif)
+* *Déploiement*
+* *Script*
+* *Arguments*
+* *Activé*
+* *Paramètres d'événement*
+
+
+
+
+==== Déclencheurs d'activité
+
+image::sub.Management.Scripted_Events.scripted_events-cdfcd.png[Sub.Management.Scripted Events.Scripted Events cdfcd]
+
+* *Installation de l'application*
++
+** Cette action est déclenchée lorsque l'administrateur VDS clique sur « + Ajouter... » dans la page _Workspace > applications_.
+** Cette sélection vous permet de sélectionner une application dans la Bibliothèque d'applications et de prédéfinir le raccourci de l'application.
+** Les instructions détaillées pour ce déclencheur sont mises en surbrillance dans le link:scriptlibrary.AdobeReader.html#install-script["_Installer la documentation du script Adobe Reader DC_"].
+
+
+* *Désinstallation de l'application*
++
+** Cette action est déclenchée lorsque l'administrateur VDS clique sur « actions > Désinstaller » dans la page _Workspace > applications_.
+** Cette sélection vous permet de sélectionner une application dans la Bibliothèque d'applications et de prédéfinir le raccourci de l'application.
+** Les instructions détaillées pour ce déclencheur sont mises en surbrillance dans le link:scriptlibrary.AdobeReader.html##uninstall-script["_Désinstaller la documentation du script Adobe Reader DC_"].
+
+
+* *Serveur de clonage*
++
+** Cette opération est déclenchée lorsque la fonction de clonage est exécutée sur un serveur virtuel existant
+
+
+* *Créer cache*
++
+** Cette action est déclenchée chaque fois qu'une nouvelle machine virtuelle est créée par VDS pour un cache de collecte de provisionnement
+
+
+* *Créer un client*
++
+** Cette action est déclenchée chaque fois qu'une nouvelle organisation client est ajoutée à VDS
+
+
+* *Créer serveur*
++
+** Cette action est déclenchée chaque fois qu'un nouveau serveur virtuel est créé par VDS
+
+
+* *Créer un utilisateur*
++
+** Cette action est déclenchée chaque fois qu'un nouvel utilisateur est ajouté via VDS
+
+
+* *Supprimer l'utilisateur*
++
+** Cette action est déclenchée chaque fois qu'un nouvel utilisateur est supprimé via VDS
+
+
+* *Manuel*
++
+** Ceci est déclenché manuellement par un administrateur VDS à partir de la page « événements avec script > activité »
+
+
+* *Mise à jour manuelle de l'application*
+* *Planifié*
++
+** Cette action est déclenchée lorsque la date/l'heure définie est atteinte
+
+
+* *Démarrer serveur*
++
+** Cet effet est déclenché sur un serveur virtuel à chaque démarrage
+
+
+
+
+Cliquer sur _Name_ ouvre une boîte de dialogue dans laquelle l'activité peut être modifiée.

@@ -1,0 +1,119 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+VDS dispose d'une fonctionnalité intégrée robuste d'automatisation des applications et de droits. Cette fonctionnalité permet aux utilisateurs d'avoir accès à différentes applications lors de la connexion à un ou plusieurs hôtes de session. Pour ce faire, certaines stratégies de groupe personnalisées masquant les raccourcis ainsi que l'automatisation placent des raccourcis de manière sélective sur les bureaux des utilisateurs.
+
+
+NOTE: Ce workflow ne s'applique qu'aux déploiements RDS. Pour obtenir de la documentation sur les droits d'application AVD, reportez-vous à la section link:Management.Applications.AVD_application_entitlement_workflow.html["Flux de travail des droits d'application pour AVD"]
+
+Les applications peuvent être affectées directement aux utilisateurs ou via des groupes de sécurité gérés dans VDS.
+
+.La procédure de provisionnement des applications suit de manière générale cette procédure.
+. Ajouter des applications au catalogue d'applications
+. Ajouter des applications à l'espace de travail
+. Installez l'application sur tous les hôtes de session
+. Sélectionnez le chemin du raccourci
+. Attribuez des applications aux utilisateurs et/ou aux groupes
+
+
+
+NOTE: Les étapes 3 et 4 peuvent être entièrement automatisées avec des événements avec script comme illustré ci-dessous
+
+.Présentation vidéo
+video::19NpO8v15BE[youtube]
+
+
+== Ajouter des applications au catalogue d'applications
+
+La licence d'application VDS commence par le catalogue d'applications. Il s'agit d'une liste de toutes les applications disponibles pour le déploiement dans les environnements utilisateur final.
+
+.Pour ajouter des applications au catalogue, procédez comme suit
+. Connectez-vous à VDS at https://manage.cloudworkspace.com[] à l'aide de vos informations d'identification d'administrateur principales.
+. Dans le coin supérieur droit, cliquez sur la flèche située en regard de votre Nom d'utilisateur et sélectionnez Paramètres.
+. Cliquez sur l'onglet Catalogue d'applications.
+. Cliquez sur l'option Ajouter une application dans la barre de titre du catalogue d'applications.
+. Pour ajouter un groupe d'applications, choisissez l'option Importer des applications.
++
+.. Une boîte de dialogue s'affiche et fournit un modèle Excel à télécharger qui crée le format correct pour la liste des applications.
+.. Pour cette évaluation, NetApp VDS a créé un exemple de liste d'applications destinées à être importée. Il est disponible ici.
+.. Cliquez sur la zone Télécharger et choisissez le fichier de modèle d'application, puis cliquez sur le bouton Importer.
+
+
+. Pour ajouter des applications individuelles, cliquez sur le bouton Ajouter une application et une boîte de dialogue s'affiche.
++
+.. Entrez le nom de l'application.
+.. L'ID externe peut être utilisé pour saisir un identifiant de suivi interne tel qu'une référence de produit ou un code de suivi de facturation (facultatif).
+.. Cochez la case abonnement si vous souhaitez créer un rapport sur les applications en tant que produit abonnement (facultatif).
+.. Si le produit ne s'installe pas par version (par exemple Chrome), cochez la case version non requise. Cela permet d'installer les produits de mise à jour continue sans suivre leurs versions.
+.. Inversement, si un produit prend en charge plusieurs versions nommées (par exemple QuickBooks), vous devez cocher cette case pour pouvoir installer plusieurs versions et avoir VDS spécifique chaque version disponible dans la liste des applications pouvant être autorisées pour et pour l'utilisateur final.
+.. Cochez “aucune icône de bureau utilisateur” si vous ne souhaitez pas que VDS provisionne une icône de bureau pour ce produit. Il est utilisé pour les produits « backend » comme SQL Server, car les utilisateurs finaux n'ont pas d'application à accéder.
+.. « L'application doit être associée » impose l'installation d'une application associée. Par exemple, une application client Server peut nécessiter l'installation de SQL Server ou de MySQL.
+.. La case Licence requise indique que VDS doit demander le téléchargement d'un fichier de licence pour une installation de cette application avant de définir l'état de l'application sur actif. Cette étape est effectuée sur la page application detail de VDS.
+.. Visible pour tous – l'admissibilité aux applications peut être limitée à des sous-partenaires spécifiques dans une hiérarchie multicanal. Pour l'évaluation, cliquez sur la case à cocher afin que tous les utilisateurs puissent la voir dans leur liste d'applications disponibles.
+
+
+
+
+
+
+== Ajoutez l'application à l'espace de travail
+
+Pour démarrer le processus de déploiement, vous allez ajouter l'application à l'espace de travail.
+
+.Pour ce faire, procédez comme suit
+. Cliquez sur espaces de travail
+. Faites défiler jusqu'à applications
+. Cliquez sur Ajouter
+. Cochez la ou les applications, entrez les informations requises, cliquez sur Ajouter une application, puis sur Ajouter des applications.
+
+
+
+
+== Installez l'application manuellement
+
+Une fois l'application ajoutée à l'espace de travail, vous devez installer cette application sur tous les hôtes de session. Cette opération peut être effectuée manuellement et/ou automatiquement.
+
+.Pour installer manuellement des applications sur des hôtes de session, procédez comme suit
+. Accédez à la carte de service.
+. Cliquez sur la tâche de la carte de service.
+. Cliquez sur le(s) nom(s) du serveur pour vous connecter en tant qu'administrateur local.
+. Installez les applications, confirmez que le raccourci vers cette application se trouve dans le chemin du menu Démarrer.
++
+.. Pour Server 2016 et Windows 10 : C:\ProgramData\Microsoft\Windows\Démarrer Menu\programmes.
+
+
+. Retournez à la tâche de la carte de service, cliquez sur Parcourir et choisissez le raccourci ou un dossier contenant des raccourcis.
+. Quelle que soit la sélection choisie, ce qui s'affiche sur le bureau de l'utilisateur final lorsqu'il est attribué à l'application.
+. Les dossiers sont parfaits lorsqu'une application est en fait plusieurs applications. Par exemple, « Microsoft Office » est plus facile à déployer comme dossier avec chaque application comme raccourci dans le dossier.
+. Cliquez sur Terminer l'installation.
+. Si nécessaire, ouvrez l'icône créée Ajouter une tâche de carte de service et confirmez que l'icône a été ajoutée.
+
+
+
+
+== Attribuez des applications aux utilisateurs
+
+Les droits d'application sont gérés par VDS et l'application peut être attribuée aux utilisateurs de trois manières
+
+.Attribuer des applications aux utilisateurs
+. Accédez à la page User Detail.
+. Accédez à la section applications.
+. Cochez la case en regard de toutes les applications requises par cet utilisateur.
+
+
+.Attribuer des utilisateurs à une application
+. Accédez à la section applications de la page Détails de l'espace de travail.
+. Cliquez sur le nom de l'application.
+. Cochez la case en regard des utilisateurs de l'application.
+
+
+.Attribuez des applications et des utilisateurs à des groupes d'utilisateurs
+. Accédez au détail des utilisateurs et des groupes.
+. Ajouter un nouveau groupe ou modifier un groupe existant.
+. Attribuez un ou plusieurs utilisateurs et applications au groupe.
+

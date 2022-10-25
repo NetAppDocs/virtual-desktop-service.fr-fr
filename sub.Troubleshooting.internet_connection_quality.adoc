@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.internet_connection_quality.html 
+summary: Guide étape par étape pour résoudre les problèmes de qualité Internet 
+keywords:  
+---
+= Dépannage de la qualité de connexion Internet
+:allow-uri-read: 
+
+
+
+
+== Symptômes
+
+Abandon des connexions des utilisateurs nécessitant une reconnexion. Réponse de l'interface laggy, problèmes de performances généraux qui ne semblent pas être liés aux charges de ressources (RAM/CPU).
+
+
+
+== Cause
+
+Lorsque les utilisateurs signalent des problèmes de performances, une perte de connexions utilisateur ou une interface laggy, la cause la plus courante n'est pas celle des ressources, mais plutôt celle des connexions réseau entre le client et le centre de données. Ces connexions sont exécutées via leur FAI, plusieurs fournisseurs de réseau fédérateur Internet et finalement dans le centre de données. Le long de la façon dont les données traversent plusieurs arrêts. Chacune de ces thèses peut introduire la latence du réseau, la perte de paquets et la fluctuation, ce qui peut contribuer à la perception des performances de l'environnement informatique de postes de travail dans le poste de travail virtuel.
+
+Le triage et le dépannage de niveau 1 comprendront des étapes de base comme la confirmation des ressources (RAM, processeur et espace disque dur) suffisantes, mais une fois cette opération terminée, le test de la connectivité réseau constitue une étape exceptionnelle du processus de dépannage. Solution
+
+
+
+=== Option principale : le client Windows VDS NetApp dispose d'outils de diagnostic intégrés
+
+Le test de diagnostic peut être exécuté et transmis à votre courrier électronique, depuis le poste de travail virtuel client.
+
+. Cliquez sur l'icône des préférences (quatre lignes horizontales dans la barre de menus supérieure).
+. Cliquez sur aide
+. Cliquez sur Test réseau
+. Entrez le nom d'utilisateur qui rencontre les problèmes, puis cliquez sur Exécuter
+. Une fois l'opération terminée, entrez votre adresse e-mail pour recevoir un rapport
+. Consultez le rapport pour résoudre d'éventuels problèmes de connexion
+
+
+image:internet_quality1.gif[""]
+
+image:internet_quality2.png[""]
+
+
+
+=== Option secondaire : analyse manuelle à l'aide du traceur de traceur
+
+Pour vérifier que la connexion réseau du client est le coupable, vous pouvez exécuter l’utilitaire gratuit PingPlotter. Cet utilitaire envoie une commande ping toutes les quelques secondes et indique la vitesse (latence) du aller-retour de cette commande ping. Il note également le pourcentage de perte de paquets (PL) à chaque saut le long de la route. Lorsqu'une latence élevée et/ou une perte de paquets élevée est observée, il est bon d'indiquer que les problèmes de performances sont causés par la qualité de la connexion Internet au saut qui affiche ces problèmes.
+
+. Téléchargez et installez link:https://www.pingplotter.com/["Traceur à ping"] (Disponible pour MacOS, Windows et iOS).
+. Entrez la passerelle du data Center dans lequel le locataire est déployé.
+. Laissez-le tourner pendant plusieurs minutes. Dans l'idéal, les problèmes de performances ou les problèmes de connexion sont rencontrés.
+. Capturer les données en choisissant “Enregistrer l'image…” Dans le menu fichier, si nécessaire pour un dépannage supplémentaire.
+

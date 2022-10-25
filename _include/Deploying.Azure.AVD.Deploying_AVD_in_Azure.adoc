@@ -1,0 +1,683 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Ce guide fournit des instructions détaillées pour créer un déploiement Azure Virtual Desktop (AVD) à l'aide de NetApp Virtual Desktop Service (VDS) dans Azure.
+
+Le guide commence à : https://cwasetup.cloudworkspace.com/[]
+
+Ce guide de démonstration de faisabilité (POC) est conçu pour vous aider à déployer et configurer rapidement AVD dans votre propre abonnement Azure test. Ce guide suppose un déploiement sur site vert dans un locataire Azure Active Directory propre et non productif.
+
+Les déploiements de production, en particulier dans les environnements AD ou Azure AD existants, sont très fréquents, mais ce processus n'est pas pris en compte dans ce guide de démonstration de faisabilité. Les démonstrations de faisabilité et les déploiements de production complexes doivent être lancées avec les équipes commerciales/services VDS NetApp et ne sont pas exécutées en libre-service.
+
+Ce document POC vous fera découvrir l'ensemble du déploiement AVD et présente brièvement les principaux domaines de la configuration post-déploiement disponible sur la plate-forme VDS. Une fois l’opération terminée, vous aurez un environnement AVD entièrement déployé et fonctionnel, avec des pools d’hôtes, des groupes d’applications et des utilisateurs. Vous aurez également la possibilité de configurer la distribution automatisée des applications, les groupes de sécurité, les autorisations de partage de fichiers, Azure Cloud Backup, l'optimisation intelligente des coûts. VDS déploie un ensemble de paramètres des meilleures pratiques via GPO. Des instructions sur la désactivation facultative de ces contrôles sont également incluses, dans le cas où votre POC ne nécessite aucun contrôle de sécurité, similaire à un environnement de périphériques locaux non gérés.
+
+
+
+== Principes de base de l'AVD
+
+Azure Virtual Desktop est un poste de travail complet et un service de virtualisation des applications qui s'exécute dans le cloud. Voici une liste rapide de certaines fonctionnalités clés :
+
+* Services de plateforme incluant des passerelles, des courtage, des licences et des connexions, et inclus en tant que service de Microsoft. Cette infrastructure réduite requiert des solutions d'hébergement et de gestion.
+* Azure Active Directory peut être utilisé comme fournisseur d'identités, ce qui permet de superposer des services de sécurité Azure supplémentaires tels que l'accès conditionnel.
+* Les utilisateurs bénéficient d'une seule expérience de connexion pour les services Microsoft.
+* Les sessions utilisateur se connectent à l'hôte de session via une technologie propriétaire de connexion inverse. Cela signifie qu'aucun port entrant ne doit être ouvert, au lieu de cela, un agent crée une connexion sortante au plan de gestion AVD qui, à son tour, se connecte au périphérique de l'utilisateur final.
+* La connexion inverse permet même à l'exécution des machines virtuelles sans être exposées à Internet public, ce qui permet d'isoler les charges de travail, même tout en maintenant la connectivité à distance.
+* AVD inclut l'accès à Windows 10 Multi-session, permettant une expérience Windows 10 Enterprise avec l'efficacité des sessions utilisateur haute densité.
+* La technologie de conteneurisation des profils FSLogix inclut le développement des performances des sessions utilisateur, de l'efficacité du stockage et de l'expérience Office dans des environnements non persistants.
+* AVD prend en charge l'accès complet au bureau et à l'application RemoteApp. Des expériences persistantes ou non persistantes, ainsi que des expériences dédiées et multi-sessions.
+* Les entreprises peuvent réaliser des économies sur les licences Windows car AVD peut exploiter Windows 10 Enterprise E3 par utilisateur, ce qui remplace les licences CAL RDS et réduit considérablement le coût horaire des machines virtuelles hôtes de session dans Azure.
+
+
+
+
+== Portée du guide
+
+Ce guide vous présente le déploiement d'AVD à l'aide de la technologie VDS NetApp du point de vue de l'administrateur Azure et VDS. Vous bénéficiez de l'abonnement et du locataire Azure sans préconfiguration. Ce guide vous aide à configurer AVD de bout en bout
+
+.Ce guide aborde les étapes suivantes :
+.  Prerequisites,Vérifiez les prérequis du locataire Azure, de l'abonnement Azure et des autorisations de compte d'administrateur Azure
+.  Discovery Details,Rassembler les informations requises pour la découverte
+.  Setup Sections,Créez l'environnement Azure à l'aide de l'assistant d'installation VDS pour Azure spécialement conçu
+.  AVD Host Pool,Créez le premier pool hôte avec une image Windows 10 EVD standard
+.  VDS desktops to users,Attribution de postes de travail virtuels aux utilisateurs Azure AD
+.  app group,Ajoutez des utilisateurs au groupe d'applications par défaut pour fournir l'environnement de bureau aux utilisateurs. En option,  Additional AVD App Group(s),Créez un ou plusieurs pools d'hôtes supplémentaires pour la fourniture des services RemoteApp
+.  User AVD Access,Connectez-vous en tant qu'utilisateur final via un logiciel client et/ou un client Web
+.  connection options,Connectez-vous à la plate-forme et aux services client en tant qu'administrateur local et de domaine
+.  Authentication (MFA),Activez en option l'authentification multi-facteurs VDS pour les administrateurs VDS et les utilisateurs finaux AVD
+.  Entitlement Workflow,Vous pouvez également parcourir l'intégralité du workflow de droits d'application, y compris le remplissage de la bibliothèque d'applications, l'automatisation de l'installation des applications, le masquage des applications par les utilisateurs et les groupes de sécurité
+.  AD Security Groups,Vous avez la possibilité de créer et de gérer des groupes de sécurité Active Directory, des autorisations de dossier et des droits d'application par groupe.
+.  Cost Optimization Options,Vous pouvez également configurer des technologies d'optimisation des coûts, notamment la planification de la charge de travail et l'évolutivité dynamique
+.  and Manage VM Images,Vous pouvez créer, mettre à jour et Sysprep une image de machine virtuelle pour les futurs déploiements
+.  Azure Cloud Backup Service,Configurez en option Azure Cloud Backup
+.  App Management/Policy Mode,Vous pouvez éventuellement désactiver les stratégies de groupe de contrôle de sécurité par défaut
+
+
+
+
+== Conditions préalables à Azure
+
+VDS utilise le contexte de sécurité Azure natif pour déployer l'instance AVD. Avant de démarrer l'assistant de configuration VDS, il y a quelques prérequis Azure qui doivent être établis.
+
+Lors du déploiement, les comptes de service et les autorisations sont accordés à VDS via l'authentification d'un compte d'administration existant à partir du locataire Azure.
+
+
+
+=== Liste de contrôle des prérequis rapides
+
+* Locataire Azure avec instance AD Azure (peut être une instance Microsoft 365)
+* Abonnement Azure
+* Il existe un quota Azure disponible pour les machines virtuelles Azure
+* Compte d'administrateur Azure avec rôles de propriété d'administrateur global et d'abonnement
+
+
+
+NOTE: Les prérequis détaillés sont documentés le link:docs_components_and_permissions.html["Ce PDF"]
+
+
+
+=== Administrateur Azure dans Azure AD
+
+Cet administrateur Azure existant doit être un compte Azure AD dans le locataire cible. Les comptes AD Windows Server peuvent être déployés avec la configuration VDS mais des étapes supplémentaires sont nécessaires à la configuration d'une synchronisation avec Azure AD (hors périmètre pour ce guide)
+
+Ceci peut être confirmé en recherchant le compte utilisateur dans le portail de gestion Azure sous utilisateurs > tous les utilisateurs.image:Azure Admin in Azure AD.png[""]
+
+
+
+=== Rôle d'administrateur global
+
+L'administrateur Azure doit se voir attribuer le rôle d'administrateur global dans le locataire Azure.
+
+.Pour vérifier votre rôle dans Azure AD, procédez comme suit :
+. Connectez-vous au portail Azure à l'adresse https://portal.azure.com/[]
+. Recherchez et sélectionnez Azure Active Directory
+. Dans le volet suivant à droite, cliquez sur l'option utilisateurs dans la section gérer
+. Cliquez sur le nom de l'utilisateur Administrateur que vous vérifiez
+. Cliquez sur rôle de répertoire. Dans le volet d'extrême droite, le rôle d'administrateur global doit être répertoriéimage:Global Administrator Role 1.png[""]
+
+
+.Si cet utilisateur ne dispose pas du rôle d'administrateur global, vous pouvez effectuer les opérations suivantes pour l'ajouter (notez que le compte connecté doit être un administrateur global pour effectuer les opérations suivantes) :
+. Dans la page de détails sur le rôle de l'annuaire des utilisateurs de l'étape 5 ci-dessus, cliquez sur le bouton Ajouter une affectation en haut de la page de détails.
+. Cliquez sur Administrateur global dans la liste des rôles. Cliquez sur le bouton Ajouter.image:Global Administrator Role 2.png[""]
+
+
+
+
+=== Propriété de l'abonnement Azure
+
+L'administrateur Azure doit également être propriétaire de l'abonnement qui contiendra le déploiement.
+
+.Pour vérifier que l'administrateur est un propriétaire de l'abonnement, procédez comme suit :
+. Connectez-vous au portail Azure à l'adresse https://portal.azure.com/[]
+. Recherchez et sélectionnez abonnements
+. Dans le volet suivant à droite, cliquez sur le nom de l'abonnement pour afficher les détails de l'abonnement
+. Cliquez sur l'option de menu contrôle d'accès (IAM) dans le volet secondaire à gauche
+. Cliquez sur l'onglet affectations de rôles. L'administrateur Azure doit être répertorié dans la section propriétaire.image:Azure Subscription Ownership 1.png[""]
+
+
+.Si l'administrateur Azure ne figure pas dans la liste, vous pouvez ajouter le compte en tant que propriétaire de l'abonnement en procédant comme suit :
+. Cliquez sur le bouton Ajouter en haut de la page et choisissez l'option Ajouter une affectation de rôle
+. Une boîte de dialogue apparaît à droite. Sélectionnez propriétaire dans la liste déroulante rôle, puis commencez à saisir le nom d'utilisateur de l'administrateur dans la zone Sélectionner. Lorsque le nom complet de l'administrateur s'affiche, sélectionnez-le
+. Cliquez sur le bouton Enregistrer en bas de la boîte de dialogueimage:Azure Subscription Ownership 2.png[""]
+
+
+
+
+=== Quota du cœur de calcul Azure
+
+L'assistant de configuration CWA et le portail VDS créent de nouvelles machines virtuelles et l'abonnement Azure doit disposer d'un quota disponible pour s'exécuter correctement .
+
+.Pour vérifier les quotas, procédez comme suit :
+. Accédez au module abonnements et cliquez sur « utilisation + quotas ».
+. Sélectionnez tous les fournisseurs dans la liste déroulante "fournisseurs", sélectionnez "Microsoft.Compute" dans la liste déroulante "fournisseurs"
+. Sélectionnez la région cible dans la liste déroulante « emplacements »
+. Une liste des quotas disponibles par famille de machines virtuelles doit être affichéeimage:Azure Compute Core Quota.png[""]Si vous devez augmenter vos quotas, cliquez sur Request augmentez et suivez les invites pour ajouter de la capacité. Pour le déploiement initial, demander spécifiquement un devis plus élevé pour le « CPU virtuels de la famille DSv3 standard »
+
+
+
+
+=== Collecte des informations de découverte
+
+Après avoir travaillé avec l'assistant CWA Setup, plusieurs questions doivent être résolues. NetApp VDS a fourni un PDF lié qui peut être utilisé pour enregistrer ces sélections avant le déploiement. Voici les éléments suivants :
+
+[cols="25,50"]
+|===
+| Élément | Description 
+
+
+| Identifiants admin VDS | Collectez les informations d'identification administrateur VDS existantes si vous les avez déjà. Dans le cas contraire, un nouveau compte administrateur sera créé pendant le déploiement. 
+
+
+| Région Azure | Déterminez la région Azure cible en fonction des performances et de la disponibilité des services. C'est ça https://azure.microsoft.com/en-us/services/virtual-desktop/assessment/["Outil Microsoft"^] permet d'estimer l'expérience utilisateur en fonction de sa région. 
+
+
+| Type Active Directory | Les VM doivent se connecter à un domaine, mais ne peuvent pas rejoindre directement Azure AD. Le déploiement VDS peut créer une nouvelle machine virtuelle ou utiliser un contrôleur de domaine existant. 
+
+
+| Gestion de fichiers | Les performances dépendent fortement de la vitesse des disques, en particulier en ce qui concerne le stockage des profils d'utilisateurs. L'assistant d'installation VDS peut déployer un serveur de fichiers simple ou configurer Azure NetApp Files (ANF). Pour la quasi-totalité des environnements de production, ANF est recommandé. Cependant, pour un POC, l'option de serveur de fichiers offre des performances suffisantes. Les options de stockage peuvent être révisées après le déploiement, notamment l'utilisation des ressources de stockage existantes dans Azure. Consultez la page tarifaire d'ANF pour plus d'informations : https://azure.microsoft.com/en-us/pricing/details/netapp/[] 
+
+
+| Portée du réseau virtuel | Une plage de réseau routable /20 est requise pour le déploiement. L'assistant de configuration VDS vous permettra de définir cette plage. Il est important que cette plage ne se chevauchent pas avec les systèmes vNets existants dans Azure ou sur site (si les deux réseaux sont connectés via un VPN ou ExpressRoute). 
+|===
+
+
+== Sections de positionnement VDS
+
+Connectez-vous à https://cwasetup.cloudworkspace.com/[] Avec vos identifiants d'administrateur Azure trouvés dans la section conditions préalables.
+
+
+
+=== IaaS et plateforme
+
+image:VDS Setup Sections 1.png[""]
+
+
+
+==== Nom du domaine Azure AD
+
+Le nom de domaine Azure AD est hérité du locataire sélectionné.
+
+
+
+==== Emplacement
+
+Sélectionnez une région Azure ** appropriée. C'est ça https://azure.microsoft.com/en-us/services/virtual-desktop/assessment/["Outil Microsoft"^] permet d'estimer l'expérience utilisateur en fonction de sa région.
+
+
+
+==== Type Active Directory
+
+VDS peut être configurée avec une nouvelle machine virtuelle **pour la fonction ou la configuration du contrôleur de domaine afin de tirer parti d'un contrôleur de domaine existant. Dans ce guide, nous sélectionnerons Nouveau Windows Server Active Directory, qui créera une ou deux machines virtuelles (en fonction des choix effectués pendant ce processus) dans le cadre de l'abonnement.
+
+Un article détaillé couvrant un déploiement AD existant est trouvé link:Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html["ici"].
+
+
+
+==== Nom de domaine Active Directory
+
+Saisissez un nom de domaine ****. La mise en miroir du nom de domaine Azure AD de ci-dessus est recommandée.
+
+
+
+==== Gestion de fichiers
+
+VDS peut provisionner une machine virtuelle simple serveur de fichiers ou configurer Azure NetApp Files. En production, Microsoft recommande d'allouer 30 go par utilisateur et nous avons observé qu'il est nécessaire d'allouer 5-15 IOPS par utilisateur pour des performances optimales.
+
+Dans un environnement POC (non de production), le serveur de fichiers est une option de déploiement simple et économique. Cependant, les performances disponibles d'Azure Managed Disks peuvent être dépassées par la consommation d'IOPS, même lors d'un déploiement en production petit.
+
+Par exemple, un disque SSD standard de 4 To dans Azure prend en charge jusqu'à 500 000 IOPS, ce qui ne pouvait prendre en charge que 100 utilisateurs au maximum à 5 000 IOPS/utilisateur. Avec ANF Premium, la même taille de stockage peut prendre en charge 16,000 000 IOPS et ainsi augmenter de 32 000 IOPS.
+
+Pour les déploiements AVD en production, **Azure NetApp Files est la recommandation de Microsoft**.
+
+
+NOTE: Vous devez mettre Azure NetApp Files à votre disposition pour l'abonnement que vous souhaitez déployer. Contactez votre ingénieur commercial NetApp ou utilisez le lien suivant : https://aka.ms/azurenetappfiles
+
+Vous devez également enregistrer NetApp comme fournisseur dans votre abonnement. Pour ce faire, procédez comme suit :
+
+* Accédez aux abonnements via le portail Azure
++
+** Cliquez sur fournisseurs de ressources
+** Filtre pour NetApp
+** Sélectionnez le fournisseur et cliquez sur Enregistrer
+
+
+
+
+
+
+==== Numéro de licence RDS
+
+Vous pouvez utiliser NetApp VDS pour déployer des environnements RDS et/ou AVD. Lors du déploiement d'AVD, ce champ peut **rester vide**.
+
+
+
+==== RéplicationFine
+
+Vous pouvez utiliser NetApp VDS pour déployer des environnements RDS et/ou AVD. Lors du déploiement d'AVD, cette bascule peut rester **désactivée** (bascule vers la gauche).
+
+
+
+==== E-mail de notification
+
+VDS enverra des notifications de déploiement et des rapports d'état de santé en cours au **e-mail fourni**. Ceci peut être modifié ultérieurement.
+
+
+
+=== Les VM et le réseau
+
+Il existe une variété de services devant être exécutés pour prendre en charge un environnement VDS ; ils sont collectivement appelés « plate-forme VDS ». Selon la configuration, ces passerelles peuvent inclure CWMGR, une ou deux passerelles RDS, une ou deux passerelles HTML5, un serveur FTPS et une ou deux VM Active Directory.
+
+La plupart des déploiements AVD exploitent l'option de machine virtuelle unique, car Microsoft gère les passerelles AVD comme un service PaaS.
+
+Pour les environnements plus petits et plus simples qui incluent les cas d'utilisation de RDS, tous ces services peuvent être condensés en option d'une machine virtuelle unique pour réduire les coûts des machines virtuelles (avec évolutivité limitée). Dans le cas d'utilisations RDS comptant plus de 100 utilisateurs, l'option de machines virtuelles multiples est conseillée pour faciliter l'évolutivité de la passerelle RDS et/ou HTML5image:VDS Setup Sections 2.png[""]
+
+
+
+==== Configuration des machines virtuelles de la plateforme
+
+Vous pouvez utiliser NetApp VDS pour déployer des environnements RDS et/ou AVD. Lors du déploiement d'AVD, il est recommandé de sélectionner une seule machine virtuelle. Dans le cas des déploiements RDS, vous devez déployer et gérer des composants supplémentaires, tels que Brokers et passerelles, en production, ces services doivent s'exécuter sur des machines virtuelles dédiées et redondantes. Pour AVD, tous ces services sont fournis par Azure en tant que service inclus et donc, la configuration **machine virtuelle unique** est recommandée.
+
+
+
+===== Une seule machine virtuelle
+
+Il s'agit de la sélection recommandée pour les déploiements qui utilisent exclusivement AVD (et non RDS ou une combinaison des deux). Dans un déploiement à une seule machine virtuelle, les rôles suivants sont tous hébergés sur une seule machine virtuelle dans Azure :
+
+* Gestionnaire CW
+* Passerelle HTML5
+* Passerelle RDS
+* Application distante
+* Serveur FTPS (en option)
+* Rôle de contrôleur de domaine
+
+
+Dans cette configuration, le nombre maximal d'utilisateurs conseillé pour les cas d'utilisation de RDS est de 100 utilisateurs. Les passerelles RDS/HTML5 à équilibrage de charge ne sont pas une option proposée dans cette configuration, limitant ainsi la redondance et les options d'augmentation de l'évolutivité future. Encore une fois, cette limite ne s'applique pas aux déploiements AVD puisque Microsoft gère les passerelles comme un service PaaS.
+
+
+NOTE: Si cet environnement est conçu pour la colocation, la configuration d'une machine virtuelle unique n'est pas prise en charge, ni AVD ni AD Connect.
+
+
+
+===== Plusieurs machines virtuelles
+
+Lors de la répartition de la plateforme VDS en plusieurs machines virtuelles, les rôles suivants sont hébergés sur des machines virtuelles dédiées sur Azure :
+
+* Passerelle Bureau à distance
++
+Le réglage VDS peut être utilisé pour déployer et configurer une ou deux passerelles RDS. Ces passerelles relaient la session utilisateur RDS depuis l'Internet ouvert vers les machines virtuelles hôte de session au sein du déploiement. Les passerelles RDS gèrent une fonction importante, protégeant ainsi RDS des attaques directes sur Internet et cryptant l'ensemble du trafic RDS dans/hors de l'environnement. Lorsque deux passerelles Remote Desktop sont sélectionnées, VDS Setup déploie 2 machines virtuelles et les configure pour équilibrer la charge des sessions utilisateur RDS entrantes.
+
+* Passerelle HTML5
++
+L'installation VDS peut être utilisée pour déployer et configurer une ou deux passerelles HTML5. Ces passerelles hébergent les services HTML5 utilisés par la fonction _Connect to Server_ dans VDS et le client VDS basé sur le Web (H5 Portal). Lorsque deux portails HTML5 sont sélectionnés, le programme d'installation VDS déploie 2 machines virtuelles et les configure pour équilibrer la charge des sessions utilisateur HTML5 entrantes.
+
++
+
+NOTE: Lors de l'utilisation de l'option de serveur multiple (même si les utilisateurs se connectent uniquement via le client VDS installé), il est fortement recommandé d'activer la fonctionnalité _Connect to Server_ de VDS au moins une passerelle HTML5.
+
+* Notes relatives à l'évolutivité des passerelles
++
+Dans le cas d'une solution RDS, la taille maximale de l'environnement peut être mise à l'échelle avec d'autres VM de passerelle, chaque passerelle RDS ou HTML5 prenant en charge environ 500 utilisateurs. Des passerelles supplémentaires peuvent être ajoutées ultérieurement avec une assistance minimale aux services professionnels NetApp
+
+
+
+Si cet environnement est conçu pour la colocation, la sélection de plusieurs machines virtuelles est requise.
+
+
+
+==== Fuseau horaire
+
+Bien que l'expérience des utilisateurs finaux reflète leur fuseau horaire local, un fuseau horaire par défaut doit être sélectionné. Sélectionnez le fuseau horaire dans lequel la **administration principale** de l'environnement sera exécutée.
+
+
+
+==== Portée du réseau virtuel
+
+Il est recommandé d'isoler les machines virtuelles dans différents sous-réseaux en fonction de leur usage. Tout d'abord, définissez la portée du réseau et ajoutez une plage /20.
+
+Le programme d'installation VDS détecte et suggère une plage qui devrait s'avérer efficace. Conformément aux bonnes pratiques, les adresses IP du sous-réseau doivent être comprises dans une plage d'adresses IP privées.
+
+Ces plages sont :
+
+* 192.168.0.0 à 192.168.255.255
+* 172.16.0.0 à 172.31.255.255
+* 10.0.0.0 à 10.255.255.255
+
+
+Vérifiez et ajustez si nécessaire, puis cliquez sur Valider pour identifier les sous-réseaux pour chacun des éléments suivants :
+
+* Tenant : il s'agit de la plage dans laquelle les serveurs hôtes de session et les serveurs de base de données résident
+* Services : il s'agit de la gamme dans laquelle résideront les services PaaS comme Azure NetApp Files
+* Plate-forme : il s'agit de la gamme dans laquelle les serveurs de plate-forme seront hébergés
+* Répertoire : il s'agit de la plage dans laquelle les serveurs AD résident
+
+
+
+
+=== Révision
+
+La dernière page vous permet de passer en revue vos choix. Une fois l'évaluation terminée, cliquez sur le bouton Valider. Le programme d'installation VDS examinera toutes les entrées et vérifie que le déploiement peut continuer avec les informations fournies. Cette validation peut prendre 2-10 minutes. Pour suivre la progression, vous pouvez cliquer sur le logo du journal (en haut à droite) pour afficher l'activité de validation.
+
+Une fois la validation terminée, le bouton vert d'approvisionnement s'affiche à la place du bouton Valider. Cliquez sur Provision pour lancer le processus de provisionnement de votre déploiement.
+
+
+
+=== État
+
+Le processus de provisionnement prend entre 2-4 heures en fonction de la charge de travail Azure et des choix que vous faites. Vous pouvez suivre la progression dans le journal en cliquant sur la page État ou attendre l'e-mail qui vous indiquera que le processus de déploiement est terminé. Le déploiement crée les machines virtuelles et les composants Azure nécessaires pour prendre en charge VDS et une implémentation Remote Desktop ou AVD. Il s'agit d'une seule machine virtuelle pouvant agir à la fois comme hôte de session Bureau à distance et serveur de fichiers. Dans une implémentation AVD, cette machine virtuelle agit uniquement comme un serveur de fichiers.
+
+
+
+== Installer et configurer AD Connect
+
+Une fois l'installation réussie, AD Connect doit être installé et configuré sur le contrôleur de domaine. Dans une configuration VM de plate-forme unique, la machine CWMGR1 est le DC. Les utilisateurs d'AD doivent synchroniser entre Azure AD et le domaine local.
+
+.Pour installer et configurer AD Connect, procédez comme suit :
+. Connectez-vous au contrôleur de domaine en tant qu'administrateur de domaine.
++
+.. Obtention des informations d'identification à partir du coffre-fort de clés Azure (voir link:Management.System_Administration.azure_key_vault.html["Instructions clés du coffre-fort ici"])
+
+
+. Installez AD Connect, connectez-vous avec l'administrateur de domaine (avec les autorisations de rôle d'administrateur d'entreprise) et l'administrateur global Azure AD.
+
+
+
+
+== Activation des services AVD
+
+Une fois le déploiement terminé, l'étape suivante consiste à activer la fonctionnalité AVD. Le processus d'activation AVD exige que l'administrateur Azure effectue plusieurs étapes pour enregistrer son domaine Azure AD et son abonnement à l'aide des services AVD Azure. De même, Microsoft nécessite VDS pour demander les mêmes autorisations pour notre application d'automatisation dans Azure. Les étapes ci-dessous vous permettent de suivre ce processus.
+
+
+
+== Créer un pool hôte AVD
+
+L'accès de l'utilisateur final aux machines virtuelles AVD est géré par des pools hôtes , qui contiennent les machines virtuelles et les groupes d'applications, qui contiennent à leur tour les utilisateurs et le type d'accès des utilisateurs.
+
+.Pour créer votre premier pool d'hôtes
+. Cliquez sur le bouton Ajouter dans la partie droite de l'en-tête de la section pools hôtes AVD.image:Create AVD Host Pool 1.png[""]
+. Entrez un nom et une description pour votre pool d'hôtes.
+. Choisissez un type de pool d'hôtes
++
+.. **Pooled** signifie que plusieurs utilisateurs accèdent au même pool de machines virtuelles avec les mêmes applications installées.
+.. **Personal** crée un pool hôte dans lequel les utilisateurs sont affectés à leur propre VM hôte de session.
+
+
+. Sélectionnez le type Load Balancer
++
+.. **Depth First** remplit la première machine virtuelle partagée au nombre maximal d'utilisateurs avant de démarrer sur la seconde machine virtuelle du pool
+.. **Large First** distribuera les utilisateurs à toutes les machines virtuelles du pool en mode round-Robin
+
+
+. Sélectionnez un modèle de machines virtuelles Azure pour la création des machines virtuelles dans ce pool. Alors que VDS affichera tous les modèles disponibles dans l'abonnement, nous recommandons de sélectionner la version multi-utilisateur Windows 10 la plus récente pour une expérience optimale. Le build actuel est Windows-10-20h1-evd. (Possibilité de créer une image Gold à l'aide de la fonctionnalité Provisioning Collection pour créer des hôtes à partir d'une image de machine virtuelle personnalisée)
+. Sélectionnez la taille de la machine Azure. Pour l'évaluation, NetApp recommande les séries D (type de machine standard pour multi-utilisateurs) ou E (configuration de mémoire optimisée pour les scénarios multi-utilisateurs plus lourds). La taille de la machine peut être modifiée ultérieurement dans VDS si vous souhaitez expérimenter avec différentes séries et tailles
+. Sélectionnez un type de stockage compatible pour les instances de disque géré des machines virtuelles dans la liste déroulante
+. Sélectionnez le nombre de machines virtuelles que vous souhaitez créer dans le cadre du processus de création du pool hôte. Vous pouvez ajouter des machines virtuelles au pool ultérieurement, mais VDS va générer le nombre de machines virtuelles que vous demandez et les ajouter au pool hôte une fois qu'il a été créé
+. Cliquez sur le bouton Ajouter un pool d'hôtes pour lancer le processus de création. Vous pouvez suivre la progression sur la page AVD ou consulter les détails du journal des processus sur la page déploiements/Nom du déploiement de la section tâches
+. Une fois le pool hôte créé, il apparaît dans la liste des pools hôtes de la page AVD. Cliquez sur le nom du pool d'hôtes pour afficher sa page de détails, qui comprend une liste de ses machines virtuelles , groupes d'applications et utilisateurs actifs
+
+
+
+NOTE: Les hôtes AVD dans VDS sont créés avec un paramètre qui supprime la connexion des sessions utilisateur. Ceci est par conception pour permettre la personnalisation avant d'accepter les connexions utilisateur. Ce paramètre peut être modifié en modifiant les paramètres de l'hôte de session. image:Create AVD Host Pool 2.png[""]
+
+
+
+== Activer les bureaux VDS pour les utilisateurs
+
+Comme indiqué ci-dessus, VDS crée tous les éléments nécessaires à la prise en charge des espaces de travail des utilisateurs finaux lors du déploiement. Une fois le déploiement terminé, l'étape suivante consiste à activer l'accès à l'espace de travail pour chaque utilisateur que vous souhaitez introduire dans l'environnement AVD. Cette étape permet de créer la configuration du profil et l'accès à la couche de données utilisateur final, c'est-à-dire l'accès par défaut pour un poste de travail virtuel. VDS réutilise cette configuration pour lier les utilisateurs finaux d'Azure AD aux pools d'applications AVD.
+
+.Pour activer les espaces de travail pour les utilisateurs finaux, procédez comme suit :
+. Connectez-vous à VDS at https://manage.cloudworkspace.com[] Utilisation du compte administrateur principal VDS que vous avez créé pendant le provisionnement. Si vous ne vous souvenez plus des informations de votre compte, contactez NetApp VDS pour obtenir de l'aide lors de leur récupération
+. Cliquez sur l'élément de menu espaces de travail, puis cliquez sur le nom de l'espace de travail créé automatiquement lors du provisionnement
+. Cliquez sur l'onglet utilisateurs et groupesimage:Enable VDS desktops to Users 1.png[""]
+. Pour chaque utilisateur que vous souhaitez activer, faites défiler le nom d'utilisateur et cliquez sur l'icône engrenage
+. Choisissez l'option "Activer le Cloud Workspace"image:Enable VDS desktops to Users 2.png[""]
+. Le processus d'accompagnement prend environ 30-90 secondes. Notez que l'état de l'utilisateur passe de en attente à disponible
+
+
+
+NOTE: L'activation d'Azure AD Domain Services crée un domaine géré dans Azure, et chaque machine virtuelle AVD créée sera associée à ce domaine. Pour que la connexion classique aux machines virtuelles fonctionne, le hachage du mot de passe pour les utilisateurs d'Azure AD doit être synchronisé afin de prendre en charge l'authentification NTLM et Kerberos. La façon la plus simple d'effectuer cette tâche est de modifier le mot de passe de l'utilisateur dans Office.com ou sur le portail Azure, ce qui force la synchronisation du hachage de mot de passe à se produire. Le cycle de synchronisation des serveurs de service de domaine peut prendre jusqu'à 20 minutes.
+
+
+
+=== Activer les sessions utilisateur
+
+Par défaut, les hôtes de session ne peuvent pas accepter les connexions utilisateur. Ce paramètre est généralement appelé « mode vidange » car il peut être utilisé en production pour empêcher les nouvelles sessions utilisateur, permettant ainsi à l'hôte de supprimer toutes les sessions utilisateur. Lorsque de nouvelles sessions utilisateur sont autorisées sur un hôte, cette action est communément appelée « rotation » de l’hôte de session.
+
+En production, il est judicieux de démarrer de nouveaux hôtes en mode vidange, car des tâches de configuration doivent généralement être effectuées avant que l'hôte ne soit prêt pour les charges de travail de production.
+
+Lors du test et de l'évaluation, vous pouvez immédiatement retirer les hôtes du mode de vidange pour permettre aux utilisateurs de se connecter et confirmer leur fonctionnalité. .Pour activer les sessions utilisateur sur le ou les hôtes de session, procédez comme suit :
+
+. Accédez à la section AVD de la page de l'espace de travail.
+. Cliquez sur le nom du pool d'hôtes sous “pools d'hôtes AVD”.image:Enable User Sessions 1.png[""]
+. Cliquez sur le nom du ou des hôtes de session et cochez la case Autoriser les nouvelles sessions, cliquez sur mettre à jour l'hôte de session. Répétez l'opération pour tous les hôtes qui doivent être placés en rotation.image:Enable User Sessions 2.png[""]
+. Les statistiques actuelles de « Autoriser une nouvelle session » sont également affichées sur la page AVD principale pour chaque élément de ligne hôte.
+
+
+
+
+=== Groupe d'applications par défaut
+
+Notez que le groupe d'applications de bureau est créé par défaut dans le cadre du processus de création du pool d'hôtes. Ce groupe fournit un accès interactif au bureau à tous les membres du groupe. .Pour ajouter des membres au groupe :
+
+. Cliquez sur le nom du groupe d'applicationsimage:Default App Group 1.png[""]
+. Cliquez sur le lien indiquant le nombre d'utilisateurs ajoutésimage:Default App Group 2.png[""]
+. Sélectionnez les utilisateurs que vous souhaitez ajouter au groupe d'applications en cochant la case en regard de leur nom
+. Cliquez sur le bouton Sélectionner utilisateurs
+. Cliquez sur le bouton mettre à jour le groupe d'applications
+
+
+
+
+=== Créer des groupes d'applications AVD supplémentaires
+
+Des groupes d'applications supplémentaires peuvent être ajoutés au pool hôte. Ces groupes d'applications publient des applications spécifiques à partir des machines virtuelles du pool hôte vers les utilisateurs du groupe d'applications à l'aide de RemoteApp.
+
+
+NOTE: AVD ne permet d'attribuer aux utilisateurs finaux qu'au type de groupe d'applications de bureau ou au type de groupe d'applications RemoteApp, mais pas aux deux dans le même pool d'hôtes. Veillez donc à isoler les utilisateurs en conséquence. Si les utilisateurs ont besoin d'accéder à un poste de travail et à des applications de diffusion en continu, un second pool hôte est nécessaire pour héberger les applications.
+
+.Pour créer un nouveau groupe d'applications :
+. Cliquez sur le bouton Ajouter dans l'en-tête de la section groupes d'applicationsimage:Create Additional AVD App Group 1.png[""]
+. Entrez un nom et une description pour le groupe d'applications
+. Sélectionnez les utilisateurs à ajouter au groupe en cliquant sur le lien Ajouter des utilisateurs. Sélectionnez chaque utilisateur en cochant la case en regard de son nom, puis cliquez sur le bouton Sélectionner utilisateursimage:Create Additional AVD App Group 2.png[""]
+. Cliquez sur le lien Ajouter RemoteApps pour ajouter des applications à ce groupe d'applications. AVD génère automatiquement la liste des applications possibles en analysant la liste des applications installées sur la machine virtuelle . Sélectionnez l'application en cochant la case en regard du nom de l'application, puis cliquez sur le bouton Sélectionner les applications RemoteApps.image:Create Additional AVD App Group 3.png[""]
+. Cliquez sur le bouton Ajouter un groupe d'applications pour créer le groupe d'applications
+
+
+
+
+== Accès AVD de l'utilisateur final
+
+Les utilisateurs finaux peuvent accéder aux environnements AVD à l'aide du client Web ou d'un client installé sur différentes plates-formes
+
+* Client Web : https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-web[]
+* URL de connexion au client Web : http://aka.ms/AVDweb[]
+* Client Windows : https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-windows-7-and-10[]
+* Android client : https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-android[]
+* Mac OS client : https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-macos[]
+* Client iOS : https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-ios[]
+* Client léger IGEL : https://www.igel.com/igel-solution-family/windows-virtual-desktop/[]
+
+
+Connectez-vous à l'aide du nom d'utilisateur et du mot de passe. Notez que Remote App and Desktop Connections (RADC), Remote Desktop Connection (msc) et l'application CloudWorksapce client pour Windows ne prennent actuellement pas en charge la possibilité de se connecter aux instances AVD.
+
+
+
+== Surveiller les connexions des utilisateurs
+
+La page de détails du pool d'hôtes affiche également une liste des utilisateurs actifs lorsqu'ils se connectent à une session AVD.
+
+
+
+== Options de connexion Admin
+
+Les administrateurs VDS peuvent se connecter aux machines virtuelles de l'environnement de différentes manières.
+
+
+
+=== Connectez-vous au serveur
+
+Dans tout le portail, les administrateurs VDS trouveront l'option « connexion au serveur ». Par défaut, cette fonction connecte l'administrateur à la machine virtuelle en générant dynamiquement des informations d'identification d'administrateur local et en les injectant dans une connexion client Web. L'administrateur n'a pas besoin de connaître (et n'est jamais fourni) les informations d'identification pour se connecter.
+
+Ce comportement par défaut peut être désactivé par administrateur, comme décrit dans la section suivante.
+
+
+
+=== Comptes d'administration .tech/niveau 3
+
+Un compte admin de “niveau III” est créé dans le processus d’installation de CWA. Le nom d'utilisateur est formaté en username.tech@domain.xyz
+
+Ces comptes, communément appelés comptes «.tech », sont nommés comptes d'administrateur au niveau du domaine. Les administrateurs VDS peuvent utiliser leur compte .tech lors de la connexion à un serveur CWMGR1 (plate-forme) et éventuellement lors de la connexion à toutes les autres machines virtuelles de l'environnement.
+
+Pour désactiver la fonction de connexion automatique d'administrateur local et forcer l'utilisation du compte de niveau III, modifiez ce paramètre. Accédez à VDS > Admins > Nom d'administrateur > cochez « compte technique activé ». Lorsque cette case est cochée, l'administrateur VDS ne sera pas automatiquement connecté aux machines virtuelles en tant qu'administrateur local et sera plutôt invité à entrer leurs informations d'identification .tech.
+
+Ces informations d'identification, ainsi que d'autres informations d'identification pertinentes, sont automatiquement stockées dans le _Azure Key Vault_ et sont accessibles depuis le portail de gestion Azure à l'adresse https://portal.azure.com/[].
+
+
+
+== Actions facultatives post-déploiement
+
+
+
+=== Authentification multifacteur (MFA)
+
+VDS NetApp incluant gratuitement des SMS/e-mails MFA. Cette fonction peut être utilisée pour sécuriser les comptes administrateur VDS et/ou les comptes utilisateur final.link:Management.User_Administration.multi-factor_authentication.html["Article MFA"]
+
+
+
+=== Workflow du droit aux applications
+
+VDS fournit un mécanisme permettant d'affecter aux utilisateurs finaux l'accès aux applications à partir d'une liste prédéfinie d'applications appelée catalogue d'applications. Le catalogue des applications couvre tous les déploiements gérés.
+
+
+NOTE: Le serveur TSD1 automatiquement déployé doit rester en l'état pour prendre en charge les droits d'application. Plus précisément, n'exécutez pas la fonction "convertir en données" sur cette machine virtuelle.
+
+La gestion des applications est détaillée dans cet article : link:Management.Applications.application_entitlement_workflow.html[""]
+
+
+
+=== Groupes de sécurité Azure AD
+
+VDS inclut la fonctionnalité permettant de créer, de remplir et de supprimer des groupes d'utilisateurs qui sont sauvegardés par les groupes de sécurité Azure AD. Ces groupes peuvent être utilisés en dehors de VDS comme tout autre groupe de sécurité. Dans VDS, ces groupes peuvent être utilisés pour attribuer des autorisations de dossier et des droits d'application.
+
+
+
+==== Créer des groupes d'utilisateurs
+
+La création de groupes d'utilisateurs s'effectue dans l'onglet utilisateurs et groupes d'un espace de travail.
+
+
+
+==== Attribuez des autorisations de dossier par groupe
+
+Les autorisations d'affichage et de modification des dossiers dans le partage d'entreprise peuvent être attribuées à des utilisateurs ou à des groupes.
+
+link:Management.User_Administration.manage_folders_and_permissions.html[""]
+
+
+
+==== Affecter des applications par groupe
+
+Outre l'affectation individuelle d'applications à des utilisateurs, les applications peuvent être provisionnées à des groupes.
+
+. Accédez au détail des utilisateurs et des groupes.image:Assign Applications by Group 1.png[""]
+. Ajouter un nouveau groupe ou modifier un groupe existant.image:Assign Applications by Group 2.png[""]
+. Attribuez un ou plusieurs utilisateurs et applications au groupe.image:Assign Applications by Group 3.png[""]
+
+
+
+
+=== Configurez les options d'optimisation des coûts
+
+La gestion de l'espace de travail s'étend également à la gestion des ressources Azure qui prennent en charge l'implémentation AVD. VDS vous permet de configurer à la fois les plannings de charge de travail et Live Scaling afin d'activer et de désactiver les machines virtuelles Azure en fonction des activités des utilisateurs finaux. Ces fonctionnalités permettent d'associer l'utilisation des ressources Azure et la dépense au modèle d'utilisation réel des utilisateurs finaux. En outre, si vous avez configuré une mise en œuvre AVD Proof of concept, vous pouvez faire pivoter le déploiement complet à partir de l'interface VDS.
+
+
+
+==== Planification des charges de travail
+
+La planification des charges de travail est une fonctionnalité qui permet à l'administrateur de créer un programme défini pour les machines virtuelles Workspace à utiliser pour prendre en charge les sessions utilisateur. Lorsque la fin de la période programmée est atteinte pour un jour donné de la semaine, VDS arrête/déalloue les machines virtuelles dans Azure afin que les frais horaires cessent.
+
+.Pour activer la planification de la charge de travail :
+. Connectez-vous à VDS at https://manage.cloudworkspace.com[] Utilisation de vos identifiants VDS.
+. Cliquez sur l'élément de menu espace de travail, puis cliquez sur le nom de l'espace de travail dans la liste. image:Workload Scheduling 1.png[""]
+. Cliquez sur l'onglet planification de la charge de travail. image:Workload Scheduling 2.png[""]
+. Cliquez sur le lien gérer dans l'en-tête planification de la charge de travail. image:Workload Scheduling 3.png[""]
+. Choisissez un état par défaut dans le menu déroulant État : toujours activé (par défaut), toujours désactivé ou planifié.
+. Si vous choisissez programmé, les options de planification sont les suivantes :
++
+.. Exécuter à l'intervalle assigné tous les jours. Cette option définit l'horaire comme étant la même heure de début et de fin pour les sept jours de la semaine. image:Workload Scheduling 4.png[""]
+.. Exécuter à l'intervalle attribué pour les jours spécifiés. Cette option définit l'horaire sur la même période de début et de fin que pour certains jours de la semaine. Les jours non sélectionnés de la semaine ne permettent pas à VDS de mettre les machines virtuelles sous tension pendant ces jours. image:Workload Scheduling 5.png[""]
+.. Exécuter à des intervalles de temps et des jours variables. Cette option définit l'horaire sur différentes heures de début et de fin pour chaque jour sélectionné. image:Workload Scheduling 6.png[""]
+.. Cliquez sur le bouton mettre à jour le planning lorsque vous avez terminé de définir le planning. image:Workload Scheduling 7.png[""]
+
+
+
+
+
+
+==== Mise à l'échelle dynamique
+
+Live Scaling active et désactive automatiquement les machines virtuelles dans un pool d'hôtes partagé en fonction de la charge des utilisateurs simultanés. Au fur et à mesure que chaque serveur se remplit, un serveur supplémentaire est activé de sorte que son prêt lorsque l'équilibreur de charge du pool hôte envoie des demandes de session utilisateur. Pour une utilisation efficace de Live Scaling, choisissez “Depth First” comme type d’équilibreur de charge.
+
+.Pour activer la mise à l'échelle dynamique :
+. Connectez-vous à VDS at https://manage.cloudworkspace.com[] Utilisation de vos identifiants VDS.
+. Cliquez sur l'élément de menu espace de travail, puis cliquez sur le nom de l'espace de travail dans la liste. image:Live Scaling 1.png[""]
+. Cliquez sur l'onglet planification de la charge de travail. image:Live Scaling 2.png[""]
+. Cliquez sur le bouton radio activé dans la section mise à l'échelle directe. image:Live Scaling 3.png[""]
+. Cliquez sur le nombre max. D'utilisateurs par serveur et saisissez le nombre max. Selon la taille de l'ordinateur virtuel, ce nombre est généralement compris entre 4 et 20. image:Live Scaling 4.png[""]
+. FACULTATIF : cliquez sur l'option serveurs alimentés supplémentaires activés et entrez un certain nombre de serveurs supplémentaires que vous souhaitez utiliser pour le pool d'hôtes. Ce paramètre active le nombre spécifié de serveurs en plus du serveur qui remplit activement pour agir comme tampon pour de grands groupes d'utilisateurs se connectant dans la même fenêtre de temps. image:Live Scaling 5.png[""]
+
+
+
+NOTE: Mise à l'échelle dynamique s'applique actuellement à tous les pools de ressources partagées. Dans un proche avenir, chaque pool aura des options de mise à l'échelle dynamique indépendantes.
+
+
+
+==== Arrêter l'ensemble du déploiement
+
+Si vous prévoyez d'utiliser votre déploiement d'évaluation uniquement en dehors de la production, vous pouvez désactiver toutes les machines virtuelles du déploiement lorsque vous ne les utilisez pas.
+
+.Pour activer ou désactiver le déploiement (c'est-à-dire désactiver les machines virtuelles dans le déploiement), procédez comme suit :
+. Connectez-vous à VDS at https://manage.cloudworkspace.com[] Utilisation de vos identifiants VDS.
+. Cliquez sur l'élément de menu déploiements. image:Power Down the Entire Deployment 1.png[""]Faites défiler le curseur sur la ligne du déploiement cible pour afficher l'icône de la vitesse de configuration. image:Power Down the Entire Deployment 2.png[""]
+. Cliquez sur le rapport, puis choisissez Arrêter. image:Power Down the Entire Deployment 3.png[""]
+. Pour redémarrer ou démarrer, suivez les étapes 1-3 et choisissez Démarrer. image:Power Down the Entire Deployment 4.png[""]
+
+
+
+NOTE: L'arrêt ou le démarrage de toutes les machines virtuelles du déploiement peut prendre plusieurs minutes.
+
+
+
+=== Créez et gérez des images de machine virtuelle
+
+VDS contient des fonctionnalités de création et de gestion des images de machines virtuelles pour les déploiements futurs. Pour accéder à cette fonctionnalité, accédez à : VDS > déploiements > Nom du déploiement > Collections de provisionnement. Les fonctions de la « collection d'images VDI » sont décrites ci-dessous : link:Management.Deployments.provisioning_collections.html[""]
+
+
+
+=== Configurez Azure Cloud Backup Service
+
+VDS peut configurer et gérer en mode natif Azure Cloud Backup, un service PaaS Azure pour la sauvegarde de machines virtuelles. Les stratégies de sauvegarde peuvent être attribuées à des machines ou groupes individuels de machines par type ou pool hôte. Pour plus de détails, cliquez ici : link:Management.System_Administration.configure_backup.html[""]
+
+
+
+=== Sélectionnez le mode gestion/stratégie des applications
+
+Par défaut, VDS implémente un certain nombre d'objets de stratégie de groupe (GPO, Group Policy Objects) qui verrouillent l'espace de travail de l'utilisateur final. Ces règles empêchent l'accès aux emplacements des couches de données centrales (ex. c:\) et la possibilité d'effectuer des installations d'applications en tant qu'utilisateur final.
+
+Cette évaluation a pour but de démontrer les fonctionnalités de Windows Virtual Desktop. Vous avez donc la possibilité de supprimer les GPO afin de mettre en œuvre un « espace de travail de base » qui fournit la même fonctionnalité et le même accès qu'un espace de travail physique. Pour ce faire, suivez les étapes de l’option “espace de travail de base”.
+
+Vous pouvez également choisir d'utiliser l'ensemble complet de fonctions de gestion de Virtual Desktop pour implémenter un « espace de travail contrôlé ». Ces étapes comprennent la création et la gestion d'un catalogue d'applications pour les droits d'application utilisateur final et l'utilisation d'autorisations de niveau administrateur pour gérer l'accès aux applications et aux dossiers de données. Suivez les étapes de la section « espace de travail contrôlé » pour implémenter ce type d'espace de travail sur vos pools hôtes AVD.
+
+
+
+==== Espace de travail AVD contrôlé (stratégies par défaut)
+
+L'utilisation d'un espace de travail contrôlé est le mode par défaut pour les déploiements VDS. Les règles sont appliquées automatiquement. Ce mode nécessite que les administrateurs VDS installent des applications, puis les utilisateurs finaux ont accès à l'application via un raccourci sur le bureau de session. De la même manière, l'accès aux dossiers de données est affecté aux utilisateurs finaux en créant des dossiers partagés mappés et en configurant des autorisations pour ne voir que les lettres de lecteur mappées au lieu de l'amorçage standard et/ou des lecteurs de données. Pour gérer cet environnement, suivez les étapes ci-dessous pour installer des applications et fournir un accès à l'utilisateur final.
+
+
+
+==== Retour à l'espace de travail AVD de base
+
+La création d'un espace de travail de base nécessite la désactivation des stratégies de GPO par défaut créées par défaut.
+
+.Pour ce faire, suivez cette procédure unique :
+. Connectez-vous à VDS at https://manage.cloudworkspace.com[] à l'aide de vos informations d'identification d'administrateur principales.
+. Cliquez sur l'élément de menu déploiements à gauche. image:Reverting to Basic AVD Workspace 1.png[""]
+. Cliquez sur le nom de votre déploiement. image:Reverting to Basic AVD Workspace 2.png[""]
+. Sous la section serveurs de plate-forme (page médiane à droite), faites défiler la ligne vers la droite pour CWMGR1 jusqu'à ce que l'engrenage apparaisse. image:Reverting to Basic AVD Workspace 3.png[""]
+. Cliquez sur l'engrenage et choisissez connecter. image:Reverting to Basic AVD Workspace 4.png[""]
+. Saisissez les informations d'identification « Tech » que vous avez créées lors de l'approvisionnement pour vous connecter au serveur CWMGR1 à l'aide de l'accès HTML5. image:Reverting to Basic AVD Workspace 5.png[""]
+. Cliquez sur le menu Démarrer (Windows), choisissez Outils d'administration Windows. image:Reverting to Basic AVD Workspace 6.png[""]
+. Cliquez sur l'icône gestion des stratégies de groupe. image:Reverting to Basic AVD Workspace 7.png[""]
+. Cliquez sur l'élément AADDC Users dans la liste du volet gauche. image:Reverting to Basic AVD Workspace 8.png[""]
+. Cliquez avec le bouton droit de la souris sur la stratégie “utilisateurs de Cloud Workspace” dans la liste du volet droit, puis désélectionnez l’option “liaison activée”. Cliquez sur OK pour confirmer cette action. image:Reverting to Basic AVD Workspace 9_1.png[""] image:Reverting to Basic AVD Workspace 9_2.png[""]
+. Sélectionnez action, mise à jour de stratégie de groupe dans le menu, puis confirmez que vous souhaitez forcer une mise à jour de stratégie sur ces ordinateurs. image:Reverting to Basic AVD Workspace 10.png[""]
+. Répétez les étapes 9 et 10, mais sélectionnez “utilisateurs AADDC” et “sociétés Cloud Workspace” comme stratégie pour désactiver le lien. Une fois cette étape terminée, vous n'avez pas besoin de forcer la mise à jour de la stratégie de groupe. image:Reverting to Basic AVD Workspace 11_1.png[""] image:Reverting to Basic AVD Workspace 11_2.png[""]
+. Fermez l'éditeur de gestion de stratégies de groupe et les fenêtres Outils d'administration, puis fermez la session. image:Reverting to Basic AVD Workspace 12.png[""]Ces étapes fournissent un environnement d'espace de travail de base pour les utilisateurs finaux. Pour confirmer votre connexion, connectez-vous en tant que compte d'utilisateur final : l'environnement de session ne doit pas comporter de restrictions d'espace de travail contrôlées telles que le menu Démarrer masqué, l'accès verrouillé au lecteur C:\ et le panneau de configuration masqué.
+
+
+
+NOTE: Le compte .tech créé pendant le déploiement dispose d'un accès complet pour installer des applications et modifier la sécurité sur des dossiers indépendants de VDS. Cependant, si vous souhaitez que les utilisateurs finaux du domaine Azure AD disposent d'un accès complet similaire, vous devez les ajouter au groupe administrateurs locaux sur chaque machine virtuelle.

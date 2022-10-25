@@ -1,0 +1,21 @@
+= Présentation d'Adobe Reader DC
+:allow-uri-read: 
+
+
+
+
+== Présentation d'Adobe Reader DC
+
+Ce script installe/désinstalle _Adobe Reader DC_ à l'aide du gestionnaire de paquets Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+
+=== Chemin de raccourci par défaut
+
+Le chemin de raccourci par défaut sera saisi ci-dessous. Pour cette application, le raccourci est : `\\shortcuts\Acrobat Reader DC.lnk`
+
+
+
+=== Capture d'écran de la fenêtre Ajouter une activité
+
+image::scriptlibrary.activity.InstallAdobeReader.png[scriptlibrary.Activity.InstallAdobeReader]

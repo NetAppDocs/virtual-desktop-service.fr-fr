@@ -1,0 +1,596 @@
+---
+sidebar: sidebar 
+permalink: Reference.Release_Notes.cwms_v5.2_release_notes.html 
+summary: Notes de mise à jour VDS NetApp v5.2 
+keywords:  
+---
+= Suite de gestion de l'espace de travail cloud – version 5.2
+:allow-uri-read: 
+
+
+
+NOTE: Il n'y aura pas d'autres versions récurrentes pour la version 5.2 de CWMS – toutes les versions seront considérées comme des correctifs.
+
+
+
+== Publication de CWMS 5.2 : lundi 2 décembre 2019
+
+Composants: 5.2 Cloud Workspace Management Suite quand: Lundi 2 décembre 2019 à 22h, à l'est impact: L'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+Aucune mise à jour de ce cycle de publication.
+
+
+
+== Publication de CWMS 5.2 : Thurs., 14 novembre 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 14 novembre 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+Aucune mise à jour de ce cycle de publication.
+
+
+
+== Publication de CWMS 5.2 : Thurs., 31 octobre 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 31 octobre 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+Aucune mise à jour de ce cycle de publication.
+
+
+
+== Publication de CWMS 5.2 : Thurs., 17 octobre 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 17 octobre 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+Aucune mise à jour de ce cycle de publication.
+
+
+
+== Publication de CWMS 5.2 : Thurs., 3 octobre 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 3 octobre 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+Aucune mise à jour de ce cycle de publication.
+
+
+
+== Publication de CWMS 5.2 : Thurs., le 19 septembre 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 19 septembre 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+Par défaut, le type d'allocation de ressources d'un déploiement Azure est fixé ; Lorsque la série/taille de la machine virtuelle est sélectionnée comme machine virtuelle définie par l'administrateur dans CWMS, ajoutez une fonctionnalité de recherche pour la fonctionnalité d'audit d'activité utilisateur correction d'erreurs pour afficher de façon incorrecte l'avertissement de délai d'inactivité de session au bout de 5 minutes au lieu de 55 minutes correction de rôle d'assistance utilisateur : un sous-ensemble d'administrateurs avec ce rôle N'a pas pu voir la liste des utilisateurs pour leur organisation. Tri par nom d'utilisateur fonctionne comme prévu au lieu de trier par statut. Assurez-vous que le rapport client principal est présent ; masquez le rapport SPLA non applicable pour les partenaires logiciels non-maîtres
+
+
+
+=== Outils et services Cloud Workspace
+
+Cryptage amélioré des mots de passe en arrière-plan Bug fix for Password Enforcement notification (PEN) où l'utilisation de la fonction "change password at Next login" ne fonctionnait pas comme prévu si les dates d'expiration du mot de passe étaient définies sur null par un administrateur dans CWMGR1
+
+
+
+=== Application de configuration Cloud Workspace pour Azure
+
+Correctif pour les administrateurs internationaux – ce dernier nécessite plus longtemps un État si le pays n'est pas les États-Unis. Appliquez CloudJumper via Partner Admin Link (PAL) aux déploiements Azure présents et futurs au niveau de l'abonnement
+
+
+
+== Publication de CWMS 5.2 : Thurs., le 5 septembre 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 5 septembre 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+Mises à jour du rôle support utilisateur uniquement : * Ajouter la fonctionnalité de recherche/filtrage des utilisateurs * inclure la colonne État de la connexion pour les utilisateurs et leurs connexions * donner accès à la fonctionnalité forcer le changement de mot de passe à la prochaine connexion * Supprimer visibilité de la fonction Supprimer le client appliquer la déconnexion de CWMS après 1 heure d'inactivité corriger pour un problème d'affichage Lorsque les séries/tailles de VM n'étaient pas affichées correctement lors de l'affichage des rôles de VM dont le type d'allocation de ressources est défini sur fixe pour un problème d'affichage où les environnements avec planification de charge de travail défini sur toujours affichant des paramètres incorrects dans CWMS, Bien qu'il soit correctement défini sur toujours en arrière-plan mise à jour des autorisations – supprimez l'onglet planification des ressources si l'administrateur CWMS n'a pas accès à la fonction Ressources dans CWMS
+
+
+
+=== Application de ressources cloud
+
+Mise à jour des fonctionnalités – prise en charge de l'utilisation de la ligne de commande
+
+
+
+=== Outils et services Cloud Workspace
+
+Prise en charge de l'interface REST vCloud
+
+
+
+== Publication de CWMS 5.2 : Thurs., 22 août 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 22 août 2019 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+Résolution d'un problème d'affichage dans le profil utilisateur pour certaines tailles de moniteur Ajouter un message de clarification pour les services d'applications non dynamiques informant les administrateurs qu'il peut prendre quelques minutes pour que les modifications prennent effet le bouton Ajouter nouveau pour les services d'applications non dynamiques afin de faciliter la notification des nouveaux clients/utilisateurs a été ajouté
+
+
+
+=== Cloud Workspace pour Azure
+
+Ajouter la prise en charge de MFA pour le processus d'inscription lors de la liaison avec un compte CWMS existant amélioration aux instructions de post-provisionnement – lien vers une nouvelle amélioration de la base de connaissances publique aux instructions de post-provisionnement – le lien s'ouvre dans un nouvel onglet
+
+
+
+=== Outils et services Cloud Workspace
+
+Correction des bogues pour la gestion des certificats SSL dans les environnements existants (2008 R2) vérifications supplémentaires de l'intégrité pour l'application des certificats et la gestion du cycle de vie
+
+
+
+== Publication de CWMS 5.2 : Thurs., 8 août 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 8 août 2019 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+Aucune mise à jour de cette version.
+
+
+
+== Publication de CWMS 5.2 : Thurs., 25 juillet 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 25 juillet 2019 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Configuration CWA
+
+Afficher un message post-provisioning qui dirige les utilisateurs de CWA Setup vers CloudJumper public KB où ils peuvent passer en revue les étapes suivantes et comment affiner leur déploiement amélioration de la gestion des pays en dehors des États-Unis pendant le processus d'enregistrement a ajouté un champ pour confirmer le mot de passe du CWMS nouvellement créé Connexion lors du processus de configuration de CWA Supprimer la section de licence SPLA dans les cas où les licences RDS ne seront pas requises
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Amélioration de la gestion des connexions HTML5 pour les administrateurs CWMS dans les déploiements de serveurs uniques correctif pour un scénario de redémarrage du traitement d'un utilisateur (lorsqu'il avait échoué auparavant) Résultat d'un message "erreur de serveur interne" Supprimer la section de licence SPLA dans les cas où les licences RDS ne seront pas requises, inclure la gestion automatique des certificats SSL et SMTP automatique à l'assistant de mise à disposition dans CWMS
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Lorsqu'un utilisateur de VDI se déconnecte de sa machine virtuelle à un moment défini pour sa mise hors tension, mettez-le hors tension lors de la restauration de serveurs TSD1 en tant que VM, Restauration en tant que machine virtuelle TS au lieu d'une préparation supplémentaire TSD VM stéamlined d'Azure VM pour la gestion de la sauvegarde Azure - amélioration de la vitesse de traitement de back-end et de la sécurité
+
+
+
+=== 5.2 API REST
+
+Amélioration de la gestion des informations sur le serveur, ce qui accélère le temps de chargement du serveur de réveil à la demande
+
+
+
+== Publication de CWMS 5.2 : Thurs., 11 juillet 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 11 juillet 2019 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Améliorations continues en coulisses de la sécurité améliorations de la stabilité continue pour les certificats générés automatiquement, amélioration de la méthodologie la plus privilégiée : ajustement pour utiliser un compte avec moins d'autorisations/moins affecté par les verrouillages génériques afin d'effectuer des améliorations de redémarrages de nuit pour les sauvegardes intégrées pour les déploiements Azure améliorations pour les sauvegardes intégrées pour les déploiements GCP correctif logiciel Ne réamorcez plus les serveurs sans cesse pour appliquer les ajustements de ressources lorsqu'ils étaient déjà corrects amélioration du processus pour permettre la gestion manuelle des certificats, si nécessaire
+
+
+
+== Publication de CWMS 5.2 : Thurs., 20 juin 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 20 juin 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Amélioration de la gestion des utilisateurs importés dans CWMS via les affichages de stockage corrects de processus ARC dans la section serveur du module Workspace pour un sous-ensemble de scénarios mis à jour année en bas de l'interface Web CWMS
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Automatisation améliorée des certificats
+
+
+
+=== 5.2 API REST
+
+Correction d'affichage – affiche les valeurs correctes saisies précédemment dans la fonction mise à l'échelle directe lors de l'ouverture de la fonction mise à l'échelle directe. Permet de créer une planification de sauvegarde par défaut pour le rôle utilisateur intensif (utilisateurs VDI).
+
+
+
+== Publication de CWMS 5.2 : Thurs., 6 juin 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 6 juin 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Gestion améliorée de plusieurs e-mails pour les notifications de plateforme correction des bogues dans un sous-ensemble de scénarios où la planification des charges de travail ne désactive pas correctement les serveurs Bug fix dans un sous-ensemble de scénarios où la restauration de serveurs à partir d'Azure Backup ne restaure pas le type de stockage approprié par rapport à un type de stockage par défaut
+
+
+
+=== 5.2 Configuration CWA
+
+Amélioration continue de la sécurité pendant le processus d'installation de CWA amélioration de la gestion automatisée des paramètres de sous-réseau et de passerelle amélioration du processus en arrière-plan de gestion des comptes utilisateur pendant le processus d'enregistrement inclut un processus d'actualisation des tokens si un utilisateur continue à exécuter le processus d'installation de CWA pendant plus d'une heure
+
+
+
+== Publication de CWMS 5.2 : Thurs., 23 mai 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 23 mai 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Lien amélioré dans l'onglet AVD dans le module espaces de travail correction des bogues pour un scénario où cliquer sur un lien vers un espace de travail du module centres de données ne vous emmenant pas à ce correctif de l'espace de travail pour un scénario où la mise à jour des informations de contact pour un administrateur principal aurait supprimé leur Désignation comme administrateur principal
+
+
+
+== Publication de CWMS 5.2 : Thurs., 9 mai 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 9 mai 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Amélioration de l'évolutivité pour les déploiements avec des centaines, plusieurs milliers de machines virtuelles
+
+
+
+== Publication de CWMS 5.2 : Thurs., le 25 avril 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 25 avril 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Amélioration de l'interface : si les sauvegardes ne sont pas activées pour un serveur dans Azure ou GCP, supprimez la colonne taille de la section sauvegarde d'un serveur
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Correction d'un bug pour un scénario dans lequel le changement de ressources pour les serveurs de passerelle RDP et/ou HTML5 ne les replace pas une fois le changement de ressource terminé
+
+
+
+=== 5.2 API REST
+
+Amélioration de la gestion des configurations MFA initiales, quel que soit le scénario
+
+
+
+=== 5.2 Configuration CWA
+
+Prise en charge des comptes CWMS existants, permettant aux CSP indirects de se provisionner correctement et de simplifier le processus pour les partenaires existants validation supplémentaire pour les services de domaine Azure Active Directory – affiche une erreur si Azure Active Directory Domain Services est sélectionné, mais est déjà en place
+
+
+
+== Publication de CWMS 5.2 : Thurs., le 11 avril 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 11 avril 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Correction de bug pour les collections d'approvisionnement – l'enregistrement d'une collection d'approvisionnement à l'aide d'une application qui n'affiche pas d'icône de bureau n'affichera plus d'erreur dans la correction d'erreurs CWMS – résolvez un problème où le démarrage d'un serveur de plate-forme arrêté depuis CWMS a affiché une erreur parce qu'il n'y avait pas de partenaire code joint
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Amélioration de la stabilité pour la suppression des serveurs dans les déploiements vCloud, dans le cas où plusieurs FMS se trouvent dans un vApps, Supprimez uniquement la machine virtuelle au lieu de supprimer la vApp Ajouter une option pour ne pas installer de certificats génériques sur les serveurs d'infrastructure améliorations pour le clonage des serveurs TSD dans AzureAD améliorations pour Server Resource Report – gestion des serveurs avec plusieurs adresses IP correction de bogues pour un sous-ensemble de scénarios lorsqu'une liste de Les sauvegardes d'un serveur n'ont pas été chargées pour examen dans AzureRM Bug fix lors de la tentative de clonage de machines virtuelles avec un préfixe dans Azure Classic (tous les déploiements nouveaux et récents utilisent AzureRM) Correction de bug pour les erreurs DNS pas correctement signalées dans le rapport de ressources serveur pour Server 2008 R2 correctif pour ne pas envoyer le rapport de ressources de l'entreprise au cas où une machine virtuelle a été supprimée de l'hyperviseur (mais pas d'AD) De plus, CWMS ne trouve pas de sauvegardes Azure dans l'hyperviseur lui-même (uniquement dans les déploiements AzureRM)
+
+
+
+=== 5.2 Configuration CWA
+
+Ajout d'une méthode pour vérifier que la région sélectionnée pour le provisionnement a Azure Active Directory Domain Services disponibles Ajout de vérifications supplémentaires pour résoudre les problèmes de délai DNS dans un sous-ensemble de scénarios Suppression de B2s en tant que cible pour le déploiement CMGR1, car cela ralentit le processus de déploiement
+
+
+
+== Publication de CWMS 5.2 : Thurs., 28 mars 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 28 mars 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Ajouter un bureau virtuel Azure à l'interface CWMS permet à un administrateur CWMS de ne pas définir de logo d'entreprise sous Paramètres -> logo Ajouter une exigence pour l'ID externe lors de la mise à jour d'une application dans un catalogue d'applications personnalisé
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Rationalisation et améliorations supplémentaires du processus de déploiement de Cloud Workspace pour Azure (CWA) Un compte Premium Storage n'est plus nécessaire pour créer des machines virtuelles avec Premium Storage dans les déploiements Azure RM résoudre un problème dans un sous-ensemble de scénarios où les rapports de suivi de l'utilisation des applications ne capturent pas la résolution des données d'utilisation Un problème de mise à jour des certificats sur les serveurs du portail HTML5 entraînerait une erreur dans la mesure où la licence du serveur du portail HTML5 a été mise à jour correction des bogues pour les notifications d'expiration des mots de passe ne mettant pas à jour les mots de passe lors de l'utilisation d'Azure Active Directory Domain Services, emplacement ajusté auquel Password Exexpiration Notifications écrit les fichiers journaux
+
+
+
+=== 5.2 API REST
+
+Correction des bogues pour le démarrage/arrêt des serveurs de plate-forme (et non des serveurs clients) dans le module Data Center
+
+
+
+=== 5.2 Configuration CWA
+
+Améliorations des paramètres de rôle FTP pendant le déploiement mécanisme amélioré pour garantir que les administrateurs voient la dernière version chaque fois qu'ils accèdent au processus de configuration CWA améliorer la gestion des éléments qui arrivent à expiration lors du correctif de déploiement dans un scénario où un déploiement a été incorrectement étiqueté comme utilisant Azure AD
+
+
+
+== CWMS 5.2 version mineure : Thurs., 14 mars 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 14 mars 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Changez le nom de la fonction de surveillance de l'application pour "suivi de l'utilisation de l'application" appliquez un correctif où l'actualisation d'une recherche d'événements avec script ne réutilise pas les dates de début/fin sélectionnées Audit de fichier par défaut pour commencer avec le filtre de date défini sur un jour avant la date actuelle, Rationalisation de la quantité de données renvoyées Bug fix aux sauvegardes intégrées pour Azure où la restauration de sauvegardes sur un serveur ne fonctionnait pas comme prévu dans un sous-ensemble de scénarios, résolvez une invite d'erreur d'application lors de la mise à jour d'un client appartenant à App Service
+
+
+
+=== 5.2 API REST
+
+Azure Safeguard : lorsque vous ajoutez un utilisateur Azure AD, assurez-vous que son adresse e-mail n'est pas déjà ajoutée au compte. Correction des bogues : lors de l'ajout d'une application pour un client et de la création d'un groupe en même temps, Ajouter les utilisateurs au groupe comme prévu Ajouter une étape de validation lors de la désactivation de l'accès aux serveurs RDSH qui s'assure qu'il est toujours appliqué après le redémarrage d'un serveur améliorations générales pour l'automatisation des flux de travail CWA correction des bogues pour un sous-ensemble de scénarios lors de l'ajout d'une application à un groupe affecté Autres utilisateurs de ce groupe
+
+
+
+=== 5.2 Configuration CWA
+
+Ajoutez une option d'actualisation pour la liste des abonnements pendant le processus de déploiement indicateur de déploiement Auto-set pour le service MobileDrive dégradé et hérité sur Faux garanties d'automatisation supplémentaires et vérifications dans Azure
+
+
+
+== CWMS 5.2 version mineure : Thurs., 28 février 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 28 février 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Message de clarté et de confirmation amélioré pour ce qui se passe lorsque vous désélectionnez la case « utilisateur VDI » pour les utilisateurs dans l'interface CWMS (supprime le serveur de l'utilisateur VDI) et comment procéder si vous ne souhaitez pas supprimer les améliorations de back-end du serveur à la gestion de l'horodatage
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Paramètres mis à jour pour le nom du serveur de licences dans Azure Domain Services en arrière-plan améliorations du processus par lequel un utilisateur peut modifier son propre mot de passe après sa connexion à Cloud Workspace mise à jour native 2FA pour refléter CloudJumper Bug Fix pour 2FA si un paramètre rare est activé
+
+
+
+=== 5.2 Configuration CWA
+
+Contenu d'aide/support supplémentaire dans l'assistant d'installation CWA Ajouter termes et prix du contrat à l'assistant d'installation CWA mécanisme amélioré de détection des quotas et autorisations d'un abonnement rationalisation des déploiements pour les déploiements basés sur les services de domaine Azure Active Directory en coulisses amélioration du format de nom de compte de stockage correction des bogues pour le serveur FTP paramètres dans un sous-ensemble de scénarios
+
+
+
+== CWMS 5.2 version mineure : Thurs., 14 février 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 14 février 2019 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Amélioration des performances des actions de gestion des utilisateurs la journalisation supplémentaire est activée pour afficher qui a demandé une modification sur un groupe dans l'historique des tâches du centre de données. Résolution d'un problème dans le catalogue d'applications standard où les applications ne s'affichaient pas dans un sous-ensemble de scénarios. Résolution d'un problème dans App Services avec Dynamic Provisionnement où une erreur s'affiche si deux applications du même nom sont supprimez l'assistant de création SDDC de l'interface CWMS 5.1 * si vous exécutez un SDDC sur 5.1 et que vous souhaitez provisionner un nouveau SDDC, Veuillez contacter support@cloudjumper.com pour planifier une mise à niveau vers CWMS 5.2 corriger une erreur d'orthographe dans l'écran de création d'utilisateur API de CWMS
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Dans les SDDC basés sur vCloud, reconnectez-vous à l'hyperviseur si la connexion expire dans des SDDC basés sur vCloud, augmentez le délai par défaut en attendant que les serveurs démarrent des limitations améliorées sur l'accès administratif de CloudJumper
+
+
+
+=== 5.2 API REST
+
+Lors de la mise en service d'un nouveau SDDC via l'interface 5.1 de CWMS, le message affiché sera « la création d'un nouveau centre de données n'est prise en charge que lors de l'utilisation de v5.2 de CWMS ».
+
+
+
+=== 5.2 Configuration CWA
+
+Amélioration de la gestion automatique des erreurs
+
+
+
+== CWMS 5.2 version mineure : Thurs., 31 janvier 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 31 janvier 2019 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Ajoutez les informations de connexion du serveur client Cloud Workspace à la section Présentation du client Cloud Workspace Ajouter un champ modifiable dans les paramètres de compte CWMS qui vous permet de saisir votre ID de locataire Azure AD utiliser la version la plus moderne de Microsoft Standard Storage dans les nouveaux déploiements Azure, intégration améliorée d'Azure, Nécessité de conserver des sauvegardes intégrées dans des déploiements Azure pendant au moins 1 jour d'amélioration de la gestion dans le cadre du provisionnement dynamique des déploiements App Services Ajouter la date à laquelle le stockage de serveur est inventorié dans cette section du module serveurs indique qu'une application est provisionnée à un utilisateur pendant que le système L'état de l'utilisateur est toujours en attente espace de travail Cloud si un utilisateur est un utilisateur VDI, affichez le serveur VDI sur la page utilisateur si un serveur est pour un utilisateur VDI, Afficher l'utilisateur sur la page serveur permet de résoudre un problème dans certains cas où si un utilisateur a une tâche de carte de service ouverte associée à son nom d'utilisateur, l'accès à distance à la machine virtuelle échoue de CWMS
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Amélioration de la gestion de Live Scaling pendant que les utilisateurs se connectent tout au long de la journée Ajouter des conditions d'automatisation pour les améliorations futures de la planification des charges de travail Ajouter des conditions préalables à l'automatisation pour les améliorations futures de la planification des charges de travail résoudre un problème où l'utilisation de Windows 10 pour les serveurs VDI n'était pas correctement activé le service de registre distant dans Azure Active Les déploiements de services de domaine d'annuaire permettent de résoudre un problème où l'utilisation de Windows 10 pour les serveurs VDI n'était pas correctement définissant le groupe de sécurité pour le groupe d'utilisateurs de bureau distant local dans les déploiements de services de domaine d'Azure Active Directory Modifier la fonctionnalité de paramètre de conformité PCI pour ne pas prendre d'action lorsqu'elle n'est pas activée au lieu de l'application Les paramètres de configuration par défaut permettent de résoudre un problème dans la planification de la charge de travail, de sorte que les utilisateurs disposant de l'option réveil à la demande activée peuvent arrêter les serveurs s'ils sont programmés pour mettre hors tension un bug lors du clonage d'un serveur dans le Cloud public ProfitBricks corrigez un bogue dans lequel le clonage des serveurs vérifie Les préfixes de serveur à ce nom de serveur ne sont pas dupliqués dans les scénarios d'utilisateur VDI. Ajoutez une vérification des rapports nocturnes pour les codes clients mis en cache qui n'utilisent pas une collection d'approvisionnement valide. Gestion améliorée des exceptions lorsque la machine virtuelle n'est pas dans l'hyperviseur et que CWAgent nécessite un problème de résolution de mise à jour Réinitialisation des mots de passe via la notification d'expiration de mot de passe pour appliquer correctement l'historique des mots de passe
+
+
+
+=== Configuration CWA
+
+Implémentation de l'option de configuration automatique des paramètres SMTP Ajout d'options de validation pour la liste d'emplacements pour vérifier si l'abonnement dispose de quotas et d'autorisations suffisantes pour créer des VM dans la région Azure sélectionnée Ajout de la fonctionnalité permettant de supprimer les comptes CloudWorkspace inutiles et d'autres comptes de service avec autorisations administratives à la fin de Le processus de provisionnement dans Azure Notify aux utilisateurs que les téléchargements manuels de certificats DNS ont été vérifiés a résolu un problème où les installations ThinPrint ne s'installent pas comme prévu dans certains scénarios
+
+
+
+== CWMS 5.2 version mineure : Thurs., 17 janvier 2019
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 17 janvier 2019 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+L'interface Workload Scheduling affiche désormais Description comme première colonne et change le nom de Scheduling en Custom Scheduling Bug fix pour l'affichage des sauvegardes de serveurs de plateforme dans les déploiements Azure Bug Fix pour les scénarios où l'utilisateur final s'auto-administration pour les cas d'utilisation de App Services lorsque l'entreprise ne le fait pas Configurer n'importe quel service Cloud Workspace
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Ajout d'une prise en charge de la conformité PCI v3 amélioration de la sécurité : les nouveaux déploiements CWMS utiliseront un administrateur local contre Un administrateur de domaine pour exécuter les processus CWAgent. Prise en charge de Windows Server 2019 dans les déploiements AzureRM * Remarque : Microsoft ne prend pas en charge Microsoft Office dans cette version, mais n'a pas encore amélioré la gestion des utilisateurs de Wake on Demand. Si leur organisation est planifiée pour arrêter les machines virtuelles, mais un utilisateur avec Wake on Demand fonctionne toujours activement, Ne mettez pas les ordinateurs virtuels de l'entreprise hors tension lors du clonage de machines virtuelles. Supprimez des rôles tels que Connection Broker de la nouvelle machine virtuelle créée à partir de la machine virtuelle clonée. Amélioration du processus d'installation du rôle du serveur de licences ThinPrint. Amélioration du modèle AzureRM handilng : renvoie tous les modèles disponibles pour une machine virtuelle sur Azure, selon le matériel sur lequel elle s'exécute. Non seulement les modèles disponibles dans la région Azure du locataire ont amélioré les tests automatisés pour les déploiements vSphere, mais ils incluent également une vérification des rapports de messagerie électronique nocturnes pour voir si le serveur de licences ThinPrint est installé Bug fix pour Live Scaling dans un sous-ensemble limité de scénarios Bug fix pour le clonage de serveurs dans certains scénarios de Déploiements vCloud correction des bogues pour les préfixes de noms de machines virtuelles dans les déploiements AzureRM correction des bogues pour le signalement des erreurs lors de l'utilisation de tailles de machine personnalisées dans Google Cloud Platform correction des bogues pour le signalement des utilisateurs avec fonctionnalité ThinPrint activée exclure la version chinoise de Windows de la liste des modèles disponibles dans AzureRM
+
+
+
+=== Configuration CWA
+
+Résolution d'un scénario où les mots de passe correspondant au nombre minimum de caractères requis n'ont pas été acceptés changer la colonne ID en domaine client pendant le processus de sélection de tenant pour la mise à jour des CSP au processus d'inscription qui rationalise l'entrée de la carte de crédit
+
+
+
+== CWMS 5.2 version mineure : Thurs., 20 décembre 2018
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 20 décembre 2018 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Configuration de l'espace de travail cloud
+
+Ajout d'une fonction d'enregistrement DNS FTP en cas de déploiement d'un serveur unique et SSL automatique est sélectionné pendant le processus de déploiement processus automatisé pour remplir les informations AD Azure. (Tenantid, ClientID, Key) dans les tables d'arrière-plan le processus d'installation automatique installera à présent ThinPrint License Server 11 au lieu de 10
+
+
+
+=== 5.2 Configuration CWA
+
+Résolution d'un problème au cours duquel le processus d'enregistrement a redirigé les administrateurs vers une page de connexion une fois terminé
+
+
+
+== CWMS 5.2 version mineure : Thurs., 6 décembre 2018
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 6 décembre 2018 à 22h, heure de l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Services et outils de Cloud Workspace
+
+La prise en charge de la création de serveurs avec le système d'exploitation Win10 a amélioré les vitesses lors du chargement d'une machine virtuelle à partir de l'hyperviseur. Lorsque vous créez des serveurs dans Azure, vous pouvez ajouter la journalisation des rapports quotidiens à l'arrière-plan de contrôle pour éviter l'extension automatique des disques temporaires dans Azure Posez la base d'une modification future de l'affichage de l'OS du serveur lors de la sélection d'un modèle de mise en service correction d'incidents pour ne pas étendre automatiquement un lecteur dans GCP Bug fix pour l'automatisation du déploiement lors de l'utilisation d'Azure Active Directory Domain Services si plusieurs serveurs MGR sont configurés, Remarque : erreur dans le rapport de résolution des bugs dans le cadre de tests automatisés pour le cloud public (Azure, GCP) Sauvegardes dans les déploiements VMware Bug fix pour déterminer l'espace disque sur une nouvelle machine virtuelle créée via HyperV déploiements Bug fix pour la collecte des données du serveur lorsque l'UO racine est vide, amélioration de la stabilité lors du clonage de serveurs basés sur un hyperviseur mal configuré
+
+
+
+=== 5.2 API REST
+
+Activer la prise en charge de la série machine dans les déploiements clouds publics permet de désactiver l'allocation de ressources par défaut pour un SDDC ajouté DataCollectedDateUTC aux détails de stockage pour un serveur Ajouter la capacité de calculer les valeurs de ressources Ajouter une nouvelle méthode pour obtenir des États de connexion utilisateur détaillés Afficher une erreur dans CWMS Lors de la suppression d'un utilisateur disposant également de droits d'administration problème résolu avec le mappage de lecteurs pour un service d'application avec données n'apparaissant pas toujours problème fixe mise à jour d'un client et/ou d'un utilisateur via CWMS importé via CWA problème fixe lors de la création d'un nouvel utilisateur et de l'affectation d'applications le groupe tous les utilisateurs, le nouvel utilisateur ne recevra pas les raccourcis de l'application.
+
+
+
+== CWMS 5.2 version mineure : Thurs., 1er novembre 2018
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 1er novembre 2018 à 22h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Correction de bug pour les sauvegardes intégrées correction de bug pour un cas d'utilisation spécifique dans un déploiement de l'ARC
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Activez la possibilité de renvoyer les types de stockage disponibles dans les déploiements Azure ARM lors de la création de serveurs prise en charge de la topologie Active Directory multisite résolvez un problème avec TestVDCTools lors de l'utilisation d'Azure Active Directory Domain servce Bug fix pour les rapports de nuit lorsque AD root ou est vide
+
+
+
+=== 5.2 API REST
+
+Prenez en charge le déverrouillage des utilisateurs lorsqu'Azure Active Directory Domain Services. Remarque : notez qu'il peut y avoir un délai de 20 minutes à cause de la réplication.
+
+
+
+== CWMS 5.2 version mineure : Thurs., 18 octobre 2018
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 18 octobre 2018 à 22 h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux reste ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Dans l'assistant Data Center, Activer la validation des certificats génériques améliorations générales des coulisses et correctifs de bogues Ajouter une fonction de recherche dans la table des applications tri amélioré dans la table des applications Ajouter des détails pour terminer l'enregistrement DNS dans le processus de provisionnement Data Center inclure tous les utilisateurs et groupes de sous-partenaires dans les réponses d'appel d'API pour dynamique App Services Fix un bug dans lequel le mode de migration ne persistait pas pour un locataire dans une instance spécifique Ajouter des serveurs supplémentaires, Utilisateurs partagés par serveur et nombre d'utilisateurs partagés maximum par serveur pour obtenir des détails sur l'évolutivité en direct Ajouter une validation DNS au test de certificat générique lors du provisionnement via le nouvel assistant Data Center
+
+
+
+=== 5.2 Services et outils de Cloud Workspace
+
+Activez une option pour renvoyer toutes les tailles de machines virtuelles regroupées par série VM renvoyez toutes les tailles de machines virtuelles disponibles depuis l'hyperviseur Fixité relative à l'allocation des ressources lors du calcul des utilisateurs d'App Service Activer l'option de mise à jour automatique des ressources pour CWMGR1 inclure le statut de caractères génériques DataCenterResources Report Activer les améliorations DNS futures correction des bogues – Résolvez les extensions automatiques de disques dans les déploiements GCP
+
+
+
+=== 5.2 API REST
+
+Amélioration des performances lors de la liste des clients/utilisateurs permettant la prise en charge de nouvelles fonctionnalités de mise à l'échelle directe : configuration de PowerExtraedOnServers, SharedUsersPerServer et de MaxSharedUsersPerServer API prend désormais en charge la possibilité de valider le domaine de certificat générique lors de la création de nouveaux déploiements de plate-forme Nouvelle méthode d'API disponible pour obtenir les données d'activité utilisateur pour tous les clients partenaires
+
+Problème connu : lors de l'utilisation de la méthode d'allocation dynamique « utilisateurs actifs » ou « nombre d'utilisateurs » pour le dimensionnement du pool de ressources dans un déploiement Azure ARM, le récapitulatif « ressource calculée par serveur » affiche de manière incorrecte la taille de la machine en tant que type de série a de base au lieu du type de série D standard correct.
+
+
+
+== CWMS 5.2 version mineure : Thurs., 27 septembre 2018
+
+Composants : suite de gestion Cloud Workspace 5.2 quand : le jeudi 27 septembre 2018 à 22 h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux reste ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Simplifiez l'affichage des machines virtuelles de collecte de provisionnement dans la mémoire cache corriger un problème d'affichage lors de la gestion des services d'application
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Correctif pour un cas d'utilisation obscur de l'API de mise à jour MFA de l'utilisateur final pour l'interface avec la dernière version d'Azure RM Update Testing for Azure RM pour utiliser la dernière terminologie API remplacer l'utilisateur puissant avec le rapport d'e-mail de mise à jour de l'utilisateur VDI pour inclure un processeur et une RAM supplémentaires pour un serveur Mettre à jour les rapports d'adresse : au lieu de dcnotifications@independenceit.com messages provenant de dcnotfications@cloudjumper.com, il est possible que la définition des utilisateurs par serveur et des machines virtuelles supplémentaires reste activée via les améliorations de Live Scaling Performance lors du démarrage d'une amélioration de la sécurité du déploiement/SDDC stoppée. Les partenaires disposant de plusieurs SDDC/déploiements ne peuvent plus se connecter d'un à un Autre amélioration de la stabilité : si l'automatisation ne peut pas renvoyer le compte utilisateur, ne modifiez pas le nombre de ressources améliorations cosmétiques mineures
+
+
+
+== CWMS 5.2 version mineure : Thurs., 6 septembre 2018
+
+Composants: 5.2 Cloud Workspace Management Suite lorsque : le jeudi 6 septembre 2018 à 22 h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Ajout de la possibilité de rechercher des sous-partenaires dans le catalogue d'applications personnalisé correction d'un bogue où l'actualisation de l'écran dans le module Data Centers provoque une invite d'erreur Suppression de la restriction sur la taille max du nom de dossier et facilitant la navigation dans les dossiers pour garantir que le nombre de ressources sur les machines virtuelles est important Ne sont jamais inférieurs aux valeurs minimales spécifiées de CPU et de RAM. Rephrase terminologie de l'utilisateur de pouvoir à l'utilisateur VDI. Correction d'une erreur lorsqu'une erreur générique s'est produite malgré l'affichage du nom du serveur en arrière-plan amélioré dans l'assistant de création de data Center. Résolution de l'expiration du compte non enregistrée Dans CWMS
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Correction d'un bug avec MFA où les utilisateurs qui ont sélectionné E-mail ne recevaient pas parfois de code permettent la saisie d'une CPU et d'une RAM supplémentaires pour le type d'allocation de ressources de nombre d'utilisateurs. Résolvez un bogue dans lequel le moteur d'automatisation n'alimente pas tous les types de machine pour résoudre un problème de synchronisation qui peut parfois provoquer Clonage des serveurs à extraire automatise l'installation manuelle précédente d'un certificat générique sur le serveur FTP a ajouté un processus pour purger les anciens certificats après la mise à jour des certificats génériques. Résoudre un problème où lors de l'utilisation des services d'applications Data Enabled, le lecteur X: Ne serait pas toujours mappé pour un utilisateur final.
+
+
+
+== CWMS 5.2 publication générale de la disponibilité : Thurs., 10 août 2018
+
+Composants: 5.2 Cloud Workspace Management Suite quand : le jeudi 10 août 2018 à 22 h, à l'est : l'accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.2 Suite de gestion de l'espace de travail cloud
+
+Libérer les composants de l'interface Web pour activer les fonctionnalités de la vue d'ensemble ci-dessus
+
+
+
+=== 5.2 Outils et services Cloud Workspace
+
+Libérer des outils d'arrière-plan pour activer les fonctionnalités de la présentation ci-dessus
+
+
+
+=== 5.2 API REST
+
+ Release API to production to enable the features found in the overview above

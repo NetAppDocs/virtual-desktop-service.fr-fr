@@ -1,0 +1,200 @@
+---
+settings:
+  name: Virtual Desktop Service
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: fr-fr,us-en,ja-jp,zh-cn,zh-tw,ko-kr,de-de
+sidebar:
+  entries:
+  - title: Documentation de Virtual Desktop Service
+    url: "/index.html"
+  - title: Déploiement avec VDS
+    entries:
+    - title: Azure
+      entries:
+      - title: Azure Virtual Desktop
+        entries:
+        - title: Déploiement d'AVD dans Azure
+          url: "/Deploying.Azure.AVD.Deploying_AVD_in_Azure.html"
+        - title: Supplémentaire - AVD avec AD existant
+          url: "/Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html"
+        - title: Composants et autorisations VDS v5.4 (AVD)
+          url: "/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html"
+        - title: Conditions préalables VDS v5.4 (AVD)
+          url: "/Deploying.Azure.AVD.vds_v5.4_prerequisites.html"
+        - title: Prérequis VDS v6.0 (AVD)
+          url: "/Deploying.Azure.AVD.vds_v6.0_prerequisites.html"
+    - title: Google
+      entries:
+      - title: Déploiement de RDS dans Google
+        url: "/Deploying.GCP.RDS.deploying_rds_in_gcp.html"
+      - title: Prérequis VDS v5.4 (RDS/GCP)
+        url: "/Deploying.GCP.vds_v5.4_prerequisites.html"
+  - title: Architecture
+    entries:
+    - title: Changer la couche de données
+      url: "/Architectural.change_data_layer.html"
+      entries:
+      - title: Azure Files
+        url: "/Architectural.change_data_layer.Azure_Files.html"
+    - title: Migration des données dans VDS
+      url: "/Architectual.migrate_data_into_vds.html"
+    - title: Mettez à niveau AVD v1 vers v2
+      url: Architectual.upgrade_AVD_v1_to_v2.html
+    - title: Renouveler le certificat SSL
+      url: "/Architectural.Wildcard_SSL_certificate_renewal_process.html"
+    - title: Guide de démontage VDS
+      url: "/Architectural.AVD_teardown_guide.html"
+  - title: Gestion
+    entries:
+    - title: De nombreux déploiements
+      entries:
+      - title: Provisionnement des Collections
+        url: "/Management.Deployments.provisioning_collections.html"
+      - title: Présentation de la hiérarchie logique VDS
+        url: "/Management.Deployments.logical_hierarchy_overview.html"
+    - title: En termes de latence
+      entries:
+      - title: Droits d'application pour RDS
+        url: "/Management.Applications.application_entitlement_workflow.html"
+      - title: Droits d'application pour AVD
+        url: "/Management.Applications.AVD_application_entitlement_workflow.html"
+    - title: Événements avec script
+      entries:
+      - title: Vue d'ensemble des événements avec script
+        url: "/Management.Scripted_Events.scripted_events.html"
+    - title: Centre de commande
+      entries:
+      - title: Présentation du centre de commande de gestion
+        url: "/Management.command_center.overview.html"
+      - title: Exploitation
+        entries:
+        - title: Copier le modèle dans la galerie
+          url: "/Management.command_center.operations.copy_template_to_gallery.html"
+    - title: Configurer l'optimisation des coûts
+      url: "/Management.Cost_Optimization.workload_schedule.html"
+    - title: Administration des utilisateurs
+      entries:
+      - title: Gérer les comptes d'utilisateurs
+        url: "/Management.User_Administration.manage_user_accounts.html"
+      - title: Gérer les dossiers et les autorisations
+        url: "/Management.User_Administration.manage_folders_and_permissions.html"
+      - title: Gérer l'accès aux applications
+        url: "/Management.Applications.application_entitlement_workflow.html"
+      - title: Réinitialiser les mots de passe utilisateur
+        url: "/Management.User_Administration.reset_user_password.html"
+      - title: Configurer MFA
+        url: "/Management.User_Administration.multi-factor_authentication.html"
+    - title: Administration de système
+      entries:
+      - title: Créer un compte administrateur de domaine
+        url: "/Management.System_Administration.create_domain_admin_account.html"
+      - title: Accès tiers
+        url: "/Management.System_Administration.provide_3rd_party_access.html"
+      - title: Configurer la sauvegarde
+        url: "/Management.System_Administration.configure_backup.html"
+      - title: Cloner des machines virtuelles
+        url: "/Management.System_Administration.clone_virtual_machines.html"
+      - title: Ajout automatique d'espace disque
+        url: "/Management.System_Administration.auto_add_disk_space.html"
+      - title: Coffre-fort de clés Azure
+        url: "/Management.System_Administration.azure_key_vault.html"
+      - title: Configurez antivirus
+        url: "/Management.System_Administration.configure_antivirus.html"
+      - title: Ajout et déplacement de lecteurs mappés
+        url: "/Management.System_Administration.adding_moving_mapped_drives.html"
+  - title: Dépannage
+    entries:
+    - title: Vérification des journaux VDS
+      url: "/Troubleshooting.reviewing_vds_logs.html"
+    - title: Qualité de connexion Internet
+      url: "/Troubleshooting.internet_connection_quality.html"
+    - title: Activer le fond d'écran utilisateur
+      url: "/Troubleshooting.enable_user_wallpaper.html"
+    - title: Problèmes d'impression
+      url: "/Troubleshooting.printing_issues.html"
+    - title: Quota de cœur de vCPU Azure
+      url: "/Troubleshooting.azure_vcpu_core_quota.html"
+    - title: Déverrouiller le compte utilisateur
+      url: "/Troubleshooting.unlocking_user_accounts.html"
+    - title: Performances générales des machines virtuelles
+      url: "/Troubleshooting.general_vm_performance.html"
+    - title: Le transfert DNS pour Azure AJOUTE SSO
+      url: "/Troubleshooting.dns_forwarding_for_azure_aadds_sso.html"
+    - title: Problèmes d'application
+      url: "/Troubleshooting.application_issues.html"
+  - title: Référence
+    entries:
+    - title: Notes de mise à jour
+      entries:
+      - title: Notes de version VDS v6.0
+        url: "/Reference.Release_Notes.vds_v6.0_release_notes.html"
+      - title: Notes de mise à jour VDS v5.4
+        url: "/Reference.Release_Notes.vds_v5.4_release_notes.html"
+      - title: Notes de mise à jour du client Windows VDS
+        url: "/Reference.Release_Notes.vds_windows_client_release_notes.html"
+      - title: Versions précédentes
+        entries:
+        - title: Notes de mise à jour VDS v5.3
+          url: "/Reference.Release_Notes.vds_v5.3_release_notes.html"
+        - title: Notes de version CWMS v5.2
+          url: "/Reference.Release_Notes.cwms_v5.2_release_notes.html"
+        - title: Notes de mise à jour CWS v5.1
+          url: "/Reference.Release_Notes.cws_v5.1_release_notes.html"
+        - title: Notes de mise à jour CWS v5.0
+          url: "/Reference.Release_Notes.cws_v5.0_release_notes.html"
+    - title: Accès des utilisateurs finaux
+      url: "/Reference.end_user_access.html"
+    - title: Environnements de modification VDS
+      url: "/Reference.vds_change_environments.html"
+    - title: Documentation de la bibliothèque de scripts
+      entries:
+      - title: Adobe Reader DC
+        url: "/scriptlibrary.AdobeReader.html"
+      - title: Pilotes AMD Radeon instinct
+        url: "/scriptlibrary.AMDRadeonInstinctDrivers.html"
+      - title: Application Ezeep Print
+        url: "/scriptlibrary.EzeepPrintApp.html"
+      - title: Google Chrome
+        url: "/scriptlibrary.GoogleChrome.html"
+      - title: Microsoft Edge Chromium
+        url: "/scriptlibrary.MicrosoftEdgeChromium.html"
+      - title: Microsoft Office 365
+        url: "/scriptlibrary.MicrosoftOffice365.html"
+      - title: Lecteur Microsoft unique
+        url: "/scriptlibrary.MicrosoftOneDrive.html"
+      - title: Équipes Microsoft
+        url: "/scriptlibrary.MicrosoftTeams.html"
+      - title: Microsoft Teams pour AVD
+        url: "/scriptlibrary.MicrosoftTeamsAVD.html"
+      - title: Pilotes NVIDIA CUDA
+        url: "/scriptlibrary.NvidiaCudaDrivers.html"
+      - title: Pilotes NVIDIA Grid
+        url: "/scriptlibrary.NvidiaGridDrivers.html"
+      - title: Protection de capture d'écran AVD
+        url: "/scriptlibrary.AVDScreenCaptureProtection.html"
+      - title: Zoom pour AVD
+        url: "/scriptlibrary.ZoomVDI-AVD.html"
+    - title: Avancé
+      entries:
+      - title: Rétrécissement profil FSLogix
+        url: "/Advanced.fslogix_profile_shrink.html"
+  - title: Vidéos NetApp VDS v5.4
+    entries:
+    - title: Contenu NetApp TV
+      url: "/video_content_netapptv.html"
+    - title: Déployer AVD ou RDS
+      url: "/video_azure_AVDRDS_deploy_54.html"
+    - title: Ajoutez le pool hôte AVD dans Azure
+      url: "/video_azure_AVD_hostpool_54.html"
+    - title: Gérer les utilisateurs AVD et les groupes d'applications
+      url: "/video_azure_AVD_users_appgroups_54.html"
+    - title: Gestion des ressources et réduction des coûts
+      url: "/video_azure_AVDRDS_optimize_resources_54.html"
+    - title: Automatisation de la gestion des applications pour AVD et RDS
+      url: "/video_VDS_day_in_the_life.html"
+    - title: Mettez à niveau le pool hôte AVD v1 vers v2
+      url: "/Architectual.upgrade_AVD_v1_to_v2.html"

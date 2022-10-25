@@ -1,0 +1,21 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.create_server_from_backup-cac47.png[Management.command Center.Operations.create Server from backup cac47]
+
+image::Management.command_center.operations.create_server_from_backup-eabc4.png[Management.command Center.Operations.create Server from backup eabc4]
+
+image::Management.command_center.operations.create_server_from_backup-14061.png[Management.command Center.Operations.create Server à partir de la sauvegarde 14061]
+
+image::Management.command_center.operations.create_server_from_backup-c7d6b.png[Management.command Center.Operations.create Server from backup c7d6b]
+
+image::Management.command_center.operations.create_server_from_backup-a487e.png[Management.command Center.Operations.create Server from backup a487e]
+
+image::Management.command_center.operations.create_server_from_backup-51ac2.png[Management.command Center.Operations.create Server from backup 51ac2]
+
+image::Management.command_center.operations.create_server_from_backup-b0fa0.png[Management.command Center.Operations.create Server à partir de la sauvegarde b0fa0]

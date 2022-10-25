@@ -1,0 +1,11 @@
+= Optimisations en chrome Microsoft Edge
+:allow-uri-read: 
+
+
+
+
+== Optimisations en chrome Microsoft Edge
+
+Dans Microsoft Edge Chromium 89, Microsoft a ajouté des fonctionnalités pour limiter la consommation de ressources des onglets du navigateur Microsoft Edge Chromium. Ce script global applique des paramètres afin de limiter le délai d'expiration des onglets en arrière-plan et d'arrêter la consommation de ressources après 15 minutes. Les onglets d'arrière-plan qui sont en cours de lecture audio ne sont pas affectés.
+
+Des informations sont disponibles link:https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/["ici"].

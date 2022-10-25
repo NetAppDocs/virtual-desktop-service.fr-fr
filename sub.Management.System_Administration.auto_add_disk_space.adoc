@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.auto_add_disk_space.html 
+summary: Augmenter automatiquement la taille du disque 
+keywords:  
+---
+= Augmenter automatiquement l'espace disque
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+NetApp reconnaît le besoin de donner aux administrateurs un moyen simple de s'assurer que les utilisateurs ont toujours de l'espace pour accéder et enregistrer les documents. Cela permet également de s'assurer que les machines virtuelles disposent d'un espace suffisant pour effectuer correctement les sauvegardes, ce qui donne aux administrateurs et aux plans de reprise après incident et de continuité de l'activité. Dans cette optique, nous avons mis en place une fonctionnalité qui étend automatiquement le disque géré utilisé au niveau suivant lorsqu'un disque manque d'espace.
+
+Il s'agit d'un paramètre appliqué par défaut sur tous les nouveaux déploiements VDS dans Azure, garantissant que tous les déploiements protègent les utilisateurs et les sauvegardes du locataire par défaut.
+
+Les administrateurs peuvent vérifier qu'ils sont en place en accédant à l'onglet déploiements, en sélectionnant un déploiement, puis en se connectant à leur serveur CWMGR1 à partir de là. Ouvrez ensuite le raccourci DCConfig sur le bureau, puis cliquez sur Avancé et faites défiler vers le bas.
+
+image:increase_disk1.png[""]
+
+Les administrateurs peuvent modifier la quantité d'espace libre souhaitée en Go libre ou en pourcentage du lecteur qui doit être libre avant de passer au niveau suivant des disques gérés dans la même section avancée de DCConfig.
+
+image:increase_disk2.png[""]
+
+Quelques exemples d'application pratiques :
+
+* Si vous souhaitez vous assurer qu'au moins 50 Go sont disponibles sur votre lecteur, définissez MinFreeSpaceGB sur 50
+* Si vous voulez vous assurer qu'au moins 15 % de votre disque est libre, réglez MinFreeSpacePercent de 10 à 15.
+
+
+Cette action a lieu à minuit sur le fuseau horaire du serveur.

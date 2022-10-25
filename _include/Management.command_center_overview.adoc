@@ -1,0 +1,61 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Le Centre de commandes est un exécutable qui s'exécute sur le serveur de plate-forme CWMGR1 dans le déploiement. Il est accessible en se connectant à la machine virtuelle CWMGR1 et en l'exécutant localement sur cette machine virtuelle.
+
+Cette application a été conçue pour les fonctions de dépannage, de diagnostic et de gestion avancée. Cette application est principalement utilisée par les équipes de support et de développement internes de NetApp, mais certaines fonctions sont parfois utilisées par les administrateurs des clients. Cette documentation est fournie pour prendre en charge l'utilisation des fonctions de sélection. L'utilisation de ces commandes doit être effectuée avec soin et en collaboration avec l'équipe de support NetApp.
+
+
+
+== Exécution de Command Center
+
+.Pour exécuter l'application Command Center :
+. Connectez-vous au serveur à partir de la page _VDS > déploiement > serveurs de plate-forme_ cliquez sur l'icône _actions_ et sélectionnez « connexion ».
++
+image::Management.command_center_overview-68087.png[Management.command vue d'ensemble du centre 68087]
+
+. Lorsque vous êtes invité à saisir les informations d'identification du domaine, saisissez les informations d'identification du
++
+.. L'utilisateur doit être membre du groupe de sécurité « CW-Infrastructure ». Pour des raisons de cohérence, nous recommandons d'ajouter cette appartenance en faisant de l'utilisateur un membre du groupe « techniciens de niveau 3 » dans _AD > Cloud Workspace > utilisateurs Tech Cloud Workspace > groupes_
++
+image::Management.command_center_overview-1c42d.png[Management.command vue d'ensemble du centre 1c42d]
+
+
+
+. Recherchez l'icône du bureau pour _Command Center_ et exécutez-la
++
+image::Management.command_center_overview-3c860.png[Management.command vue d'ensemble du centre 3c860]
+
++
+.. Pour activer l'onglet Avancé, lancez l'application avec le commutateur "-showadvancedtab".
+
+
+
+
+
+
+=== Onglet opérations
+
+image::Management.command_center_overview-b614e.png[Management.command vue d'ensemble du centre b614e]
+
+Dans le menu *Command*, vous pouvez sélectionner une des actions (répertoriées ci-dessous).
+
+Une fois qu'une commande est sélectionnée, les données peuvent être renseignées avec les données de déploiement à partir du bouton *Charger les données*. Le bouton Charger les données est également utilisé pour interroger l'hyperviseur pour les données une fois les sélections précédentes effectuées (par exemple Chargement d'une liste de dates de sauvegarde disponibles après la sélection d'un VM spécifique dans une liste déroulante)
+
+image::Management.command_center_overview-85417.png[Management.command vue d'ensemble du centre 85417]
+
+Après avoir effectué des sélections sur une commande, cliquez sur *Exécuter la commande* pour exécuter le processus sélectionné.
+
+Pour consulter les journaux, cliquez sur le bouton *Afficher tous les journaux*. Le fichier de texte brut s'ouvre, avec les entrées les plus récentes en bas.
+
+
+
+==== Liste de commandes
+
+* link:Management.command_center.operations.copy_template_to_gallery.html["Copier le modèle dans la galerie"]
+

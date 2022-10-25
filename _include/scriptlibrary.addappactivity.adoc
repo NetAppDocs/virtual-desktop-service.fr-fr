@@ -1,0 +1,32 @@
+= Ajouter une activité d'installation/désinstallation de l'application
+:allow-uri-read: 
+
+
+
+
+=== Ajouter une activité d'installation/désinstallation de l'application
+
+Pour qu'un script dans le référentiel puisse effectuer une action, une activité doit être créée pour associer ce script à un déclencheur sélectionné. Dans cet exemple, l'activité installe/désinstalle cette application lorsque l'application est ajoutée ou supprimée de l'espace de travail (de la page _Workspace > applications_ dans VDS).
+
+Les événements avec script VDS offrent de nombreux autres types de déclencheurs d'activité tels que _Create Server_ qui pourraient être utilisés comme alternative au type d'événement _application Install_ (ou _application Uninstall_). L'utilisation de _Create Server_ ferait simplement exécuter cette installation d'application sur toutes les machines virtuelles nouvellement créées dans VDS. _Create Server_ et d'autres déclencheurs sont documentés et peuvent être explorés link:Management.Scripted_Events.scripted_events.html["ici"].
+
+
+NOTE: Cette application doit être présente dans la bibliothèque d'applications VDS. C'est ça link:Management.Applications.application_entitlement_workflow.html#add-applications-to-the-app-catalog["section"] De l'article droits d'application pour RDS couvre l'ajout d'applications à la bibliothèque.
+
+.Pour créer une activité et lier ce script à une action :
+. Accédez à la section _Scripted Events_ dans VDS
+. Sous _Activities_, cliquez sur _+ Ajouter une activité_
+. Dans la fenêtre de dialogue ouverte, entrez les informations suivantes :
++
+** *Nom:* nommez cette activité
+** *Description:* saisissez éventuellement une description
+** *Déploiement* sélectionnez le déploiement souhaité dans la liste déroulante
+** *Script:* sélectionnez le script d'installation (ou de désinstallation) dans la liste déroulante. Il peut s'agir du script global ou du script client que vous avez cloné et personnalisé.
+** *Arguments:* laisser vide
+** *Case à cocher activée:* `Check` la boîte
+** *Type d'événement:* sélectionnez `Application Install` (Ou désinstallation de l'application) dans la liste déroulante
+** *Application:* sélectionnez cette application dans la liste déroulante
+** *Chemin de raccourci:* Entrez le chemin de raccourci par défaut pour cette application (indiqué ci-dessus)
+
+
+

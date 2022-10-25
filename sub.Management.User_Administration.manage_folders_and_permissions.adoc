@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.manage_folders_and_permissions.html 
+summary: Gestion des autorisations des données 
+keywords:  
+---
+= Gestion des autorisations des données
+:allow-uri-read: 
+
+
+
+
+== Du point de vue de l'utilisateur final
+
+Les utilisateurs de Virtual Desktop peuvent avoir accès à plusieurs lecteurs mappés. Ces disques comprennent un partage d'équipe accessible aux FTPS, un partage de fichiers d'entreprise et leur disque dur d'origine (pour leurs documents, bureau, etc.) . Tous ces disques mappés font référence à une couche de stockage centrale soit sur des services de stockage (comme Azure NetApp Files), soit sur une machine virtuelle de serveur de fichiers.
+
+Selon la configuration dont l'utilisateur peut ne pas avoir les lecteurs H: Ou F: Exposés, ils peuvent uniquement voir leur bureau, documents, etc… dossiers. En outre, différentes lettres de lecteur sont parfois définies par l'administrateur VDS au moment du déploiement.image:manage_data1.png[""]
+
+image:manage_data2.png[""]
+
+
+
+=== Gestion des autorisations
+
+VDS permet aux administrateurs de modifier les groupes de sécurité et les autorisations de dossiers, tous depuis le portail VDS.
+
+
+
+=== Groupes de sécurité
+
+La gestion des groupes de sécurité s'effectue en cliquant sur : espaces de travail > Nom du locataire > utilisateurs et groupes > dans la section groupes
+
+.Dans cette section, vous pouvez :
+. Créer de nouveaux groupes de sécurité
+. Ajouter/Supprimer des utilisateurs aux groupes
+. Affecter des applications à des groupes
+. Activer/désactiver l'accès au lecteur local aux groupes
+
+
+image:manage_data3.gif[""]
+
+
+
+== Autorisations de dossier
+
+Les autorisations de dossier sont gérées en cliquant sur espaces de travail > Nom du locataire > gérer (dans la section dossiers).
+
+.Dans cette section, vous pouvez :
+. Ajouter/Supprimer des dossiers
+. Attribuez des autorisations à un ou plusieurs groupes
+. Personnalisez les autorisations en lecture seule, contrôle total et aucun
+
+
+image:manage_data4.gif[""]

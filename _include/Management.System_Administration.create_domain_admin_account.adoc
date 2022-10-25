@@ -1,0 +1,53 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Il arrive que les administrateurs VDS aient besoin d'informations d'identification au niveau du domaine pour gérer l'environnement. Dans VDS, il s'agit d'un compte « niveau 3 » ou «.tech ».
+
+Ces instructions montrent comment ces comptes peuvent être créés avec les autorisations appropriées.
+
+
+
+=== Contrôleur de domaine Windows Server
+
+Lors de l'exécution d'un contrôleur de domaine hébergé en interne (ou d'un DC local lié à Azure via un routage VPN/Express) la gestion des comptes .tech peut être effectuée directement dans Active Directory Manager.
+
+. Connectez-vous au contrôleur de domaine (CWMGR1, DC01 ou le VM existant) avec un compte admin de domaine (.tech).
+. Créez un nouvel utilisateur (si nécessaire).
+. Ajoutez l'utilisateur au groupe de sécurité « techniciens de niveau 3 »
++
+image::Management.System_Administration.create_domain_admin_account-9ee17.png[Management.System Administration.create domain admin compte 9ee17]
+
++
+.. Si le groupe de sécurité « Level3 Technicians » n'est pas rempli, créez-le et faites-le membre du groupe de sécurité « CW-Infrastructure ».
++
+image::Management.System_Administration.create_domain_admin_account-0fc27.png[Management.System Administration.create domain admin account 0fc27]
+
+
+
+
+
+
+NOTE: L'ajout de “.tech” à la fin du nom d'utilisateur est une meilleure pratique recommandée pour délimiter les comptes d'administrateur des comptes d'utilisateur final.
+
+
+
+=== Services de domaine Azure AD
+
+S'ils s'exécutent sur Azure AD Domain Services ou si un utilisateur gère dans Azure AD, ces comptes peuvent être gérés (par exemple, une modification du mot de passe) dans le portail de gestion Azure en tant qu'utilisateur AD Azure.
+
+De nouveaux comptes peuvent être créés, les ajouter à ces rôles doivent leur donner les autorisations requises :
+
+. Administrateurs AAD DC
+. ClientDHPAccess
+. Administrateur global dans le répertoire.
+
+
+
+NOTE: L'ajout de “.tech” à la fin du nom d'utilisateur est une meilleure pratique recommandée pour délimiter les comptes d'administrateur des comptes d'utilisateur final.
+
+image:l33.png[""]

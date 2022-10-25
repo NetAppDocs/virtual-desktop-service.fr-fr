@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.reboot_server-2fbca.png[Management.command Center.Operations.reboot Server 2fbca]

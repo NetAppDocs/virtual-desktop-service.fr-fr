@@ -1,0 +1,21 @@
+= Présentation de Google Chrome
+:allow-uri-read: 
+
+
+
+
+== Présentation de Google Chrome
+
+Ce script installe/désinstalle _Google Chrome_ à l'aide du gestionnaire de package Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+
+=== Chemin de raccourci par défaut
+
+Le chemin de raccourci par défaut sera saisi ci-dessous. Pour cette application, le raccourci est : `\\shortcuts\Google Chrome.lnk`
+
+
+
+=== Capture d'écran de la fenêtre Ajouter une activité
+
+image::scriptlibrary.activity.InstallGoogleChrome.png[scriptlibrary.Activity.InstallGoogleChrome]

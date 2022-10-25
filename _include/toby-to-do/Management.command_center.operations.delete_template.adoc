@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.delete_template-83488.png[Management.command center.operations.delete modèle 83488]

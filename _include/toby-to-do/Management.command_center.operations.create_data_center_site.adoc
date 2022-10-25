@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.create_data_center_site-6e0fa.png[Management.command Center.Operations.create Data Center site 6e0fa]

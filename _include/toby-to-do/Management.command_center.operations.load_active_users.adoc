@@ -1,0 +1,15 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_active_users-6675f.png[Management.command Center.Operations.load utilisateurs actifs 6675f]
+
+image::Management.command_center.operations.load_active_users-e2ae6.png[Management.command Center.Operations.load utilisateurs actifs e2ae6]
+
+image::Management.command_center.operations.load_active_users-50fd5.png[Management.command Center.Operations.load utilisateurs actifs 50fd5]
+
+image::Management.command_center.operations.load_active_users-ac6c2.png[Management.command Center.Operations.load utilisateurs actifs ac6c2]

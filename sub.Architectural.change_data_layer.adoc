@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: Architectural.change_data_layer.html 
+summary: Guide détaillé expliquant comment changer de plateforme de stockage 
+keywords:  
+---
+= Redirection de la plateforme de stockage
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Les technologies de déploiement des services de postes de travail virtuels offrent de nombreuses options de stockage en fonction de l'infrastructure sous-jacente. Ce guide explique comment procéder à des modifications après le déploiement.
+
+La performance des postes de travail virtuels dépend de diverses ressources clés, la performance du stockage est l'une des principales variables. Or, à mesure que les exigences évoluent et que les charges de travail évoluent, l'infrastructure de stockage doit être modifiée. Dans la plupart des cas, cela implique de migrer d'une plateforme de serveur de fichiers vers une technologie de stockage NetApp (comme Azure NetApp Files, NetApp Cloud Volumes Service dans Google ou NetApp Cloud Volumes ONTAP dans AWS), car ces technologies offrent généralement le profil de performances le plus adapté aux environnements d'end-user computing.
+
+
+
+=== Création de la nouvelle couche de stockage
+
+Compte tenu de la grande variété de services de stockage potentiels couvrant une large gamme de fournisseurs de solutions d'infrastructure cloud et HCI, ce guide suppose qu'un nouveau service de stockage a déjà été mis en place et que les chemins d'accès SMB connaissent bien.
+
+
+
+=== Créer des dossiers de stockage
+
+. Dans le nouveau service de stockage, créez trois dossiers :
++
+** /Données
+** /Accueil
+** /Pro
++
+image:storage1.png[""]
+
+
+
+. Définir les autorisations de dossier
++
+.. Dans Propriétés du dossier, sélectionnez _Security, > Avancé > Désactiver l'héritage_
++
+image:storage2.png[""]
+
+.. Ajustez les paramètres restants selon les paramètres de la couche de stockage d'origine créés par l'automatisation du déploiement.
+
+
+
+
+
+
+=== Déplacement des données
+
+Les répertoires, données, fichiers et paramètres de sécurité peuvent être déplacés de différentes façons. La syntaxe robocopy suivante permet d'effectuer les modifications nécessaires. Les chemins doivent être modifiés selon votre environnement.
+
+ robocopy c:\data\zucd \\uyy-1c37.deskapps.mobi\zucd-data /xd ~snapshot /MIR /CopyAll /R:1 /W:1 /tee /log:C:\temp\roboitD.txt
+
+
+=== Redirection du chemin SMB au moment de la mise en service
+
+Au moment de la mise en service, quelques modifications rediriger toutes les fonctionnalités de stockage dans l'environnement VDS.
+
+
+
+==== Mettre à jour les stratégies de groupe
+
+. La stratégie de groupe des utilisateurs (nommée _<code de société>-utilisateurs_) doit être mise à jour avec le nouveau chemin de partage. Sélectionnez _Configuration utilisateur > Paramètres Windows > Préférences > cartes de lecteur_
++
+image:storage3.png[""]
+
+. Cliquez avec le bouton droit de la souris sur _H:_, _sélectionnez Propriétés > Modifier > action : remplacer_ et entrez le nouveau chemin
++
+image:storage4.png[""]
+
+. Avec AD classique ou hybride, mettez à jour le partage défini dans ADUC dans l'UO de l'entreprise. Ceci est reflété dans la gestion des dossiers VDS.
++
+image:storage5.png[""]
+
+
+
+
+
+==== Mettre à jour les chemins de profil FSLogix
+
+. Ouvrez Regedit sur le serveur de fichiers d'origine et sur tout autre hôte de session provisionné.
++
+
+NOTE: Ceci peut également être défini via une stratégie GPO si vous le souhaitez.
+
+. Modifiez la valeur _VHDlocations_ avec la nouvelle valeur. Ce devrait être le nouveau chemin SMB plus _pro/profilisecondes_ comme indiqué dans la capture d'écran ci-dessous.
++
+image:storage6.png[""]
+
+
+
+
+
+==== Mettez à jour les paramètres de redirection de dossier pour les répertoires d'accueil
+
+. Open Group Policy Management, Select Users GPO liés à DC=domain, DC=mobi/Cloud Workspace/Cloud Workspace Companies/<code entreprise><code entreprise> utilisateurs de postes de travail.
+. Modifier les chemins de redirection de dossier sous Configuration utilisateur> stratégies> Paramètres Windows> Redirection de dossiers.
+. Seuls les postes de travail et les documents doivent être mis à jour et les chemins doivent correspondre au nouveau point de montage du chemin SMB pour le volume domestique
++
+image:storage7.png[""]
+
+
+
+
+
+==== Mettre à jour la base de données SQL VDS avec le Centre de commande
+
+CWMGR1 contient un utilitaire d'aide appelé Command Center qui peut mettre à jour la base de données VDS en bloc.
+
+.Pour effectuer les mises à jour finales de la base de données :
+. Connectez-vous à CWMGR1, naviguez et exécutez CommandCenter.exe
++
+image:storage10.png[""]
+
+. Accédez à l'onglet _Operations_, cliquez sur _Load Data_ pour remplir le menu déroulant Company Code (Code de société), sélectionnez le code de société et entrez les nouveaux chemins de stockage pour la couche de stockage, puis cliquez sur _Execute Command_.
++
+image:storage11.png[""]
+
+

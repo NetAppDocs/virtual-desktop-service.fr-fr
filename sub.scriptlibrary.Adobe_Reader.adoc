@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.AdobeReader.html 
+summary: Documentation de script - Adobe Reader DC 
+keywords:  
+---
+= Documentation sur les événements avec script - Adobe Reader DC
+:allow-uri-read: 
+
+
+
+
+== Présentation des scripts globaux
+
+Les systèmes VDS NetApp comprennent une bibliothèque d'événements prédéfinis utilisant des scripts, qui peuvent être utilisés directement dans les environnements VDS et/ou dupliqués et utilisés comme éléments de base des événements personnalisés basés sur des scripts.
+
+Pour cette application, cet article couvre à la fois l'action installer/activer et désinstaller/désactiver.
+
+
+
+== Utilisation globale du script
+
+Les événements avec script intégrés tels que celui-ci sont pré-remplis, en cochant la case de filtre « global » les affichera.
+
+Les événements avec script global tels que celui-ci sont en lecture seule. Ils peuvent être utilisés en l'état ou la fonction « clone » pour créer une copie du client à des fins de modification et d'utilisation.
+
+Le bouton Cloner se trouve dans le menu action de la page Evénements avec script.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]
+
+
+
+== Présentation d'Adobe Reader DC
+
+Ce script installe/désinstalle _Adobe Reader DC_ à l'aide du gestionnaire de paquets Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+
+=== Chemin de raccourci par défaut
+
+Le chemin de raccourci par défaut sera saisi ci-dessous. Pour cette application, le raccourci est : `\\shortcuts\Acrobat Reader DC.lnk`
+
+
+
+=== Capture d'écran de la fenêtre Ajouter une activité
+
+image::scriptlibrary.activity.InstallAdobeReader.png[scriptlibrary.Activity.InstallAdobeReader]
+
+
+
+=== Ajouter une activité d'installation/désinstallation de l'application
+
+Pour qu'un script dans le référentiel puisse effectuer une action, une activité doit être créée pour associer ce script à un déclencheur sélectionné. Dans cet exemple, l'activité installe/désinstalle cette application lorsque l'application est ajoutée ou supprimée de l'espace de travail (de la page _Workspace > applications_ dans VDS).
+
+Les événements avec script VDS offrent de nombreux autres types de déclencheurs d'activité tels que _Create Server_ qui pourraient être utilisés comme alternative au type d'événement _application Install_ (ou _application Uninstall_). L'utilisation de _Create Server_ ferait simplement exécuter cette installation d'application sur toutes les machines virtuelles nouvellement créées dans VDS. _Create Server_ et d'autres déclencheurs sont documentés et peuvent être explorés link:Management.Scripted_Events.scripted_events.html["ici"].
+
+
+NOTE: Cette application doit être présente dans la bibliothèque d'applications VDS. C'est ça link:Management.Applications.application_entitlement_workflow.html#add-applications-to-the-app-catalog["section"] De l'article droits d'application pour RDS couvre l'ajout d'applications à la bibliothèque.
+
+.Pour créer une activité et lier ce script à une action :
+. Accédez à la section _Scripted Events_ dans VDS
+. Sous _Activities_, cliquez sur _+ Ajouter une activité_
+. Dans la fenêtre de dialogue ouverte, entrez les informations suivantes :
++
+** *Nom:* nommez cette activité
+** *Description:* saisissez éventuellement une description
+** *Déploiement* sélectionnez le déploiement souhaité dans la liste déroulante
+** *Script:* sélectionnez le script d'installation (ou de désinstallation) dans la liste déroulante. Il peut s'agir du script global ou du script client que vous avez cloné et personnalisé.
+** *Arguments:* laisser vide
+** *Case à cocher activée:* `Check` la boîte
+** *Type d'événement:* sélectionnez `Application Install` (Ou désinstallation de l'application) dans la liste déroulante
+** *Application:* sélectionnez cette application dans la liste déroulante
+** *Chemin de raccourci:* Entrez le chemin de raccourci par défaut pour cette application (indiqué ci-dessus)
+
+
+

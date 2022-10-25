@@ -1,0 +1,158 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Provisioning Collections est une fonction de VDS liée à la création et à la gestion des images VM.
+
+.À un niveau élevé, le flux de travail Provisioning Collection est le suivant :
+. Serveur virtuel temporaire (par exemple « CWT1 ») est basé sur une image existante (une image de stock ou une collection de provisioning précédemment enregistrée).
+. L'administrateur VDS personnalise la machine virtuelle temporaire en fonction de leurs besoins à l'aide de link:Management.Scripted_Events.scripted_events.html["Événements avec script"], link:#customizing-the-temporary-vm["Connectez-vous au serveur"] ou des outils de gestion tiers.
+. Une fois personnalisé, l'administrateur VDS clique sur *Validate* et déclenche un processus de validation qui automatise la finalisation de l'image, l'exécution de Sysprep, la suppression de la VM temporaire et la mise à disposition de l'image pour le déploiement dans VDS.
+
+
+
+
+=== Vidéo Démo : gestion des images VM pour les hôtes de session VDI
+
+video::rRDPnDzVBTw[youtube]
+
+
+=== Types de collecte de provisionnement
+
+Il existe deux types de collection distincts avec des cas d'utilisation spécifiques, *_Shared_* et *_VDI_*.
+
+
+
+==== Partagée
+
+Le type *_Shared_* est un ensemble d'images de machines virtuelles conçues pour déployer un environnement complet avec plusieurs images de machines virtuelles et des rôles de machines virtuelles distincts.
+
+
+
+==== LES VDI
+
+Le type *_VDI_* est une image de machine virtuelle unique conçue pour être utilisée et réutilisée pour déployer plusieurs machines virtuelles identiques, généralement utilisées pour héberger des sessions utilisateur. Pour tous les types d'hôtes de session AVD, le _VDI_ type doit être sélectionné, même pour les hôtes qui exécutent plusieurs sessions par VM.
+
+
+
+=== Création d'une collection de provisioning
+
+Les collections de provisionnement se trouvent dans l'interface VDS au sein de chaque déploiement, sous le sous-onglet *_Provisioning Collections_*.
+
+image:Management.Deployments.provisioning_collections1.png["largeur=75 %"]
+
+.Pour créer une nouvelle collection
+. Cliquez sur le bouton *_+ Ajouter une collection_*.
+. Renseignez les champs suivants :
++
+.. *Nom*
+.. *Description* (facultatif)
+.. *Type* - partagé ou VDI
+.. *Système d'exploitation*
+.. *Share Drive* - si cette machine virtuelle sera utilisée pour héberger des profils d'utilisateurs ou des données de partage d'entreprise, sélectionnez la lettre de lecteur sur laquelle sera hébergé. Si ce n'est pas le cas, laisser « C »
+.. *Cache minimum* - SI vous et VDS créez des machines virtuelles à conserver pour un déploiement instantané, spécifiez le nombre minimal de machines virtuelles mises en cache qui doivent être conservées. Si le déploiement de nouvelles machines virtuelles peut attendre tant que l'hyperviseur met en place une machine virtuelle, cela peut être défini sur 0 pour réduire les coûts.
+.. *Ajouter des serveurs*
++
+... *Rôle* (si le type « partagé » est sélectionné)
++
+.... *TS* - ce VM n'agira qu'en tant qu'hôte de session
+.... *Data* - cette machine virtuelle n'héberge aucune session utilisateur
+.... *TSData* - ce VM sera à la fois l'hôte de session et l'hôte de stockage (maximum : un TSData par espace de travail)
+
+
+... *Modèle VM* - sélectionnez dans la liste disponible les images de l'hyperviseur stock et les collections de provisionnement précédemment enregistrées sont disponibles pour la sélection.
++
+.... REMARQUE : PowerShell Remoting n'est pas activé sur les images Windows 7 d'Azure Marketplace. Pour utiliser une image Windows 7, vous devez fournir une image personnalisée dans votre galerie d'images partagée avec PowerShell Remoting activé.
+.... REMARQUE : en utilisant une collection de provisioning existante, vous pouvez mettre à jour et redéployer des images existantes dans le cadre d'un processus de mise à niveau d'image planifié.
+
+
+... *Type de stockage* - sélectionnez la vitesse du disque du système d'exploitation en tenant compte du coût et des performances
+... *Lecteur de données* - activez en option un 2e disque relié à cette image, généralement pour la couche de stockage de données mentionnée ci-dessus dans la section 2.e.
++
+.... *Type de lecteur de données* - sélectionnez la vitesse du 2e disque (données) en tenant compte du coût et des performances
+.... *Taille du lecteur de données (Go)* - définissez la taille du 2e disque (données) en fonction de la capacité, du coût et des performances
+
+
+
+
+.. *Ajouter des applications* - sélectionnez une application de la bibliothèque d'applications qui sera (1) installée sur cette image et (2) gérée par les droits d'application VDS. (Ceci ne s'applique qu'aux déploiements RDS. Il doit rester vide pour les espaces de travail AVD)
+
+
+
+
+
+
+=== Personnalisation de la machine virtuelle temporaire
+
+VDS comprend une fonctionnalité qui autorise la suppression de l'accès aux machines virtuelles depuis l'interface Web VDS. Par défaut, un compte administrateur Windows local est créé avec un mot de passe rotatif et transmis à la machine virtuelle afin de permettre à l'administrateur VDS d'accéder aux informations d'identification administrateur local sans connaître les identifiants d'administrateur local.
+
+
+NOTE: La fonction connexion au serveur comporte un autre paramètre où l'administrateur VDS sera invité à saisir les informations d'identification avec chaque connexion. Ce paramètre peut être activé/désactivé en modifiant le compte admin VDS à partir de la section « Admin » de VDS. La fonctionnalité s'appelle _Tech Account_ et la vérification de la case nécessite la saisie d'informations d'identification lors de l'utilisation de Connect to Server. La décocher cette case active l'injection automatique des informations d'identification d'administration Windows locales à chaque connexion.
+
+L'administrateur VDS doit simplement se connecter à la machine virtuelle temporaire à l'aide de Connect to Server ou d'un autre processus et apporter les modifications nécessaires pour répondre à ses besoins.
+
+
+
+=== Validation de la collection
+
+Une fois la personnalisation terminée, l'administrateur VDS peut fermer l'image et Sysprep en cliquant sur *Validate* dans l'icône actions.
+
+image::Management.Deployments.provisioning_collections-ed97e.png[Management.Deployments.provisioning collections ed97e]
+
+
+
+=== Utilisation de la Collection
+
+Une fois la validation terminée, le statut de la collection de provisionnement devient *disponible*. À partir de la collection de provisionnement, l'administrateur VDS peut identifier le nom *VM Template* qui est utilisé pour identifier cette collection de provisionnement dans VDS.
+
+image::Management.Deployments.provisioning_collections-f5a49.png[Management.Deployments.provisioning collections f5a49]
+
+
+
+==== Nouveau serveur
+
+À partir de la page espace de travail > serveurs, un nouveau serveur peut être créé et la boîte de dialogue vous invite à entrer le modèle VM. Le nom du modèle ci-dessus se trouve dans cette liste :
+
+image:Management.Deployments.provisioning_collections-fc8ad.png["largeur=75 %"]
+
+
+TIP: VDS fournit un moyen facile de mettre à jour les hôtes de session dans un environnement RDS en utilisant Provisioning Collections et la fonctionnalité *Add Server*. Ce processus peut être réalisé sans impact sur les utilisateurs finaux et répété à plusieurs reprises avec les mises à jour d'images suivantes, en fonction des itérations d'images précédentes. Pour obtenir un flux de travail détaillé sur ce processus, reportez-vous au link:#rds-session-host-update-process["*Processus de mise à jour de l'hôte de session RDS*"] section ci-dessous.
+
+
+
+==== Nouveau pool hôte AVD
+
+À partir de la page espace de travail > AVD > pools d'hôtes, vous pouvez créer un nouveau pool d'hôtes AVD en cliquant sur *+ Ajouter un pool d'hôtes* et la boîte de dialogue vous invite à entrer le modèle VM. Le nom du modèle ci-dessus se trouve dans cette liste :
+
+image::Management.Deployments.provisioning_collections-ba2f5.png[Management.Deployments.provisioning collections ba2f5]
+
+
+
+==== Nouvel hôte de session AVD
+
+À partir de la page espace de travail > AVD > Pool hôte > hôtes de session, de nouveaux hôtes de session AVD peuvent être créés en cliquant sur *+ Ajouter hôte de session* et la boîte de dialogue vous invite à entrer le modèle VM. Le nom du modèle ci-dessus se trouve dans cette liste :
+
+image::Management.Deployments.provisioning_collections-ba5e9.png[Management.Deployments.provisioning collections ba5e9]
+
+
+TIP: VDS fournit un moyen facile de mettre à jour les hôtes de session dans un pool hôte AVD en utilisant Provisioning Collections et la fonctionnalité *Add session Host*. Ce processus peut être réalisé sans impact sur les utilisateurs finaux et répété à plusieurs reprises avec les mises à jour d'images suivantes, en fonction des itérations d'images précédentes. Pour obtenir un flux de travail détaillé sur ce processus, reportez-vous au link:#AVD-session-host-update-process["*Processus de mise à jour de l'hôte de session AVD*"] section ci-dessous.
+
+
+
+==== Nouvel espace de travail
+
+À partir de la page espaces de travail, un nouvel espace de travail peut être créé en cliquant sur *+ Nouveau espace de travail* et la boîte de dialogue invite à spécifier la collection de provisionnement. Le nom de la collection de provisionnement partagé se trouve dans cette liste.
+
+image::Management.Deployments.provisioning_collections-5c941.png[Management.Deployments.provisioning collections 5c941]
+
+
+
+==== Nouvelle collection de provisionnement
+
+À partir de la page déploiement > Collection de provisionnement, il est possible de créer une nouvelle collection de provisionnement en cliquant sur *+ Ajouter une collection*. Lors de l'ajout de serveurs à cette collection, la boîte de dialogue vous invite à entrer le modèle VM. Le nom du modèle ci-dessus se trouve dans cette liste :
+
+image::Management.Deployments.provisioning_collections-9eac4.png[Management.Deployments.provisioning collections 9eac4]

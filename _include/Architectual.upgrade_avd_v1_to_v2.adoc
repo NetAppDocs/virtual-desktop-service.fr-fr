@@ -1,0 +1,44 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Ce guide décrit le processus d'utilisation de l'interface VDS (Virtual Desktop Service) pour effectuer une mise à niveau sur place d'un pool hôte AVD Fall Release (v1) existant, entraînant un pool hôte AVD Spring Release (v2). Sans VDS, cette transformation nécessite la présence d'architectes hautement qualifiés, ou le redéploiement complet de l'environnement.
+
+
+
+=== Prérequis
+
+.Ce guide suppose que le client dispose des éléments suivants :
+* Au moins un pool hôte AVD Fall Release (v1) déployé
+* A v5.4 (ou supérieur) Virtual Desktop Service Deployment
+* Toutes les machines virtuelles du pool hôte doivent être en ligne et en cours d'exécution
+
+
+Notez que Virtual Desktop Service de NetApp peut importer des pools hôtes existants, afin que les clients puissent utiliser VDS pour effectuer des mises à niveau sur place, même si VDS n'était pas utilisée pour déployer au départ le pool hôte.
+
+
+NOTE: Il est recommandé d'effectuer cette action lors d'une fenêtre de maintenance établie dans laquelle les utilisateurs finaux sont invité à ne pas se connecter (ou les machines virtuelles sont définies pour ne pas autoriser les connexions des utilisateurs), car les bureaux des utilisateurs ne sont pas accessibles lors de cette opération.
+
+
+
+=== Étapes du processus
+
+. Accédez au module espaces de travail, puis à l'onglet AVD. Vous verrez alors la section Host pools, qui inclut désormais une option permettant d'exploiter l'automatisation VDS pour mettre à niveau un pool hôte.
+. Cliquez sur le lien qui lit Import V1 Host Pool pour identifier le pool hôte à mettre à niveau vers V2 (la version de printemps AVD) pour continuer.
++
+image:upgrade1.png[""]
+
+. Ensuite, sélectionnez le pool d'hôtes à mettre à niveau dans le menu déroulant et sélectionnez l'espace de travail auquel vous souhaitez l'affecter, puis cliquez sur le bouton Importer le pool d'hôtes pour lancer le processus de mise à niveau automatisée. +image:upgrade2.png[""]
+. Répétez cette procédure pour chaque pool d'hôtes que vous souhaitez mettre à niveau. Une fois l'automatisation terminée, vous verrez votre pool hôte de Spring Release (v2) récemment mis à niveau dans l'onglet AVD de VDS.
+
+
+
+
+=== Vidéo de démonstration
+
+video::e4T_Ze6IlMo[youtube]
+Veuillez contacter vos représentants du service après-vente pour toute question supplémentaire.

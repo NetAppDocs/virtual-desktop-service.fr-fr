@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_virtual_machines-da7e2.png[Management.command Center.Operations.load des machines virtuelles da7e2]

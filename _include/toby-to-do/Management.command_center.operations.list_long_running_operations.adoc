@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.list_long_running_operations-98e9c.png[Management.command Center.Operations.list opérations d'exécution longue 98e9c]

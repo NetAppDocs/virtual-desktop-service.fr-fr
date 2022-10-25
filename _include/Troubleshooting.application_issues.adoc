@@ -1,0 +1,50 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Le dépannage d'une erreur d'application est une pratique administrative courante qui n'implique pas VDS elle-même, mais qui est fortement assistée par VDS et le niveau de contrôle qu'elle fournit aux administrateurs. Même si NetApp VDS ne résout pas ces problèmes chez les clients, notre expérience nous permet de conseiller aux administrateurs après l'identification de certaines informations de base telles que celles ci-dessous afin d'en creuser davantage et de dépanner avec les utilisateurs finaux et/ou les tiers.
+
+* Nom de l'utilisateur ayant rencontré le problème
+* Nom de l'application avec laquelle l'utilisateur travaillait
+* Le serveur sur lequel la session de l'utilisateur était activée
+* Étapes permettant de reproduire le problème
+
+
+
+
+== Revoir vos outils
+
+
+
+=== Contrôle
+
+Après avoir identifié le serveur que l'utilisateur utilisait, vérifiez votre solution de surveillance pour vous assurer que la consommation de ressources (CPU et RAM) se situe à des niveaux normaux. Vous pouvez également valider que les exigences spécifiques à l'application (un service spécial qui causera des problèmes s'il n'est pas en cours d'exécution) sont fonctionnelles. Dans des situations comme celle-ci, des réglages avancés comme la surveillance haut/bas de ces services ont peut-être été déclenchés.
+
+
+
+=== Antivirus
+
+En tant qu'administrateur disposant d'un accès aux serveurs et à Azure Active Directory, vous pouvez consulter les éléments découverts et les stratégies définies. En cas d'imprévu, cela peut affecter votre application.
+
+
+
+=== Outils supplémentaires
+
+Certaines applications nécessitent des composants supplémentaires, comme un compte de service qui reste connecté indéfiniment ou un VPN à un équipement physique (par exemple, une appliance réseau sur site ou un équipement de fabrication ou un utilitaire de diagnostic). Dans ce cas, des erreurs spécifiques à une application peuvent être dues à une autre chose que la façon dont l'application a été installée ou la configuration de ses paramètres.
+
+
+
+=== Extension de l'accès aux tiers
+
+Les applications et/ou leurs bases de données sont souvent installées, configurées et prises en charge par le fournisseur de logiciels (ISV) lui-même ou par un expert tiers dans la configuration, la gestion et les intégrations de ce logiciel. Dans ces situations, vous voudrez étendre l'accès administratif temporaire à une des étapes suivantes : link:Management.System_Administration.provide_3rd_party_access.html["Fournir un accès temporaire aux tiers"]
+
+Il est recommandé d'arrêter ces comptes tiers une fois la mise à niveau ou la mise à jour terminée ou après la résolution du problème.
+
+Dans de nombreux cas, ce niveau de dépannage nécessite un contrat de maintenance logicielle avec l'éditeur de logiciels. Si ce n'est pas le cas, le ISV risque de ne pas vous aider tant que cela n'est pas en place.
+
+
+NOTE: Il est également possible que le problème de dépannage soit lié au matériel (ordinateurs de bureau, ordinateurs portables, clients légers, etc.) avec lequel les utilisateurs finaux travaillent. Par exemple, la mise à niveau de l'ordinateur portable d'un utilisateur peut verrouiller la machine aux yeux d'un fichier de configuration client léger. Les utilisateurs finaux ne peuvent donc pas accéder aux outils qui leur permettent de se connecter à leur poste de travail virtuel. Dans ce cas, un contrat de maintenance du matériel peut être nécessaire avant que le fabricant ne vous aide.

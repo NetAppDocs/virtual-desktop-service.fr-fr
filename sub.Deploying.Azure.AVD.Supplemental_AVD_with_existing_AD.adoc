@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html 
+summary: Guide détaillé de déploiement détaillé de VDS dans Azure pour les déploiements AD existants 
+keywords:  
+---
+= Guide de déploiement AVD - AD supplémentaire existant
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+La configuration VDS a la possibilité de connecter un nouveau déploiement à une structure AD existante. Ces instructions couvrent cette option en détail. Cet article ne se comporte pas seul, mais il s'agit plutôt d'une explication détaillée d'une alternative à l'option Nouvelle AD couverte par le link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html["Guide de déploiement AVD"]
+
+
+
+== Type Active Directory
+
+La section suivante définit le type de déploiement Active Directory pour le déploiement VDS. Dans ce guide, nous allons sélectionner Windows Server Active Directory existant, qui va tirer parti d'une structure AD qui existe déjà.
+
+
+
+== Réseau AD existant
+
+Le programme d'installation VDS affiche la liste des vNets susceptibles de représenter la connexion entre la structure AD existante et Azure AD. Le vnet que vous sélectionnez doit avoir un data Center hébergé par Azure que vous avez configuré dans Azure. De plus, les paramètres DNS personnalisés seront pointés sur le DC hébergé par Azure.
+
+image:existingDNS.png[""]
+
+
+
+== Nom de domaine Active Directory existant
+
+Saisissez le nom de domaine existant qui sera utilisé. Remarque : vous ne souhaitez pas utiliser le domaine qui se trouve dans le portail Azure sous le module Active Directory, car il peut causer des problèmes DNS. C'est dans cet exemple que les utilisateurs ne pourront pas accéder à ce site Web (<votredomain>.com, par exemple) depuis leur poste de travail.
+
+
+
+== Nom d'utilisateur et mot de passe AD existants
+
+Il existe trois façons de fournir les informations d'identification nécessaires pour faciliter un déploiement à l'aide d'une structure AD existante.
+
+. Indiquez le nom d'utilisateur et le mot de passe de l'administrateur du domaine Active Directory
++
+Il s'agit de la méthode la plus simple – fournissant des informations d'identification d'administrateur de domaine utilisées pour faciliter le déploiement.
+
++
+
+NOTE: Ce compte peut être créé pour un usage unique et être supprimé une fois le processus de déploiement terminé.
+
+. Créer des autorisations requises pour la mise en correspondance de comptes
++
+Cette méthode implique que les administrateurs du client créent manuellement la structure des autorisations ici, puis entrent les informations d'identification du compte CloudWorkspaceSVC ici et continuer.
+
+. Processus de déploiement manuel
++
+Contactez le support NetApp VDS pour obtenir de l'aide lors de la configuration de l'accès AD avec les principes de compte les moins privilégiés.
+
+
+
+
+
+== Étapes suivantes
+
+Cet article présente les étapes uniques du déploiement dans un environnement AD existant. Une fois ces étapes terminées, vous pouvez revenir au guide de déploiement standard link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html#active-directory-type["ici"].

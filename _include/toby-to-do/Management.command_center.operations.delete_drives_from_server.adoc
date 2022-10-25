@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.delete_drives_from_server-fd4b6.png[Management.command center.operations.delete disques du serveur fd4b6]

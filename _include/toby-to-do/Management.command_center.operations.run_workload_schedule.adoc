@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.run_workload_schedule-7957b.png[Management.command center.operations.run planification de la charge de travail 7957b]

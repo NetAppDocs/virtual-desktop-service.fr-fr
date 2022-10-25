@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.run_daily_actions-4a3cd.png[Management.command center.operations.run actions quotidiennes 4a3cd]

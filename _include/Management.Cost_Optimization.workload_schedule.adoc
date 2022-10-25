@@ -1,0 +1,151 @@
+= Planification des charges de travail
+:allow-uri-read: 
+
+
+
+
+== Planification des charges de travail
+
+La planification de la charge de travail est une fonction qui permet de planifier la fenêtre de temps dans laquelle l'environnement est actif.
+
+La planification des charges de travail peut être définie sur « Always On », « Always off » ou « planifié ». Lorsqu'il est défini sur « programmé », les heures d'activation et de désactivation peuvent être définies de façon aussi granulaire qu'une fenêtre d'heure différente pour chaque jour de la semaine.
+
+image:Workload_schedule1.png[""]
+
+Lorsqu'elle est prévue pour être désactivée, soit via « toujours désactivée » soit « planifiée », toutes les machines virtuelles locataires sont arrêtées. Les serveurs de plate-forme (comme CWMGR1) resteront actifs pour faciliter les fonctionnalités telles que wake on Demand.
+
+La planification des charges de travail fonctionne conjointement avec d'autres fonctionnalités d'optimisation des ressources, notamment Live Scaling et Wake on Demand.
+
+
+
+== Réveil à la demande
+
+Wake on Demand (Wod) est une technologie en attente de brevet qui peut réveiller les ressources VM appropriées pour un utilisateur final afin de faciliter l'accès sans surveillance 24 h/24, 7 j/7 et 7 jours par an, même lorsque les ressources sont désactivées.
+
+
+
+=== Wod pour services de bureau à distance
+
+Dans RDS, le client Windows VDS est intégré à l'intégration Wake on Demand et peut réactiver les ressources appropriées sans actions supplémentaires de l'utilisateur final. Il leur suffit de lancer leur connexion standard pour que le client l'informe d'un bref délai que la ou les VM sont activées. Ce client (et donc cette fonctionnalité d'automatisation du réveil à la demande) n'est disponible que lors de la connexion d'un périphérique Windows à un environnement RDS.
+
+Une fonctionnalité similaire est intégrée au client Web VDS pour les déploiements RDS. Le client Web VDS se trouve à l'adresse suivante : link:https://login.cloudworkspace.com[""]
+
+La fonctionnalité Wake on Demand n'est pas intégrée au client Microsoft RD (pour Windows ou toute autre plate-forme) ni aux autres clients RD tiers.
+
+
+
+=== Service de réveil à la demande pour Azure Virtual Desktop
+
+Dans AVD, les seuls clients pouvant être utilisés pour se connecter sont fournis par Microsoft et ne contiennent donc pas la fonctionnalité de réveil à la demande.
+
+VDS comprend une fonction de réveil à la demande en libre-service pour AVD via le client Web VDS. Le client Web peut être utilisé pour réveiller les ressources appropriées, puis la connexion peut être initiée via le client AVD standard.
+
+.Pour réactiver les ressources VM dans AVD :
+. Connectez-vous au client Web VDS à l'adresse link:https://login.cloudworkspace.com[""]
+. Connectez-vous à l'aide des informations d'identification AVD de l'utilisateur
++
+** Un message d'avertissement vous invite à indiquer _« les services AVD de Microsoft sont disponibles. Cliquez ICI pour afficher l'état et démarrer les pools d'hôtes hors ligne. »_
+
+
+. Après avoir cliqué sur «_HERE_ », vous verrez une liste des pools d'hôtes disponibles ainsi qu'un lien vers le lien « cliquer pour démarrer » sous la colonne d'état
++
+image:Wake_on_Demand_h5_1.png[""]
+
+. _Cliquez sur Démarrer_ le lien et attendez 1-5 minutes que l'état passe à « en ligne » et affiche une icône d'état verte
+. Connectez-vous à AVD en utilisant votre processus normal
+
+
+
+
+== Mise à l'échelle dynamique
+
+Live Scaling fonctionne conjointement avec la planification de la charge de travail en gérant le nombre d'hôtes de session en ligne pendant l'heure d'activité planifiée telle que configurée dans la planification de la charge de travail. Lorsqu'il est programmé pour être hors ligne, Live Scaling ne contrôle pas la disponibilité de l'hôte de session. L'évolutivité en direct n'a qu'un impact sur les utilisateurs partagés et les serveurs partagés dans les environnements RDS et AVD, les utilisateurs VDI et les VM sont exclus de ces calculs. Tous les autres types de VM ne sont pas affectés.
+
+
+NOTE: Le paramètre AVD _Load Balancer type_ interagit avec cette configuration. Il convient donc de prendre également soin de choisir ce paramètre. Les économies sont optimisées avec un premier type de profondeur tandis que les performances des utilisateurs finaux sont optimisées avec un premier type de largeur.
+
+Activation de la mise à l'échelle directe sans option activée, le moteur d'automatisation sélectionne automatiquement les valeurs du nombre d'utilisateurs supplémentaires alimentés sur les serveurs, des utilisateurs partagés par serveur et du nombre maximal d'utilisateurs partagés par serveur.
+
+* Le _Number of Extra Powered on Servers_ passe par défaut à 0, c'est-à-dire 1 serveur fonctionne 24/7.
+* Par défaut, le paramètre _Shared Users par serveur_ indique le nombre d'utilisateurs de la société divisé par le nombre de serveurs.
+* La valeur par défaut de _Max Shared Users par serveur_ est infinie.
+
+
+Live Scaling active les serveurs lorsque les utilisateurs se connectent et les désactive lorsque les utilisateurs se déconnectent.
+
+La mise sous tension d'un serveur supplémentaire est automatiquement déclenchée une fois que le nombre total d'utilisateurs actifs atteint le nombre d'utilisateurs partagés par serveur multiplié par le nombre total de serveurs mis sous tension.
+
+ e.g. With 5 Shared Users per Server set (this is the default # we’ll use for all examples in this article) and 2 servers running, a 3rd server won’t be powered up until server 1 & 2 both have 5 or more active users. Until that 3rd server is available, new connections will be load balanced all available servers. In RDS and AVD Breadth mode, Load balancing sends users to the server with the fewest active users (like water flowing to the lowest point). In AVD Depth mode, Load balancing sends users to servers in a sequential order, incrementing when the Max Shared Users number is reached.
+Live Scaling va également désactiver les serveurs pour réduire les coûts. Lorsqu'un serveur a 0 utilisateurs actifs et qu'un autre serveur dispose d'une capacité disponible inférieure à _utilisateurs partagés par serveur_ le serveur vide est mis hors tension.
+
+La mise sous tension du serveur suivant peut prendre quelques minutes. Dans certaines situations, la vitesse des connexions peut dépasser celle des nouveaux serveurs. Par exemple, si 15 personnes se connectent en 5 minutes, elles atterriseront toutes sur le premier serveur (ou se verront refuser une session) pendant une deuxième et une troisième mise sous tension. Deux stratégies peuvent être utilisées pour atténuer la surcharge d'un seul serveur dans ce scénario :
+
+. Activez _Number of Extra Powered on Servers_ afin que le ou les serveurs supplémentaires soient sous tension et disponibles pour accepter les connexions et permettre à la plate-forme de lancer des serveurs supplémentaires.
++
+.. Lorsqu'il est activé, le numéro est ajouté au besoin calculé. Par exemple, si la valeur est définie sur 1 serveur supplémentaire (et avec 6 utilisateurs connectés), deux serveurs sont actifs en raison du nombre d'utilisateurs, plus un troisième en raison du paramètre _Extra Powered on Servers_.
+
+
+. Activez _Max Shared users per Server_ pour placer une limite matérielle du nombre d'utilisateurs autorisés par serveur. Les nouvelles connexions dépassant cette limite seront refusées, l'utilisateur final affichera un message d'erreur et devra réessayer dans quelques minutes une fois que le serveur supplémentaire sera disponible. Si ce nombre est défini, il définit également la profondeur des serveurs partagés AVD.
++
+.. En supposant que le delta entre _utilisateurs partagés par serveur_ et _Max utilisateurs partagés par serveur_ soit approprié, les nouveaux serveurs devraient être disponibles avant que la max ne soit atteinte dans toutes les situations sauf dans les situations les plus extrêmes (des tempêtes de connexion exceptionnellement grandes).
+
+
+
+
+
+
+== L'évolutivité des ressources des ordinateurs virtuels
+
+L'évolutivité des ressources des machines virtuelles est une fonction facultative qui permet de modifier la taille et la quantité des machines virtuelles hôtes dans un environnement.
+
+Lorsque cette option est activée, VDS calcule la taille et la quantité appropriées des machines virtuelles hôtes de session en fonction des critères sélectionnés. Ces options comprennent : les utilisateurs actifs, les utilisateurs nommés, la charge du serveur et la correction.
+
+image:VMResource2.png[""]
+
+La taille des machines virtuelles est contenue dans la famille de machines virtuelles sélectionnées dans l'interface utilisateur et peut être modifiée par liste déroulante. (p. ex. _Série DV3 famille_ dans Azure)
+
+image:VMResource1.png[""]
+
+
+
+=== Évolutivité en fonction des utilisateurs
+
+
+NOTE: La fonction ci-dessous se comporte de la même manière pour « utilisateurs actifs » ou « nombre d'utilisateurs ». User Count est un nombre simple de tous les utilisateurs activés avec un poste de travail VDS. Les utilisateurs actifs sont une variable calculée sur la base des 2 semaines précédentes de données de session utilisateur.
+
+Lors du calcul en fonction des utilisateurs, la taille (et la quantité) des machines virtuelles hôtes de session est calculée en fonction des besoins définis en mémoire vive et en CPU. L'administrateur peut définir le Go de RAM, ainsi que le nombre de cœurs de CPU virtuels par utilisateur, en plus des ressources supplémentaires sans variables.
+
+Dans la capture d'écran ci-dessous, chaque utilisateur dispose d'une mémoire RAM de 2 Go et de 1/2 cœurs de CPU virtuels. En outre, le serveur commence avec 2 cœurs de CPU virtuels et 8 Go de RAM.
+
+image:VMResource3.png[""]
+
+En outre, l'administrateur peut définir la taille maximale qu'une machine virtuelle peut atteindre. Lorsque la limite est atteinte, les environnements évoluent horizontalement en ajoutant des hôtes de session de VM supplémentaires.
+
+Dans la capture d'écran ci-dessous, chaque machine virtuelle est limitée à 32 Go de RAM et à 8 cœurs de vCPU.
+
+image:VMResource4.png[""]
+
+Lorsque toutes ces variables sont définies, VDS peut calculer la taille et la quantité appropriées des machines virtuelles hôtes de session. Cette opération simplifie grandement le processus de maintien de l'affectation appropriée des ressources, même lorsque les utilisateurs sont ajoutés et supprimés.
+
+
+
+=== Évolutivité en fonction de la charge du serveur
+
+Lors du calcul en fonction de la charge du serveur, la taille (et la quantité) des machines virtuelles hôtes de session est calculée en fonction des taux moyens d'utilisation du CPU/de la RAM observés par VDS sur la période 2 semaines précédente.
+
+Lorsque le seuil maximal est dépassé, VDS augmente la taille ou augmente la quantité pour ramener l'utilisation moyenne dans la plage.
+
+À l'instar de l'évolutivité basée sur l'utilisateur, il est possible de définir la famille de machines virtuelles et la taille maximale des machines virtuelles.
+
+image:VMResource6.png[""]
+
+
+
+== Autres ressources actives
+
+La planification de la charge de travail ne contrôle pas les serveurs de plate-forme tels que CWMGR1 car ils sont nécessaires pour déclencher la fonctionnalité de réveil à la demande et faciliter les autres tâches de la plate-forme et doit exécuter 24/7 pour un fonctionnement normal de l'environnement.
+
+Des économies supplémentaires peuvent être réalisées en désactivant l'ensemble de l'environnement, mais elles sont uniquement recommandées pour les environnements hors production. Il s'agit d'une action manuelle qui peut être effectuée dans la section déploiements de VDS. Pour rétablir l'état normal de l'environnement, il est également nécessaire d'effectuer une étape manuelle sur la même page.
+
+image:Stop_Deployment.png[""]
+image:Start_deployment.png[""]

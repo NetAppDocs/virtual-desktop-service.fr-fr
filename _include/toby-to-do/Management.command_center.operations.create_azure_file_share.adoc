@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.create_azure_file_share-4eabe.png[Management.command Center.Operations.create Azure file share 4eabe]

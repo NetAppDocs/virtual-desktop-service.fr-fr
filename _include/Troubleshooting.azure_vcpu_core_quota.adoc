@@ -1,0 +1,26 @@
+= Afficher le quota actuel
+:allow-uri-read: 
+
+
+
+
+== Afficher le quota actuel
+
+. Connectez-vous à la console Azure et accédez au module abonnements, puis cliquez sur quotas. Sélectionnez ensuite tous les fournisseurs dans la liste déroulante fournisseurs, sélectionnez tout afficher dans la liste déroulante tout à droite et sélectionnez la région Azure dans laquelle votre espace de travail cloud est déployé.
++
+image:quota1.png[""]
+
+. Vous verrez alors combien vous utilisez et combien quel quota est disponible. Dans l'image ci-dessous, CloudJumper utilise 42 processeurs sur les 350 processeurs disponibles pour la famille BS de machines virtuelles. Augmentation du quota
++
+image:quota2.png[""]
+
+. Si vous souhaitez augmenter votre quota, cliquez sur demande augmenter et indiquez-lui ce que vous voulez augmenter (99 % du temps sera calcul/CPU).
++
+image:quota3.png[""]
+
+. Sélectionnez la région dans laquelle votre Cloud Workspace est déployé et la famille de machines virtuelles que vous souhaitez augmenter les quotas.
++
+image:quota4.png[""]
+
+. Entrez vos coordonnées et cliquez sur Créer pour envoyer la demande à Microsoft. Ils sont généralement TRÈS rapides à augmenter cela.
+

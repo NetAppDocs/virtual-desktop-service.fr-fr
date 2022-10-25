@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.printing_issues.html 
+summary: 'Guide étape par étape pour résoudre les problèmes d"impression' 
+keywords:  
+---
+= Résolution des problèmes d'impression
+:allow-uri-read: 
+
+
+
+
+== Erreur
+
+L'impression sur l'imprimante locale à partir du bureau du Cloud ne fonctionne pas.
+
+
+
+== Services de bureau à distance avec ThinPrint
+
+VDS comprend en option ThinPrint pour les déploiements de services RDS (Remote Desktop Services). Le logiciel et les licences sont automatiquement configurés au déploiement initial. Si ThinPrint est en cours d'utilisation, les sections suivantes peuvent aider à résoudre les problèmes d'impression.
+
+
+
+=== Cause
+
+Il existe plusieurs méthodes de connexion au poste de travail cloud. Cette méthode diffère de la façon dont ils effectuent des fonctions d'impression et, par conséquent, en sachant quel type d'accès est utilisé pour le dépannage :
+
+. Utilisation du client d'accès de CloudJumper sur un périphérique Windows
++
+.. ThinPrint s'exécute sur le périphérique local et transmet la communication entre l'imprimante et le bureau cloud
+
+
+. Utilisation du navigateur HTML5 sur n'importe quel périphérique
++
+.. Le navigateur présentera le document imprimé au format PDF à télécharger et à imprimer localement
+
+
+. Utilisation d'un client RDP configuré manuellement (généralement) sur un ordinateur Mac ou Linux
++
+.. Les imprimantes locales sont partagées avec le bureau du Cloud en configurant manuellement les « ressources locales » dans le client RDP.
+
+
+
+
+
+
+=== Solution
+
+. Essayez d'imprimer un document à partir du périphérique local pour vérifier que le périphérique local est correctement connecté à l'imprimante.
+. Désinstallez et réinstallez ThinPrint si vous utilisez Access client sur un périphérique Windows. https://www.thinprint.com/en/resources-support/software/clientsandtools/[]
+. Noter le type d'accès et les résultats des deux premières étapes dans un nouveau cas avec support CloudJumper.
+
+
+
+
+== Azure Virtual Desktop
+
+VDS n'implémente aucune solution d'impression ou configuration d'impression unique pour les environnements AVD. Les questions d'impression doivent être adressées à Microsoft ou au fournisseur de la technologie d'impression (s'il y en a une).

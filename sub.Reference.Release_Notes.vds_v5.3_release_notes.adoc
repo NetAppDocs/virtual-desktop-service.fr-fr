@@ -1,0 +1,1163 @@
+---
+sidebar: sidebar 
+permalink: Reference.Release_Notes.vds_v5.3_release_notes.html 
+summary: Notes de mise à jour VDS NetApp v5.3 
+keywords:  
+---
+= Virtual Desktop Service – version 5.3
+:allow-uri-read: 
+
+
+
+NOTE: Il n'y aura plus de versions récurrentes pour la version 5.3 de VDS ; toutes les versions seront considérées comme des correctifs.
+
+
+
+== Version VDS 5.3 : jeudi 17 décembre 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 17 décembre 2020 à 22:00 Eastern _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+NOTE: Le prochain cycle de sortie aura lieu le jeudi 7 janvier 2021 au lieu de la Saint-Sylvestre 2020.
+
+
+
+=== Service de poste de travail virtuel
+
+* Mettez à jour le service SMTP pour utiliser la fonction Postmark
+
+
+
+
+== Version VDS 5.3 : jeudi 22 octobre 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 22 octobre 2020 à 22:00 Eastern _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== VDS
+
+* Résolution de bug pour les scénarios où l'agent MFA réside dans un dossier comportant des conventions d'appellation IIT héritées
+
+
+
+
+== Version VDS 5.3 : jeudi 8 octobre 2020
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ jeudi 8 octobre 2020 à 22:00 Eastern _impact:_ l'accès aux postes de travail et aux services d'applications pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== VDS
+
+* Correction de bug pour les collections de provisionnement – modèle d'hyperviseur non sélectionné automatiquement
+
+
+
+
+== Version VDS 5.3 : jeudi 10 septembre 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 10 septembre 2020 à 23:00 Eastern _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Service de poste de travail virtuel
+
+* Réduisez le nombre d'appels API utilisés pour renvoyer une liste de modèles Azure
+* Mise à jour de lien référentielle dans le rapport nocturne de ressource serveur
+* Correction de la modification des mots de passe d'administration pour prendre en charge des ensembles d'autorisations améliorés et plus fins dans AD
+
+
+
+
+== Version VDS 5.3 : jeudi 27 août 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 13 août 2020 à 22:00 Eastern _impact:_ l'accès aux ordinateurs de bureau et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Service de poste de travail virtuel
+
+* Correction de bug pour un scénario d'événements avec script où les informations de date et d'heure étaient affichées comme date et heure actuelles
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Commercialisation des fonctionnalités d'avantages d'Azure hybrides
+* Résolution d'un problème d'affichage lors de la saisie d'informations de nom personnalisées dans les détails de machine virtuelle
+
+
+
+
+== Version VDS 5.3 : jeudi 13 août 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 13 août 2020 à 22:00 Eastern _impact:_ l'accès aux ordinateurs de bureau et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Ajoutez la prise en charge des disques de système d'exploitation éphémères
+* Info-bulles améliorées pour les sélections de stockage
+* Interdire un scénario dans lequel un utilisateur est devenu capable de saisir des nombres d'utilisateurs négatifs
+* Affichez le serveur de fichiers lors de l'utilisation des sélections AVD et File Server
+
+
+
+
+== Version VDS 5.3 : jeudi 30 juillet 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 30 juillet 2020 à 22h Eastern _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Service de poste de travail virtuel
+
+* Correction de bug pour un sous-ensemble de scénarios où AVD Diagnostics ne s'affichaient pas correctement
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Demandez si les données du client doivent être haute disponibilité et, le cas échéant, définissez si les économies en termes de coûts et de main-d'œuvre sont possibles en utilisant un service PaaS comme Azure NetApp Files
+* Mettre à jour et standardiser le type de stockage par défaut pour les charges de travail AVD et RDS vers l'unité SSD Premium
+* Améliorations des performances en arrière-plan
+
+
+
+
+== Version VDS 5.3 : jeudi 16 juillet 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 16 juillet 2020 à 22h Eastern _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Service de poste de travail virtuel
+
+* Des améliorations de sécurité proactives en arrière-plan
+* Amélioration des performances dans le module Workspace via la pagination de groupes sous l'onglet utilisateurs et groupes
+
+
+
+
+=== Configuration VDS
+
+* Au fur et à mesure que de nouvelles options d'automatisation sont disponibles, mettez à jour pour les déploiements en sélectionnant Azure Active Directory Domain Services (AADDS) pour assurer l'utilisation du niveau de service standard
+* Mettez à jour pour refléter une modification apportée à un appel de l'API MICROSOFT ARM
+
+
+
+
+=== Expérience de connexion HTML5
+
+* Mises à jour visant à refléter la promotion de la marque NetApp/la formulation
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Afficher les prix de manière dynamique par région
+* Afficher si les services pertinents sont disponibles dans la région sélectionnez pour s'assurer que les utilisateurs comprennent si la fonctionnalité souhaitée sera disponible dans cette région. Ces services sont :
+* Azure NetApp Files
+* Services de domaine Azure Active Directory
+* Ordinateurs virtuels NV et NV v4 (compatibilité GPU
+
+
+
+
+== Version VDS 5.3 : jeudi 25 juin 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 25 juin 2020 à 22 h (heure de l'est) _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Service de poste de travail virtuel
+
+* Mises à jour visant à refléter la promotion de la marque NetApp/la formulation
+* Correction de bug pour un scénario isolé où la liste des utilisateurs n'était pas populating comme prévu
+* Correction de bug pour un scénario dans lequel les déploiements manuels recevaient une configuration GPO qui n'était que partiellement correcte
+
+
+
+
+=== Assistant d'installation VDS
+
+* Prise en charge d'American Express
+* Mises à jour visant à refléter la promotion de la marque NetApp/la formulation
+
+
+
+
+=== API REST
+
+* Améliorations continues permettant de collecter et d'afficher les données de liste plus rapidement
+
+
+
+
+== Version VDS 5.3 : jeudi 11 juin 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 11 juin 2020 à 22 h (heure de l'est) _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Service de poste de travail virtuel
+
+* Améliorations proactives du traitement par API
+* Renforcement proactif et continu des éléments de plateforme
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Améliorations continues des déclencheurs Live Scaling
+* Correction automatique améliorée des problèmes identifiés lors de la migration d'un déploiement de vCloud à vSphere
+
+
+
+
+== VDS 5.3 correctif: Thurs. 7 mai 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ mercredi 3 juin 2020 à 10 h 00 à 10 h 30 Eastern _impact:_ l'accès aux postes de travail et aux services applicatifs pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Outils et services Cloud Workspace
+
+* Correctif pour un élément automatisé d'automatisation du déploiement de plateforme. Cela ne s'applique qu'aux nouveaux déploiements : aucun impact n'aura sur les déploiements existants.
+* Correction de bogues pour les déploiements dans une structure Active Directory existante
+
+
+
+
+== Version VDS 5.3 : jeudi 28 mai 2020
+
+_Components:_ 5.3 Virtual Desktop Service _when:_ jeudi 28 mai 2020 à 22 h (heure de l'est) _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.
+
+
+
+=== Service de poste de travail virtuel
+
+* Mises à jour visant à refléter la promotion de la marque NetApp/la formulation
+* Amélioration des performances pour le module Workspace
+* Fonctions VDS d'amélioration proactive de la stabilité alimentées par des appels API fréquemment utilisés
+
+
+
+
+=== Déploiement de services de postes de travail virtuels
+
+* Rationalisation de l'empreinte de la plateforme VDS dans les déploiements Azure
+* Correction de bug pour un scénario facultatif lors du déploiement dans une structure Active Directory existante
+
+
+
+
+=== Services et outils de bureau virtuel
+
+* Améliorations continues de la façon dont le nombre d'utilisateurs connectés à un serveur est identifié pour Live Scaling
+
+
+
+
+=== Client Web Virtual Desktop Service
+
+* Mise à jour de la marque pour refléter la promotion de la marque NetApp ou la formulation
+* Prise en charge du raccourcissement des URL enregistrées en tant que favoris qui sont plus longs que les liens par défaut du client Web vers les liens par défaut du client Web (cloudworkspace.com/login/ à cloudworkspace.com, par exemple)
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Ajoutez des options SQL Server pour obtenir davantage de tailles/séries de machines virtuelles
+* Mettez à jour la façon dont le prix de l'adresse IP est affiché – n'affichez pas le coût de l'adresse IP, sauf si des adresses IP supplémentaires sont ajoutées
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., 14 mai 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 14 mai 2020 at 22h – 11h Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Mise à jour du message pour refléter la promotion de la marque NetApp ou la formulation
+* Mise à jour du serveur de plate-forme pour refléter l'utilisation de D2S v3
+* Mise à jour des détails de la licence Windows 10 Enterprise E3 et du prix
+* Changez le choix de stockage par défaut sur Azure NetApp Files
+
+
+
+
+== CWMS 5.3 correctif: Thurs. 7 mai 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ Vendredi 8 mai 2020 à 10:15 – 10:30 Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Outils et services Cloud Workspace
+
+* Correction de bug pour la méthode dans laquelle les enregistrements DNS sont définis pour une combinaison spécifique de paramètres pendant le processus de déploiement
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 30 avril 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 30 avril 2020 à 22h, Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Amélioration du suivi des sessions pour permettre une mise à jour future – option permettant d'afficher un aperçu des fonctionnalités futures
+* Mise à jour vers des événements avec script pour permettre une plus grande flexibilité dans les applications et les activités
+* Correction des bogues pour une combinaison spécifique de configurations de collections de provisionnement
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Activez la possibilité de définir la planification de la charge de travail par pool hôte AVD
+* Amélioration du processus de création de nouveaux déploiements dans une structure AD existante
+* Attribuez des chemins de données données/domicile/profil aux entreprises qui utilisent Azure Files
+* Activez la possibilité de gérer les pools de ressources
+* Amélioration de la gestion des caractères spéciaux dans le processus de l'assistant de déploiement
+* Ajustement des composants HTML5 automatisés dans le cadre du déploiement pour les charges de travail RDS (et non AVD
+
+
+
+
+=== API REST
+
+* Liste mise à jour des régions Azure disponibles pour le déploiement
+* Amélioration de la gestion de l'intégration d'Azure Backup pour les serveurs avec le rôle TSData
+* Résolution d'un problème dans un sous-ensemble de scénarios où une connexion échouée entraîne l'échec de deux tentatives de connexion consignées
+
+
+
+
+=== Configuration CWA
+
+* Conformément aux bonnes pratiques Azure, appliquez que les détails des adresses IP de sous-réseau se trouvent dans une plage d'adresses IP privées. Les plages IP privées acceptées sont les suivantes :
++
+** 192.168.0.0 à 192.168.255.255
+** 172.16.0.0 à 172.31.255.255
+** 10.0.0.0 à 10.255.255.255
+
+
+
+
+
+
+=== Expérience de connexion HTML5
+
+* Les améliorations apportées à l'hébergement en arrière-plan pour https://login.cloudworkspace.com[] et https://login.cloudjumper.com[]. Remarque : il n'y aura aucun impact sur les portails de connexion HTML5 personnalisés.
+* Correction de bug pour un sous-ensemble de scénarios où la réinitialisation du mot de passe en libre-service n'a pas été présentée
+
+
+
+
+== CWMS 5.3 correctif : Wedn. 22 avril 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ mercredi 22 avril 2020 à 22h, Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Mise à niveau des performances pour répondre au renforcement de l'utilisation par les clients
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 16 avril 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 16 avril 2020 à 22h, Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Améliorations continues de la validation de la création de VM du pool hôte AVD (comptabilité avec les délais de traitement Azure dus à une augmentation de l'activité Azure suite au COVID-19)
+* Amélioration de la stabilité AVD lors de l'initialisation AVD – si le nom de tenant AVD n'est pas unique à AVD globalement, CloudJumper le remplace par une chaîne mise à jour propre au déploiement/locataire.
+* Inclure la prise en charge des caractères spéciaux dans les adresses e-mail dans la fonctionnalité de réinitialisation du mot de passe CWMS
+* Correction de bug pour un sous-ensemble de scénarios lors de l'ajout d'applications à un groupe d'applications AVD RemoteApp n'a pas extrait d'applications du menu Démarrer
+* Correction de bug pour un sous-ensemble du rapport d'activité de l'utilisateur
+* Supprimer l'exigence d'une description d'un pool d'hôtes AVD (reste comme et champ facultatif)
+* Correction des bogues dans un scénario à franges où les machines virtuelles d'un pool hôte partagé ont été balisées comme des machines virtuelles VDI
+
+
+
+
+=== Configuration CWA
+
+* Prise en charge supplémentaire des codes de commande pour les flux de travail des distributeurs
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Améliorations apportées à la dégestion des machines virtuelles gérées par l'outil Solarwinds Orion RMM pour répondre aux besoins de la planification des charges de travail
+
+
+
+
+== Publication de CWMS 5.3 : jeudi 2 avril 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 2 avril 2020 à 22h, Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Correction de l'historique des activités résolution d'un problème d'affichage pour les déploiements régionaux où la localisation des dates empêchait certains antécédents d'activité d'être visibles dans le système CWMS
+* Amélioration de la collecte de données pour permettre des images de toutes tailles
+* Correction des bogues pour les déploiements AADDS dans des locataires Azure avec plusieurs domaines – les nouveaux utilisateurs utilisent auparavant le domaine Azure principal plutôt que de faire correspondre l'ID de connexion de l'espace de travail
+* Correction des bogues de l'historique des activités lors de la mise à jour d'un nom d'utilisateur : la fonctionnalité fonctionne comme prévu, mais le nom d'utilisateur précédent n'était pas affiché correctement
+
+
+
+
+=== Configuration CWA
+
+* Amélioration de la gestion des comptes MFA sur les comptes CWMS utilisés lors de l'enregistrement
+* Réduction des autorisations appliquées lors du déploiement
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Réduction des autorisations requises pour les services/l'automatisation continus
+* Améliorations des processus pour réduire la consommation de ressources sur CWMGR1
+
+
+
+
+=== API REST
+
+* Correction de bug pour l'historique des activités lors de la mise à jour d'un nom d'utilisateur
+
+
+
+
+== CWMS 5.3 correctif : Tues. 24 mars 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ Mardi 24 mars 2020 à 22h, Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Mise à jour de la description des types d'utilisateurs AVD et des programmes qu'ils exécutent conformément à la documentation Microsoft
+* Une clarté accrue pour la licence CWMS
+
+
+
+
+=== Publication de CWMS 5.3 : Thurs., 19 mars 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 19 mars 2020 à 22h, Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Amélioration de la connexion au serveur pour les déploiements sur plusieurs sites : détectez automatiquement le site auquel l'administrateur CWMS se connecte et traite la connexion
+* L'activation du mode de migration désactive désormais la mise à l'échelle directe
+* Correctif pour l'activation de Cloud Workspace Services pour un client existant
+
+
+
+
+=== Configuration CWA
+
+* Améliorations en arrière-plan de l'assistant de déploiement
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., 5 mars 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 5 mars 2020 à 22h, Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Amélioration des performances du rapport client principal
+* Supprimez la fonction de suppression d'une machine virtuelle qui n'a pas été correctement créée, car elle ne peut pas être supprimée si elle n'a jamais été créée
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Correction des bogues pour le traitement normal des déploiements sur plusieurs sites dans lesquels les paramètres de configuration DC ne sont pas correctement configurés
+* Correction des bogues pour les déploiements multisite dans lesquels les sites vSphere ont des types d'allocation de ressources définis sur fixe
+
+
+
+
+=== Portail HTML 5
+
+* Amélioration du processus pour les utilisateurs se connectant avec les informations d'identification AVD
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Amélioration de la clarté pour Live Scaling
+* Formulation des ajustements pour correspondre aux messages Microsoft AVD
+* Correction des bogues pour la planification des charges de travail et l'évolutivité en direct, détails des économies dans des devis très personnalisés
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 20 février 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 20 février 2020 at 22h – 11h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Passer le mot SDDC au déploiement dans l'onglet VM Resource du module espaces de travail
+
+
+
+
+=== Configuration CWA
+
+* Rationaliser le processus d'application des règles lors du déploiement
+* Sécurité accrue pour les nouveaux déploiements avec Azure Active Directory Domain Services
+* Sécurité accrue pour les nouveaux déploiements : une isolation de sous-réseau définie (par opposition aux sous-réseaux plats) est requise au cours du déploiement
+* Correction des bogues pour les déploiements RDS (non AVD) lors de l'application d'une licence ThinPrint
+* Correction des bogues pour le traitement correct de l'installation ou non de ThinPrint dans DC Config
+* Vérifications et validation supplémentaires pour les entreprises qui choisissent d'exploiter la fonctionnalité FTP
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Correction d'un bug pour des actions automatisées lorsqu'un déploiement avec plusieurs sites a un site mal configuré
+* Correction de bug pour une instance où la suppression d'une machine virtuelle n'a pas correctement effacé la machine virtuelle en arrière-plan
+* Améliorations des fonctionnalités et correctifs de bogues lors des tests de connectivité de l'hyperviseur dans DC Config
+
+
+
+
+=== API REST
+
+* Amélioration des performances lors de l'affichage de la liste des utilisateurs d'une organisation
+* Amélioration des performances lors de l'affichage de la liste des applications d'une entreprise
+* Amélioration des fonctionnalités lors de l'ajout d'utilisateurs aux groupes d'applications AVD :
+* Limitez le nombre d'utilisateurs importés à 425
+* Si vous tentez d'importer plus de 425 utilisateurs, procédez à l'importation des 425 premiers utilisateurs et affichez que la limite d'AVD pour les importations utilisateur est de 425 et qu'ils peuvent procéder à des importations supplémentaires en 5 minutes
+* Mettez à jour pour indiquer que le nombre d'utilisateurs d'un groupe correspond au nombre d'utilisateurs de Cloud Workspace d'un groupe par rapport au nombre total d'utilisateurs d'un groupe (ce qui peut être moins lors du déploiement dans une structure Active Directory existante).
+* Activer les affectations d'applications via le groupe de sécurité pour les utilisateurs nommés qui sont membres du groupe (les groupes imbriqués ne recevront pas l'affectation d'applications)
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Ajoutez un lien en bas de la page pour que les utilisateurs puissent demander de l'aide
+* Azure NetApp Files par défaut pour le niveau Premium
+* Ajoutez des unités de stockage SSD Premium aux options pour le type de stockage Fileserver
+* Texte de mise à jour pour les services de domaine Azure Active Directory – changement de AADDS à Azure AD Domain Services
+* Mettre à jour le texte pour Active Directory – passer de la ou des machines virtuelles Active Directory Windows à Active Directory Windows Server
+
+
+
+
+== CWMS 5.3 correctif: Thurs., 13 février 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 13 février 2020 at 22h – 11h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Résolution des erreurs de prix lors de l'utilisation de machines virtuelles E-Series dans un sous-ensemble de scénarios
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 6 février 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 6 février 2020 at 22h – 11h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Amélioration des détails de l'état du provisionnement lors du processus de création de VM
+* Amélioration de la gestion de l'automatisation pour les machines virtuelles hôtes de session nouvellement créées qui font partie d'un pool hôte AVD
+* Amélioration des performances du rapport d'activité utilisateur lorsqu'il inclut « uniquement les utilisateurs d'accès au serveur »
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Correction de bogues pour la gestion des chemins de données lorsque les administrateurs modifient manuellement des comptes d'utilisateur dans Active Directory traditionnel (non Azure)
+* Planification des charges de travail améliorée dans les scénarios nuancés
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Décrivez les économies spécifiques obtenues via la planification des charges de travail et la mise à niveau dynamique séparément par rapport à combinés
+* Afficher les versions “S” des serveurs pour prendre en charge le stockage Premium (SSD)
+* Mise en page améliorée pour les estimations imprimées
+* Correction de bug pour un problème dans lequel la tarification de SQL Server n'était pas calculée correctement
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 23 janvier 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 23 janvier 2020 at 22h – 11h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Rediriger l'ancien https://iit.hostwindow.net[] site à la moderne https://manage.cloudworkspace.com[]
+* Correction d'un bug pour un sous-ensemble d'administrateurs CWMS se connectant via IE 11
+* Corriger un problème visuel où la suppression d'un utilisateur API les a correctement supprimés en arrière-plan, mais n'était pas visible comme supprimé dans CWMS
+* Rationalisez le processus d'annulation des abonnements afin que vous puissiez reprovisionner un nouvel environnement de test ou de nouvelle souscription
+* Amélioration de la carte de service – consultez uniquement les serveurs hôtes de session en ligne pour les icônes à placer pour les raccourcis d'application
+
+
+
+
+=== Application cloud Resource
+
+* Prise en charge de l'importation d'utilisateurs à partir d'une UO ou d'un groupe de sécurité Active Directory via la ligne de commande
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Améliorations de Live Scaling en arrière-plan
+
+
+
+
+=== Configuration CWA
+
+* Amélioration de la gestion des scénarios lorsque le compte utilisé pendant le processus de configuration de CWA a appliqué MFA
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Mettre à jour les paramètres par défaut du dimensionnement des machines virtuelles afin de refléter les recommandations de Microsoft
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 9 janvier 2020
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 9 janvier 2020 at 22h – 11h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Mise à jour des phrases dans l'e-mail reçu par les administrateurs après la création d'un espace de travail pour refléter les liens mis à jour
+* Correction de bug pour un problème dans lequel les serveurs n'appartenaient pas à la liste serveurs si une série d'erreurs d'autorisations de dossier existait
+* La correction des bogues pour les serveurs n'apparadait pas dans la liste serveurs si un pool de ressources n'était pas présent dans la table Resource pools de CWMGR1
+
+
+
+
+=== Application cloud Resource
+
+* Prise en charge de l'importation d'utilisateurs à partir d'un groupe de sécurité Active Directory.
+* Validation améliorée : assurez-vous que le paramètre de ligne de commande approprié est utilisé pour les arguments/serveurs de ligne de commande
+* Validation améliorée : recherchez les utilisateurs en double lors de l'importation à partir de la ligne de commande
+* Validation améliorée : assurez-vous que les serveurs importés appartiennent au site spécifié lors de l'importation à partir de la ligne de commande
+
+
+
+
+=== API REST
+
+* Autres améliorations de sécurité en coulisses
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Stabilité améliorée du traitement des commandes en arrière-plan
+* Améliorations de la planification des charges de travail et de l'évolutivité dynamique en arrière-plan
+* Planification des charges de travail supplémentaires et stabilité de l'évolutivité dynamique en arrière-plan
+* Mises à jour et améliorations de FSLogix dans de nouveaux déploiements – redirection des téléchargements et des favoris vers le conteneur de profils afin d'aligner les meilleures pratiques
+* Améliorations supplémentaires de la stabilité de la création de VM du pool hôte
+* Présentez la possibilité de spécifier la passerelle pour les nouveaux sites
+* Validation améliorée de l'automatisation pour les VM
+* Gestion automatisée et améliorée des bases de données
+* Amélioration de la gestion de la création d'utilisateurs si l'action se produit au même moment que les machines virtuelles sont mises hors tension
+* Gestion rationalisée des disques temporaires dans les déploiements Microsoft Azure
+* Amélioration de la gestion du type d'allocation des ressources pour les déploiements GCP
+* Correction de bug pour l'extension de disque dans les data centers ProfileBricks
+* Stabilité améliorée pour la création de clients basés sur App Services
+* Correction des bogues et amélioration de la stabilité après conversion d'un serveur d'un rôle à un autre
+
+
+
+
+== Publication de CWMS 5.3 : le 20 décembre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ Vendredi 20 décembre 2019 à 22h – 11h Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Outils et services Cloud Workspace
+
+* Correction du scénario dans lequel la journalisation des activités utilisateur n'enregistre pas les données avec succès
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., 19 décembre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 19 décembre 2019 at 22h – 11h Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Améliorations pour la surveillance de la disponibilité CWMS
+* Corriger un problème avec AVD App group User modal où le nom d'utilisateur n'est pas toujours sélectionné correctement lorsqu'il contient des lettres majuscules
+* Correction de la pagination dans la liste des utilisateurs pour les membres du rôle d'administrateur 'support utilisateur uniquement'
+* Correction de l'alignement des boutons radio dans la boîte de dialogue de configuration MFA
+* Amélioration du chargement de la page Tableau de bord/Présentation en supprimant la dépendance de la carte de service
+* Résolution du problème auquel les utilisateurs admin ne peuvent pas réinitialiser leurs propres mots de passe s'ils ne disposent pas des autorisations de modification administrateur
+* Améliorations collecte de la journalisation de débogage pour un dépannage ultérieur
+
+
+
+
+=== Application cloud Resource
+
+* Amélioration des fonctionnalités : permet l'importation d'utilisateurs en fonction de l'appartenance au groupe AD.
+* Amélioration des fonctionnalités : permet de spécifier l'identifiant d'ouverture de session par défaut lors de l'importation
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Amélioration du texte et de l'info-bulle pour le stockage sous les machines virtuelles
+
+
+
+
+=== Configuration CWA
+
+* Améliorations des workflows de déploiement de versions
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Amélioration de la gestion du verrouillage du serveur de données lors de la création d'un nouvel utilisateur
+* Correction du scénario dans lequel un client n'est pas correctement signalé comme une société de cache pendant la planification des charges de travail
+* Corriger pour mettre à jour correctement la table d'entreprise lorsqu'une organisation est créée sans espace de travail
+* Correction des caractères non valides ajoutés au nom de pool d'hôtes AVD dans la base de données du plan de contrôle local
+* Résolution des problèmes liés à la planification des charges de travail lorsqu'une machine virtuelle est répertoriée dans la base de données de plan de contrôle local, mais pas l'hyperviseur
+* Résolution des problèmes empêchant toute extension automatique de disques dans l'hyperviseur Azure par certaines machines virtuelles
+* Correction de l'erreur d'approvisionnement client "le lecteur de données en attente n'est pas valide"
+* Corriger pour l'échec de l'installation de CWAgent dans certains scénarios
+* Amélioration de TestVDCTools pour permettre l'affectation d'URL de passerelle RDS pendant la création d'un nouveau site
+* Corriger l'échec de la planification de la charge de travail dans certains scénarios où il est défini sur activé
+* Résolution des problèmes de démarrage des serveurs lorsque le système est encore dans le cache
+* Résolution du problème de mise sous tension de certaines machines virtuelles après l'extension automatique de disque
+* Résolution des problèmes liés à la gestion des dossiers/autorisations lors de l'utilisation d'Azure Files ou de Azure NetApp Files
+
+
+
+
+== Version CWMS 5.3 : LUN. 2 décembre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ Monday 2 December 2019 at 22h – 23h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Améliorations apportées aux installations automatisées FSLogix
+* Mises à jour et correctifs de Live Scaling
+* Ajoutez des machines virtuelles AMD (non GPU) à la liste déroulante dans CWMS
+* Prise en charge de plusieurs locataires dans le même déploiement AVD
+
+
+
+
+=== Configuration CWA
+
+* Améliorations de clarté dans la section aide/support Configuration CWA
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Correction de bug pour un scénario où la sélection de ne pas inclure les licences Microsoft dans l'estimation continue à l'inclure
+
+
+
+
+=== Application cloud Resource
+
+* Validation supplémentaire lors de l'utilisation de la fonctionnalité de ligne de commande du site Data Center
+* Nouvel argument de ligne de commande – /listserversinsite
+* Amélioration de la configuration – lors de l'importation d'une entreprise, définissez maintenant le déploiement RDSH pour utiliser la passerelle RDHS configurée pour le site
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Mise à jour des éléments de prise en charge de vCloud dans DC Config
+* Amélioration de TestVDCTools pour détecter correctement le type de serveur dans des scénarios plus spécifiques
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., 14 novembre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 14 novembre 2019 à 22h, Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Redondance/haute disponibilité supplémentaires ajoutées en arrière-plan
+* Les menus déroulants du CWMS seront recherchés
+* Amélioration des performances lors de l'utilisation du module espaces de travail
+* Amélioration des performances lors de l'utilisation de la section serveurs du module espaces de travail
+* Afficher le nom du pool d'hôtes dans la section serveurs du module espaces de travail
+* La section serveurs du module espaces de travail sera désormais paginée et affiche 15 serveurs à la fois
+* Résolution de bogues pour un scénario dans lequel un sous-ensemble d'administrateurs créant un nouveau pool d'hôtes ne voit pas les modèles de machines virtuelles
+* Correction de bug pour un scénario dans lequel naviguer vers un pool hôte, un second pool d'hôtes affichera parfois des informations du premier pool d'hôtes
+* Correction d'un bug lorsqu'un sous-ensemble d'administrateurs ne pouvait pas se connecter à une ancienne version de CWMS
+* Correction des bogues lorsque vous accédez à AVD Diagnostics, puis retour aux espaces de travail affichés ‘page introuvable’
+* Modifiez le nom convivial du bureau d’un utilisateur (ce qui apparaît dans le client AVD RDP et dans la barre bleue en haut de la session de l’utilisateur) pour correspondre au nom du pool hôte
+* Les serveurs doivent être ajoutés manuellement au pool avec une case à cocher "Autoriser les nouvelles sessions" qui est décochée par défaut. La case à cocher était précédemment cochée par défaut.
+
+
+
+
+=== Configuration CWA
+
+* Les déploiements utiliseront désormais automatiquement FSLogix
+* Ajoutez des fichiers Azure en tant que cible de stockage facultative pour le stockage de données, de fichiers d'accueil et de profils si le déploiement utilise Azure Active Directory Domain Services
+* Déployez un pack pour prendre en charge l'automatisation du déploiement où les locataires Azure ont activé le RBAC
+* Installez la dernière version des licences Java et HTML5 avec chaque déploiement
+* Correction de bug lors du calcul incorrect d'une plage de sous-réseau, entraînant une erreur de validation avant le déploiement
+
+
+
+
+=== Expérience de connexion HTML5
+
+* Mettez à jour la marque par défaut pour refléter la marque du client Cloud Workspace pour Windows. Un aperçu est disponible ici.
+* Appliquez des mises à jour de marquage sur place aux pages de connexion HTML5 de marque supplémentaires
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Mettez à jour le niveau de stockage par défaut pour les machines virtuelles D4S v3 (type de VM par défaut pour AVD) sur le disque SSD Premium afin de correspondre aux paramètres par défaut de Microsoft
+
+
+
+
+=== Application cloud Resource
+
+* Ajoutez la possibilité de préattribuer un code société à utiliser lors de l'importation
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., 31 octobre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 31 octobre 2019 at 22h – 11h Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* La mise à jour pour les utilisateurs se connectant à iit.hostwindow.net (l'URL pour les déploiements plus anciens de v5.2, dont la quantité est très faible) affiche une invite indiquant qu'ils doivent naviguer jusqu'à manage.cloudworkspace.com (l'URL pour v5.3 et les déploiements futurs)
+* Autoriser les utilisateurs à supprimer des pools hôtes AVD via CWMS
+* Amélioration qui permet d'améliorer la marque dans le système CWMS à l'avenir
+* Correction d'un problème lors de la validation d'une collection de provisionnement VDI
+
+
+
+
+=== Automatisation du déploiement
+
+* Améliorations de la résolution automatisée des problèmes et rationalisation des processus en arrière-plan
+
+
+
+
+=== Expérience de connexion HTML5
+
+* Nous allons améliorer l'expérience utilisateur pour les utilisateurs qui se connectent à leurs postes de travail virtuels à partir de login.cloudjumper.com ou login.cloudworkspace.com :
+* Autoriser l'utilisateur à afficher les pools d'hôtes AVD auquel il a accès
+* Activez la fonctionnalité de réveil à la demande pour les utilisateurs disposant des autorisations appropriées, ce qui leur permet de se connecter et de travailler à une heure où une VM hôte de session AVD est programmée pour être hors ligne
+* Activez la réinitialisation du mot de passe du libre-service pour les utilisateurs disposant d'un numéro de courriel ou de téléphone défini dans leur compte utilisateur dans CWMS
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Autoriser les utilisateurs à sélectionner les VM Windows Active Directory après avoir sélectionné AVD pour les cas d'utilisation d'AD Connect
+* Mettre à jour la quantité de stockage par défaut pour toutes les machines virtuelles à 128 Go afin de la faire correspondre à la valeur par défaut de Microsoft
+* Mettez à jour le paramètre par défaut pour les heures de disponibilité sur 220 afin de correspondre à la valeur par défaut de Microsoft
+* Mettre à jour les noms des types de charge de travail pour qu'ils correspondent aux noms que Microsoft a modifiés
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., 17 octobre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 17 octobre 2019 at 22h – 11h Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Prise en charge de Server 2019 en tant que système d'exploitation pour l'espace de travail d'une entreprise
+* Mise à jour pour améliorer l'affichage des utilisateurs actifs dans un pool hôte AVD
+* Autoriser plusieurs organisations/espaces de travail sous un déploiement AVD
+* Ajoutez le bouton « mettre à jour » pour modifier plusieurs champs associés à un administrateur
+* Ajoutez le bouton « mettre à jour » pour modifier les détails de l'entreprise et les informations de contact
+* Fonction de recherche mise à jour pour utiliser Flight School
+* Mise à jour des liens dans la partie inférieure du CWMS
+* Autoriser l'utilisation d'un pool hôte de validation dans les déploiements AVD ; cela permettra d'accéder plus tôt aux fonctions AVD avant d'être GA (version de production)
+* Correction typo dans une invite répondant à une action prise par un administrateur sur un déploiement ADDS
+* Correction de bug pour une invite d'administrateur qui ne dispose pas des autorisations App Services
+
+
+
+
+=== API REST
+
+* Prise en charge de Server 2019 en tant que système d'exploitation pour l'espace de travail d'une entreprise
+* Correction de bug pour un scénario où un appel renverra les services d'un client comme hors ligne
+
+
+
+
+=== Automatisation du déploiement
+
+* Correction de bug pour le nom de site du centre de données à génération automatique
+* Fichiers journaux résumés et déplacés vers c:\Program Files vers c:\ProgramData
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Prise en charge de l'accès aux modèles à partir de la galerie d'images partagées Azure
+* Amélioration de la sécurité – réduction de l'utilisation des comptes administratifs en modifiant l'emplacement des fichiers journaux de c:\Program Files en c:\ProgramData (également une meilleure pratique Microsoft mise à jour)
+* Amélioration pour la création de site de centre de données dans VDCTools – les sites peuvent être créés avec un espace dans le nom
+* Fonction Add pour la création automatique de site de centre de données – désormais capable de sélectionner automatiquement la plage d'adresses
+* Ajout de fonctionnalités – ajoutez l'option de configuration pour utiliser les fichiers VHD non gérés comme modèles
+* Prise en charge de l'attribution d'une série/taille VM dans la collection de provisionnement
+* Correction de bug pour un sous-ensemble de scénarios dans lesquels un paramètre de serveur de licences a été appliqué de façon incorrecte
+* Correction de bug – suppression des dossiers temporaires après le déploiement comme prévu
+* Correction de bug pour un scénario lors de la création d'un serveur dans Azure avec la même adresse IP qu'une machine virtuelle déjà utilisée
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Mettre à jour les tarifs pour tenir compte du fait que les clients AVD paient pour les machines virtuelles du système d'exploitation Linux au lieu des machines virtuelles du système d'exploitation Windows
+* Ajout d'une option permettant d'inclure la licence Microsoft appropriée
+* Mise à jour des paramètres de stockage par défaut utilisés conformément à la calculatrice mise à jour de Microsoft (Flat vs nombre d'utilisateurs)
+* Ajoutez la tarification SQL pour les machines virtuelles D4S v3
+* Résolution de bug pour un problème d'affichage lors de la modification de VM
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., 3 octobre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 3 octobre 2019 at 22h – 11h Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* L'amélioration du workflow où vous cliquez sur « Retour » renvoie les utilisateurs à l'onglet espace de travail au lieu de l'onglet organisations
+* Lors de l'approvisionnement des espaces de travail Cloud dans Azure via CWMS, vérifiez que ADDS est validé lors de l'étape validation
+* Prise en charge des noms d'utilisateur jusqu'à 256 caractères
+
+
+
+
+=== Configuration CWA
+
+* Améliorations du système pour se rappeler les comptes partenaires liés au cas où l'utilisateur lie son compte à CWMS, mais n'a pas terminé la mise à disposition du déploiement pour la première fois
+* Correction de bug pour une erreur javascript qui s'affiche lors de la sélection d'un locataire pour le provisionnement d'un déploiement Cloud Workspace pendant le workflow du FST
+
+
+
+
+=== Outil d'estimation des coûts Azure
+
+* Ajoutez une option pour afficher ou non les licences Microsoft dans l'outil d'estimation des coûts Azure
+* Ne pas activer cette option (comportement par défaut) suppose que l'entreprise possède déjà une licence Microsoft via leur licence EA ou Microsoft/Office 365 existante
+* Cela permet une compréhension plus complète et plus globale du coût total de possession de la solution
+* Résolution des bogues sur lesquels les heures de disponibilité étaient très légèrement réduites lorsque les utilisateurs alternaient la continuité de l'activité, par incréments de 15 minutes
+* Correction de bug pour un scénario où les utilisateurs définissent le jour pour commencer l'après-midi/soir (paramètre PM) et se terminer le matin (réglage AM)
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 19 septembre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 19 septembre 2019 à 22h, Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Définir par défaut le type d'allocation de ressources d'un déploiement Azure sur fixe ; la série/taille de VM sélectionnée étant la machine virtuelle définie par l'administrateur dans CWMS
+* Ajouter une fonctionnalité de recherche pour la fonctionnalité d'audit d'activité utilisateur
+* Amélioration du processus de création d'utilisateurs en bloc – activez la fonctionnalité « forcer le changement de mot de passe lors de la prochaine connexion » lors de l'importation d'utilisateurs
+* Correction de bug pour affichage incorrect de l'avertissement de délai d'inactivité de session au bout de 5 minutes au lieu de 55 minutes
+* Correction de rôle d'assistance utilisateur : un sous-ensemble d'administrateurs ayant ce rôle n'a pas pu afficher la liste des utilisateurs de leur entreprise
+* Correctif de tri de l'utilisateur : le tri par nom d'utilisateur fonctionne comme prévu au lieu de trier par état
+* Ajout de la fonction Heartbeat à la section Overview de l'onglet Deployment, indiquant la dernière fois où le déploiement a été interrogé pour voir si il est en ligne
+* Améliorations du flux de travail – lorsque vous cliquez sur « Retour » dans le module AVD, vous serez pris en compte dans le module espaces de travail au lieu du module organisations
+* Assurez-vous que le rapport client principal est présent ; masquez le rapport SPLA non applicable pour les partenaires logiciels non-maîtres
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Supprimez l'agent ThinPrint standard des serveurs Azure Virtual Desktop (AVD) dans des pools hôtes, car il ne s'agit pas de l'agent ThinPrint pour AVD pris en charge. Au lieu de cela, les organisations doivent contacter ThinPrint au sujet de leur solution d'ezeep.
+* Chiffrement amélioré des mots de passe en arrière-plan
+* Correction d’un bug pour la notification d’application de mot de passe (PEN) où l’utilisation de la fonction « changer mot de passe lors de la prochaine connexion » ne fonctionnait pas comme prévu si les dates d’expiration du mot de passe étaient définies sur null par un administrateur dans CWMGR1
+
+
+
+
+=== Application Cloud Workspace pour Azure Setup
+
+* Correctif pour les administrateurs internationaux – ce dernier nécessite plus longtemps un État si le pays n'est pas les États-Unis.
+* Appliquez CloudJumper via Partner Admin Link (PAL) aux déploiements Azure présents et futurs au niveau de l'abonnement
+
+
+
+
+== Publication de CWMS 5.3 : Thurs., le 5 septembre 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 5 septembre 2019 à 22h, Eastern _impact:_ l'accès aux postes de travail et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== Suite de gestion de l'espace de travail cloud
+
+* Mises à jour du rôle support utilisateur uniquement :
+* Ajouter la fonctionnalité de recherche/filtrage des utilisateurs
+* Inclure la colonne État de la connexion pour les utilisateurs et leurs connexions
+* Permet d'accéder à la fonction forcer la modification du mot de passe lors de la connexion suivante
+* Suppression de la visibilité de la fonction Supprimer le client
+* Appliquez la déconnexion du CWMS après 1 heure d'inactivité
+* Résolution d'un problème d'affichage où les séries/tailles de VM s'affichent de manière incorrecte lors de l'affichage des rôles de VM dont le type d'allocation de ressources est défini sur fixe
+* Correction d'un problème d'affichage dans lequel les environnements avec la planification de la charge de travail réglés sur toujours hors fonction affichaient des paramètres incorrects dans le système CWMS, bien qu'ils soient correctement réglés sur toujours en arrière-plan
+* Mise à jour des autorisations : supprimez l'onglet planification des ressources si l'administrateur CWMS n'a pas accès à la fonction Ressources dans CWMS
+* Suppression de la possibilité d'ajouter plusieurs instances de machine virtuelle dans un pool d'hôtes d'utilisateurs VDI
+* Afficher la correction pour les utilisateurs max. Par hôte de session dans un pool d'hôtes AVD : ces valeurs correspondent désormais aux valeurs définies dans la section mise à l'échelle directe de l'onglet planification de la charge de travail
+
+
+
+
+=== Application cloud Resource
+
+* Mise à jour des fonctionnalités – prise en charge de l'utilisation de la ligne de commande
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Prise en charge de l'interface REST vCloud
+
+
+
+
+== Publication de CWMS 5.3 : le 22 août 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 22 août 2019 à 22h – 11h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.3 Suite de gestion de l'espace de travail cloud
+
+* Ajoutez un message à l'onglet AVD définissant les circonstances dans lesquelles AVD est pris en charge
+* Amélioration du flux de travail lors du retour de l'onglet AVD à l'espace de travail
+* Modification du texte dans les instructions du module AVD
+
+
+
+
+=== 5.3 Cloud Workspace pour Azure Setup
+
+* Supprimer l'exigence de saisie d'un état lorsque l'enregistrement du client est en dehors des États-Unis
+* Désormais, il déploie CWMGR1 en tant que machine virtuelle de série D pour le déploiement initial, puis redimensionne l'infrastructure à B2 ms pour des raisons de coût après le déploiement initial
+
+
+
+
+=== Outils et services Cloud Workspace
+
+* Correction des bogues pour la gestion des certificats SSL dans les environnements hérités (2008 R2)
+* Des vérifications supplémentaires de l'état pour l'application des certificats et la gestion du cycle de vie
+
+
+
+
+== Publication de CWMS 5.3 : le 8 août 2019
+
+_Components:_ 5.3 Cloud Workspace Management Suite _when:_ jeudi 8 août 2019 à 22h – 11h Eastern _impact:_ l'accès aux bureaux et aux services d'application Cloud Workspace pour les utilisateurs finaux restera ininterrompu. L'accès à la suite de gestion de l'espace de travail cloud restera disponible.
+
+
+
+=== 5.3 Suite de gestion de l'espace de travail cloud
+
+* La correction de bug pour un sous-ensemble de scénarios où la connexion à CWMGR1 à partir de CWMS ne fonctionnait pas comme prévu
+

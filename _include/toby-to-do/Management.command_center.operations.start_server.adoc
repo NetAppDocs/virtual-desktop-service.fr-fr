@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.start_server-c8845.png[Management.command Center.Operations.start Server c8845]

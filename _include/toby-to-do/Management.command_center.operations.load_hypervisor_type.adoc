@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_hypervisor_type-e9558.png[Management.command Center.Operations. Charger le type d'hyperviseur e9558]

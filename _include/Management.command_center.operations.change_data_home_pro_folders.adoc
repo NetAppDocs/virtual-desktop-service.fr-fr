@@ -1,0 +1,29 @@
+= Vue d'ensemble des dossiers de modification de données/Pro/Home
+:allow-uri-read: 
+
+
+
+
+== Vue d'ensemble des dossiers de modification de données/Pro/Home
+
+image::Management.command_center.operations.change_data_home_pro_folders-678cd.png[Management.command center.operations.change dossiers professionnels de données 678cd]
+
+L'emplacement de stockage des dossiers de base des données, profils et utilisateurs est géré par le répertoire actif. Le Centre de commande comprend une opération permettant de modifier ces emplacements.
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command Center.Operations.copy template to Gallery ed821]
+
+
+
+== Sélection d'un pool de ressources
+
+Lorsque la sélection du pool de ressources est vide, les paramètres sont appliqués globalement.
+
+La sélection d'un pool de ressources spécifique (ou pool d'hôtes) permet de définir individuellement le chemin du profil des utilisateurs pour ce pool de ressources
+
+image::Management.command_center.operations.change_data_home_pro_folders-3ac43.png[][]
+
+
+
+== Est Windows Server
+
+La case « est Windows Server » doit être décochée si un service de stockage (par exemple Azure NetApp Files) est sélectionné comme emplacement de stockage.

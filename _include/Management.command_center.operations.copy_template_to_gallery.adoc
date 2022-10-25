@@ -1,0 +1,36 @@
+= Présentation du modèle de copie vers la galerie
+:allow-uri-read: 
+
+
+
+
+== Présentation du modèle de copie vers la galerie
+
+image::Management.command_center.operations.copy_template_to_gallery-67ea4.png[Management.command Center.Operations.copy template to galerie 67ea4]
+
+Lorsqu'une collection de provisionnement VDI est finalisée, l'image est stockée dans Azure sous forme d'image et peut être déployée sur le même site VDS. Pour rendre l'image disponible pour le déploiement dans une autre région Azure au sein de la même souscription, la fonction « Copier le modèle vers la galerie » est utilisée. Cette action copie l'image VM dans la galerie partagée et la réplique dans toutes les régions sélectionnées.
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command Center.Operations.copy template to Gallery ed821]
+
+
+
+== Liste déroulante disponibilité des modèles VM dans VDS
+
+Une fois la réplication terminée, l'image s'affiche dans VDS dans la liste déroulante pour la sélection des modèles VM lors du déploiement de nouvelles VM. L'image partagée sera disponible pour le déploiement dans n'importe quelle région sélectionnée lors de la copie.
+
+image::Management.command_center.operations.copy_template_to_gallery-04bd8.png[Management.command Center.Operations.copy template to galerie 04bd8]
+
+Les images VM stockées dans la galerie partagée sont ajoutées avec leur version sous la forme « -x.x.x », où la version correspond à la version d'image dans le portail Azure.
+
+image::Management.command_center.operations.copy_template_to_gallery-ee598.png[Management.command Center.Operations.copy template to galerie ee598]
+
+
+NOTE: La réplication de l'image peut prendre un certain temps (en fonction de la taille de l'image) et l'état peut être vu en cliquant sur la version (par exemple, #1.0.0#) dans la colonne "Nom" comme mis en évidence dans la capture d'écran ci-dessus.
+
+
+
+== Disponibilité régionale
+
+Les déploiements ne peuvent être effectués que dans les régions où l'image a été répliquée. Vous pouvez vérifier ces informations sur le portail Azure en cliquant sur #1.x.x#, puis sur _Update Replication_ comme indiqué ici :
+
+image::Management.command_center.operations.copy_template_to_gallery-9b63a.png[Management.command Center.Operations.copy template to galerie 9b63a]

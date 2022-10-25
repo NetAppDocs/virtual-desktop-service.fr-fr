@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_storage_types-e47d0.png[Management.command Center.Operations.load Storage types e47d0]

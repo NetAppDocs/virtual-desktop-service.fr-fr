@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.wildcard_cert_create_new-d44ae.png[Management.command Center.Operations.joker cert crée de nouveaux d44ae]

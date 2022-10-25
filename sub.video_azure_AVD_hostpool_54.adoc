@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVD_hostpool_54.html 
+summary: 'Créez un pool d"hôtes AVD avec NetApp VDS v5.4' 
+keywords:  
+---
+= Créez un pool d'hôtes AVD avec NetApp VDS v5.4
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+video::kaHZm9yCv8g[youtube]

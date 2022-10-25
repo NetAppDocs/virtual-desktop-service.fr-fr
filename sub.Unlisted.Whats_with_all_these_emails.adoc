@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: Unlisted.Whats_with_all_these_emails.html 
+summary: 'Qu"est-ce que tous ces e-mails ?' 
+keywords:  
+---
+= Qu'est-ce que tous ces e-mails ?
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+VDS envoie une variété de rapports nocturnes par e-mail. Ils sont conçus pour résumer divers aspects de votre environnement à la nuit afin d'identifier les erreurs et les exceptions. Ils sont paramétrés pour aider les déploiements à grande échelle dans lesquels la surveillance individuelle de chaque locataire peut être une tâche importante.
+
+Dans les environnements de petite taille, ces e-mails peuvent être excessifs ou inutiles.
+
+Les adresses e-mail qui reçoivent ces rapports sont définies dans l'assistant de configuration VDS à l'étape comptes.
+
+Après le déploiement, les adresses peuvent être modifiées dans l'utilitaire DCConfig. Il s'agit d'une application qui s'exécute sur la machine virtuelle CWMGR1 et expose une grande partie des paramètres plus avancés et trop nuancés pour être exposés dans l'interface utilisateur VDS.
+
+Pour modifier l'adresse e-mail qui reçoit ces rapports, modifiez le champ "ToAddress" dans DCConfig (sous Configuration > E-mail) sur la machine virtuelle CWMGR1. Il est recommandé de laisser ddcnotifications@cloudjumper.com intact.
+
+image:why_emails.png[""]

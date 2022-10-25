@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.make_server_active-6dc9b.png[Management.command Center.Operations.made serveur actif 6dc9b]

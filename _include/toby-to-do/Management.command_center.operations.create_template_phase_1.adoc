@@ -1,0 +1,11 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.create_template_phase_1-87b71.png[Management.command Center.Operations.create template phase 1 87b71]
+
+image::Management.command_center.operations.create_template_phase_1-25559.png[Management.command Center.Operations.create template phase 1 25559]

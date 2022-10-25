@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVD_users_appgroups_54.html 
+summary: 'Ajoutez et gérez des utilisateurs AVD et des groupes d"applications dans Azure avec NetApp VDS v5.4' 
+keywords:  
+---
+= Ajoutez et gérez des utilisateurs AVD et des groupes d'applications dans Azure avec NetApp VDS v5.4
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+video::RftG7v9n8hw[youtube]

@@ -1,0 +1,106 @@
+= Gestion de comptes privilégiés
+:allow-uri-read: 
+
+
+
+
+== Gestion de comptes privilégiés
+
+Cette fonctionnalité fournit un enregistrement spécifique, auditable des jeux d'autorisations d'administration granulaires accordés aux comptes privilégiés VDS et/ou Active Directory. L'accès externe expire automatiquement par défaut.
+
+Le module PAM permet aux clients d'accorder l'accès à l'administrateur VDS et/ou au support VDS NetApp, ainsi qu'une méthode permettant aux clients d'autoriser l'accès aux partenaires dans un format auditable, accessible par suivi et déclarable, à des fins de conformité.
+
+Dans le contexte moderne de la sécurité, chaque compte privilégié doit avoir un but (et aussi spécifique que possible) et ne doit rester actif que si nécessaire pour réduire la surface d'attaque.
+
+
+
+== Approbation et rejet des demandes PAM dans VDS
+
+Une fois qu'une demande PAM est faite, tous les administrateurs VDS seront capables de voir une alerte sous le signal sonore.
+
+image:PAM1.jpg[""]
+
+
+NOTE: Tous les administrateurs VDS peuvent visualiser les demandes PAM, mais seuls les administrateurs ayant le rôle d'approbateur PAM pourront approuver ou rejeter les demandes.
+
+Application du rôle approbateur PAM
+
+Tous les administrateurs primaires hériteront du rôle d'approbateur PAM, mais ce rôle peut être attribué à tout autre administrateur VDS tant que l'utilisateur VDS dispose des autorisations Admin - Edit. Accédez au module Admins, sélectionnez un administrateur et cochez la case approbateur PAM.
+
+image:PAM2.jpg[""]
+
+Activation des approbations au niveau client
+
+Si le déploiement d'une organisation nécessite également la possibilité d'approuver l'accès, les partenaires Software Master peuvent activer les approbations au niveau du client en accédant au module déploiements et en allant jusqu'à la section Détails du déploiement.
+
+Cochez ensuite la case demander l'approbation du client pour les demandes d'accès PAM et cliquez sur mettre à jour. Ceci envoie les demandes que le partenaire principal de logiciel demande aux administrateurs VDS pour le déploiement. Remarque : les utilisateurs doivent donc être configurés en tant qu'administrateurs VDS ainsi que via ces étapes. < to Admin Access for Users
+
+image:PAM3.png[""]
+
+Approbation/rejet des demandes PAM
+
+Tous les administrateurs peuvent afficher les demandes en cliquant sur la flèche de liste déroulante située à côté de leur nom, puis sur Paramètres, puis sur l'onglet demandes PAM. Remarque : les approbations de niveau client affichent les mêmes informations et suivent le même processus défini ci-dessous.
+
+image:PAM4.png[""]
+
+Les administrateurs peuvent examiner les détails suivants de chaque demande avant de cliquer sur la roue de paramètres pour chaque demande et de l'approuver ou de la rejeter :
+
+ID de demande : utile pour communiquer/suivre les demandes ou pour référence lors de l'audit de l'accès à votre environnement
+
+Niveau d'accès :
+
+VDS : accorde des autorisations complètes en tant qu'administrateur VDS
+
+Déploiement : accorde un accès de niveau administrateur de domaine à la structure Active Directory à des fins de dépannage
+
+Demandeur : adresse e-mail de la personne demandant l'accès
+
+Déploiement : l'identifiant de déploiement à partir de laquelle le demandeur a demandé un accès privilégié
+
+Durée : nombre de jours pendant lesquels cet accès est actif avant l'expiration automatique (par défaut, 3)
+
+Remarques : affiche toutes les notes saisies par le demandeur
+
+Statut :
+
+Approbation en attente : affiche les demandes qui n'ont pas encore été approuvées ou rejetées par un approbateur PAM
+
+Approuvé : affiche les demandes existantes approuvées
+
+image:PAM5.jpg[""]
+
+Approbation
+
+Après avoir cliqué sur la roue de paramètres, les approbateurs PAM affichent à nouveau les détails de la demande. L'approbateur PAM peut alors saisir les notes requises pour le destinataire et cliquer sur approuver pour accorder un accès temporaire audité.
+
+image:PAM6.jpg[""]
+
+Rejet
+
+Les administrateurs VDS peuvent saisir des notes lors du rejet des demandes PAM. Par exemple, le demandeur demande les mêmes autorisations, mais pour une durée plus courte.
+
+image:PAM7.jpg[""]
+
+Rapports sur les demandes PAM
+
+Les administrateurs VDS disposant de droits de création de rapports peuvent naviguer vers le module Rapports et exporter un fichier csv affichant tous les détails relatifs à chaque demande PAM.
+
+image:PAM8.png[""]
+
+Activation des comptes PAM
+
+Le compte de messagerie saisi lors de la création de la demande PAM recevra le message suivant. Cliquez sur Activer la demande pour obtenir l'accès administratif (Active Directory pour le déploiement) demandé.
+
+image:PAM9.jpg[""]
+
+Cliquez sur Activer la demande pour envoyer un SMS au numéro saisi lors de la création de la demande PAM. Entrez le code que vous recevez sur votre appareil mobile, puis définissez le mot de passe de votre compte Active Directory pour le déploiement.
+
+image:PAM10.jpg[""]
+
+Vous verrez alors que le compte d'administrateur Active Directory pour ce déploiement a été créé avec succès.image:PAM11.jpg[""]
+
+Comptes expirés
+
+Les comptes qui expirent recevront un message semblable aux éléments suivants, à partir duquel l'accès privilégié associé à cette adresse e-mail ne sera plus effectif.
+
+image:PAM12.jpg[""]

@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.edit_workload_schedule-a3550.png[Management.command Center.Operations.edit charge de travail planning a3550]

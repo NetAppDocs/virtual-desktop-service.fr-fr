@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.generate_email_reports-72145.png[Management.command Center.Operations.générer des rapports par e-mail 72145]

@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.reload_monitored_applications-6d616.png[Management.command Center.Operations.recharger les applications surveillées 6d616]

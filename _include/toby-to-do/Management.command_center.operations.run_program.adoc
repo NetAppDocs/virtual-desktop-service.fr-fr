@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.run_program-ea96e.png[Management.command center.operations.run programme ea96e]

@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.remove_vds_software-204f4.png[Management.command opérations centrales.retirez le logiciel vds 204f4]

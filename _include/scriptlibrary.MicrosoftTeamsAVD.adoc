@@ -1,0 +1,24 @@
+= Présentation de Microsoft Teams for AVD
+:allow-uri-read: 
+
+
+
+
+== Présentation de Microsoft Teams for AVD
+
+Ce script installe/désinstalle _Microsoft Teams AVD_ à l'aide du gestionnaire de paquets Chocolatey (https://chocolatey.org/)[] pour effectuer le déploiement. Chocolatey est déployé par VDS lors de la création des machines virtuelles mais ce script vérifie également et installe Chocolatey au préalable s'il manque.
+
+
+WARNING: Cette installation Microsoft Teams est spécialement configurée pour les déploiements dans un environnement AVD avec des personnalisations et des composants spécifiques à AVD dans Azure. link:scriptlibrary.MicrosoftTeams.html["Un script Microsoft Teams différent"] Elle est destinée aux déploiements RDS.
+
+
+
+=== Chemin de raccourci par défaut
+
+Le chemin de raccourci par défaut sera saisi ci-dessous. Pour cette application, le raccourci est : `\\shortcut\Microsoft Teams AVD.lnk`
+
+
+
+=== Capture d'écran de la fenêtre Ajouter une activité
+
+image::scriptlibrary.script.InstallMicrosoftTeamsAVD.png[scriptlibrary.script.InstallMicrosoftTeamsAVD]

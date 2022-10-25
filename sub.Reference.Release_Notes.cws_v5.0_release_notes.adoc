@@ -1,0 +1,98 @@
+---
+sidebar: sidebar 
+permalink: Reference.Release_Notes.cws_v5.0_release_notes.html 
+summary: Notes de version de NetApp VDS v5.0 
+keywords:  
+---
+= CWS – v5.0 Notes de mise à jour
+:allow-uri-read: 
+
+
+
+NOTE: Il n'y aura plus de versions récurrentes pour la version 5.0 de CWS – toutes les versions seront considérées comme des correctifs.
+
+
+
+== Présentation
+
+CloudJumper a publié Cloud Workspace Suite 5.0 pour une implémentation générale à partir du quatrième trimestre 2016. Cette version inclut une mise à jour des API CWS et de l'interface de contrôle Admin. La version est un changement important et n'est pas « rétrocompatible » avec les entités version 4.x.
+
+La version 4.x continuera d'être prise en charge jusqu'à ce que tous les centres de données Software Defined (SDDC) partenaires aient été mis à niveau vers la plate-forme 5.0, les mises à niveau seront effectuées par CloudJumper en coordination avec chaque partenaire et n'interrompent pas les services existants. La transition ne coûte aucun frais de mise à niveau ou d'implémentation. CWS 5 continue de prendre en charge toutes les fonctionnalités des versions précédentes, et étend les nouvelles fonctionnalités qui améliorent l'expérience des administrateurs et des utilisateurs finaux et améliorent encore l'automatisation et l'orchestration primées introduites avec les versions précédentes de Cloud Workspace Suite.
+
+Avec CWS 5.0, CloudJumper a ré-écrit toutes les API de plates-formes dans le format d'API REST et complètement retiré les API SOAP précédentes. Cette architecture mise à jour va simplifier et accélérer l'amélioration de CloudJumper et créer un environnement encore plus convivial pour les développeurs externes afin d'étendre leurs services et produits basés sur Cloud Workspace.
+
+
+
+== Points forts
+
+* Réécriture de l'interface utilisateur/UX complète
+* Intégration d'Azure AD
+* Le déploiement d'un SDDC en libre-service Azure
+* Services d'applications
+* Planification des ressources
+* Mise à l'échelle de Live Server – multiplate-forme
+* Clonage automatisé des serveurs – multiplateforme
+* Personnalisez les partages de disques par client
+
+
+
+
+== Fonctionnalités clés
+
+
+
+=== Intégration d'Azure Active Directory (AD
+
+* Créez un SDDC en tant que cloud privé Active Directory ou utilisez Microsoft Azure-AD-as-a-Service
+* Combiner CWS avec Office365
+* Prise en charge des authentifications SSO et MFA basées sur Azure
+
+
+
+
+=== Le déploiement d'un SDDC en libre-service Azure
+
+* Intégration complète avec Azure
+* Déploiement rapide de nouveaux SDDC
+* Déployez des clouds d'entreprise privés dans Azure pour tout type de charge de travail, notamment Cloud Workspace géré : WAAS, services d'applications, Private Web App et SharePoint
+
+
+
+
+=== Services d'application
+
+* Déploiement de silos d'applications pour publier des applications sous forme d'éléments de base de service isolés
+* Applications fournies de serveurs d'applications « publics » à de nombreuses entités personnalisées
+* Applications installées dans des pools de serveurs dédiés à une seule application
+* Applications découplées des exigences en matière de profils utilisateur et de couches de données
+* Créez des services d'applications hyper évolutifs
+* Plusieurs services d'applications peuvent être combinés en collections d'utilisateurs
+* Suivi des licences du SCF et rapports d'utilisation
+
+
+
+
+=== Évolutivité du serveur en direct – multiplateforme
+
+* Évolutivité automatisée intelligente des ressources de serveur/serveurs actifs
+* Gérez étroitement les ressources du serveur grâce à une augmentation/diminution dynamique en cas de modification de la charge des utilisateurs
+* Faites évoluer automatiquement les ressources de serveur à la hausse ou à la baisse en fonction des charges de travail
+
+
+
+
+=== Clonage automatisé des serveurs – multiplateforme
+
+* Augmentez automatiquement le serveur jusqu'à ce que le nombre d'utilisateurs défini augmente
+* Ajoute des serveurs supplémentaires aux pools de ressources disponibles
+* Associée à la fonctionnalité Scaling de CWS Live Server pour créer une solution entièrement automatisée
+
+
+
+
+=== Planification des ressources
+
+* Planifiez les heures de service par client
+* Maîtrise des coûts pour le cloud public
+* Arrêter les systèmes lorsqu'ils ne sont pas utilisés et les réactiver selon un calendrier prédéfini
+

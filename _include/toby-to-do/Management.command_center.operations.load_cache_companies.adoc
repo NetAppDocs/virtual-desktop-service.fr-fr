@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.load_cache_companies-02d25.png[Management.command sociétés Center.Operations.load cache 02d25]

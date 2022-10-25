@@ -1,0 +1,23 @@
+= Présentation des scripts globaux
+:allow-uri-read: 
+
+
+
+
+== Présentation des scripts globaux
+
+Les systèmes VDS NetApp comprennent une bibliothèque d'événements prédéfinis utilisant des scripts, qui peuvent être utilisés directement dans les environnements VDS et/ou dupliqués et utilisés comme éléments de base des événements personnalisés basés sur des scripts.
+
+Pour cette application, cet article couvre à la fois l'action installer/activer et désinstaller/désactiver.
+
+
+
+== Utilisation globale du script
+
+Les événements avec script intégrés tels que celui-ci sont pré-remplis, en cochant la case de filtre « global » les affichera.
+
+Les événements avec script global tels que celui-ci sont en lecture seule. Ils peuvent être utilisés en l'état ou la fonction « clone » pour créer une copie du client à des fins de modification et d'utilisation.
+
+Le bouton Cloner se trouve dans le menu action de la page Evénements avec script.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]

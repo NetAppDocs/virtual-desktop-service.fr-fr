@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.test_hypervisor_connection-fcfa3.png[Management.command Center.Operations.test de la connexion de l'hyperviseur fcfa3]

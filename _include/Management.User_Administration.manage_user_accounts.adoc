@@ -1,0 +1,94 @@
+= Créer un ou plusieurs utilisateurs
+:allow-uri-read: 
+
+
+
+
+== Créer un ou plusieurs utilisateurs
+
+Les administrateurs peuvent ajouter des utilisateurs en cliquant sur espace de travail > utilisateurs et groupes > Ajouter/importer
+
+Les utilisateurs peuvent être ajoutés individuellement ou avec une importation groupée.
+
+image:add_import_users.png["largeur=25 %"]
+
+
+NOTE: L'inclusion d'un e-mail et d'un numéro de téléphone portable précis à ce stade améliore considérablement le processus d'activation de l'authentification multifacteur par la suite.
+
+Une fois que vous avez créé des utilisateurs, vous pouvez cliquer sur leur nom pour voir les détails comme quand ils ont été créés, leur état de connexion (qu'ils soient actuellement connectés ou non) et quels sont leurs paramètres spécifiques.
+
+
+
+== Activation du bureau virtuel pour les utilisateurs AD existants
+
+Si des utilisateurs sont déjà présents dans AD, vous pouvez activer le bureau virtuel des utilisateurs simplement en cliquant sur l'équipement en regard de leur nom, puis en activant leur poste de travail.image:Enable_desktop.png["largeur=50 %"]
+
+
+NOTE: Pour Azure AD Domain Service uniquement : pour que les connexions fonctionnent, le hachage du mot de passe pour les utilisateurs d'Azure AD doit être synchronisé afin de prendre en charge l'authentification NTLM et Kerberos. La façon la plus simple d'effectuer cette tâche est de modifier le mot de passe de l'utilisateur dans Office.com ou sur le portail Azure, ce qui force la synchronisation du hachage de mot de passe à se produire. Le cycle de synchronisation des serveurs Service de domaine peut prendre jusqu'à 20 minutes. Les modifications des mots de passe dans Azure AD prennent généralement 20 minutes pour être répercutées dans ADDS et donc dans l'environnement VDS.
+
+
+
+== Supprimer le(s) compte(s) utilisateur(s)
+
+
+
+== Modifier les informations utilisateur
+
+Sur la page de détails utilisateur, des modifications peuvent être apportées aux informations utilisateur telles que le nom d'utilisateur et les coordonnées. Les valeurs e-mail et téléphone sont utilisées pour le processus de réinitialisation du mot de passe en libre-service (SSPR).
+
+image:user_detail.png[""]
+
+
+
+== Modifier les paramètres de sécurité utilisateur
+
+* Utilisateur VDI activé – paramètre RDS qui, lorsqu'il est activé, crée un hôte de session VM dédié et affecte cet utilisateur comme seul utilisateur qui s'y connecte. Dans le cadre de l'activation de cette case, l'administrateur CWMS est invité à sélectionner l'image VM, la taille et le type de stockage.
++
+** Les utilisateurs VDI AVD doivent être gérés sur la page AVD en tant que pool d'hôtes VDI.
+
+
+* Expiration du compte activée – permet à l'administrateur CWMS de définir une date d'expiration sur le compte d'utilisateur final.
+* Forcer la réinitialisation du mot de passe lors de la prochaine connexion – invite l'utilisateur final à modifier son mot de passe lors de la prochaine connexion.
+* Authentification multifacteur activée – active l'authentification multifacteur pour l'utilisateur final et l'invite à configurer l'authentification multifacteur lors de la prochaine connexion.
+* Mobile Drive activé : fonction héritée non utilisée dans les déploiements actuels de RDS ou AVD.
+* Accès au lecteur local activé – permet à l'utilisateur d'accéder à son périphérique local à partir de l'environnement cloud, notamment copier/coller, stockage de masse USB et lecteurs système.
+* Activation du réveil à la demande : pour les utilisateurs RDS qui se connectent via le client CW pour Windows, cela leur donne la permission de prendre leur environnement lorsqu'ils se connectent en dehors des heures normales de travail définies par la planification de la charge de travail.
+
+
+
+
+== Compte verrouillé
+
+Par défaut, cinq tentatives de connexion échoueront pour verrouiller le compte utilisateur. Le compte utilisateur se déverrouille au bout de 30 minutes, sauf si _Activer la complexité du mot de passe_ est activé. Lorsque la complexité du mot de passe est activée, le compte ne sera pas automatiquement déverrouillé. Dans les deux cas, l'administrateur VDS peut déverrouiller manuellement le compte utilisateur à partir de la page utilisateurs/groupes dans VDS.
+
+
+
+== Réinitialiser le mot de passe utilisateur
+
+Réinitialise le mot de passe utilisateur.
+
+Remarque : lors de la réinitialisation des mots de passe utilisateur Azure AD (ou du déverrouillage d'un compte), il peut y avoir un délai de 20 minutes au fur et à mesure que la réinitialisation se propage via Azure AD.
+
+
+
+== Accès administrateur
+
+En activant cette option, l'utilisateur final bénéficie d'un accès limité au portail de gestion de son locataire. Les utilisations courantes incluent l'accès d'un employé sur site à la réinitialisation des mots de passe des pairs, l'attribution d'une application ou l'autorisation d'un accès manuel au réveil du serveur. Les autorisations qui contrôlent les zones de la console peuvent être consultées sont également définies ici.
+
+
+
+== Utilisateur(s) de déconnexion
+
+Les utilisateurs connectés peuvent être déconnectés par l'administrateur VDS à partir de la page utilisateurs/groupes dans VDS.
+
+
+
+== En termes de latence
+
+Affiche l'application déployée dans cet espace de travail. La case à cocher contient les applications pour cet utilisateur spécifique. La documentation complète sur la gestion des applications se trouve ici. L'accès aux applications peut également être accordé à partir de l'interface de l'application ou à des groupes de sécurité.
+
+
+
+== Afficher/tuer les processus utilisateur
+
+Affiche les processus en cours d'exécution dans la session de cet utilisateur. Il est également possible de terminer les processus à partir de cette interface.

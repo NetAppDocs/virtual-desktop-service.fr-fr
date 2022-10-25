@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.allow_new_AVD_connections-74385.png[Management.command opérations centrales.Autoriser les nouvelles connexions AVD 74385]

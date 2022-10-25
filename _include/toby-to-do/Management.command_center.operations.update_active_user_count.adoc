@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.update_active_user_count-4ae14.png[Management.command Center.Operations.update user count 4ae14]

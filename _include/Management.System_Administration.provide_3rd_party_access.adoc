@@ -1,0 +1,29 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+La méthode de fourniture d'accès à des tiers est courante lors de la migration vers une solution cloud.
+
+Les administrateurs VDS choisissent souvent de ne pas donner à ces tiers le même niveau d'accès qu'ils ont, afin de suivre une politique d'accès à la sécurité « la moins requise ».
+
+Pour configurer l'accès administrateur pour les tiers, connectez-vous dans VDS et accédez au module organisations, cliquez sur dans l'organisation et cliquez sur utilisateurs & groupes.
+
+Ensuite, créez un nouveau compte utilisateur pour le tiers et faites défiler vers le bas jusqu'à ce que la section accès administrateur s'affiche et cochez la case pour activer les droits d'administrateur.
+
+image:3rdparty1.png[""]
+
+L'administrateur VDS est ensuite présenté avec l'écran de configuration de l'accès administrateur. Il n'est pas nécessaire de modifier le nom d'utilisateur, le nom de connexion ou le mot de passe. Il vous suffit d'ajouter un numéro de téléphone et/ou un e-mail si vous souhaitez appliquer l'authentification multifacteur et de sélectionner le niveau d'accès à accorder.
+
+Pour les administrateurs de bases de données comme un VAR ou un ISV, _Servers_ est généralement le seul module d'accès requis.
+
+image:3rdparty2.png[""]
+
+Une fois enregistré, l'utilisateur final peut accéder aux fonctions de gestion automatique en se connectant à VDS à l'aide de ses identifiants utilisateur standard du bureau virtuel.
+
+Lorsque l'utilisateur nouvellement créé se connecte, il ne voit que les modules que vous lui avez affectés. Ils peuvent sélectionner l'organisation, faire défiler jusqu'à la section serveurs et se connecter au nom du serveur auquel vous leur indiquez (par exemple, <XYZ> D1, où XYZ correspond au code de votre société et D1 désigne que le serveur est un serveur de données. Dans l'exemple ci-dessous, nous leur disons de se connecter au serveur TSD1 pour effectuer leurs affectations.
+
+image:3rdparty3.png[""]

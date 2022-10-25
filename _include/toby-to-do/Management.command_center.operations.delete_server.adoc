@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.delete_server-09320.png[Management.command center.operations.delete serveur 09320]

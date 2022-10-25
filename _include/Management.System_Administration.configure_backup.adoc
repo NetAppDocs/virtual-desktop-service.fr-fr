@@ -1,0 +1,115 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+VDS a la possibilité de configurer et de gérer les services de sauvegarde natifs dans certains fournisseurs d'infrastructure, notamment Azure.
+
+
+
+== Azure
+
+Dans Azure, VDS peut configurer automatiquement les sauvegardes à l'aide de la fonctionnalité native link:https://azure.microsoft.com/en-us/services/backup/["La sauvegarde dans le cloud Azure"] Avec stockage redondant local (LRS). Le stockage redondant géographique (GRS) peut être configuré sur le portail de gestion Azure, si nécessaire.
+
+* Des stratégies de sauvegarde individuelles peuvent être définies pour chaque type de serveur (avec les recommandations par défaut). En outre, il est possible d'attribuer à chaque machine un planning indépendant (de son type de serveur) depuis l'interface utilisateur VDS. Ce paramètre peut être appliqué en naviguant vers la vue détaillée du serveur en cliquant sur le nom du serveur sur la page espace de travail (voir la vidéo ci-dessous : définition de stratégies de sauvegarde individuelles).
++
+** Les données
++
+*** Sauvegarde avec 7 sauvegardes quotidiennes, 5 hebdomadaires et 2 sauvegardes mensuelles. Augmentez vos périodes de conservation en fonction des besoins de votre entreprise.
+*** Ceci est vrai à la fois pour un serveur de données dédié et pour les machines virtuelles VPS supplémentaires pour les applications et les bases de données.
+
+
+** Infrastructures
++
+*** CWMGR1 – sauvegarde quotidienne et conservation de 7 000 quotidiens, 5 hebdomadaires, 2 mensuels.
+*** Passerelle RDS – sauvegarde hebdomadaire et conservation de 4 h/24, 7 jours/7.
+*** Passerelle HTML5 : sauvegarde hebdomadaire et conservation des données toutes les 4 hebdomadaires
+
+
+** Poweruser (ou utilisateur VDI)
++
+*** Ne sauvegardez pas la machine virtuelle car les données doivent être stockées sur un serveur D1 ou TSD1.
+*** Notez que certaines applications stockent les données localement et qu'il convient de tenir compte de certaines considérations particulières.
+*** En cas de défaillance d'un serveur virtuel, il est possible de créer un nouveau serveur virtuel via le clonage d'une autre. S'il n'y a qu'une seule machine virtuelle VDI (ou une seule VM build), il est conseillé de la sauvegarder afin de ne pas avoir besoin d'une reconstruction complète de ce VM.
+*** Si nécessaire, au lieu de sauvegarder tous les serveurs VDI, les coûts peuvent être réduits en configurant manuellement une machine virtuelle pour effectuer des sauvegardes directement dans le portail de gestion Azure.
+
+
+** TS
++
+*** Ne sauvegardez pas la machine virtuelle car les données doivent être stockées sur un serveur D1 ou TSD1.
+*** Notez que certaines applications stockent les données localement et qu'il convient de tenir compte de certaines considérations particulières.
+*** En cas de défaillance d'un serveur virtuel, il est possible de créer un nouveau serveur virtuel via le clonage d'une autre. Dans le cas où il n'y a qu'un seul TS VM, il est conseillé de le sauvegarder afin qu'une reconstruction complète de ce VM ne soit pas requise.
+*** Si nécessaire, plutôt que de sauvegarder tous les serveurs TS, les coûts peuvent être réduits en configurant manuellement une machine virtuelle pour effectuer une sauvegarde directement sur le portail de gestion Azure.
+
+
+** TSData
++
+*** Sauvegarde avec 7 sauvegardes quotidiennes, 5 hebdomadaires et 2 sauvegardes mensuelles. Augmentez vos périodes de conservation en fonction des besoins de votre entreprise.
+
+
+
+
+* Azure ne prend pas en charge plus de planifications, il est possible de définir des règles pour effectuer les sauvegardes quotidiennes ou hebdomadaires.
+* Pour les planifications quotidiennes, entrez le temps préféré pour effectuer la sauvegarde. Pour les planifications hebdomadaires, saisissez le jour et l'heure préférés de la sauvegarde. Remarque : le réglage de l'heure sur exactement 12:00 AM peut entraîner des problèmes dans Azure Backup, donc 12:01 AM est recommandé.
+* Définissez le nombre de sauvegardes quotidiennes, hebdomadaires, mensuelles et annuelles à conserver.
+
+
+
+
+=== Définition des paramètres de déploiement par défaut
+
+image:Backup_gif.gif[""]
+
+.Pour configurer Azure Backup pour l'intégralité du déploiement, effectuez la procédure suivante :
+. Accédez à la page de détails des déploiements, sélectionnez Sauvegarder les valeurs par défaut
+. Sélectionnez un type de serveur dans le menu déroulant. Les types de serveur sont :
++
+....
+Data: these are for LOB/database server types
+Infrastructure: these are platform servers
+Power User: these are for Users with a TS server dedicated solely to them
+TS: these are terminal servers that Users launch sessions on
+TSData: these are servers doubling as terminal and data servers.
+....
++
+** Les paramètres de sauvegarde globaux pour le déploiement complet seront définis. Ces paramètres peuvent être remplacés et définis ultérieurement à un niveau spécifique au serveur.
+
+
+. Cliquez sur la molette des paramètres, puis sur la fenêtre contextuelle Modifier qui s'affiche.
+. Sélectionnez les paramètres de sauvegarde suivants :
++
+....
+On or off
+Daily or weekly
+What time of day backups take place
+How long each backup type (daily, weekly, etc.) should be retained
+....
+. Enfin, cliquez sur Créer (ou Modifier) planification pour mettre ces paramètres en place.
+
+
+
+
+=== Définition de règles de sauvegarde individuelles
+
+.Pour appliquer des paramètres de sauvegarde intégrée spécifiques au serveur, accédez à une page de détails Workspace.
+. Faites défiler jusqu'à la section serveurs et cliquez sur le nom d'un serveur
+. Cliquez sur Ajouter un planning
+. Appliquez les paramètres de sauvegarde selon vos besoins et cliquez sur Créer un programme
+
+
+
+
+=== Restauration à partir de la sauvegarde
+
+.Pour restaurer les sauvegardes d'une machine virtuelle donnée, commencez par naviguer jusqu'à la page Détails de cet espace de travail.
+. Faites défiler jusqu'à la section serveurs et cliquez sur le nom d'un serveur
+. Faites défiler jusqu'à la section sauvegardes et cliquez sur la molette pour développer vos options, puis sélectionnez l'une ou l'autre
+. Restaurer vers le serveur ou restaurer sur le disque (reliez un lecteur de la sauvegarde afin de pouvoir copier les données de la sauvegarde vers la version existante de la machine virtuelle).
+. Procédez à la restauration à partir de ce point, comme vous le feriez dans tout autre scénario de restauration.
+
+
+
+NOTE: Les coûts dépendent de la planification que vous souhaitez gérer et sont entièrement déterminés par le coût de la sauvegarde Azure. Pour la sauvegarde des machines virtuelles, consultez le calculateur de coûts Azure : https://azure.microsoft.com/en-us/pricing/calculator/[]

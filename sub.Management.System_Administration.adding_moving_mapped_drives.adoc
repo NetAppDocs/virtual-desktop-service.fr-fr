@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.adding_moving_mapped_drives.html 
+summary: Ajout et déplacement de lecteurs mappés 
+keywords:  
+---
+= Ajout et déplacement de lecteurs mappés
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Par défaut, trois dossiers partagés sont exposés aux sessions de l'utilisateur final. Ces dossiers se trouvent sur la couche de stockage définie. Cela peut se trouver sur le serveur de fichiers (TSD1 ou D1) ou sur un service de stockage tel qu'Azure Files, Azure NetApp Files, NetApp CVO et NetApp CVS.
+
+Pour faciliter la clarté, cet article utilisera un exemple de client avec le code de société “NECA”. Cet exemple suppose qu'un seul serveur TDS1 a été déployé, appelé NECATSD1. Nous travaillerons tout au long du processus de déplacement d’un dossier vers une autre VM (nommée “NECAD1”). Cette stratégie peut être utilisée pour se déplacer entre la partition sur la même machine ou vers une autre machine comme indiqué dans l'exemple suivant…
+
+Dossier emplacement de départ :
+
+* Données : NECATSD1\C:\data\NECA\ (TSD1signifie qu'il s'agit du premier serveur terminal Server et qu'il fonctionne également comme serveur de données)
+* FTP : NECATSD1\C:\FTP\NECA\
+* Home: NECATSD1\C:\home\NECA\
+
+
+Emplacement de fin des dossiers :
+
+* Données : NECAD1\G:\data\NECA\ (le D1signifie qu'il s'agit du 1er serveur de données)
+* FTP : le même processus s'applique, il n'est pas nécessaire de le décrire trois fois
+* Accueil : le même processus s'applique, pas besoin de le décrire trois fois
+
+
+
+
+== Ajouter un disque pour G : sur NECAD1
+
+. Pour placer le dossier partagé sur le lecteur E:, nous devons en ajouter un par l'intermédiaire de l'hyperviseur (par exemple Azure Management Portal), puis initialise et formatez-le
++
+image:mapped1.png[""]
+
+. Copier le dossier existant (sur NECATSD1, C:\) chemin vers le nouvel emplacement (sur NECAD1, G:\)
+. Copiez le(s) dossier(s) de l'emplacement d'origine vers le nouvel emplacement.
++
+image:mapped2.png[""]
+
+
+
+
+
+== Collecter des informations à partir du partage de dossiers d'origine (NECATSD1, C:\data\NECA\)
+
+. Partagez le nouveau dossier en utilisant exactement le même chemin que le dossier à l'emplacement d'origine.
+. Ouvrez le nouveau dossier NECAD1, G:\data\ et vous verrez dans notre exemple un dossier nommé code société, « NECA ».
++
+image:mapped3.png[""]
+
+. Notez les autorisations de sécurité du partage de dossier d'origine :
++
+image:mapped4.png[""]
+
+. Voici la configuration type, mais il est important de copier les paramètres d'origine au cas où il existe des personnalisations existantes que nous devons conserver. Toutes les autres autorisations utilisateur/groupe doivent être supprimées du nouveau partage de dossier
++
+** SYSTÈME:toutes les autorisations autorisées
+** LocalClientDHPAccess (sur l'ordinateur local):toutes les autorisations sont autorisées
+** ClientDHPAccess (sur le domaine) : toutes les autorisations sont autorisées
+** NECA-tous les utilisateurs (sur le domaine) : toutes les autorisations sauf “contrôle total” autorisées
+
+
+
+
+
+
+== Répliquez le chemin de partage et les autorisations de sécurité dans le nouveau dossier partagé
+
+. Revenir au nouvel emplacement (NECAD1, G:\data\NECA\ et partager le dossier NECA avec le même chemin réseau (à l'exception de la machine), dans notre exemple « neca-data$ »
++
+image:mapped5.png[""]
+
+. Pour la sécurité des utilisateurs, ajoutez tous les utilisateurs, définissez leurs autorisations de manière à ce qu'elles correspondent.
++
+image:mapped6.png[""]
+
+. Supprimez toutes les autres autorisations utilisateur/groupe qui existent peut-être déjà.
++
+image:mapped7.png[""]
+
+
+
+
+
+== Modifier la stratégie de groupe (uniquement si le dossier est déplacé vers une nouvelle machine)
+
+. Vous allez ensuite modifier les cartes de lecteur dans l'éditeur de gestion des stratégies de groupe. Pour les services de domaine Azure AD, le mappage est situé dans :
++
+ “Cloud Workspace Users > User Configuration > Preferences > Windows Settings> Drive Maps”
++
+image:mapped8.png[""]
+
+. Une fois la stratégie de groupe mise à jour, la prochaine fois que chaque utilisateur se connecte, il voit les lecteurs mappés qui sont dirigés vers le nouvel emplacement.
+. A ce stade, vous pouvez supprimer les dossiers d'origine sur NECATSD1, C:\.
+
+
+
+
+== Dépannage
+
+Si l'utilisateur final voit les lecteurs mappés avec un X rouge, cliquez avec le bouton droit de la souris sur le lecteur et sélectionnez déconnecter. Déconnectez-vous puis revenez dans le lecteur correctement.image:mapped9.png[""]

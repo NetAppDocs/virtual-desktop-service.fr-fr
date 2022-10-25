@@ -1,0 +1,37 @@
+= Processus de mise à jour de l'hôte de session RDS
+:allow-uri-read: 
+
+
+
+
+=== Processus de mise à jour de l'hôte de session RDS
+
+VDS fournit un moyen facile de mettre à jour les hôtes de session dans un environnement RDS en utilisant Provisioning Collections et la fonctionnalité *Add Server*. Ce processus peut être réalisé sans impact sur les utilisateurs finaux et répété à plusieurs reprises avec les mises à jour d'images suivantes, en fonction des itérations d'images précédentes.
+
+.Le processus de mise à jour de l'hôte de session RDS est le suivant :
+. Créez une nouvelle collection de provisionnement VDI, personnalisez et validez la collection conformément aux instructions ci-dessus.
++
+.. Généralement, cette collection de provisionnement sera construite sur le modèle VM précédent, en émulant un processus « Ouvrir, Enregistrer sous ».
+
+
+. Une fois la collection de provisionnement validée, accédez à la page _Workspace > Servers_, puis cliquez sur *+ Add Server*
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning collections.la session rds héberge e8204]
+
+. Sélectionnez *TS* comme *rôle serveur*
+. Sélectionnez le dernier *modèle VM*. Effectuez les sélections *taille de la machine* et *Type de stockage* appropriées en fonction de vos besoins. Laisser *lecteur de données* non coché.
+. Répétez cette opération pour le nombre total d'hôtes de session requis pour l'environnement.
+. Cliquez sur *Ajouter serveur*, les hôtes de session seront basés sur le modèle de VM sélectionné et seront mis en ligne dans un délai de 10-15 minutes (selon l'hyperviseur).
++
+.. Notez que les hôtes session actuellement dans l'environnement seront finalement déclassés après la mise en ligne de ces nouveaux hôtes. Planifiez la création d'un nombre suffisant de nouveaux hôtes pour prendre en charge la charge de travail complète dans cet environnement.
+
+
+. Lorsqu'un nouvel hôte est connecté, le paramètre par défaut est de rester dans *interdire nouvelles sessions*. Pour chaque hôte de session, la bascule *Autoriser les nouvelles sessions* peut être utilisée pour gérer les hôtes qui peuvent recevoir de nouvelles sessions utilisateur. Ce paramètre est accessible en modifiant les paramètres de chaque serveur hôte de session individuel. Une fois qu'un nombre suffisant d'hôtes a été créé et que la fonctionnalité a été confirmée, ce paramètre peut être géré à la fois sur les hôtes anciens et nouveaux pour acheminer toutes les nouvelles sessions vers les nouveaux hôtes. Les anciens hôtes, avec *Autoriser les nouvelles sessions* définis sur *Désactivé*, peuvent continuer à s'exécuter et héberger les sessions utilisateur existantes.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning collections.la session rds héberge 726d1]
+
+. Lorsque les utilisateurs se déconnectent de l'ancien ou des anciens hôtes et qu'aucune nouvelle session utilisateur n'est associée à l'ancien ou aux anciens hôtes, les anciens hôtes où *sessions = 0* peuvent être supprimés en cliquant sur l'icône *actions* et en sélectionnant *supprimer*.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning collections.la session rds héberge 45d32]
+
+

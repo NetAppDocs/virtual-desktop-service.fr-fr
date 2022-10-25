@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.reload_configuration-e97f8.png[Management.command Center.Operations.recharger la configuration e97f8]

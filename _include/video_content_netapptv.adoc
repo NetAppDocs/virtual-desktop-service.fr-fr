@@ -1,0 +1,13 @@
+= VDS, Fibre Channel et ANF : la solution pour les postes de travail cloud déployés au niveau mondial
+:allow-uri-read: 
+
+
+
+
+== VDS, Fibre Channel et ANF : la solution pour les postes de travail cloud déployés au niveau mondial
+
+Azure NetApp Files héberge un stockage haute performance, tandis que Virtual Desktop Service et Global File cache gèrent les espaces de travail et les régions de sites à partir d'un seul panneau de configuration pour vos postes de travail cloud déployés à travers le monde.
+
+image:netapptv1.png["lien :https://tv.netapp.com/detail/video/6182654694001"]
+
+link:https://tv.netapp.com/detail/video/6182654694001[""]

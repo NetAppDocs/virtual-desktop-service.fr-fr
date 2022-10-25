@@ -1,0 +1,504 @@
+---
+sidebar: sidebar 
+permalink: Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html 
+summary: Composants et autorisations VDS 
+keywords:  
+---
+= Composants et autorisations VDS
+:allow-uri-read: 
+
+
+
+
+== Entités et services de sécurité AVD et VDS
+
+Pour exécuter des actions automatisées, Azure Virtual Desktop (AVD) requiert des comptes et des composants de sécurité dans Azure AD et Active Directory local. Virtual Desktop Service (VDS) de NetApp crée des composants et des paramètres de sécurité lors du processus de déploiement. Ils permettent aux administrateurs de contrôler l'environnement AVD. Ce document décrit les comptes VDS, les composants et les paramètres de sécurité appropriés dans les deux environnements.
+
+Les composants et les autorisations du processus d'automatisation du déploiement sont la plupart du temps différents des composants de l'environnement final déployé. Cet article est donc constitué de deux sections majeures, à savoir la section automatisation du déploiement et la section sur l'environnement déployé.
+
+image:Reference Architecture AVD v1.jpg["largeur=75 %"]
+
+
+
+== Composants et autorisations d'automatisation de déploiement AVD
+
+Le déploiement VDS exploite plusieurs composants Azure et NetApp ainsi que les autorisations de sécurité afin de mettre en œuvre des déploiements et des espaces de travail.
+
+
+
+== Services de déploiement VDS
+
+
+
+=== Les applications d'entreprise
+
+VDS exploite les applications d'entreprise et les enregistrements d'applications dans le domaine Azure AD d'un locataire. Les applications d'entreprise sont le conduit des appels contre Azure Resource Manager, Azure Graph et (si vous utilisez AVD Fall Release) les points de terminaison de l'API AVD du contexte de sécurité de l'instance Azure AD à l'aide des rôles et autorisations délégués accordés au Service principal associé. Les enregistrements d'app peuvent être créés selon l'état d'initialisation des services AVD pour le locataire via VDS.
+
+Pour permettre la création et la gestion de ces machines virtuelles, VDS crée plusieurs composants pris en charge dans l'abonnement Azure :
+
+
+
+==== Espace de travail cloud
+
+Il s'agit de l'autorisation accordée par les administrateurs d'applications entreprise initiaux à et est utilisé pendant le processus de déploiement de l'Assistant d'installation VDS.
+
+L'application Cloud Workspace Enterprise demande un ensemble spécifique d'autorisations pendant le processus d'installation VDS. Ces autorisations sont les suivantes :
+
+* Accès au répertoire en tant qu'utilisateur connecté (délégué)
+* Lecture et écriture de données de répertoire (déléguée)
+* Se connecter et lire le profil utilisateur (délégué)
+* Connexion des utilisateurs (déléguée)
+* Afficher le profil de base des utilisateurs (délégué)
+* Accès à la gestion des services Azure en tant qu'utilisateurs de l'entreprise (délégués)
+
+
+
+
+==== API Cloud Workspace
+
+Gestion des appels de gestion généraux pour les fonctions PaaS d'Azure. Les fonctions PaaS d'Azure sont notamment les suivantes : Azure Compute, Azure Backup, Azure Files, etc. Ce Service principal requiert des droits de propriétaire pour l'abonnement Azure cible lors du déploiement initial, et des droits de Contributor pour la gestion continue (remarque : L'utilisation d'Azure Files nécessite des droits de propriétaire d'abonnement pour définir les autorisations par utilisateur sur les objets Azure File).
+
+L'API Cloud Workspace Enterprise application demande un ensemble spécifique d'autorisations pendant le processus d'installation VDS. Ces autorisations sont les suivantes :
+
+* Contributeur d'abonnement (ou propriétaire de l'abonnement si des fichiers Azure sont utilisés)
+* Graphique AD Azure
++
+** Lecture et écriture de toutes les applications (application)
+** Gérer les applications que cette application crée ou possède (application)
+** Périphériques de lecture et d'écriture (application)
+** Accéder au répertoire en tant qu'utilisateur connecté (délégué)
+** Lire les données d'annuaire (application)
+** Lecture des données du répertoire (déléguée)
+** Lecture et écriture de données de répertoire (application)
+** Lecture et écriture de données de répertoire (déléguée)
+** Domaines de lecture et d'écriture (application)
+** Lire tous les groupes (délégués)
+** Lecture et écriture de tous les groupes (délégués)
+** Lire toutes les adhésions masquées (application)
+** Lire les adhésions masquées (déléguée)
+** Se connecter et lire le profil utilisateur (délégué)
+** Lire tous les profils des utilisateurs (délégués)
+** Lecture des profils de base de tous les utilisateurs (délégués)
+
+
+* Gestion de services Azure
++
+** Accès à la gestion des services Azure en tant qu'utilisateurs de l'entreprise (délégués)
+
+
+
+
+
+
+=== VDS NetApp
+
+Les composants VDS NetApp sont utilisés via le plan de contrôle VDS pour automatiser le déploiement et la configuration des rôles, services et ressources AVD.
+
+
+
+=== Rôle personnalisé
+
+Le rôle Automation Contributor est créé pour faciliter les déploiements par le biais de méthodologies les moins privilégiées. Ce rôle permet à la machine virtuelle CWMGR1 d'accéder au compte d'automatisation Azure.
+
+
+
+=== Compte d'automatisation
+
+Un compte Automation est créé lors du déploiement et il est un composant requis lors du processus de provisionnement. Le compte Automation contient des variables, des informations d'identification, des modules et des configurations d'état souhaitées et fait référence au coffre-fort de clés.
+
+
+
+==== Configuration de l'état souhaité
+
+Il s'agit de la méthode utilisée pour générer la configuration de CWMGR1. Le fichier de configuration est téléchargé sur la machine virtuelle et appliqué via local Configuration Manager sur la machine virtuelle. Voici des exemples d'éléments de configuration :
+
+* Installation des fonctionnalités Windows
+* Installation du logiciel
+* Application de configurations logicielles
+* S'assurer que les ensembles d'autorisations appropriés sont appliqués
+* Application du certificat Let’s Encrypt
+* S'assurer que les enregistrements DNS sont corrects
+* S'assurer que CWMGR1 est joint au domaine
+
+
+
+
+==== Modules :
+
+* ActiveDirectoryDsc : ressource de configuration de l'état souhaitée pour le déploiement et la configuration d'Active Directory. Ces ressources vous permettent de configurer de nouveaux domaines, domaines enfants et contrôleurs de domaine haute disponibilité, d'établir des approbations inter-domaines et de gérer les utilisateurs, les groupes et les UO.
+* AZ.Accounts : module fourni par Microsoft utilisé pour gérer les identifiants et les éléments de configuration communs pour les modules Azure
+* AZ.Automation : module fourni par Microsoft pour les applets de commande Azure Automation
+* Az.Compute:A module fourni par Microsoft pour les applets de commande Azure Compute
+* AZ.KeyVault : module fourni par Microsoft pour les applets de commande Azure Key Vault
+* AZ.Resources : module fourni par Microsoft pour les applets de commande Azure Resource Manager
+* CChoco : ressource de configuration de l'état souhaité pour le téléchargement et l'installation de packages à l'aide de Chocolatey
+* CjAz : ce module créé par NetApp fournit des outils d'automatisation au module d'automatisation Azure
+* CjAzACS : ce module créé par NetApp contient les fonctions d'automatisation de l'environnement et les processus PowerShell s'exécutant depuis le contexte utilisateur.
+* CjAzBuild : ce module créé par NetApp contient les processus de création et d'automatisation de la maintenance et des processus PowerShell exécutés à partir du contexte système.
+* CNtfsAccessControl : ressource de configuration de l'état souhaitée pour la gestion du contrôle d'accès NTFS
+* ComputerManagementDsc : ressource de configuration de l'état souhaitée qui permet des tâches de gestion de l'ordinateur telles que l'ajout d'un domaine et la planification de tâches, ainsi que la configuration d'éléments tels que la mémoire virtuelle, les journaux d'événements, les fuseaux horaires et les paramètres d'alimentation.
+* CUserRightsAssignment : ressource de configuration d'état souhaitée permettant la gestion des droits d'utilisateur tels que les droits et privilèges d'ouverture de session
+* NetworkingDsc : t ressource de configuration de l'état souhaitée pour le réseau
+* XCertificate : ressource de configuration de l'état souhaitée pour simplifier la gestion des certificats sur Windows Server.
+* XDnsServer : ressource de configuration de l'état souhaité pour la configuration et la gestion de Windows Server DNS Server
+* XNetworking : ressource de configuration de l'état souhaitée associée à la mise en réseau.
+* link:https://github.com/PowerShell/xRemoteDesktopAdmin["XRemoteDesktopAdmin"]: Ce module utilise un référentiel qui contient les ressources de configuration de l'état souhaitées pour configurer les paramètres de bureau à distance et le pare-feu Windows sur un ordinateur local ou distant.
+* XRemoteDesktopSessionHost : ressource de configuration de l'état souhaité (xRDSessionDeployment, xRDSessionCollection, xRDSessionCollectionConfiguration et xRRemoteApp) permettant la création et la configuration d'une instance Remote Desktop session Host (RDSH)
+* XSmbShare : ressource de configuration de l'état souhaitée pour la configuration et la gestion d'un partage SMB
+* XSystemSecurity : ressource de configuration de l'état souhaitée pour la gestion des UAC et IE Esc
+
+
+
+NOTE: Azure Virtual Desktop installe également les composants Azure, notamment les applications d'entreprise et les enregistrements d'applications pour Azure Virtual Desktop et Azure Virtual Desktop client, le locataire AVD, les pools d'hôtes AVD, les groupes d'applications AVD et les machines virtuelles enregistrées AVD. Alors que les composants VDS Automation gèrent ces composants, AVD contrôle leur configuration par défaut et leur jeu d'attributs. Consultez donc la documentation AVD pour plus de détails.
+
+
+
+=== Composants AD hybrides
+
+Pour faciliter l'intégration avec l'infrastructure AD existante sur site ou exécutée dans le cloud public, d'autres composants et autorisations sont requis dans l'environnement AD existant.
+
+
+
+==== Contrôleur de domaine
+
+Le contrôleur de domaine existant peut être intégré à un déploiement AVD via AD Connect et/ou un VPN site à site (ou Azure ExpressRoute).
+
+
+
+==== AD Connect
+
+Pour faciliter l'authentification des utilisateurs via les services PaaS AVD, AD Connect peut être utilisé pour synchroniser le contrôleur de domaine avec Azure AD.
+
+
+
+==== Groupe de sécurité
+
+VDS utilise un groupe de sécurité Active Directory appelé CW-Infrastructure pour contenir les autorisations nécessaires à l'automatisation des tâches dépendantes d'Active Directory telles que la jointure de domaine et la pièce jointe de stratégie GPO.
+
+
+
+==== Compte de service
+
+VDS utilise un compte de service Active Directory appelé CloudworkspaceSVC utilisé comme identité pour les services Windows VDS et le service d'application IIS. Ce compte n'est pas interactif (ne permet pas la connexion RDP) et est le membre principal du compte CW-Infrastructure
+
+
+
+==== VPN ou ExpressRoute
+
+Un VPN site à site ou Azure ExpressRoute peut être utilisé pour relier directement les machines virtuelles Azure au domaine existant. Il s'agit d'une configuration facultative disponible lorsque les exigences du projet le requièrent.
+
+
+
+==== Délégation d'autorisation AD locale
+
+NetApp propose un outil en option permettant de rationaliser le processus AD hybride. Si vous utilisez l'outil en option de NetApp, il doit :
+
+* Exécutez sur un système d'exploitation de serveur plutôt que sur un système d'exploitation de poste de travail
+* Exécutez sur un serveur qui est joint au domaine ou qui est un contrôleur de domaine
+* Disposez de PowerShell 5.0 ou supérieur sur le serveur exécutant l'outil (s'il n'est pas exécuté sur le contrôleur de domaine) et sur le contrôleur de domaine
+* Être exécuté par un utilisateur avec des privilèges d'administrateur de domaine OU être exécuté par un utilisateur avec des autorisations d'administrateur local et la capacité de fournir des informations d'identification d'administrateur de domaine (pour une utilisation avec des RunAs)
+
+
+Qu'elles soient créées manuellement ou appliquées par l'outil NetApp, les autorisations requises sont les suivantes :
+
+* Groupe CW-Infrastructure
++
+** Le groupe de sécurité Infrastructure de l'espace de travail de Cloud (*CW-Infrastructure*) bénéficie d'un contrôle total du niveau ou de l'espace de travail de Cloud et de tous les objets descendants
+** <code de déploiement>.cloudWorkspace.app DNS zone – CW-Infrastructure group EntitCreateChild, DeleteChild, ListChildren, ReadProperty, DeleteTree, ExtendedRight, Delete, GenericWrite
+** Serveur DNS – Groupe CW-Infrastructure, ReadProperty, GenericExecute
+** Accès administrateur local pour les VM créées (CWMGR1, VM de session AVD) (effectué par stratégie de groupe sur les systèmes AVD gérés)
+
+
+* Groupe CW-CWMGRAccess ce groupe fournit des droits d'administration locaux à CWMGR1 sur tous les modèles, le serveur unique, le nouveau modèle Active Directory natif utilise les groupes intégrés opérateurs de serveur utilisateurs de bureau à distance et opérateurs de configuration réseau.
+
+
+
+
+== Composants environnementaux AVD et autorisations
+
+Une fois le processus d'automatisation du déploiement terminé, l'utilisation et l'administration continues des déploiements et des espaces de travail nécessitent l'installation d'un ensemble distinct de composants et d'autorisations, tel que défini ci-après. Bon nombre des composants et autorisations ci-dessus restent pertinents, mais cette section a pour objectif de définir la structure d'un déploiement.
+
+Les composants des déploiements VDS et des espaces de travail peuvent être organisés en plusieurs catégories logiques :
+
+* Clients utilisateur final
+* Composants du plan de contrôle VDS
+* Composants de Microsoft Azure AVD-PaaS
+* Composants de la plate-forme VDS
+* Composants de l'espace de travail VDS dans le locataire Azure
+* Composants AD hybrides
+
+
+
+
+=== Clients utilisateur final
+
+Les utilisateurs peuvent se connecter à leur bureau AVD et/ou à partir de divers types de points de terminaison. Microsoft a publié des applications client pour Windows, MacOS, Android et iOS. En outre, un client Web est disponible pour un accès sans client.
+
+Il existe des fournisseurs de clients légers Linux qui ont publié un client de noeuds finaux pour AVD. Ils sont répertoriés à l'adresse https://docs.microsoft.com/en-us/azure/virtual-desktop/linux-overview[]
+
+
+
+=== Composants du plan de contrôle VDS
+
+
+
+==== API REST VDS
+
+VDS est basée sur des API REST entièrement documentées afin que toutes les actions disponibles dans l'application Web soient également disponibles via l'API. La documentation de l'API est ici : https://api.cloudworkspace.com/5.4/swagger/ui/index#[]
+
+
+
+==== Application web VDS
+
+Les administrateurs VDS peuvent interagir avec l'application ADS via l'application web VDS. Ce portail Web est à : https://manage.cloudworkspace.com[]
+
+
+
+==== Base de données du plan de contrôle
+
+Les données et paramètres VDS sont stockés dans la base de données SQL du plan de contrôle, hébergée et gérée par NetApp.
+
+
+
+==== Communications VDS
+
+
+
+=== Composants des locataires Azure
+
+L'automatisation du déploiement VDS crée un groupe de ressources Azure unique contenant les autres composants AVD, notamment les VM, les sous-réseaux, les groupes de sécurité du réseau et les conteneurs Azure Files ou les pools de capacité Azure NetApp Files. Remarque – la valeur par défaut est un groupe de ressources unique, mais VDS dispose d'outils permettant de créer des ressources dans des groupes de ressources supplémentaires si nécessaire.
+
+
+
+==== Composants de Microsoft Azure AVD-PaaS
+
+
+
+===== API REST AVD
+
+Microsoft AVD peut être géré via API. VDS a largement utilisé ces API pour automatiser et gérer les environnements AVD. La documentation se trouve à l'adresse suivante : https://docs.microsoft.com/en-us/rest/api/desktopvirtualization/[]
+
+
+
+===== Courtier de session
+
+Le courtier détermine les ressources autorisées pour l'utilisateur et orchestre la connexion de l'utilisateur à la passerelle.
+
+
+
+===== Diagnostics Azure
+
+Azure Diagnostics a été spécialement conçu pour prendre en charge les déploiements AVD.
+
+
+
+===== Client web AVD
+
+Microsoft a fourni un client Web pour permettre aux utilisateurs de se connecter à leurs ressources AVD sans avoir installé un client local.
+
+
+
+===== Passerelle de session
+
+Le client RD installé localement se connecte à la passerelle pour communiquer en toute sécurité dans l'environnement AVD.
+
+
+
+==== Composants de la plate-forme VDS
+
+
+
+===== CWMGR1
+
+CMWGR1 est la VM de contrôle VDS pour chaque déploiement. Par défaut, il est créé en tant que machine virtuelle Windows 2019 Server dans l'abonnement Azure cible. Consultez la section déploiement local pour obtenir la liste des composants VDS et tiers installés sur CWMGR1.
+
+AVD nécessite que les machines virtuelles AVD soient jointes à un domaine Active Directory. Pour faciliter ce processus et fournir les outils d'automatisation pour la gestion de l'environnement VDS, plusieurs composants sont installés sur la machine virtuelle CWMGR1 décrite ci-dessus et plusieurs composants sont ajoutés à l'instance AD. Ses composants sont les suivants :
+
+* *Windows Services* - VDS utilise les services Windows pour effectuer des actions d'automatisation et de gestion à partir d'un déploiement :
++
+** *CW Automation Service* est un service Windows déployé sur CWMGR1 dans chaque déploiement AVD qui exécute de nombreuses tâches d'automatisation en contact avec l'utilisateur dans l'environnement. Ce service s'exécute sous le compte AD *CloudWorkspaceSVC*.
+** *CW VM Automation Service* est un service Windows déployé sur CWMGR1 dans chaque déploiement AVD qui exécute les fonctions de gestion de la machine virtuelle. Ce service s'exécute sous le compte AD *CloudWorkspaceSVC*.
+** *CW Agent Service* est un service Windows déployé sur chaque machine virtuelle sous gestion VDS, y compris CWMGR1. Ce service s'exécute sous le contexte *LocalSystem* sur la machine virtuelle.
+** *CWManagerX API* est un écouteur basé sur un pool d'applications IIS installé sur CWMGR1 dans chaque déploiement AVD. Cela traite les demandes entrantes du plan de contrôle global et est exécuté sous le compte AD *CloudWorkspaceSVC*.
+
+
+* *SQL Server 2017 Express* – VDS crée une instance SQL Server Express sur la machine virtuelle CWMGR1 pour gérer les métadonnées générées par les composants d'automatisation.
+* *Internet information Services (IIS)* – IIS est activé sur CWMGR1 pour héberger l'application CWManagerX et CWApps IIS (uniquement si la fonctionnalité RDS RemoteApp est activée). VDS requiert la version 7.5 ou ultérieure d'IIS.
+* *Portail HTML5 (facultatif)* – VDS installe le service Spark Gateway pour fournir un accès HTML5 aux machines virtuelles dans le déploiement et à partir de l'application Web VDS. Il s'agit d'une application Java qui peut être désactivée et supprimée si cette méthode d'accès n'est pas souhaitée.
+* *RD Gateway (en option)* – VDS permet au rôle de passerelle RD sur CWMGR1 de fournir un accès RDP aux pools de ressources basés sur la collecte RDS. Ce rôle peut être désactivé/désinstallé si seul l'accès AVD Reverse Connect est souhaité.
+* *RD Web (facultatif)* – VDS active le rôle Web RD et crée l'application Web IIS CWApps. Ce rôle peut être désactivé si seul l'accès AVD est souhaité.
+* *DC Config* – application Windows utilisée pour effectuer des tâches de configuration spécifique au site VDS et déploiement et au site VDS ainsi que des tâches de configuration avancée.
+* *Outils de test VDC* : application Windows prenant en charge l'exécution directe des tâches pour les changements de configuration au niveau des ordinateurs virtuels et des clients utilisés dans les rares cas où les tâches d'API ou d'application Web doivent être modifiées à des fins de dépannage.
+* *Encryptons le certificat générique (facultatif)* – créé et géré par VDS – toutes les machines virtuelles nécessitant un trafic HTTPS sur TLS sont mises à jour avec le certificat chaque nuit. Le renouvellement est également géré par tâche automatisée (les certificats sont 90 jours, donc le renouvellement commence peu avant). Le client peut fournir son propre certificat de caractère générique si nécessaire. VDS nécessite également plusieurs composants Active Directory pour prendre en charge les tâches d'automatisation. L'objectif de la conception est d'utiliser un nombre minimum de composants AD et d'ajouts d'autorisations tout en continuant de prendre en charge l'environnement pour la gestion automatisée. Ces composants comprennent :
+* *Unité organisationnelle (ou) de l'espace de travail Cloud* – cette unité organisationnelle agira comme conteneur AD principal pour les composants enfants requis. Les autorisations pour les groupes d'accès DHP client et CW-Infrastructure seront définies à ce niveau et pour ses composants enfants. Voir l'annexe A pour les sous-UO créés dans cette UO.
+* *Cloud Workspace Infrastructure Group (CW-Infrastructure)* est un groupe de sécurité créé dans l'AD local pour permettre l'affectation des autorisations déléguées requises au compte de service VDS (*CloudWorkspaceSVC*)
+* *Client DHP Access Group (ClientDHPAccess)* est un groupe de sécurité créé dans l'AD local pour permettre à VDS de gérer l'emplacement dans lequel les données de profil, de domicile utilisateur et partagées de la société résident.
+* *Compte de service CloudWorkspaceSVC* (membre du groupe Cloud Workspace Infrastructure Group)
+* *Zone DNS pour <code de déploiement>.cloudWorkspace.app domain* (ce domaine gère les noms DNS créés automatiquement pour les VM hôtes de session ) – créé par la configuration du déploiement.
+* *GPO* propres à NetApp liés à plusieurs UO enfant de l'unité organisationnelle de Cloud Workspace. Ces stratégies de groupe sont les suivantes :
++
+** *Cloud Workspace GPO (associé à Cloud Workspace ou)* – définit les protocoles et méthodes d'accès pour les membres du groupe CW-Infrastructure. Ajoute également le groupe au groupe d'administrateurs local sur les hôtes de session AVD.
+** *Objet GPO* du pare-feu de l'espace de travail Cloud (associé aux serveurs des clients dédiés, aux unités de bureau à distance et aux unités de stockage à distance) - crée une stratégie qui assure et isole les connexions aux hôtes des sessions à partir du ou des serveurs de plate-forme.
+** *Cloud Workspace RDS* (serveurs de clients dédiés, unités de bureau à distance et unités de stockage à distance) - la stratégie définit les limites de qualité de session, de fiabilité, de déconnexion des limites de délai d'attente. Pour les sessions RDS, la valeur TS Licensing Server est définie.
+** *Cloud Workspace Companies* (NON LIÉES par défaut) – GPO facultatif à « verrouiller » une session utilisateur/un espace de travail en empêchant l'accès aux outils et zones d'administration. Peut être lié/activé pour fournir un espace de travail d'activité restreinte.
+
+
+
+
+
+NOTE: Des configurations de paramètres de stratégie de groupe par défaut peuvent être fournies sur demande.
+
+
+
+==== Composants de l'espace de travail VDS
+
+
+
+===== La couche de données
+
+
+
+====== Azure NetApp Files
+
+Un pool de capacité Azure NetApp Files et un ou plusieurs volumes associés seront créés si vous choisissez Azure NetApp Files comme option de couche de données dans la configuration VDS. Le volume héberge le stockage classé partagé des profils utilisateur (via des conteneurs FSLogix), des dossiers personnels utilisateur et le dossier de partage des données d'entreprise.
+
+
+
+====== Azure Files
+
+Un partage de fichiers Azure et son compte de stockage Azure associé seront créés si vous choisissez des fichiers Azure comme option de couche de données dans CWS Setup. Le partage de fichiers Azure héberge le stockage partagé des profils utilisateur (via des conteneurs FSLogix), les dossiers personnels des utilisateurs et le dossier de partage des données d'entreprise.
+
+
+
+====== Serveur de fichiers avec disque géré
+
+Une machine virtuelle Windows Server est créée avec un disque géré si vous choisissez l'option serveur de fichiers comme couche de données dans la configuration VDS. Le serveur de fichiers héberge le stockage classé partagé pour les profils utilisateur (via les conteneurs FSLogix), les dossiers personnels utilisateur et le dossier de partage des données d'entreprise.
+
+
+
+===== La mise en réseau d'Azure
+
+
+
+====== Réseau virtuel Azure
+
+VDS crée un réseau virtuel Azure et prend en charge les sous-réseaux. VDS requiert un sous-réseau séparé pour les machines hôtes CWMGR1, AVD et les contrôleurs de domaine Azure et le peering entre les sous-réseaux. Notez que le sous-réseau du contrôleur AD existe généralement déjà. Les sous-réseaux VDS déployés doivent donc être associés au sous-réseau existant.
+
+
+
+====== Groupes de sécurité du réseau
+
+Un groupe de sécurité réseau est créé pour contrôler l'accès à la machine virtuelle CWMGR1.
+
+* Locataire : contient des adresses IP à utiliser par hôte de session et par VM de données
+* Services : contient les adresses IP utilisées par les services PaaS (Azure NetApp Files, par exemple)
+* Plateforme : contient des adresses IP à utiliser en tant que VM de plateforme NetApp (CWMGR1 et tous les serveurs de passerelle)
+* Répertoire : contient les adresses IP à utiliser comme machines virtuelles Active Directory
+
+
+
+
+===== Azure AD
+
+L'automatisation et l'orchestration VDS déploient les machines virtuelles dans une instance Active Directory ciblée, puis rejoint les machines au pool hôte désigné. Les machines virtuelles AVD sont gérées au niveau de l'ordinateur par la structure AD (unités organisationnelles, stratégie de groupe, autorisations d'administrateur informatique local, etc.) et par l'appartenance à la structure AVD (pools d'hôtes, appartenance à un groupe d'applications d'espace de travail), qui sont régies par des entités et des autorisations Azure AD. VDS gère cet environnement « double contrôle » en utilisant l'application VDS Enterprise/Azure Service principal pour les actions AVD et le compte de service AD local (CloudWorkspaceSVC) pour les actions AD et informatiques locales.
+
+Les étapes spécifiques de la création d'une machine virtuelle AVD et de son ajout au pool hôte AVD sont les suivantes :
+
+* Création d'une machine virtuelle à partir d'un modèle Azure visible par l'abonnement Azure associé à AVD (utilise les autorisations Azure Service principal)
+* Vérifier/configurer l'adresse DNS pour la nouvelle machine virtuelle à l'aide d'Azure VNet désigné pendant le déploiement VDS (nécessite des autorisations AD locales (tout délégué à CW-Infrastructure ci-dessus) définit le nom de la machine virtuelle à l'aide du schéma de nommage VDS standard *_{Code société}TS{sequencenumber}_*. Exemple : XYZTS3. (Autorisations AD locales requises (placées dans la structure ou que nous avons créée sur site (poste de travail distant/code société/partagé) (même autorisation/description de groupe que ci-dessus)
+* Place la machine virtuelle dans l'unité organisationnelle Active Directory désignée (AD) (nécessite les autorisations déléguées à la structure UO (désignée lors du processus manuel ci-dessus)
+* Mettre à jour le répertoire DNS AD interne avec le nouveau nom de machine/adresse IP (nécessite des autorisations AD locales)
+* Relier la nouvelle machine virtuelle au domaine AD local (autorisations AD locales requises)
+* Mettre à jour la base de données locale VDS avec de nouvelles informations sur le serveur (ne nécessite pas d'autorisations supplémentaires)
+* Associer VM au pool hôte AVD désigné (nécessite des autorisations AVD Service principal)
+* Installation des composants Chocolatey sur la nouvelle machine virtuelle (nécessite un privilège d'administration informatique local pour le compte *CloudWorkspaceSVC*)
+* Installer les composants FSLogix pour l'instance AVD (nécessite des autorisations administratives locales sur l'UO AVD dans l'AD local)
+* Mettre à jour l'objet GPO de pare-feu AD Windows pour autoriser le trafic vers la nouvelle machine virtuelle (nécessite la création/modification de GPO AD pour les stratégies associées à l'unité d'organisation AVD et à ses machines virtuelles associées. Nécessite la création/modification de stratégie de GPO AD sur l'UO AVD dans l'AD local. Peut être désactivé après installation si vous ne gérez pas les machines virtuelles via VDS).
+* Définir l'indicateur « Autoriser les nouvelles connexions » sur la nouvelle machine virtuelle (nécessite les autorisations du principal de service Azure)
+
+
+
+
+====== Ajout de machines virtuelles à Azure AD
+
+Les machines virtuelles du locataire Azure doivent être jointes au domaine, mais les VM ne peuvent pas se joindre directement à Azure AD. Par conséquent, VDS déploie le rôle de contrôleur de domaine dans la plateforme VDS et ensuite nous synchronisons ce DC avec Azure AD en utilisant AD Connect. Il est également possible d'utiliser Azure AD Domain Services (ADDS), de synchroniser un data Center hybride (une machine virtuelle sur site ou ailleurs) avec AD Connect, ou de joindre directement les machines virtuelles à un data Center hybride via un VPN de site à site ou Azure ExpressRoute.
+
+
+
+===== Pools hôtes AVD
+
+Les pools hôtes sont un ensemble d'une ou plusieurs machines virtuelles identiques dans les environnements Azure Virtual Desktop. Chaque pool hôte peut contenir un groupe d'applications avec lequel les utilisateurs peuvent interagir comme ils le feraient sur un poste de travail physique.
+
+
+
+====== Hôtes de session
+
+Au sein d'un pool hôte se trouve une ou plusieurs machines virtuelles identiques. Ces sessions utilisateur se connectant à ce pool hôte sont équilibrées par le service d'équilibreur de charge AVD.
+
+
+
+====== Groupes d'applications
+
+Par défaut, le groupe d'applications _Desktop Users_ est créé lors du déploiement. Tous les utilisateurs de ce groupe d'applications bénéficient d'une expérience Windows complète. En outre, des groupes d'applications peuvent être créés pour servir les services d'applications en streaming.
+
+
+
+===== Espace de travail d'analyse des journaux
+
+Un espace de travail Log Analytics est créé pour stocker les journaux à partir des processus de déploiement et DSC ainsi que d'autres services. Ceci peut être supprimé après le déploiement, mais ce n'est pas recommandé car il active d'autres fonctionnalités. Les journaux sont conservés pendant 30 jours par défaut, sans frais de conservation.
+
+
+
+===== Ensembles de disponibilité
+
+Un ensemble de disponibilité fait partie du processus de déploiement afin de permettre la séparation des machines virtuelles partagées (pools hôtes AVD partagés, pools de ressources RDS) sur les domaines de pannes. Cette opération peut être supprimée après le déploiement, mais désactivez l'option pour offrir une tolérance de panne supplémentaire pour les machines virtuelles partagées.
+
+
+
+===== Coffre-fort de restauration Azure
+
+Un coffre-fort de service de récupération est créé par VDS Automation pendant le déploiement. Elle est actuellement activée par défaut, car Azure Backup est appliqué à CWMGR1 pendant le processus de déploiement. Cette option peut être désactivée et supprimée si vous le souhaitez, mais elle sera recréée si Azure Backup est activé dans l'environnement.
+
+
+
+===== Coffre-fort de clés Azure
+
+Un coffre-fort Azure Key Vault est créé pendant le processus de déploiement et utilisé pour stocker les certificats, les clés API et les identifiants utilisés par les comptes Azure Automation lors du déploiement.
+
+
+
+== Annexe A – structure d'unité organisationnelle par défaut de Cloud Workspace
+
+* Espace de travail cloud
++
+** Entreprises Cloud Workspace
+** Serveurs d'espace de travail cloud
++
+*** Serveurs client dédiés
+*** Infrastructures
+
+
+
+
+* Serveurs CWMGR
+* Serveurs de passerelle
+* Serveurs FTP
+* Machines virtuelles modèles
++
+** Bureau à distance
+** Staging
++
+*** Comptes de services Cloud Workspace
+
+
+** Comptes de service client
+** Comptes de services d'infrastructure
++
+*** Utilisateurs techniques de Cloud Workspace
+
+
+** Groupes
+** Techniciens Tech 3
+
+
+

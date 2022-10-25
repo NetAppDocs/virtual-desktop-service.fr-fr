@@ -1,0 +1,34 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Une fois votre déploiement terminé, vous devriez recevoir une notification par e-mail ainsi qu'un grand nombre de rapports de réussite et d'erreur par e-mail. Vous trouverez ici des informations sur ces e-mails et sur la façon de modifier les options de livraison : link:Unlisted.Whats_with_all_these_emails.html["Qu'est-ce que tous ces e-mails ?"]
+
+La documentation complète est disponible à l'adresse https://docs.netapp.com/us-en/virtual-desktop-service/[] mais les éléments sélectionnés ci-dessous sont un bon point de départ :
+
+
+
+== Démarrage rapide
+
+* link:https://www.youtube.com/playlist?list=PLQ1wYDzid2pRl74Y4SnFVvTHL7kbN9GQZ["VDS Présentation de la liste de lecture vidéo sur YouTube"]
+* link:Management.User_Administration.manage_user_accounts.html["Gérer des utilisateurs"]
+* link:Management.Applications.application_entitlement_workflow.html["Gestion des applications"]
+* link:Management.User_Administration.manage_folders_and_permissions.html["Gestion des données et des autorisations"]
+* link:Reference.end_user_access.html["Exigences du système Cloud Workspace : présentation pour les utilisateurs finaux"]
+
+
+
+
+== Affinez votre déploiement – conseils et astuces
+
+* link:Management.User_Administration.multi-factor_authentication.html["Renforcer la sécurité avec MFA"]
+* link:Management.System_Administration.configure_backup.html["Configurez Azure Backup"]
+* link:Management.System_Administration.configure_antivirus.html["Configurer antivirus"]
+* link:Management.Cost_Optimization.workload_schedule.html["Coûts des serveurs optimisés"]
+* link:Management.Scripted_Events.scripted_events.html["Déploiement de l'automatisation avec des événements script"]
+* link:Architectual.migrate_data_into_vds.html["Migration des données"]
+

@@ -1,0 +1,9 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+image::Management.command_center.operations.start_server_for_wake_on_demand-d8436.png[Management.command Center.Operations.start Server pour wake on Demand d8436]

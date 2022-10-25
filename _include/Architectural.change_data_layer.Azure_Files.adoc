@@ -1,0 +1,179 @@
+= Présentation
+:allow-uri-read: 
+
+
+
+
+== Présentation
+
+Les technologies de déploiement des services de postes de travail virtuels offrent de nombreuses options de stockage en fonction de l'infrastructure sous-jacente. Ce guide explique comment modifier l'utilisation d'Azure Files après le déploiement.
+
+
+
+=== Conditions préalables
+
+* AD Connect installé et configuré
+* Compte d'administrateur global Azure
+* Module PowerShell AZFilesHybrid https://github.com/Azure-Samples/azure-files-samples/releases[]
+* Module AZ PowerShell
+* Module PowerShell ActiveDirectory
+
+
+
+
+=== Créer la nouvelle couche de stockage
+
+. Connectez-vous à Azure avec le compte d'administrateur global
+. Créez un nouveau compte de stockage dans le même emplacement et le même groupe de ressources que l'espace de travail
++
+image:Architectural.ChangeDataLayer.AzureFiles1.png[""]
+
+. Créez les partages de fichiers de données, d'accueil et professionnels sous le compte de stockage
++
+image:Architectural.ChangeDataLayer.AzureFiles2.png[""]
+
+
+
+
+
+=== Configurer Active Directory
+
+. Créez une nouvelle unité organisationnelle nommée « compte de stockage » sous Cloud Workspace > Cloud Worksapce Service Accounts ou
++
+image:Architectural.ChangeDataLayer.AzureFiles3.png[""]
+
+. Activer l'authentification AD DS (obligatoire à l'aide de PowerShell) https://docs.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable[]
++
+.. DomainAccountType doit être de “`ServiceLogonAccount`”
+.. OraganationalUnitDistinguishedName est le nom distinctif de l'UO créée à l'étape précédente (c'est-à-dire “`OU=Storage Account,OU=Cloud Workspace Service Accounts,OU=Cloud Workspace,DC=TrainingKrisG,DC=onmicrosoft,DC=com`”)
+
+
+
+
+
+
+=== Définissez les rôles des partages
+
+. Sur le portail Azure, donnez au technicien CloudWorkspaceSVC et Level3 le rôle « en partage de données SMB de stockage »
++
+image:Architectural.ChangeDataLayer.AzureFiles4.png[""]
+
+. Donnez le rôle « Storage File Data SMB Share Contributor » au “`<company code>-all users`groupe ”
++
+image:Architectural.ChangeDataLayer.AzureFiles5.png[""]
+
+
+
+
+
+=== Créez les répertoires
+
+. Créer un répertoire dans chaque partage (données, domicile, pro) en utilisant le code de société comme nom (dans cet exemple, le code de société est « kift »)
++
+image:Architectural.ChangeDataLayer.AzureFiles6.png[""]
+
+. Dans le répertoire <code entreprise> du partage pro, créez un répertoire "profileContainers"
++
+image:Architectural.ChangeDataLayer.AzureFiles7.png[""]
+
+
+
+
+
+=== Définissez les autorisations NTFS
+
+. Connectez-vous aux partages
++
+.. Accédez au partage sous le compte de stockage sur le portail Azure, cliquez sur les trois points, puis cliquez sur connecter
++
+image:Architectural.ChangeDataLayer.AzureFiles8.png[""]
+
+.. Choisissez la méthode d'authentification Active Directory et cliquez sur l'icône Copier dans le presse-papiers dans le coin inférieur droit du code
++
+image:Architectural.ChangeDataLayer.AzureFiles9.png[""]
+
+.. Connectez-vous au serveur CWMGR1 avec un compte membre du groupe de techniciens Level3
+.. Exécutez le code copié dans PowerShell pour mapper le lecteur
+.. Faites de même pour chaque partage en choisissant une lettre de lecteur différente pour chaque partage
+
+
+. Désactivez l'héritage sur les répertoires <code entreprise>
+. System et AD Group ClientDHPAccess doivent disposer d'un contrôle total des répertoires <Company code>
+. Les ordinateurs de domaine doivent disposer d'un contrôle total du répertoire <code entreprise> dans le partage professionnel ainsi que du répertoire ProfileContainers dans
+. Le groupe AD de <code de l'entreprise>-tous les utilisateurs doivent avoir des données de lecture/dossier de liste permissons vers les répertoires de <code de l'entreprise> dans les partages home et pro
+. Le groupe AD <Company code>-All Users doit disposer des autorisations spéciales ci-dessous pour le répertoire dans le partage de données
++
+image:Architectural.ChangeDataLayer.AzureFiles10.png[""]
+
+. Le groupe AD <code société>-tous les utilisateurs doit disposer de l'autorisation Modifier dans le répertoire ProfileContainers
+
+
+
+
+=== Mettre à jour les objets de stratégie de groupe
+
+. Mettre à jour cette stratégie <code entreprise> utilisateurs situés sous Cloud Workspace > Cloud Workspace Entreprises > <code entreprise> <code entreprise>-utilisateurs de postes de travail
++
+.. Modifiez le mappage du lecteur de base pour pointer le nouveau partage de base
++
+image:Architectural.ChangeDataLayer.AzureFiles11.png[""]
+
+.. Modifiez la redirection de dossiers pour pointer le partage d'accueil pour le bureau et les documents
++
+image:Architectural.ChangeDataLayer.AzureFiles12.png[""]
+
++
+image:Architectural.ChangeDataLayer.AzureFiles13.png[""]
+
+
+
+
+
+
+
+=== Mettez à jour le partage dans les utilisateurs et les ordinateurs Active Directory
+
+. Avec AD classique ou hybride, le partage dans l'UO de code de l'entreprise doit être mis à jour vers le nouvel emplacement
++
+image:Architectural.ChangeDataLayer.AzureFiles14.png[""]
+
+
+
+
+
+=== Mettre à jour les chemins Data/Home/Pro dans VDS
+
+. Connectez-vous à CWMGR1 avec un compte du groupe de techniciens Level3 et lancez Command Center
+. Dans la liste déroulante commande, sélectionnez Modifier les données/Accueil/dossiers Pro
+. Cliquez sur le bouton Charger les données, puis assurez-vous que le code de société approprié est sélectionné dans le menu déroulant
+. Saisissez le nouveau patsh pour les emplacements de données, de domicile et de pro
+. Décochez la case est Windows Server
+. Cliquez sur le bouton Exécuter la commande
++
+image:Architectural.ChangeDataLayer.AzureFiles15.png[""]
+
+
+
+
+
+=== Mettre à jour les chemins de profil FSLogix
+
+. Ouvrez le registre edtory sur les hôtes de session
+. Modifiez l'entrée VHDLocucations dans HKLM\SOFTWARE\FSLogix\Profiles pour qu'elle soit le chemin UNC vers le nouveau répertoire ProfileContainers
++
+image:Architectural.ChangeDataLayer.AzureFiles16.png[""]
+
+
+
+
+
+=== Configurez les sauvegardes
+
+. Il est recommandé d'installer et de configurer une stratégie de sauvegarde pour les nouveaux partages
+. Créez un nouveau coffre-fort de services de récupération dans le même groupe de ressources
+. Naviguez jusqu'au coffre-fort et sélectionnez sauvegarde sous mise en route
+. Choisissez Azure où la charge de travail s'exécute et le partage de fichiers Azure pour ce que vous voulez sauvegarder, puis cliquez sur Backukp
+. Sélectionnez le compte de stockage utilisé pour créer les partages
+. Ajoutez les partages à sauvegarder
+. Modifiez et créez une stratégie de sauvegarde qui répond à vos besoins
+
