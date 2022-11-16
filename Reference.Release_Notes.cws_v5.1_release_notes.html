@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head class="at-element-marker">
+  <title>Suite Cloud Workspace – version 5.1</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Suite Cloud Workspace – version 5.1" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" />
+	<meta property="og:description" content="Notes de mise à jour VDS NetApp v5.1" />
+  <meta property="og:image" content="https://docs.netapp.com/fr-fr/virtual-desktop-service/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Notes de mise à jour VDS NetApp v5.1">
+  <meta name="keywords" content=" "><!-- Icons -->
+  <link rel="icon" href="/fr-fr/virtual-desktop-service/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/fr-fr/virtual-desktop-service/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/fr-fr/virtual-desktop-service/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/fr-fr/virtual-desktop-service/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/fr-fr/virtual-desktop-service/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/fr-fr/virtual-desktop-service/js/na-search.js'></script><script src='/fr-fr/virtual-desktop-service/js/na-pagenav.js'></script><script src='/fr-fr/virtual-desktop-service/js/na-utility.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/clouddocs.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/fr-fr/virtual-desktop-service/js/toc.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/fr-fr/virtual-desktop-service"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/fr-fr/virtual-desktop-service/js/custom-dropdown.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/FileSaver.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jszip-utils.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jszip.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service/issues/new?body=Page%3A%20[Suite Cloud Workspace – version 5.1](https://docs.netapp.com/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/fr-fr/virtual-desktop-service/images/discuss-sm.svg" alt="" class="github-icon" />Demander de modifier un document</a><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service/blob/main/sub.Reference.Release_Notes.cws_v5.1_release_notes.adoc" class="page-nav-contribute-link" role="button"><img src="/fr-fr/virtual-desktop-service/images/edit-sm.svg" alt="" class="github-icon" />Modifier sur GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/fr-fr/virtual-desktop-service/images/article-sm.svg" alt="" class="github-icon" />Guide des contributeurs</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">SUR CETTE PAGE</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Produits et solutions</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Support et formation</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Communauté</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Témoignages clients</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/fr-fr/virtual-desktop-service/search.html"
+          data-type="widget" 
+          data-placeholder="Rechercher une documentation"
+          data-no-results-found="Aucun résultat n'a été trouvé pour {query}"
+          data-did-you-mean="Rechercher {suggestion}."
+          data-no-results-found-did-you-mean="Aucun résultat n’a été trouvé pour {query}. Voulez-vous dire {suggestion} ?"
+          data-results-found="{hitCount} résultats trouvés"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Français</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/fr-fr/virtual-desktop-service/images/collapse.png" alt="Réduire le panneau de navigation"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDFs disponibles<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/fr-fr/virtual-desktop-service/pdfs/fullsite-sidebar/Documentation_sur_Virtual_Desktop_Service.pdf" >
+          <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDF de ce site de documentation</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Déploiement_avec_VDS.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Déploiement avec VDS
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Azure_Virtual_Desktop.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Azure Virtual Desktop
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Google.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Google
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Architecture.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Architecture
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Changer_la_couche_de_données.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Changer la couche de données
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Gestion.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Gestion
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/De_nombreux_déploiements.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            De nombreux déploiements
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/En_termes_de_latence.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            En termes de latence
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Événements_avec_script.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Événements avec script
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Centre_de_commande.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Centre de commande
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Exploitation.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Exploitation
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Administration_des_utilisateurs.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Administration des utilisateurs
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Administration_de_système.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Administration de système
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Dépannage.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Dépannage
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Notes_de_mise_à_jour.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Notes de mise à jour
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Versions_précédentes.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Versions précédentes
+          </a>
+          
+
+
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Documentation_de_la_bibliothèque_de_scripts.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Documentation de la bibliothèque de scripts
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Avancé.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Avancé
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Vidéos_NetApp_VDS_v5_4.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Vidéos NetApp VDS v5.4
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/fr-fr/virtual-desktop-service/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Collection de documents PDF séparés<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation de Virtual Desktop Service"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/index.html">
+        Documentation de Virtual Desktop Service
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement avec VDS"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Déploiement avec VDS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure Virtual Desktop"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure Virtual Desktop</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement d'AVD dans Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.Deploying_AVD_in_Azure.html">
+        Déploiement d'AVD dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supplémentaire - AVD avec AD existant"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html">
+        Supplémentaire - AVD avec AD existant
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Composants et autorisations VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html">
+        Composants et autorisations VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Conditions préalables VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_prerequisites.html">
+        Conditions préalables VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prérequis VDS v6.0 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v6.0_prerequisites.html">
+        Prérequis VDS v6.0 (AVD)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Google</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement de RDS dans Google"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.GCP.RDS.deploying_rds_in_gcp.html">
+        Déploiement de RDS dans Google
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prérequis VDS v5.4 (RDS/GCP)"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.GCP.vds_v5.4_prerequisites.html">
+        Prérequis VDS v5.4 (RDS/GCP)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Architecture"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Architecture</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Changer la couche de données"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/fr-fr/virtual-desktop-service/Architectural.change_data_layer.html">
+        <div class="na-navbar-padding"> Changer la couche de données</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure Files"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.change_data_layer.Azure_Files.html">
+        Azure Files
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Migration des données dans VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.migrate_data_into_vds.html">
+        Migration des données dans VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à niveau AVD v1 vers v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Mettez à niveau AVD v1 vers v2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Renouveler le certificat SSL"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.Wildcard_SSL_certificate_renewal_process.html">
+        Renouveler le certificat SSL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Guide de démontage VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.AVD_teardown_guide.html">
+        Guide de démontage VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gestion</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="De nombreux déploiements"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> De nombreux déploiements</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Provisionnement des Collections"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Deployments.provisioning_collections.html">
+        Provisionnement des Collections
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation de la hiérarchie logique VDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Deployments.logical_hierarchy_overview.html">
+        Présentation de la hiérarchie logique VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En termes de latence"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> En termes de latence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Droits d'application pour RDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Droits d'application pour RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Droits d'application pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.AVD_application_entitlement_workflow.html">
+        Droits d'application pour AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Événements avec script"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Événements avec script</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vue d'ensemble des événements avec script"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Scripted_Events.scripted_events.html">
+        Vue d'ensemble des événements avec script
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Centre de commande"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Centre de commande</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation du centre de commande de gestion"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.command_center.overview.html">
+        Présentation du centre de commande de gestion
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Exploitation"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Exploitation</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copier le modèle dans la galerie"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.command_center.operations.copy_template_to_gallery.html">
+        Copier le modèle dans la galerie
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer l'optimisation des coûts"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Cost_Optimization.workload_schedule.html">
+        Configurer l'optimisation des coûts
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration des utilisateurs"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration des utilisateurs</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les comptes d'utilisateurs"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.manage_user_accounts.html">
+        Gérer les comptes d'utilisateurs
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les dossiers et les autorisations"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.manage_folders_and_permissions.html">
+        Gérer les dossiers et les autorisations
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer l'accès aux applications"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Gérer l'accès aux applications
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Réinitialiser les mots de passe utilisateur"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.reset_user_password.html">
+        Réinitialiser les mots de passe utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer MFA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.multi-factor_authentication.html">
+        Configurer MFA
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration de système"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration de système</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créer un compte administrateur de domaine"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.create_domain_admin_account.html">
+        Créer un compte administrateur de domaine
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Accès tiers"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.provide_3rd_party_access.html">
+        Accès tiers
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer la sauvegarde"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.configure_backup.html">
+        Configurer la sauvegarde
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloner des machines virtuelles"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.clone_virtual_machines.html">
+        Cloner des machines virtuelles
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajout automatique d'espace disque"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.auto_add_disk_space.html">
+        Ajout automatique d'espace disque
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Coffre-fort de clés Azure"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.azure_key_vault.html">
+        Coffre-fort de clés Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez antivirus"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.configure_antivirus.html">
+        Configurez antivirus
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajout et déplacement de lecteurs mappés"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.adding_moving_mapped_drives.html">
+        Ajout et déplacement de lecteurs mappés
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dépannage"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Dépannage</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vérification des journaux VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.reviewing_vds_logs.html">
+        Vérification des journaux VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Qualité de connexion Internet"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.internet_connection_quality.html">
+        Qualité de connexion Internet
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activer le fond d'écran utilisateur"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.enable_user_wallpaper.html">
+        Activer le fond d'écran utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes d'impression"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.printing_issues.html">
+        Problèmes d'impression
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quota de cœur de vCPU Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.azure_vcpu_core_quota.html">
+        Quota de cœur de vCPU Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déverrouiller le compte utilisateur"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.unlocking_user_accounts.html">
+        Déverrouiller le compte utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Performances générales des machines virtuelles"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.general_vm_performance.html">
+        Performances générales des machines virtuelles
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Le transfert DNS pour Azure AJOUTE SSO"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.dns_forwarding_for_azure_aadds_sso.html">
+        Le transfert DNS pour Azure AJOUTE SSO
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes d'application"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.application_issues.html">
+        Problèmes d'application
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Référence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Notes de mise à jour</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de version VDS v6.0"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html">
+        Notes de version VDS v6.0
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour VDS v5.4"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v5.4_release_notes.html">
+        Notes de mise à jour VDS v5.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour du client Windows VDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_windows_client_release_notes.html">
+        Notes de mise à jour du client Windows VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versions précédentes"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Versions précédentes</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour VDS v5.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v5.3_release_notes.html">
+        Notes de mise à jour VDS v5.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de version CWMS v5.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cwms_v5.2_release_notes.html">
+        Notes de version CWMS v5.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour CWS v5.1"
+      data-li-level="4#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html">
+        Notes de mise à jour CWS v5.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour CWS v5.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.0_release_notes.html">
+        Notes de mise à jour CWS v5.0
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Accès des utilisateurs finaux"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.end_user_access.html">
+        Accès des utilisateurs finaux
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Environnements de modification VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.vds_change_environments.html">
+        Environnements de modification VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation de la bibliothèque de scripts"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Documentation de la bibliothèque de scripts</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Adobe Reader DC"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AdobeReader.html">
+        Adobe Reader DC
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes AMD Radeon instinct"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AMDRadeonInstinctDrivers.html">
+        Pilotes AMD Radeon instinct
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Application Ezeep Print"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.EzeepPrintApp.html">
+        Application Ezeep Print
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google Chrome"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.GoogleChrome.html">
+        Google Chrome
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Edge Chromium"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftEdgeChromium.html">
+        Microsoft Edge Chromium
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Office 365"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftOffice365.html">
+        Microsoft Office 365
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lecteur Microsoft unique"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftOneDrive.html">
+        Lecteur Microsoft unique
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Équipes Microsoft"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftTeams.html">
+        Équipes Microsoft
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Teams pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftTeamsAVD.html">
+        Microsoft Teams pour AVD
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes NVIDIA CUDA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.NvidiaCudaDrivers.html">
+        Pilotes NVIDIA CUDA
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes NVIDIA Grid"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.NvidiaGridDrivers.html">
+        Pilotes NVIDIA Grid
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Protection de capture d'écran AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AVDScreenCaptureProtection.html">
+        Protection de capture d'écran AVD
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Zoom pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.ZoomVDI-AVD.html">
+        Zoom pour AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avancé"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Avancé</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rétrécissement profil FSLogix"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Advanced.fslogix_profile_shrink.html">
+        Rétrécissement profil FSLogix
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vidéos NetApp VDS v5.4"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Vidéos NetApp VDS v5.4</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contenu NetApp TV"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_content_netapptv.html">
+        Contenu NetApp TV
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déployer AVD ou RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVDRDS_deploy_54.html">
+        Déployer AVD ou RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajoutez le pool hôte AVD dans Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVD_hostpool_54.html">
+        Ajoutez le pool hôte AVD dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les utilisateurs AVD et les groupes d'applications"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVD_users_appgroups_54.html">
+        Gérer les utilisateurs AVD et les groupes d'applications
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des ressources et réduction des coûts"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVDRDS_optimize_resources_54.html">
+        Gestion des ressources et réduction des coûts
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Automatisation de la gestion des applications pour AVD et RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_VDS_day_in_the_life.html">
+        Automatisation de la gestion des applications pour AVD et RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à niveau le pool hôte AVD v1 vers v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Mettez à niveau le pool hôte AVD v1 vers v2
+      </a></li></ul></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/fr-fr/virtual-desktop-service/images/expand.png" alt="Développer le panneau de navigation"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/fr-fr/virtual-desktop-service/">Virtual&nbsp;Desktop&nbsp;Service</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> La version française est une traduction automatique. La version anglaise prévaut sur la française en cas de divergence. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Suite Cloud Workspace – version 5.1</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-11-16 12:37:10 +0000">11/16/2022</time>
+    
+  
+
+<span>Contributeurs
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Il n&#8217;y aura pas d&#8217;autres versions récurrentes pour la version 5.1 de CWMS – toutes les versions seront considérées comme des correctifs.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cwms-5-1-version-mineure-jeudi-18-octobre-2018">CWMS 5.1 version mineure : jeudi 18 octobre 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 Cloud Workspace Management Suite lorsque : le jeudi 18 octobre 2018 à 22 h, à l&#8217;est : l&#8217;accès aux postes de travail Cloud Workspace et aux services applicatifs pour les utilisateurs finaux reste ininterrompu. L&#8217;accès à la suite de gestion de l&#8217;espace de travail cloud restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="workspace-management-suite">Workspace Management Suite</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajouter une fonction de recherche dans la table des applications</p>
+</li>
+<li>
+<p>Tri amélioré dans la table des applications</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cwms-5-1-version-mineure-thurs-6-septembre-2018">CWMS 5.1 version mineure : Thurs., 6 septembre 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants : suite de gestion Cloud Workspace 5.1 lorsque : jeudi 6 septembre 2018 à 22 h 00 (heure de la côte est) : l&#8217;accès aux postes de travail et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux reste ininterrompu. L&#8217;accès à la suite de gestion de l&#8217;espace de travail cloud restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-suite-de-gestion-de-lespace-de-travail-cloud">5.1 Suite de gestion de l&#8217;espace de travail cloud</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajout de la possibilité de rechercher des sous-partenaires dans le catalogue d&#8217;applications personnalisées</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug dans lequel l&#8217;actualisation de l&#8217;écran dans le module Data Centers provoque une invite d&#8217;erreur</p>
+</li>
+<li>
+<p>Suppression de la restriction sur la taille max du nom de dossier et pour faciliter la navigation dans les dossiers</p>
+</li>
+<li>
+<p>Assurez-vous que le nombre de ressources sur les machines virtuelles ne soit jamais inférieur aux valeurs minimales de CPU et de RAM spécifiées</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-outils-et-services-cloud-workspace">5.1 Outils et services Cloud Workspace</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction d&#8217;un bug avec MFA où les utilisateurs qui ont sélectionné E-mail ne recevaient pas parfois de code</p>
+</li>
+<li>
+<p>Autoriser la saisie de CPU et de RAM supplémentaires pour le type d&#8217;allocation de ressources nombre d&#8217;utilisateurs</p>
+</li>
+<li>
+<p>Correction d&#8217;un bogue pour le type d&#8217;allocation de ressources pour le type d&#8217;allocation de charge du serveur, où dans certains cas, le nombre de serveurs requis était désactivé</p>
+</li>
+<li>
+<p>Ajouter une sauvegarde lors du redémarrage automatique d&#8217;un serveur – si CwVmAutomationService est occupé, réessayez dans 20 minutes</p>
+</li>
+<li>
+<p>Amélioration de la gestion des installations de certificat générique sur CWMGR1</p>
+</li>
+<li>
+<p>Données fixes dans le rapport des ressources du centre de données</p>
+</li>
+<li>
+<p>Amélioration de la gestion de la mise à jour des ressources RAM</p>
+</li>
+<li>
+<p>Calculs améliorés sur les ressources disponibles sur le disque dur</p>
+</li>
+<li>
+<p>Introduit la prise en charge de l&#8217;API v4 de ProfitBricks, permettant le paramétrage de la famille de processeurs</p>
+</li>
+<li>
+<p>Correction de la suppression d&#8217;anciens modèles temporaires dans ProfitBricks utilisés lors de la création d&#8217;un ensemble de provisionnement</p>
+</li>
+<li>
+<p>Augmentation du délai d&#8217;attente de l&#8217;hyperviseur ProfitBricks pour créer une VM</p>
+</li>
+<li>
+<p>Lors de l&#8217;installation de nouvelles versions de VdcTools, mettez à jour VdcToolsVersionRunningAtVcc dès qu&#8217;il est en cours afin que l&#8217;automatisation s&#8217;exécute plus rapidement</p>
+</li>
+<li>
+<p>Correction d&#8217;un bogue qui serait posé lors de l&#8217;installation de certificats génériques sur les serveurs RDP Gateway</p>
+</li>
+<li>
+<p>Automatisez l&#8217;installation manuelle précédente d&#8217;un certificat générique sur le serveur FTP</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug dans lequel les avis d&#8217;expiration de mot de passe n&#8217;obligaient pas les utilisateurs à mettre à jour leur mot de passe</p>
+</li>
+<li>
+<p>Amélioration du processus d&#8217;audit de fichier pour réduire la fréquence de l&#8217;erreur utilisateur inconnu qui s&#8217;affiche</p>
+</li>
+<li>
+<p>Correction d&#8217;un bogue dans lequel le rapport d&#8217;audit de fichier n&#8217;excluait pas correctement les dossiers</p>
+</li>
+<li>
+<p>Ajout d&#8217;une fonctionnalité pour installer le certificat générique si le certificat du courtier de connexion a expiré</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug dans lequel les avis d&#8217;expiration de mot de passe n&#8217;apparaissent pas si le raccourci de notification d&#8217;expiration de mot de passe est supprimé du dossier de démarrage (il sera réinstallé)</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug dans lequel le certificat générique n&#8217;a pas retardé une mise à jour sur les serveurs du portail HTML5 si un utilisateur était connecté</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug dans lequel le certificat générique doit indiquer que des serveurs de portail HTML5 de mise à jour sont déjà à jour</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug détecté lors de l&#8217;installation de certificats génériques sur les serveurs de courtier de connexion</p>
+</li>
+<li>
+<p>Résolution d&#8217;un problème de clonage où les comptes VM locaux ont été supprimés</p>
+</li>
+<li>
+<p>Résolution du problème lorsque les serveurs de clonage placent le locataire en mode migration</p>
+</li>
+<li>
+<p>Résolution d&#8217;une erreur lors du clonage de machines virtuelles dans vCloud où l&#8217;hyperviseur prenait trop de temps que prévu pour créer la machine virtuelle</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug où la suppression d&#8217;une VM dans AzureRM ferait également toujours supprimer les disques gérés associés</p>
+</li>
+<li>
+<p>Résolution d&#8217;un problème de synchronisation rare lors de la création de VM dans AzureRM pour empêcher le chevauchement de deux opérations de construction</p>
+</li>
+<li>
+<p>Mise à jour de la liste des tailles et types de machines dans AzureRM</p>
+</li>
+<li>
+<p>Erreur lors de la configuration du sous-réseau dans l&#8217;hyperviseur pour GCP lors du déploiement</p>
+</li>
+<li>
+<p>Correction d&#8217;une erreur lors du stockage des données de surveillance : intégrité de la plate-forme en supprimant un délai d&#8217;écriture des données lorsqu&#8217;un serveur est occupé</p>
+</li>
+<li>
+<p>Ajout d&#8217;une fonctionnalité permettant à chaque serveur d&#8217;avoir son fuseau horaire défini individuellement ou non contrôlé par l&#8217;automatisation de la plate-forme</p>
+</li>
+<li>
+<p>Résolution d&#8217;un bug lors de la création de VM sur un site secondaire renverra des adresses IP statiques à partir du site primaire</p>
+</li>
+<li>
+<p>Correction d&#8217;une erreur lors de la capture du nom d&#8217;utilisateur pour le rapport de connexion utilisateur</p>
+</li>
+<li>
+<p>Correction d&#8217;un bogue qui n&#8217;a pas pu supprimer les anciennes données de surveillance en faisant l&#8217;appel asynchrone de sorte qu&#8217;il ne s&#8217;en serait pas sorti</p>
+</li>
+<li>
+<p>Installez automatiquement des certificats génériques sur tous les serveurs d&#8217;infrastructure</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="publication-mineure-de-cwms-5-1-thurs-12-juillet-2018">Publication mineure de CWMS 5.1 : Thurs., 12 juillet 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 CWMS Tools and Services quand : jeudi 12 juillet 2018 30 à 10 h 10 (heure de l&#8217;est) impact : l&#8217;accès aux postes de travail Cloud Workspace et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cwms">5.1 application web CWMS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Corriger un problème concernant la persistance des paramètres du catalogue d&#8217;applications global</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="publication-mineure-de-cwms-5-1-thurs-17-mai-2018">Publication mineure de CWMS 5.1 : Thurs., 17 mai 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 Outils et services CWMS quand: Jeudi 17 mai 2018 @ 10-11 h impact est: L&#8217;accès aux bureaux Cloud Workspace et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cwms-2">5.1 application web CWMS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Résolution d&#8217;un problème concernant les résumés des utilisateurs pour les groupes App Services</p>
+</li>
+<li>
+<p>Résolution d&#8217;un problème avec l&#8217;assistant Data Center préremplissage du nom d&#8217;utilisateur et du mot de passe</p>
+</li>
+<li>
+<p>Ajoutez la validation des nom d&#8217;utilisateur pour les administrateurs VM locaux et les techniciens de niveau 3 dans l&#8217;assistant Data Center</p>
+</li>
+<li>
+<p>Amélioration de la gestion des sessions, y compris la déconnexion automatique des utilisateurs après un délai de session</p>
+</li>
+<li>
+<p>Corriger un problème lors de la suppression d&#8217;administrateurs si un administrateur principal n&#8217;a pas pu être détecté</p>
+</li>
+<li>
+<p>Modifiez le paramètre fictif dans Data Center &#8594; le serveur de profil passe de entrer le nom du profil à entrer le profil et modifiez le libellé du nom du profil à Nom du serveur</p>
+</li>
+<li>
+<p>Résolution l&#8217;activation d&#8217;AD admin ne fonctionne pas pour les utilisateurs non Cloud Workspace</p>
+</li>
+<li>
+<p>Corriger l&#8217;erreur JavaScript empêchant l&#8217;ajout de nouveaux utilisateurs/groupes pour un client non Cloud Workspace</p>
+</li>
+<li>
+<p>Autoriser les partenaires principaux à créer des administrateurs d&#8217;utilisateurs Active Directory pour les sous-partenaires</p>
+</li>
+<li>
+<p>Corriger le bug entraînant la réinitialisation du mot de passe de l&#8217;administrateur principal d&#8217;un sous-partenaire</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scf-5-1-diffusion-mineure-mercredi-21-février-2018">SCF 5.1 diffusion mineure : mercredi 21 février 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 Outils et services CW quand: Wedr., fév 21, 2018 @ 10-11 h HNE impact : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Corriger le problème de gestion des dossiers utilisateur via le rôle accès administrateur</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-outils-et-services-cw">5.1 Outils et services CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Assurez-vous que le serveur défaillant n&#8217;est pas automatiquement supprimé lors de la mise à niveau d&#8217;un client "aucun service" avec un espace de travail</p>
+</li>
+<li>
+<p>Traitez les mises à jour des GPO W2016 pour empêcher que la fenêtre contextuelle de notification ne soit brièvement visible par les utilisateurs connectés à leurs sessions RDS sur les machines virtuelles W2016</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-api-rest">5.1 API REST</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajouter de nouveaux attributs (modifier le rapport SPLA du SCF pour consommer de nouveaux attributs) afin de mieux gérer les applications de base basées sur des licences (plus précisément, SQL)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scf-5-1-diffusion-mineure-mercredi-7-février-2018">SCF 5.1 diffusion mineure : mercredi 7 février 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 Outils et services CW quand: Wedr., fév 7, 2018 @ 10-11 h HNE impact : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw-2">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Aucune</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-outils-et-services-cw-2">5.1 Outils et services CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Résolution du problème de désactivation d&#8217;App Locker sur Windows 2016 (en raison d&#8217;un problème interne récemment découvert sur Windows 2016)</p>
+</li>
+<li>
+<p>Corrigez le bogue lorsque l&#8217;IP n&#8217;est pas correctement réattribué en fonction de l&#8217;événement de défaillance du clone</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-api-rest-2">5.1 API REST</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de l&#8217;enregistrement du type de stockage lors de la modification d&#8217;un serveur dans une collection de provisionnement</p>
+</li>
+<li>
+<p>Lors de la création d&#8217;une collection de provisionnement avec deux serveurs terminal Server (TS), un seul serveur TS doit être conçu pour valider la collection</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scf-5-1-version-mineure-mercredi-31-février-2018">SCF 5.1 version mineure : mercredi 31 février 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants : 5.1 Outils et services CW lorsque : mercredi, janvier 31, 2018 @ 10-11 h HNE impact : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw-3">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Augmenter le nombre de rangées par tableau sur les modules CWS de haut niveau de 10 à 20</p>
+</li>
+<li>
+<p>Résolution de l&#8217;assistance utilisateur seul l&#8217;administrateur ne peut pas plonger dans un client</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-outils-et-services-cw-3">5.1 Outils et services CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Corrigez le bug lorsque le modèle ne contient pas .Net Framework v4.5.2, la création du serveur échoue de manière incorrecte</p>
+</li>
+<li>
+<p>Correction du problème lors du clonage de machines virtuelles dans Hyper-V.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scf-5-1-version-mineure-mercredi-10-février-2018">SCF 5.1 version mineure : mercredi 10 février 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants : 5.1 Outils et services CW lorsque : mercredi, janvier 10, 2018 @ 10-11 h HNE impact : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-outils-et-services-cw-4">5.1 Outils et services CW</h3>
+<div class="paragraph">
+<p>Les outils et services CWS version 5.1 (y compris le service d&#8217;automatisation CW, le service d&#8217;automatisation VM et le service CWAgent) seront mis à jour pour éliminer toute erreur d&#8217;autorisation qui se produit pour des scénarios de distribution d&#8217;application RemoteApp spécifiques. Les services seront notamment modifiés comme suit :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Modifiez le déploiement automatique du certificat générique SSL pour les serveurs de session en le déployant uniquement sur les serveurs de serveur de connexion RD (Remote Desktop Connection Broker) et les serveurs d&#8217;utilisateurs intensifs. Les serveurs de session non-Broker utiliseront le certificat par défaut généré par les services RDS (Remote Desktop Services).</p>
+</li>
+<li>
+<p>Modifiez la zone de recherche directe DNS externe sur Active Directory au SDDC pour créer un seul enregistrement DNS pour les serveurs de sessions partagées client. Cet enregistrement pointe vers le serveur RDS Broker (VM) du client, qui gère à son tour l&#8217;équilibrage de charge entre les serveurs de session partagés. Les serveurs d&#8217;utilisateurs de puissance continueront d&#8217;avoir des entrées DNS distinctes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Remarque : seules les configurations de clients finaux utilisant plusieurs serveurs de sessions partagées ont été affectées par ce problème, mais les configurations de clients nouveaux et modifiées seront déployées à l&#8217;aide de cette configuration.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scf-5-1-version-mineure-mercredi-3-février-2018">SCF 5.1 version mineure : mercredi 3 février 2018</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 CW Web App quand: Wedr., janv 3, 2018 @ 10-10:30 HNE impact : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw-4">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Corriger le tri par code de société dans le module espaces de travail CWS</p>
+</li>
+<li>
+<p>Corriger les utilisateurs de Cloud Workspace &#8594; forcer la réinitialisation du mot de passe ne reflète pas les modifications (lorsque vous naviguez vers un autre module, puis revenez à l&#8217;utilisateur)</p>
+</li>
+<li>
+<p>Assistant de déploiement automatique SDDC : ajoutez une alerte de confirmation modale en cas de non-vérification de l&#8217;installation ThinPrint (section Licensing)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scf-5-1-libération-mineure-tues-dec-5-février-2017">SCF 5.1 libération mineure : Tues., Dec 5 février 2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 CW Web App quand: Tues., Dec 5, 2017 @ 10-10:30 HNE impact : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw-5">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de l&#8217;erreur MFA CWS Admin sur Internet Explorer (IE) 11</p>
+</li>
+<li>
+<p>Correction des groupes CWS &#8594; accès au lecteur local en renvoyant « non trouvé »</p>
+</li>
+<li>
+<p>Assistant d&#8217;auto-déploiement de Data Center : ajoutez la prise en charge d&#8217;AzureRM (ARM) Azure Active Directory</p>
+</li>
+<li>
+<p>Catalogue d&#8217;applications : assurez-vous que l&#8217;option d&#8217;abonnement est toujours disponible/propagé</p>
+</li>
+<li>
+<p>CWS script Events module &gt; script Activity &#8594; Add application : correction du chemin d&#8217;icône d&#8217;application incorrect</p>
+</li>
+<li>
+<p>Améliorez l&#8217;efficacité de la demande d&#8217;accès administrateur pour éviter les erreurs lors de la redirection vers CWS v5.0</p>
+</li>
+<li>
+<p>Corriger diverses erreurs lors de la mise à jour des détails d&#8217;AppService et/ou de la gestion des licences d&#8217;application pour un AppService</p>
+</li>
+<li>
+<p>Module d&#8217;espace de travail CWS &gt; Assistant Ajout d&#8217;espace de travail &#8594; fixer le format incorrect des services d&#8217;appel envoyé au plan de contrôle global</p>
+</li>
+<li>
+<p>CWS Workspace module &gt; Assistant Ajout d&#8217;espace de travail &#8594; Nouveau client &#8594; Etape 3, fixer le groupe de mise à jour pour corriger l&#8217;erreur JavaScript afin de s&#8217;assurer que la mise à jour est traitée</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cws-5-1-libération-mineure-sam-nov-11-février-2017">CWS 5.1 libération mineure : Sam., nov 11 février 2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants: 5.1 CW Web App quand: Samedi, novembre 11, 2017 @ 10-11pm impact est : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu.</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw-6">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>À partir de 22h HNE le novembre 11, tous les partenaires du SCF 5.1 doivent utiliser <a href="https://iit.hostwindow.net" class="bare">https://iit.hostwindow.net</a>. Cette URL est mise à niveau pour soutenir CWS 5.1 (ainsi que CWS 5.0). Les partenaires sont chargés de s&#8217;assurer que l&#8217;administrateur du SCF et les utilisateurs finaux qui ont accès aux administrateurs du SCF sont au courant de ce changement.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scf-5-1-version-mineure-lundi-oct-30-février-2017">SCF 5.1 version mineure : lundi., oct 30 février 2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants : 5.1 CW Web App et 5.1 CW Tools &amp; Services quand : lundi, oct 30, 2017 @ 10-11pm impact est : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw-7">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>CWS Admin MFA : appuyez sur la touche entrée code de soumission pour MFA et corrigez le bogue, ce qui empêche le renvoi du code MFA</p>
+</li>
+<li>
+<p>Assistant d&#8217;auto-déploiement SDDC : pour GCP, demandez à l&#8217;administrateur d&#8217;utiliser un nom de VM local plutôt que de simplement être désactivé</p>
+</li>
+<li>
+<p>Assistant d&#8217;auto-déploiement SDDC : augmentez la largeur de la liste déroulante pour les fuseaux horaires</p>
+</li>
+<li>
+<p>Événements avec script : ajoutez le champ arguments à l&#8217;activité de script</p>
+</li>
+<li>
+<p>Événements avec script : ajoutez %applicationname% comme variable d&#8217;exécution pour les scripts d&#8217;événements avec script</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-outils-et-services-cw-5">5.1 Outils et services CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Adresse e-mail de l&#8217;utilisateur final : résolvez le problème avec les adresses e-mail qui ne sont pas enregistrées dans la base de données pour les utilisateurs finaux existants</p>
+</li>
+<li>
+<p>État de connexion de l&#8217;utilisateur final : correction du problème d&#8217;obtention de l&#8217;UPN de l&#8217;utilisateur final connecté</p>
+</li>
+<li>
+<p>État de connexion de l&#8217;utilisateur final dans AzureRM : prend en charge les disques gérés Azure</p>
+</li>
+<li>
+<p>Modèles : corriger le flux de travail lorsque les modèles ne sont pas correctement supprimés</p>
+</li>
+<li>
+<p>Ressources : correction du problème de conversion des anciens pools de ressources en nouveaux types d&#8217;allocation</p>
+</li>
+<li>
+<p>Rapport d&#8217;audit de fichier : corrigez le bogue qui fait que l&#8217;utilisateur est inconnu</p>
+</li>
+<li>
+<p>Windows 2016 : correctif pour s&#8217;assurer que GPO à supprimer les icônes PowerShell des espaces de travail des utilisateurs finaux est correctement appliqué</p>
+</li>
+<li>
+<p>Modifier le rapport d&#8217;allocation des ressources/ressources : erreur de correction affichée de façon incorrecte</p>
+</li>
+<li>
+<p>Rapport sur les ressources du centre de données : si l&#8217;hyperviseur n&#8217;est pas configuré pour renvoyer l&#8217;espace disque dur disponible ou le devis VM, empêchez le rapport d&#8217;afficher l&#8217;erreur</p>
+</li>
+<li>
+<p>Redémarrage mensuel du serveur d&#8217;infrastructure : scénario d&#8217;adresse lorsque les serveurs d&#8217;infrastructure ne redémarrent pas chaque mois comme prévu car ils ne pouvaient pas communiquer avec le serveur CWMGR1 en raison du redémarrage de ce serveur en cours</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="5-1-version-mineure-tues-oct-3-février-2017">5.1 version mineure : Tues., oct 3 février 2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Composants : 5.1 CW Web App et 5.1 CW Tools &amp; Services quand : Tues., oct 3, 2017 @ 10-11pm impact est : l&#8217;accès aux bureaux et aux services d&#8217;application Cloud Workspace pour les utilisateurs finaux restera ininterrompu</p>
+</div>
+<div class="sect2">
+<h3 id="5-1-application-web-cw-8">5.1 application web CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>AppServices : correction du blocage des incidents Ajout de licences pour les applications AppService</p>
+</li>
+<li>
+<p>AppServices : assurez-vous que la fonctionnalité "Ajouter une nouvelle instance" est toujours disponible pour les applications AppService</p>
+</li>
+<li>
+<p>Terminologie du pool de ressources : mettez à jour la terminologie tout en autorisant toujours l&#8217;application de la configuration du pool de ressources aux serveurs, même en l&#8217;absence de modifications : « mettre à jour » devient « appliquer aux serveurs » et « Modifier » a été remplacé par « gérer ».</p>
+</li>
+<li>
+<p>Calendrier de la charge de travail : assurez-vous que Modifier le modal s&#8217;ouvre toujours</p>
+</li>
+<li>
+<p>Calendrier des charges de travail : assurez-vous que les flèches de sélection de l&#8217;heure s&#8217;affichent toujours</p>
+</li>
+<li>
+<p>Evénements avec script : permet une sélection plus granulaire du temps</p>
+</li>
+<li>
+<p>Rapport CWS 'accès administrateur' : correction du problème entraînant la liste de plusieurs adresses IP de la colonne IP au lieu de l&#8217;adresse IP du client</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-1-outils-et-services-cw-6">5.1 Outils et services CW</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Service d&#8217;audit des fichiers : désormais désactivé de manière cohérente</p>
+</li>
+<li>
+<p>Service d&#8217;automatisation et nouveau certificat générique SSL (connexions RDP) : ordre de mise à jour des commandes pour garantir que le certificat RDP mis à jour sur la passerelle RDS est toujours actualisé (c&#8217;est-à-dire non mis en cache)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="présentation-de-la-version-initiale-du-cws-5-1">Présentation de la version initiale du CWS® 5.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Workspace Suite 5.1 est actuellement en version bêta publique à partir du troisième trimestre 2017. Cette version inclut une mise à jour des API CWS et de l&#8217;interface de contrôle Admin. La version est une mise à jour de CWS 5.0 (sortie Q4 2016) et n&#8217;est pas « rétrocompatible » avec les entités version 4.x.</p>
+</div>
+<div class="paragraph">
+<p>Une fois officiellement publié au quatrième trimestre 2017, il n&#8217;y a pas de frais de mise à niveau ni de frais de mise en oeuvre pour la transition au SCF 5.1. Les mises à niveau seront effectuées par CloudJumper en coordination avec chaque partenaire et n&#8217;interrompent pas les services existants. CWS 5.1 continue de prendre en charge toutes les fonctionnalités des versions précédentes, et étend les nouvelles fonctionnalités qui améliorent l&#8217;expérience des administrateurs et des utilisateurs finaux et améliorent encore l&#8217;automatisation et l&#8217;orchestration primées introduites avec les versions précédentes de Cloud Workspace Suite.</p>
+</div>
+<div class="paragraph">
+<p>La mise à niveau de CWS 5.1 est la plus rapide et la plus simple à ce jour en étendant et en exploitant l&#8217;architecture mise à jour et la plate-forme d&#8217;API REST introduite dans CWS 5.0. CWS 5.1 poursuit l&#8217;engagement de CloudJumper en faveur d&#8217;un environnement plus amical afin de permettre aux développeurs externes d&#8217;étendre leurs services et produits basés sur Cloud Workspace.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Le SCF 4.x atteindra la fin de vie officielle en 12.31.2017. Les partenaires qui restent sur la plate-forme CWS 4.x ne recevront plus de soutien direct pour les déploiements 4.x et aucune mise à jour 4.x ou correction de bogues supplémentaire ne sera fournie.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="points-forts-de-5-1">Points forts de 5.1 :</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prise en charge de Windows 2016 Server</p>
+</li>
+<li>
+<p>Prise en charge de l&#8217;ensemble de la pile pour Microsoft Azure Resource Manager</p>
+</li>
+<li>
+<p>Prise en charge de l&#8217;authentification unique Office 365</p>
+</li>
+<li>
+<p>MFA pour les administrateurs du Portail CWS</p>
+</li>
+<li>
+<p>Amélioration de la gestion de la collecte de provisionnement</p>
+</li>
+<li>
+<p>Automatisation et script définis par l&#8217;administrateur</p>
+</li>
+<li>
+<p>Schémas de gestion du dimensionnement des ressources</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="prise-en-charge-de-windows-2016-server">Prise en charge de Windows 2016 Server</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Prise en charge des versions de serveur Windows Server 2016 pour toutes les plates-formes prises en charge.</p>
+</li>
+<li>
+<p>Windows 2016 Server fournit l&#8217;expérience de bureau « Windows 10 » pour les utilisateurs de sessions RDS partagées et permet des options de configuration telles que l&#8217;affectation de GPU pour les applications graphiques intensives*.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="prise-en-charge-de-lensemble-de-la-pile-pour-microsoft-azure-resource-manager">Prise en charge de l&#8217;ensemble de la pile pour Microsoft Azure Resource Manager</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Microsoft nécessite une migration du modèle de licence d&#8217;utilisateur pour la clé de chiffrement classique/compte délégué vers le modèle Azure Resource Manager.</p>
+</li>
+<li>
+<p>Microsoft Azure Resource Manager est une structure qui permet aux utilisateurs de travailler avec les ressources d&#8217;une solution en tant que groupe.</p>
+</li>
+<li>
+<p>Les attributs d&#8217;authentification requis sont collectés une fois lors du déploiement du data Center Software-defined (SDDC), puis réutilisés pour d&#8217;autres activités Microsoft Azure sans avoir à recourir à une nouvelle saisie ou à une nouvelle authentification.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="prise-en-charge-de-lauthentification-unique-office-365">Prise en charge de l&#8217;authentification unique Office 365</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Microsoft Office 365 utilise un modèle d&#8217;authentification qui exige que les utilisateurs finaux saisissent des informations d&#8217;identification chaque fois qu&#8217;ils utilisent la suite bureautique sur un nouvel ordinateur ou un nouveau périphérique.</p>
+</li>
+<li>
+<p>CWS 5.1 gère ces informations d&#8217;identification à l&#8217;échelle de la batterie de serveurs de sorte que les utilisateurs finaux n&#8217;ont besoin d&#8217;une authentification que lors de leur première utilisation d&#8217;un nouvel abonnement Office 365.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="une-meilleure-gestion-de-la-collecte-de-provisionnement">Une meilleure gestion de la collecte de provisionnement</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>La configuration et la gestion des modèles d&#8217;hyperviseur pour des charges de travail prédéfinies peuvent être complexes, notamment lorsqu&#8217;elles sont réparties sur plusieurs plateformes d&#8217;hyperviseurs.</p>
+</li>
+<li>
+<p>CWS 5.1 introduit des fonctions de gestion automatisée de l&#8217;hyperviseur qui incluent la création d&#8217;instances de serveur basées sur un modèle existant ou une image VM de fournisseur de services cloud, une connexion directe au serveur créé pour l&#8217;installation d&#8217;applications à partir de CWS Web App; La création automatique de modèles/sysprep Windows à partir de l&#8217;instance de serveur configurée, ainsi que la validation des chemins d&#8217;accès aux applications et l&#8217;installation depuis CWS afin d&#8217;éliminer le besoin d&#8217;accéder directement au tableau de bord de l&#8217;hyperviseur ou du service cloud.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mfa-pour-les-administrateurs-du-portail-cws">MFA pour les administrateurs du portail CWS</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>CWS 5.1 comprend une solution d&#8217;authentification multifacteur (MFA) intégrée pour les administrateurs CWS uniquement</p>
+</li>
+<li>
+<p>Les partenaires peuvent implémenter leur propre solution MFA pour les utilisateurs finaux. Parmi les options les plus populaires, citons Duo, Auth-Anvil et Azure MF. CloudJumper publiera son propre MFA intégré pour les utilisateurs finaux au premier trimestre 2018</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="automatisation-définie-par-ladministrateur">Automatisation définie par l&#8217;administrateur</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>CWS assure une automatisation améliorée du déploiement et de la gestion pour les fournisseurs de services grâce à l&#8217;automatisation des tâches/l&#8217;exécution des scripts définie par l&#8217;administrateur.</p>
+</li>
+<li>
+<p>Grâce à cette amélioration, CWS 5.1 accélère considérablement les déploiements, simplifie la gestion et réduit les frais généraux.</p>
+</li>
+<li>
+<p>L&#8217;automatisation définie par l&#8217;administrateur CWS permettra d&#8217;installer ou de mettre à niveau des applications en fonction des événements, ce qui permet aux partenaires de déclencher des installations ou des opérations de maintenance automatisées à l&#8217;aide de cette méthode.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="schémas-de-gestion-du-dimensionnement-des-ressources">Schémas de gestion du dimensionnement des ressources</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>La fonctionnalité des ressources du SCF 5.1 améliore la capacité de faire évoluer les ressources de façon dynamique en ajoutant trois schémas de ressources supplémentaires</p>
+</li>
+<li>
+<p>Les schémas Total Users existants sont désormais complétés par trois schémas de dimensionnement de ressources supplémentaires : fixes, actifs basés sur l&#8217;utilisateur et l&#8217;activité</p>
+</li>
+<li>
+<p>Exemple : la méthode fixe prend en charge les spécifications exactes de la CPU et de la RAM.</p>
+</li>
+<li>
+<p>Tous les schémas de dimensionnement des ressources continuent de permettre une modification immédiate/forcée ou une vérification/modification automatique nocturne des ressources.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Conditions générales</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Privacy Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Paramètres de cookies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Envoyer un avis à propos de cette page</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/prism.js'></script>
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/fr-fr/virtual-desktop-service/js/www-ntap.js'></script>
+    <script src='/fr-fr/virtual-desktop-service/js/tabbed-blocks.js'></script>
+    <script src='/fr-fr/virtual-desktop-service/js/sidebar.js'></script>
+  </body></html>

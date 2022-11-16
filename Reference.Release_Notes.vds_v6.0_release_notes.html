@@ -1,0 +1,3219 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head class="at-element-marker">
+  <title>Virtual Desktop Service – notes de mise à jour de la version 6.0</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Virtual Desktop Service – notes de mise à jour de la version 6.0" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" />
+	<meta property="og:description" content="Notes de mise à jour VDS NetApp v6.0" />
+  <meta property="og:image" content="https://docs.netapp.com/fr-fr/virtual-desktop-service/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Notes de mise à jour VDS NetApp v6.0">
+  <meta name="keywords" content=" "><!-- Icons -->
+  <link rel="icon" href="/fr-fr/virtual-desktop-service/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/fr-fr/virtual-desktop-service/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/fr-fr/virtual-desktop-service/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/fr-fr/virtual-desktop-service/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/fr-fr/virtual-desktop-service/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/fr-fr/virtual-desktop-service/js/na-search.js'></script><script src='/fr-fr/virtual-desktop-service/js/na-pagenav.js'></script><script src='/fr-fr/virtual-desktop-service/js/na-utility.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/clouddocs.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/fr-fr/virtual-desktop-service/js/toc.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/fr-fr/virtual-desktop-service"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/fr-fr/virtual-desktop-service/js/custom-dropdown.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/FileSaver.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jszip-utils.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jszip.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service/issues/new?body=Page%3A%20[Virtual Desktop Service – notes de mise à jour de la version 6.0](https://docs.netapp.com/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/fr-fr/virtual-desktop-service/images/discuss-sm.svg" alt="" class="github-icon" />Demander de modifier un document</a><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service/blob/main/sub.Reference.Release_Notes.vds_v6.0_release_notes.adoc" class="page-nav-contribute-link" role="button"><img src="/fr-fr/virtual-desktop-service/images/edit-sm.svg" alt="" class="github-icon" />Modifier sur GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/fr-fr/virtual-desktop-service/images/article-sm.svg" alt="" class="github-icon" />Guide des contributeurs</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">SUR CETTE PAGE</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Produits et solutions</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Support et formation</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Communauté</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Témoignages clients</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/fr-fr/virtual-desktop-service/search.html"
+          data-type="widget" 
+          data-placeholder="Rechercher une documentation"
+          data-no-results-found="Aucun résultat n'a été trouvé pour {query}"
+          data-did-you-mean="Rechercher {suggestion}."
+          data-no-results-found-did-you-mean="Aucun résultat n’a été trouvé pour {query}. Voulez-vous dire {suggestion} ?"
+          data-results-found="{hitCount} résultats trouvés"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Français</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/fr-fr/virtual-desktop-service/images/collapse.png" alt="Réduire le panneau de navigation"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDFs disponibles<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/fr-fr/virtual-desktop-service/pdfs/fullsite-sidebar/Documentation_sur_Virtual_Desktop_Service.pdf" >
+          <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDF de ce site de documentation</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Déploiement_avec_VDS.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Déploiement avec VDS
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Azure_Virtual_Desktop.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Azure Virtual Desktop
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Google.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Google
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Architecture.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Architecture
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Changer_la_couche_de_données.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Changer la couche de données
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Gestion.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Gestion
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/De_nombreux_déploiements.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            De nombreux déploiements
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/En_termes_de_latence.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            En termes de latence
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Événements_avec_script.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Événements avec script
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Centre_de_commande.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Centre de commande
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Exploitation.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Exploitation
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Administration_des_utilisateurs.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Administration des utilisateurs
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Administration_de_système.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Administration de système
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Dépannage.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Dépannage
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Notes_de_mise_à_jour.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Notes de mise à jour
+          </a>
+          
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Versions_précédentes.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Versions précédentes
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Documentation_de_la_bibliothèque_de_scripts.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Documentation de la bibliothèque de scripts
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Avancé.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Avancé
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Vidéos_NetApp_VDS_v5_4.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Vidéos NetApp VDS v5.4
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/fr-fr/virtual-desktop-service/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Collection de documents PDF séparés<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation de Virtual Desktop Service"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/index.html">
+        Documentation de Virtual Desktop Service
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement avec VDS"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Déploiement avec VDS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure Virtual Desktop"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure Virtual Desktop</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement d'AVD dans Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.Deploying_AVD_in_Azure.html">
+        Déploiement d'AVD dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supplémentaire - AVD avec AD existant"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html">
+        Supplémentaire - AVD avec AD existant
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Composants et autorisations VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html">
+        Composants et autorisations VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Conditions préalables VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_prerequisites.html">
+        Conditions préalables VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prérequis VDS v6.0 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v6.0_prerequisites.html">
+        Prérequis VDS v6.0 (AVD)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Google</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement de RDS dans Google"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.GCP.RDS.deploying_rds_in_gcp.html">
+        Déploiement de RDS dans Google
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prérequis VDS v5.4 (RDS/GCP)"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.GCP.vds_v5.4_prerequisites.html">
+        Prérequis VDS v5.4 (RDS/GCP)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Architecture"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Architecture</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Changer la couche de données"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/fr-fr/virtual-desktop-service/Architectural.change_data_layer.html">
+        <div class="na-navbar-padding"> Changer la couche de données</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure Files"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.change_data_layer.Azure_Files.html">
+        Azure Files
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Migration des données dans VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.migrate_data_into_vds.html">
+        Migration des données dans VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à niveau AVD v1 vers v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Mettez à niveau AVD v1 vers v2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Renouveler le certificat SSL"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.Wildcard_SSL_certificate_renewal_process.html">
+        Renouveler le certificat SSL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Guide de démontage VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.AVD_teardown_guide.html">
+        Guide de démontage VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gestion</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="De nombreux déploiements"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> De nombreux déploiements</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Provisionnement des Collections"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Deployments.provisioning_collections.html">
+        Provisionnement des Collections
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation de la hiérarchie logique VDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Deployments.logical_hierarchy_overview.html">
+        Présentation de la hiérarchie logique VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En termes de latence"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> En termes de latence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Droits d'application pour RDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Droits d'application pour RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Droits d'application pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.AVD_application_entitlement_workflow.html">
+        Droits d'application pour AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Événements avec script"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Événements avec script</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vue d'ensemble des événements avec script"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Scripted_Events.scripted_events.html">
+        Vue d'ensemble des événements avec script
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Centre de commande"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Centre de commande</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation du centre de commande de gestion"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.command_center.overview.html">
+        Présentation du centre de commande de gestion
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Exploitation"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Exploitation</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copier le modèle dans la galerie"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.command_center.operations.copy_template_to_gallery.html">
+        Copier le modèle dans la galerie
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer l'optimisation des coûts"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Cost_Optimization.workload_schedule.html">
+        Configurer l'optimisation des coûts
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration des utilisateurs"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration des utilisateurs</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les comptes d'utilisateurs"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.manage_user_accounts.html">
+        Gérer les comptes d'utilisateurs
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les dossiers et les autorisations"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.manage_folders_and_permissions.html">
+        Gérer les dossiers et les autorisations
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer l'accès aux applications"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Gérer l'accès aux applications
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Réinitialiser les mots de passe utilisateur"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.reset_user_password.html">
+        Réinitialiser les mots de passe utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer MFA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.multi-factor_authentication.html">
+        Configurer MFA
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration de système"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration de système</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créer un compte administrateur de domaine"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.create_domain_admin_account.html">
+        Créer un compte administrateur de domaine
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Accès tiers"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.provide_3rd_party_access.html">
+        Accès tiers
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer la sauvegarde"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.configure_backup.html">
+        Configurer la sauvegarde
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloner des machines virtuelles"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.clone_virtual_machines.html">
+        Cloner des machines virtuelles
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajout automatique d'espace disque"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.auto_add_disk_space.html">
+        Ajout automatique d'espace disque
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Coffre-fort de clés Azure"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.azure_key_vault.html">
+        Coffre-fort de clés Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez antivirus"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.configure_antivirus.html">
+        Configurez antivirus
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajout et déplacement de lecteurs mappés"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.adding_moving_mapped_drives.html">
+        Ajout et déplacement de lecteurs mappés
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dépannage"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Dépannage</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vérification des journaux VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.reviewing_vds_logs.html">
+        Vérification des journaux VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Qualité de connexion Internet"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.internet_connection_quality.html">
+        Qualité de connexion Internet
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activer le fond d'écran utilisateur"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.enable_user_wallpaper.html">
+        Activer le fond d'écran utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes d'impression"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.printing_issues.html">
+        Problèmes d'impression
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quota de cœur de vCPU Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.azure_vcpu_core_quota.html">
+        Quota de cœur de vCPU Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déverrouiller le compte utilisateur"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.unlocking_user_accounts.html">
+        Déverrouiller le compte utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Performances générales des machines virtuelles"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.general_vm_performance.html">
+        Performances générales des machines virtuelles
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Le transfert DNS pour Azure AJOUTE SSO"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.dns_forwarding_for_azure_aadds_sso.html">
+        Le transfert DNS pour Azure AJOUTE SSO
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes d'application"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.application_issues.html">
+        Problèmes d'application
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Référence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Notes de mise à jour</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de version VDS v6.0"
+      data-li-level="3#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html">
+        Notes de version VDS v6.0
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour VDS v5.4"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v5.4_release_notes.html">
+        Notes de mise à jour VDS v5.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour du client Windows VDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_windows_client_release_notes.html">
+        Notes de mise à jour du client Windows VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versions précédentes"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Versions précédentes</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour VDS v5.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v5.3_release_notes.html">
+        Notes de mise à jour VDS v5.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de version CWMS v5.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cwms_v5.2_release_notes.html">
+        Notes de version CWMS v5.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour CWS v5.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html">
+        Notes de mise à jour CWS v5.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour CWS v5.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.0_release_notes.html">
+        Notes de mise à jour CWS v5.0
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Accès des utilisateurs finaux"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.end_user_access.html">
+        Accès des utilisateurs finaux
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Environnements de modification VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.vds_change_environments.html">
+        Environnements de modification VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation de la bibliothèque de scripts"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Documentation de la bibliothèque de scripts</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Adobe Reader DC"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AdobeReader.html">
+        Adobe Reader DC
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes AMD Radeon instinct"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AMDRadeonInstinctDrivers.html">
+        Pilotes AMD Radeon instinct
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Application Ezeep Print"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.EzeepPrintApp.html">
+        Application Ezeep Print
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google Chrome"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.GoogleChrome.html">
+        Google Chrome
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Edge Chromium"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftEdgeChromium.html">
+        Microsoft Edge Chromium
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Office 365"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftOffice365.html">
+        Microsoft Office 365
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lecteur Microsoft unique"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftOneDrive.html">
+        Lecteur Microsoft unique
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Équipes Microsoft"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftTeams.html">
+        Équipes Microsoft
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Teams pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftTeamsAVD.html">
+        Microsoft Teams pour AVD
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes NVIDIA CUDA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.NvidiaCudaDrivers.html">
+        Pilotes NVIDIA CUDA
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes NVIDIA Grid"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.NvidiaGridDrivers.html">
+        Pilotes NVIDIA Grid
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Protection de capture d'écran AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AVDScreenCaptureProtection.html">
+        Protection de capture d'écran AVD
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Zoom pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.ZoomVDI-AVD.html">
+        Zoom pour AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avancé"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Avancé</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rétrécissement profil FSLogix"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Advanced.fslogix_profile_shrink.html">
+        Rétrécissement profil FSLogix
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vidéos NetApp VDS v5.4"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Vidéos NetApp VDS v5.4</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contenu NetApp TV"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_content_netapptv.html">
+        Contenu NetApp TV
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déployer AVD ou RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVDRDS_deploy_54.html">
+        Déployer AVD ou RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajoutez le pool hôte AVD dans Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVD_hostpool_54.html">
+        Ajoutez le pool hôte AVD dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les utilisateurs AVD et les groupes d'applications"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVD_users_appgroups_54.html">
+        Gérer les utilisateurs AVD et les groupes d'applications
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des ressources et réduction des coûts"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVDRDS_optimize_resources_54.html">
+        Gestion des ressources et réduction des coûts
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Automatisation de la gestion des applications pour AVD et RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_VDS_day_in_the_life.html">
+        Automatisation de la gestion des applications pour AVD et RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à niveau le pool hôte AVD v1 vers v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Mettez à niveau le pool hôte AVD v1 vers v2
+      </a></li></ul></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/fr-fr/virtual-desktop-service/images/expand.png" alt="Développer le panneau de navigation"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/fr-fr/virtual-desktop-service/">Virtual&nbsp;Desktop&nbsp;Service</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> La version française est une traduction automatique. La version anglaise prévaut sur la française en cas de divergence. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Virtual Desktop Service – notes de mise à jour de la version 6.0</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-11-16 12:37:10 +0000">11/16/2022</time>
+    
+  
+
+<span>Contributeurs
+</span>
+
+
+</p>
+
+<div class="sect1">
+<h2 id="version-6-vds-jeudi-6-février-2022">Version 6 VDS : jeudi 6 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Performance automatisation des données rotation annuelle des clés</p>
+</li>
+<li>
+<p>Ce cycle de lancement incluait la rotation annuelle de jetons d&#8217;accès automatisé pour le service de données de performances VDS fourni par Cloud Insights. Cette modification n&#8217;a pas eu d&#8217;impact important sur les utilisateurs finaux ou l&#8217;accès administrateur dans l&#8217;application Web VDS.</p>
+</li>
+<li>
+<p>FsLogix réduire l&#8217;action du conteneur supprimé des actions quotidiennes</p>
+</li>
+<li>
+<p>L&#8217;action FsLogix Shrink Container ne s&#8217;effectuera désormais que sur une base hebdomadaire, généralement le dimanche 12 h 01 heure locale</p>
+</li>
+<li>
+<p>Défaut résolu : les références de nom en double dans la table du serveur VDS provoaient une erreur des actions quotidiennes</p>
+</li>
+<li>
+<p>L&#8217;automatisation VDS traite désormais correctement les actions quotidiennes pour le nom du serveur, ce qui empêche l&#8217;erreur qui a arrêté le traitement.</p>
+</li>
+<li>
+<p>Application Web VDS (versions antérieures à v6) – supprime l&#8217;option Supprimer le datacenter pour les comptes d&#8217;administration non autorisés</p>
+</li>
+<li>
+<p>Cette modification nécessite une autorisation de modification au niveau du centre de données et supprime l&#8217;option de suppression pour tous les autres comptes d&#8217;utilisateur administrateur.</p>
+</li>
+<li>
+<p>Amélioration de l&#8217;interface utilisateur : ajout d&#8217;une boîte de dialogue de confirmation lors de la suppression d&#8217;objets de pool d&#8217;hôtes AVD</p>
+</li>
+<li>
+<p>Défaut résolu : erreur lors du chargement des données du journal depuis les déploiements dans certains scénarios</p>
+</li>
+<li>
+<p>Fonction : prise en charge du plan de contrôle local pour l&#8217;API REST vCloud Director v35</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-6-de-vds-jeudi-sept-22-février-2022">Version 6 de VDS : jeudi, sept 22 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-2">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Défaut résolu – corriger pour le cas de bord lors de la réduction des conteneurs de profil FSLogix</p>
+</li>
+<li>
+<p>VDS réduit désormais correctement les conteneurs de profil dans les espaces de travail en utilisant le stockage Azure Files</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-vendredi-sept-9-février-2022">Version VDS v6 : vendredi, sept 9 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-3">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Défaut résolu - le profil FSLogix rétrécir ne fonctionne pas dans les cas de bord</p>
+</li>
+<li>
+<p>Dans certaines configurations d&#8217;espace de travail/de répertoire rares, l&#8217;automatisation de réduction du conteneur de profils FSLogix dans VDS n&#8217;a pas pu s&#8217;exécuter correctement</p>
+</li>
+<li>
+<p>Fonctionnalité : configurez automatiquement de nouveaux locataires d&#8217;infrastructure convergée pour les déploiements</p>
+</li>
+<li>
+<p>VDS déploie désormais automatiquement les informations de compte Cloud Insights nouvelles/mises à jour sur les ressources des locataires et élimine la nécessité de réaliser des étapes de configuration manuelles</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-thurs-août-25-février-2022">Version de VDS v6 : Thurs., août 25 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-4">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Défaut résolu : l&#8217;option permettant de désactiver l&#8217;accès administrateur pour un utilisateur d&#8217;espace de travail est manquante</p>
+</li>
+<li>
+<p>VDS affiche désormais une option permettant de désactiver l&#8217;accès administrateur pour un utilisateur Workspace qui a précédemment reçu l&#8217;accès à l&#8217;administration de l&#8217;espace de travail</p>
+</li>
+<li>
+<p>Défaut résolu : impossible d&#8217;ajouter un groupe d&#8217;applications au pool d&#8217;hôtes AVD</p>
+</li>
+<li>
+<p>VDS gère désormais correctement les cas de périphérie où un pool hôte AVD et un espace de travail deviennent incompatibles</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-thurs-août-11-février-2022">Version de VDS v6 : Thurs., août 11 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-5">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Aucune mise à jour</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-jeudi-juillet-28-février-2022">Version V6 VDS : jeudi, juillet 28 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-6">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Supprimez le lien « bac de stockage pour sandbox » de la page de connexion VDS</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-jeudi-juillet-14-février-2022">Version V6 VDS : jeudi, juillet 14 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-7">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Fonctionnalité - Nouveau paramètre facultatif permettant de configurer la période de rétention de la table de suivi de l&#8217;activité des utilisateurs</p>
+</li>
+<li>
+<p>VDS permet désormais la configuration dans les composants du plan de contrôle local afin de contrôler la période de rétention de la journalisation des activités utilisateur indépendamment des autres journaux</p>
+</li>
+<li>
+<p>Fonction - permet de définir les hôtes de session AVD pour utiliser le paramètre de licence hybride par défaut</p>
+</li>
+<li>
+<p>VDS crée désormais de nouveaux hôtes de session AVD à l&#8217;aide du paramètre par défaut « octroi de licence hybride »</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-thurs-juin-23-février-2022">Version V6 VDS : Thurs., juin 23 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-8">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Défaut résolu : erreur dans l&#8217;application Web VDS lors de la tentative de modification d&#8217;un événement script</p>
+</li>
+<li>
+<p>VDS traite désormais correctement un problème de sensibilité à la casse lors de la modification d&#8217;objets d&#8217;événement avec script</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-thurs-juin-9-février-2022">Version V6 VDS : Thurs., juin 9 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-9">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Aucune mise à jour</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-26-mai-2022">Version de VDS v6 : jeudi 26 mai 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-10">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Aucune mise à jour</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-12-mai-2022">Version de VDS v6 : jeudi 12 mai 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-11">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Aucune mise à jour</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-lundi-2-mai-2022">Version VDS v6 : lundi 2 mai 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> 10pm - 11pm Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-12">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Aucune mise à jour</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-thurs-avr-28-février-2022">Version V6 VDS : Thurs., avr 28 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 28 avril 2022 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux ordinateurs de bureau et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-13">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Nombreuses améliorations proactives en matière de sécurité et corrections de bogues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-thurs-avr-14-février-2022">Version V6 VDS : Thurs., avr 14 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 14 avril 2022 à 23:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-14">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Nombreuses améliorations proactives en matière de sécurité et corrections de bogues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-thurs-mars-31-février-2022">Version V6 VDS : Thurs., mars 31 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 31 mars 2022 à 23:00 Eastern <em>impact:</em> l&#8217;accès aux bureaux et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-15">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Nombreuses améliorations proactives en matière de sécurité et corrections de bogues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-thurs-mars-17-février-2022">Version V6 VDS : Thurs., mars 17 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 17 mars 2022 à 23:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-16">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Nombreuses améliorations proactives en matière de sécurité et corrections de bogues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-v6-vds-thurs-mars-3-février-2022">Version V6 VDS : Thurs., mars 3 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 3 mars 2022 à 23:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-17">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Amélioration de l&#8217;expérience lors de la déconnexion d&#8217;un serveur après utilisation de la fonction connexion au serveur</p>
+</li>
+<li>
+<p>Nombreuses améliorations proactives en matière de sécurité et corrections de bogues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-17-février-2022">Version de VDS v6 : jeudi 17 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 17 février 2022 à 23:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-18">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduction des instances d&#8217;application, permettant une gestion améliorée des différentes versions et éditions du même logiciel</p>
+</li>
+<li>
+<p>Nombreuses améliorations proactives en matière de sécurité et corrections de bogues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-3-février-2022">Version de VDS v6 : jeudi 3 février 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 3 février 2022 de 22h à 23h Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-19">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Amélioration de la recherche d&#8217;itinérance de profil pour VDMS</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-20-janvier-2022">Version de VDS v6 : jeudi 20 janvier 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 20 janvier 2022 de 22 h à 23 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;applications pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-20">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de bug pour un problème de redirection de lien avec l&#8217;outil ACE (Azure Cost Estimateur)</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-jeudi-6-janvier-2022">Version VDS v6 : jeudi 6 janvier 2022</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 6 janvier 2022 de 22h à 23h Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-21">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Présenter le rapport de réinitialisation des mots de passe en libre-service à la fois pour les partenaires et les sous-partenaires</p>
+</li>
+<li>
+<p>Correction d&#8217;un problème d&#8217;autorisation Azure unique au début du processus de déploiement.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-16-décembre-2021">Version de VDS v6 : jeudi 16 décembre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 16 décembre 2021 de 22h à 23h Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-22">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Améliorations apportées aux transmissions de messages SMS secondaires pour MFA si le fournisseur de SMS principal n&#8217;est pas disponible</p>
+</li>
+<li>
+<p>Mise à jour du certificat utilisé pour le client VDS pour Windows</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-2-décembre-2021-aucun-changement-prévu">Version de VDS v6 : jeudi 2 décembre 2021 - aucun changement prévu</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 2 décembre 2021 de 22h à 23h Eastern <em>impact:</em> aucun</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="hotfix-vds-v6-jeudi-18-novembre-2021">Hotfix VDS v6 : jeudi 18 novembre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 18 novembre 2021 de 22h à 23h Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-23">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de bug pour un problème PAM où AAD est basé sur AADDS</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="correctif-vds-v6-lundi-8-novembre-2021">Correctif VDS v6 : lundi 8 novembre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> lundi 8 novembre 2021 de 22h à 23h Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;applications pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-24">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Activez la boîte de discussion dans l&#8217;interface utilisateur VDS pour tous les utilisateurs</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug pour une combinaison unique de sélections de déploiement</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-dimanche-7-novembre-2021">Version VDS v6 : dimanche 7 novembre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> Sunday 7 November 2021 at 22h – 23h Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-25">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduire une option Command Center pour désactiver la réduction automatisée des profils FSLogix</p>
+</li>
+<li>
+<p>Correction des bogues pour PAM lorsque le déploiement utilise Azure Active Directory Domain Services (AADDS)</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="outil-destimation-des-coûts-azure">Outil d&#8217;estimation des coûts Azure</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Services mis à jour disponibles dans diverses régions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-jeudi-21-octobre-2021">Version VDS v6 : jeudi 21 octobre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 21 octobre 2021 à 22h, Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-26">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduire une option Command Center pour désactiver la réduction automatisée des profils FSLogix</p>
+</li>
+<li>
+<p>Améliorations apportées à un rapport de nuit illustrant l&#8217;emplacement de montage des profils FSLogix</p>
+</li>
+<li>
+<p>Mettre à jour la série/taille de VM par défaut utilisée pour CWMGR1 (la VM de la plate-forme) dans la région de l&#8217;Azure US South Central vers D2S v4</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-jeudi-7-octobre-2021">Version VDS v6 : jeudi 7 octobre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 7 octobre 2021 à 22h, Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-27">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de bug pour un scénario dans lequel une configuration spécifique de collecte de provisionnement n&#8217;était pas enregistrée correctement</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-jeudi-23-septembre-2021">Version VDS v6 : jeudi 23 septembre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 23 septembre 2021 à 22h, Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-28">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Mise à jour vers PAM pour une intégration avec les déploiements basés sur AADDS</p>
+</li>
+<li>
+<p>Affichez les URL RemoteApp dans le module Workspace pour les déploiements non AVD</p>
+</li>
+<li>
+<p>Correction de bug pour un scénario où un utilisateur final est administrateur dans une configuration Active Directory spécifique sur site</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-jeudi-9-septembre-2021">Version VDS v6 : jeudi 9 septembre 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 9 septembre 2021 à 22h, Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-29">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-de-vds-v6-jeudi-26-août-2021">Version de VDS v6 : jeudi 26 août 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 26 août 2021 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-30">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Mettez à jour l&#8217;URL placée sur le bureau d&#8217;un utilisateur lorsqu&#8217;il a accès à l&#8217;interface utilisateur de gestion VDS</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-jeudi-12-août-2021">Version VDS v6 : jeudi 12 août 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 12 août 2021 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-31">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Améliorations apportées aux fonctionnalités et au contexte Cloud Insights</p>
+</li>
+<li>
+<p>Amélioration de la gestion de la fréquence des planifications de sauvegarde</p>
+</li>
+<li>
+<p>Correction des bogues - résolvez un problème pour le service CwVmAutomation vérification de la configuration au redémarrage du service</p>
+</li>
+<li>
+<p>Correction de bug : permet de résoudre un problème pour DCConifg qui n&#8217;autorise pas l&#8217;enregistrement de configurations dans certains scénarios</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="vds-v6-hotfix-mardi-30-juillet-2021">VDS v6 hotfix : mardi 30 juillet 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> Vendredi 30 juillet 2021 à 19:00 à 20:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-32">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Mise à jour des modèles de déploiement pour faciliter l&#8217;amélioration de l&#8217;automatisation</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-v6-jeudi-29-juillet-2021">Version VDS v6 : jeudi 29 juillet 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> jeudi 29 juillet 2021 à 22 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-33">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction des bogues : permet de résoudre un problème pour les déploiements VMware où CWAgent n&#8217;a pas été installé comme prévu</p>
+</li>
+<li>
+<p>Correction de bogues : permet de résoudre un problème pour les déploiements VMware où la création d&#8217;un serveur avec le rôle de données ne fonctionnait pas comme prévu</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="vds-v6-hotfix-mardi-20-juillet-2021">VDS v6 hotfix : mardi 20 juillet 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> Virtual Desktop Service v6 <em>when:</em> Mardi 20 juillet 2021 à 22 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;applications pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-34">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Résolvez un problème entraînant une quantité anormalement élevée de trafic API dans une certaine configuration</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-15-juillet-2021">Version VDS 6.0 : jeudi 15 juillet 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 15 juillet 2021 à 22 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-35">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Amélioration de l&#8217;intégration Cloud Insights : capture des mesures de performance par utilisateur et affichage dans le contexte utilisateur</p>
+</li>
+<li>
+<p>Améliorations de l&#8217;automatisation du provisionnement ANF : enregistrement automatisé amélioré de NetApp en tant que fournisseur dans le locataire Azure du client</p>
+</li>
+<li>
+<p>Réglage de la formulation lors de la création d&#8217;un espace de travail AVD</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-24-juin-2021">Version VDS 6.0 : jeudi 24 juin 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 4 juin 2021 à 22 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/note.svg" alt="Note">
+</td>
+<td class="content">
+La prochaine version de VDS sera prévue vers le 4 juillet 7 le jeudi 15.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-36">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Mises à jour reflétant le fait que Windows Virtual Desktop (WVD) est désormais Azure Virtual Desktop (AVD)</p>
+</li>
+<li>
+<p>Correction de bug pour le formatage du nom d&#8217;utilisateur dans les exportations Excel</p>
+</li>
+<li>
+<p>Configurations améliorées pour les pages de connexion HTML5 personnalisées</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="estimateurs-de-coûts">Estimateurs de coûts</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Mises à jour reflétant le fait que Windows Virtual Desktop (WVD) est désormais Azure Virtual Desktop (AVD)</p>
+</li>
+<li>
+<p>Les mises à jour pour refléter le nombre plus élevé de services/machines virtuelles de processeur graphique disponibles dans de nouvelles régions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-10-juin-2021">Version VDS 6.0 : jeudi 10 juin 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 10 juin 2021 à 22 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-37">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduction d&#8217;une passerelle/point d&#8217;accès HTML5 supplémentaire pour les VM</p>
+</li>
+<li>
+<p>Amélioration du routage utilisateur après la suppression d&#8217;un pool hôte</p>
+</li>
+<li>
+<p>Correction de bug pour un scénario dans lequel l&#8217;importation d&#8217;un pool d&#8217;hôtes non géré ne fonctionnait pas comme prévu</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-10-juin-2021-2">Version VDS 6.0 : jeudi 10 juin 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 10 juin 2021 à 22 h Hest <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="améliorations-techniques">Améliorations techniques :</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Mettez à jour la version de .NET Framework installée sur chaque machine virtuelle de la version 4.7.2 à la version 4.8.0</p>
+</li>
+<li>
+<p>Exécution dorsale supplémentaire de l&#8217;utilisation de https:// et TLS 1.2 ou plus entre l&#8217;équipe du plan de contrôle local et toute autre entité</p>
+</li>
+<li>
+<p>Correction de bug pour l&#8217;opération de suppression de sauvegarde dans le Command Center – ceci fait désormais référence correctement au fuseau horaire de CWMGR1</p>
+</li>
+<li>
+<p>Renommez l&#8217;action Command Center du partage de fichiers Azure dans le partage de fichiers Azure</p>
+</li>
+<li>
+<p>Nommer les mises à jour des conventions dans Azure Shared image Gallery</p>
+</li>
+<li>
+<p>Amélioration du nombre de connexions utilisateur simultanées</p>
+</li>
+<li>
+<p>Mise à jour vers le trafic sortant autorisé à partir de CWMGR1, si le trafic sortant est restreint à partir de la machine virtuelle CWMGR1</p>
+</li>
+<li>
+<p>Si vous ne limitez pas le trafic sortant à partir de CWMGR1, vous n&#8217;avez pas à effectuer de mise à jour ici</p>
+</li>
+<li>
+<p>Si vous limitez le trafic sortant de CWMGR1, veuillez autoriser l&#8217;accès à vdctoolsapiprimary.azurewebsites.net. Remarque : vous n&#8217;avez plus besoin d&#8217;autoriser l&#8217;accès à vdctoolsapi.trafficmanager.net.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="améliorations-du-déploiement">Améliorations du déploiement :</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Posez la base de la prise en charge future des préfixes personnalisés dans les noms de serveurs</p>
+</li>
+<li>
+<p>Amélioration de l&#8217;automatisation des processus et de la redondance pour les déploiements Azure</p>
+</li>
+<li>
+<p>De nombreuses améliorations de l&#8217;automatisation des déploiements pour Google Cloud Platform</p>
+</li>
+<li>
+<p>Prise en charge de Windows Server 2019 dans les déploiements Google Cloud Platform</p>
+</li>
+<li>
+<p>Correction de bug pour un sous-ensemble de scénarios où l&#8217;image EBD Windows 10 20H2</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="améliorations-de-la-prestation-de-services">Améliorations de la prestation de services :</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Présente l&#8217;intégration d&#8217;Cloud Insights, assurant le flux de données de performance pour l&#8217;expérience utilisateur et les couches de stockage et de machines virtuelles</p>
+</li>
+<li>
+<p>Présente une fonction qui vous permet de naviguer rapidement vers une page VDS récemment visitée</p>
+</li>
+<li>
+<p>Amélioration considérable des temps de chargement de listes (utilisateurs, groupes, serveurs, applications, etc.) pour les déploiements Azure</p>
+</li>
+<li>
+<p>Présente la possibilité d&#8217;exporter facilement des listes d&#8217;utilisateurs, de groupes, de serveurs, d&#8217;administrateurs, de rapports, etc</p>
+</li>
+<li>
+<p>Introduit la possibilité de contrôler les méthodes MFA VDS disponibles pour les clients (le client préfère les e-mails par rapport aux SMS, par exemple)</p>
+</li>
+<li>
+<p>Introduit des champs « de » personnalisables pour les e-mails de réinitialisation de mot de passe en libre service VDS</p>
+</li>
+<li>
+<p>Introduit l&#8217;option pour autoriser uniquement les e-mails de réinitialisation de mot de passe en libre-service VDS à accéder aux domaines spécifiés (propriété de la société vs personnel, par exemple)</p>
+</li>
+<li>
+<p>Introduit une mise à jour qui invite l&#8217;utilisateur à ajouter son e-mail à son compte afin qu&#8217;il puisse l&#8217;utiliser ou réinitialiser le mot de passe MFA/self-service</p>
+</li>
+<li>
+<p>Lorsque vous démarrez un déploiement arrêté, démarrez également toutes les machines virtuelles au sein du déploiement</p>
+</li>
+<li>
+<p>Amélioration des performances pour déterminer quelle adresse IP attribuer aux nouvelles machines virtuelles Azure</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-27-mai-2021">Version VDS 6.0 : jeudi 27 mai 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 27 mai 2021 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;applications pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-38">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Présentation de Start On Connect pour les hôtes de session en pool dans les pools hôtes AVD</p>
+</li>
+<li>
+<p>Introduire les mesures des performances utilisateur via l&#8217;intégration Cloud Insights</p>
+</li>
+<li>
+<p>Affichez l&#8217;onglet serveurs plus en évidence dans le module espaces de travail</p>
+</li>
+<li>
+<p>Permettre la restauration d&#8217;une machine virtuelle via Azure Backup si la machine virtuelle a été supprimée de VDS</p>
+</li>
+<li>
+<p>Amélioration de la gestion de la fonctionnalité de connexion au serveur</p>
+</li>
+<li>
+<p>Amélioration de la gestion des variables lors de la création et de la mise à jour automatiques des certificats</p>
+</li>
+<li>
+<p>Correction de bug pour un problème où le fait de cliquer sur un X dans un menu déroulant n&#8217;a pas permis d&#8217;effacer la sélection comme prévu</p>
+</li>
+<li>
+<p>Fiabilité améliorée et gestion automatique des erreurs pour les messages SMS</p>
+</li>
+<li>
+<p>Mise à jour du rôle d&#8217;assistance utilisateur : il est désormais possible de mettre fin aux processus d&#8217;un utilisateur connecté</p>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-13-mai-2021">Version VDS 6.0 : jeudi 13 mai 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 13 mai 2021 à 22 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-39">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduction de propriétés supplémentaires de pool hôte AVD</p>
+</li>
+<li>
+<p>Renforcer la résilience de l&#8217;automatisation dans les déploiements Azure en cas de problèmes de services back-end</p>
+</li>
+<li>
+<p>Incluez le nom du serveur dans le nouvel onglet du navigateur lors de l&#8217;utilisation de la fonction connexion au serveur</p>
+</li>
+<li>
+<p>Affiche la quantité d&#8217;utilisateurs dans chaque groupe</p>
+</li>
+<li>
+<p>Résilience améliorée pour la fonctionnalité de connexion au serveur dans tous les déploiements</p>
+</li>
+<li>
+<p>Améliorations supplémentaires de la définition des options MFA pour les organisations et les utilisateurs finaux</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Si le SMS est défini comme la seule option MFA disponible, vous avez besoin d&#8217;un numéro de téléphone mais pas d&#8217;une adresse e-mail</p>
+</li>
+<li>
+<p>Si l&#8217;e-mail est défini comme la seule option MFA disponible, vous avez besoin d&#8217;une adresse e-mail mais pas d&#8217;un numéro de téléphone</p>
+</li>
+<li>
+<p>Si les SMS et les e-mails sont définis comme options pour MFA, vous avez besoin d&#8217;une adresse e-mail et d&#8217;un numéro de téléphone</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Amélioration de la clarté : supprimez la taille d&#8217;un snapshot Azure Backup, car Azure ne renvoie pas la taille de l&#8217;instantané</p>
+</li>
+<li>
+<p>Ajoutez la possibilité de supprimer un snapshot dans des environnements autres que Azure</p>
+</li>
+<li>
+<p>Correction de bug pour la création de pool hôte AVD lors de l&#8217;utilisation de caractères spéciaux</p>
+</li>
+<li>
+<p>Résolution de bug pour la planification de la charge de travail du pool hôte via l&#8217;onglet Ressources</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug pour une invite d&#8217;erreur qui s&#8217;affiche lors de l&#8217;annulation d&#8217;une importation d&#8217;utilisateur groupée</p>
+</li>
+<li>
+<p>Correction de bug pour un scénario possible avec des paramètres d&#8217;application ajoutés à une collection de provisioning</p>
+</li>
+<li>
+<p>Mise à jour vers l&#8217;adresse e-mail envoi de notifications/messages – les messages sont désormais envoyés à partir du site <a href="mailto:noreply@vds.netapp.com">noreply@vds.netapp.com</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Les clients qui utilisent les adresses e-mail entrantes de sécurité doivent ajouter cette adresse e-mail</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-29-avril-2021">Version VDS 6.0 : jeudi 29 avril 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 29 avril 2021 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-40">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Présentation de la fonction Démarrer sur Connect pour les pools hôtes AVD personnels</p>
+</li>
+<li>
+<p>Présenter le contexte de stockage dans le module Workspace</p>
+</li>
+<li>
+<p>Présenter la surveillance du stockage (Azure NetApp Files) via l&#8217;intégration d&#8217;Cloud Insights</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Le contrôle des IOPS</p>
+</li>
+<li>
+<p>Contrôle de la latence</p>
+</li>
+<li>
+<p>Contrôle de la capacité</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Journalisation améliorée des actions de clonage des VM</p>
+</li>
+<li>
+<p>Résolution de bogues pour un scénario de planification de charge de travail spécifique</p>
+</li>
+<li>
+<p>Correction de bug pour ne pas afficher le fuseau horaire d&#8217;une VM dans un scénario donné</p>
+</li>
+<li>
+<p>Correction de bug pour ne pas déconnecter un utilisateur AVD dans un certain scénario</p>
+</li>
+<li>
+<p>Mises à jour visant à générer automatiquement des e-mails afin d&#8217;intégrer la marque NetApp</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="vds-6-0-correctif-vendredi-16-avril-2021">VDS 6.0 correctif: Vendredi 16 avril 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> Vendredi 16 avril 2021 à 22 h (heure de l&#8217;est) <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;applications pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-41">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Résolution d&#8217;un problème avec la création automatique de certificats qui se produit après la mise à jour de la nuit dernière, ce qui a amélioré la gestion automatisée des certificats</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-15-avril-2021">Version VDS 6.0 : jeudi 15 avril 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 15 avril 2021 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-42">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Améliorations de l&#8217;intégration Cloud Insights :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Trames ignorées – Ressources réseau insuffisantes</p>
+</li>
+<li>
+<p>Trames ignorées – Ressources client insuffisantes</p>
+</li>
+<li>
+<p>Trame ignorée – Ressources serveur insuffisantes</p>
+</li>
+<li>
+<p>Disque du système d&#8217;exploitation – lecture d&#8217;octets</p>
+</li>
+<li>
+<p>Disque du système d&#8217;exploitation – écrire des octets</p>
+</li>
+<li>
+<p>Disque de l&#8217;OS – lecture d&#8217;octets/seconde</p>
+</li>
+<li>
+<p>Disque du système d&#8217;exploitation – écrire des octets/seconde</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Mise à jour vers l&#8217;historique des tâches dans le module déploiements – gestion améliorée de l&#8217;historique des tâches</p>
+</li>
+<li>
+<p>Correction de bug pour un problème dans lequel une sauvegarde Azure n&#8217;a pas pu être restaurée dans CWMGR1 à partir d&#8217;un disque dans un sous-ensemble de scénarios</p>
+</li>
+<li>
+<p>Correction de bug pour un problème où les certificats ne sont pas automatiquement mis à jour et créés</p>
+</li>
+<li>
+<p>Résolution de bug pour un problème où un déploiement arrêté ne démarre pas assez rapidement</p>
+</li>
+<li>
+<p>Mettre à jour vers la liste déroulante Etat lors de la création d&#8217;un espace de travail – supprimer l&#8217;élément "National" de la liste</p>
+</li>
+<li>
+<p>Mises à jour supplémentaires pour refléter la marque NetApp</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="vds-6-0-mercredi-7-avril-2021">VDS 6.0: Mercredi 7 avril 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> mercredi 7 avril 2021 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux ordinateurs de bureau et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-43">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>En raison des temps de réponse variables et de plus en plus nombreux d&#8217;Azure, nous attendons une réponse lors de la saisie des identifiants Azure pendant l&#8217;assistant de déploiement.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-vds-6-0-jeudi-1er-avril-2021">Version VDS 6.0 : jeudi 1er avril 2021</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Components:</em> 6.0 Virtual Desktop Service <em>when:</em> jeudi 1er avril 2021 à 22:00 Eastern <em>impact:</em> l&#8217;accès aux postes de travail et aux services d&#8217;application pour les utilisateurs finaux restera ininterrompu. L&#8217;accès au service Virtual Desktop Service restera disponible.</p>
+</div>
+<div class="sect2">
+<h3 id="service-de-poste-de-travail-virtuel-44">Service de poste de travail virtuel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Mises à jour de l&#8217;intégration de NetApp Cloud Insights – nouveaux points de données de streaming :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Données de performance des GPU NVIDIA</p>
+</li>
+<li>
+<p>Durée du trajet aller-retour</p>
+</li>
+<li>
+<p>Délai d&#8217;entrée utilisateur</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Mettez à jour la fonction connexion au serveur pour autoriser les connexions administratives aux machines virtuelles, même lorsque les machines virtuelles sont configurées de manière à interdire les connexions des utilisateurs finaux</p>
+</li>
+<li>
+<p>Améliorations de l&#8217;API pour permettre le thème et le marquage dans une version ultérieure</p>
+</li>
+<li>
+<p>Meilleure visibilité du menu actions disponible dans les connexions HTML5 via les sessions utilisateur Connect to Server ou RDS via HTML5</p>
+</li>
+<li>
+<p>Augmentez la QUANTITÉ de caractères prise en charge dans le nom d&#8217;événements avec script d&#8217;activité</p>
+</li>
+<li>
+<p>Mise à jour des choix de systèmes d&#8217;exploitation de collections par type</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pour AVD et Windows 10, utilisez le type de collection VDI pour vous assurer que le système d&#8217;exploitation Windows 10 est présent</p>
+</li>
+<li>
+<p>Pour un système d&#8217;exploitation Windows Server, utilisez le type de collection partagé</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Sécurité proactive et améliorations des performances</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Conditions générales</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Privacy Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Paramètres de cookies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Envoyer un avis à propos de cette page</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/prism.js'></script>
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/fr-fr/virtual-desktop-service/js/www-ntap.js'></script>
+    <script src='/fr-fr/virtual-desktop-service/js/tabbed-blocks.js'></script>
+    <script src='/fr-fr/virtual-desktop-service/js/sidebar.js'></script>
+  </body></html>

@@ -1,0 +1,2744 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head class="at-element-marker">
+  <title>Composants et autorisations VDS</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Composants et autorisations VDS" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" />
+	<meta property="og:description" content="Composants et autorisations VDS" />
+  <meta property="og:image" content="https://docs.netapp.com/fr-fr/virtual-desktop-service/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Composants et autorisations VDS">
+  <meta name="keywords" content=" "><!-- Icons -->
+  <link rel="icon" href="/fr-fr/virtual-desktop-service/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/fr-fr/virtual-desktop-service/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/fr-fr/virtual-desktop-service/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/fr-fr/virtual-desktop-service/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/fr-fr/virtual-desktop-service/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/fr-fr/virtual-desktop-service/js/na-search.js'></script><script src='/fr-fr/virtual-desktop-service/js/na-pagenav.js'></script><script src='/fr-fr/virtual-desktop-service/js/na-utility.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/clouddocs.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/fr-fr/virtual-desktop-service/js/toc.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/fr-fr/virtual-desktop-service"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/fr-fr/virtual-desktop-service/js/custom-dropdown.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/FileSaver.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jszip-utils.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/jszip.min.js'></script>
+  <script src='/fr-fr/virtual-desktop-service/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service/issues/new?body=Page%3A%20[Composants et autorisations VDS](https://docs.netapp.com/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/fr-fr/virtual-desktop-service/images/discuss-sm.svg" alt="" class="github-icon" />Demander de modifier un document</a><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service/blob/main/sub.Deploying.Azure.AVD.vds_v5.4_components_and_permissions.adoc" class="page-nav-contribute-link" role="button"><img src="/fr-fr/virtual-desktop-service/images/edit-sm.svg" alt="" class="github-icon" />Modifier sur GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/fr-fr/virtual-desktop-service/images/article-sm.svg" alt="" class="github-icon" />Guide des contributeurs</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">SUR CETTE PAGE</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Produits et solutions</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Support et formation</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Communauté</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Témoignages clients</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/fr-fr/virtual-desktop-service/search.html"
+          data-type="widget" 
+          data-placeholder="Rechercher une documentation"
+          data-no-results-found="Aucun résultat n'a été trouvé pour {query}"
+          data-did-you-mean="Rechercher {suggestion}."
+          data-no-results-found-did-you-mean="Aucun résultat n’a été trouvé pour {query}. Voulez-vous dire {suggestion} ?"
+          data-results-found="{hitCount} résultats trouvés"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Français</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/fr-fr/virtual-desktop-service/images/collapse.png" alt="Réduire le panneau de navigation"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDFs disponibles<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/fr-fr/virtual-desktop-service/pdfs/fullsite-sidebar/Documentation_sur_Virtual_Desktop_Service.pdf" >
+          <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDF de ce site de documentation</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Déploiement_avec_VDS.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Déploiement avec VDS
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Azure_Virtual_Desktop.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Azure Virtual Desktop
+          </a>
+          
+
+
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Google.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Google
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Architecture.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Architecture
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Changer_la_couche_de_données.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Changer la couche de données
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Gestion.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Gestion
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/De_nombreux_déploiements.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            De nombreux déploiements
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/En_termes_de_latence.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            En termes de latence
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Événements_avec_script.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Événements avec script
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Centre_de_commande.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Centre de commande
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Exploitation.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Exploitation
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Administration_des_utilisateurs.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Administration des utilisateurs
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Administration_de_système.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Administration de système
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Dépannage.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Dépannage
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Notes_de_mise_à_jour.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Notes de mise à jour
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Versions_précédentes.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Versions précédentes
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Documentation_de_la_bibliothèque_de_scripts.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Documentation de la bibliothèque de scripts
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Avancé.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Avancé
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/virtual-desktop-service/pdfs/sidebar/Vidéos_NetApp_VDS_v5_4.pdf" 
+            
+          >
+            <img src="/fr-fr/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Vidéos NetApp VDS v5.4
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/fr-fr/virtual-desktop-service/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Collection de documents PDF séparés<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation de Virtual Desktop Service"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/index.html">
+        Documentation de Virtual Desktop Service
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement avec VDS"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Déploiement avec VDS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure Virtual Desktop"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure Virtual Desktop</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement d'AVD dans Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.Deploying_AVD_in_Azure.html">
+        Déploiement d'AVD dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supplémentaire - AVD avec AD existant"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html">
+        Supplémentaire - AVD avec AD existant
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Composants et autorisations VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html">
+        Composants et autorisations VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Conditions préalables VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_prerequisites.html">
+        Conditions préalables VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prérequis VDS v6.0 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.Azure.AVD.vds_v6.0_prerequisites.html">
+        Prérequis VDS v6.0 (AVD)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Google</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement de RDS dans Google"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.GCP.RDS.deploying_rds_in_gcp.html">
+        Déploiement de RDS dans Google
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prérequis VDS v5.4 (RDS/GCP)"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Deploying.GCP.vds_v5.4_prerequisites.html">
+        Prérequis VDS v5.4 (RDS/GCP)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Architecture"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Architecture</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Changer la couche de données"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/fr-fr/virtual-desktop-service/Architectural.change_data_layer.html">
+        <div class="na-navbar-padding"> Changer la couche de données</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure Files"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.change_data_layer.Azure_Files.html">
+        Azure Files
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Migration des données dans VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.migrate_data_into_vds.html">
+        Migration des données dans VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à niveau AVD v1 vers v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Mettez à niveau AVD v1 vers v2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Renouveler le certificat SSL"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.Wildcard_SSL_certificate_renewal_process.html">
+        Renouveler le certificat SSL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Guide de démontage VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectural.AVD_teardown_guide.html">
+        Guide de démontage VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gestion</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="De nombreux déploiements"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> De nombreux déploiements</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Provisionnement des Collections"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Deployments.provisioning_collections.html">
+        Provisionnement des Collections
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation de la hiérarchie logique VDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Deployments.logical_hierarchy_overview.html">
+        Présentation de la hiérarchie logique VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En termes de latence"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> En termes de latence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Droits d'application pour RDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Droits d'application pour RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Droits d'application pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.AVD_application_entitlement_workflow.html">
+        Droits d'application pour AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Événements avec script"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Événements avec script</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vue d'ensemble des événements avec script"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Scripted_Events.scripted_events.html">
+        Vue d'ensemble des événements avec script
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Centre de commande"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Centre de commande</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation du centre de commande de gestion"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.command_center.overview.html">
+        Présentation du centre de commande de gestion
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Exploitation"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Exploitation</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copier le modèle dans la galerie"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.command_center.operations.copy_template_to_gallery.html">
+        Copier le modèle dans la galerie
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer l'optimisation des coûts"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Cost_Optimization.workload_schedule.html">
+        Configurer l'optimisation des coûts
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration des utilisateurs"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration des utilisateurs</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les comptes d'utilisateurs"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.manage_user_accounts.html">
+        Gérer les comptes d'utilisateurs
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les dossiers et les autorisations"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.manage_folders_and_permissions.html">
+        Gérer les dossiers et les autorisations
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer l'accès aux applications"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Gérer l'accès aux applications
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Réinitialiser les mots de passe utilisateur"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.reset_user_password.html">
+        Réinitialiser les mots de passe utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer MFA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.User_Administration.multi-factor_authentication.html">
+        Configurer MFA
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration de système"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration de système</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créer un compte administrateur de domaine"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.create_domain_admin_account.html">
+        Créer un compte administrateur de domaine
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Accès tiers"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.provide_3rd_party_access.html">
+        Accès tiers
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer la sauvegarde"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.configure_backup.html">
+        Configurer la sauvegarde
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloner des machines virtuelles"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.clone_virtual_machines.html">
+        Cloner des machines virtuelles
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajout automatique d'espace disque"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.auto_add_disk_space.html">
+        Ajout automatique d'espace disque
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Coffre-fort de clés Azure"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.azure_key_vault.html">
+        Coffre-fort de clés Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez antivirus"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.configure_antivirus.html">
+        Configurez antivirus
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajout et déplacement de lecteurs mappés"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Management.System_Administration.adding_moving_mapped_drives.html">
+        Ajout et déplacement de lecteurs mappés
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dépannage"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Dépannage</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vérification des journaux VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.reviewing_vds_logs.html">
+        Vérification des journaux VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Qualité de connexion Internet"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.internet_connection_quality.html">
+        Qualité de connexion Internet
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activer le fond d'écran utilisateur"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.enable_user_wallpaper.html">
+        Activer le fond d'écran utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes d'impression"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.printing_issues.html">
+        Problèmes d'impression
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quota de cœur de vCPU Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.azure_vcpu_core_quota.html">
+        Quota de cœur de vCPU Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déverrouiller le compte utilisateur"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.unlocking_user_accounts.html">
+        Déverrouiller le compte utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Performances générales des machines virtuelles"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.general_vm_performance.html">
+        Performances générales des machines virtuelles
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Le transfert DNS pour Azure AJOUTE SSO"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.dns_forwarding_for_azure_aadds_sso.html">
+        Le transfert DNS pour Azure AJOUTE SSO
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes d'application"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Troubleshooting.application_issues.html">
+        Problèmes d'application
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Référence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Notes de mise à jour</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de version VDS v6.0"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html">
+        Notes de version VDS v6.0
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour VDS v5.4"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v5.4_release_notes.html">
+        Notes de mise à jour VDS v5.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour du client Windows VDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_windows_client_release_notes.html">
+        Notes de mise à jour du client Windows VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versions précédentes"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Versions précédentes</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour VDS v5.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.vds_v5.3_release_notes.html">
+        Notes de mise à jour VDS v5.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de version CWMS v5.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cwms_v5.2_release_notes.html">
+        Notes de version CWMS v5.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour CWS v5.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html">
+        Notes de mise à jour CWS v5.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour CWS v5.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.Release_Notes.cws_v5.0_release_notes.html">
+        Notes de mise à jour CWS v5.0
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Accès des utilisateurs finaux"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.end_user_access.html">
+        Accès des utilisateurs finaux
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Environnements de modification VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Reference.vds_change_environments.html">
+        Environnements de modification VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation de la bibliothèque de scripts"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Documentation de la bibliothèque de scripts</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Adobe Reader DC"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AdobeReader.html">
+        Adobe Reader DC
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes AMD Radeon instinct"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AMDRadeonInstinctDrivers.html">
+        Pilotes AMD Radeon instinct
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Application Ezeep Print"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.EzeepPrintApp.html">
+        Application Ezeep Print
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google Chrome"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.GoogleChrome.html">
+        Google Chrome
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Edge Chromium"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftEdgeChromium.html">
+        Microsoft Edge Chromium
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Office 365"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftOffice365.html">
+        Microsoft Office 365
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lecteur Microsoft unique"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftOneDrive.html">
+        Lecteur Microsoft unique
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Équipes Microsoft"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftTeams.html">
+        Équipes Microsoft
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Teams pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.MicrosoftTeamsAVD.html">
+        Microsoft Teams pour AVD
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes NVIDIA CUDA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.NvidiaCudaDrivers.html">
+        Pilotes NVIDIA CUDA
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pilotes NVIDIA Grid"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.NvidiaGridDrivers.html">
+        Pilotes NVIDIA Grid
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Protection de capture d'écran AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.AVDScreenCaptureProtection.html">
+        Protection de capture d'écran AVD
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Zoom pour AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/scriptlibrary.ZoomVDI-AVD.html">
+        Zoom pour AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avancé"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Avancé</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rétrécissement profil FSLogix"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Advanced.fslogix_profile_shrink.html">
+        Rétrécissement profil FSLogix
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Vidéos NetApp VDS v5.4"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Vidéos NetApp VDS v5.4</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contenu NetApp TV"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_content_netapptv.html">
+        Contenu NetApp TV
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déployer AVD ou RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVDRDS_deploy_54.html">
+        Déployer AVD ou RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajoutez le pool hôte AVD dans Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVD_hostpool_54.html">
+        Ajoutez le pool hôte AVD dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les utilisateurs AVD et les groupes d'applications"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVD_users_appgroups_54.html">
+        Gérer les utilisateurs AVD et les groupes d'applications
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des ressources et réduction des coûts"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_azure_AVDRDS_optimize_resources_54.html">
+        Gestion des ressources et réduction des coûts
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Automatisation de la gestion des applications pour AVD et RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/video_VDS_day_in_the_life.html">
+        Automatisation de la gestion des applications pour AVD et RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à niveau le pool hôte AVD v1 vers v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Mettez à niveau le pool hôte AVD v1 vers v2
+      </a></li></ul></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/fr-fr/virtual-desktop-service/images/expand.png" alt="Développer le panneau de navigation"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/fr-fr/virtual-desktop-service/">Virtual&nbsp;Desktop&nbsp;Service</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> La version française est une traduction automatique. La version anglaise prévaut sur la française en cas de divergence. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Composants et autorisations VDS</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-11-16 12:37:10 +0000">11/16/2022</time>
+    
+  
+
+<span>Contributeurs
+</span>
+
+
+</p>
+
+<div class="sect1">
+<h2 id="entités-et-services-de-sécurité-avd-et-vds">Entités et services de sécurité AVD et VDS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour exécuter des actions automatisées, Azure Virtual Desktop (AVD) requiert des comptes et des composants de sécurité dans Azure AD et Active Directory local. Virtual Desktop Service (VDS) de NetApp crée des composants et des paramètres de sécurité lors du processus de déploiement. Ils permettent aux administrateurs de contrôler l&#8217;environnement AVD. Ce document décrit les comptes VDS, les composants et les paramètres de sécurité appropriés dans les deux environnements.</p>
+</div>
+<div class="paragraph">
+<p>Les composants et les autorisations du processus d&#8217;automatisation du déploiement sont la plupart du temps différents des composants de l&#8217;environnement final déployé. Cet article est donc constitué de deux sections majeures, à savoir la section automatisation du déploiement et la section sur l&#8217;environnement déployé.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="Reference%20Architecture%20AVD%20v1.jpg" alt="largeur=75 %"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="composants-et-autorisations-dautomatisation-de-déploiement-avd">Composants et autorisations d&#8217;automatisation de déploiement AVD</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le déploiement VDS exploite plusieurs composants Azure et NetApp ainsi que les autorisations de sécurité afin de mettre en œuvre des déploiements et des espaces de travail.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="services-de-déploiement-vds">Services de déploiement VDS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="les-applications-dentreprise">Les applications d&#8217;entreprise</h3>
+<div class="paragraph">
+<p>VDS exploite les applications d&#8217;entreprise et les enregistrements d&#8217;applications dans le domaine Azure AD d&#8217;un locataire. Les applications d&#8217;entreprise sont le conduit des appels contre Azure Resource Manager, Azure Graph et (si vous utilisez AVD Fall Release) les points de terminaison de l&#8217;API AVD du contexte de sécurité de l&#8217;instance Azure AD à l&#8217;aide des rôles et autorisations délégués accordés au Service principal associé. Les enregistrements d&#8217;app peuvent être créés selon l&#8217;état d&#8217;initialisation des services AVD pour le locataire via VDS.</p>
+</div>
+<div class="paragraph">
+<p>Pour permettre la création et la gestion de ces machines virtuelles, VDS crée plusieurs composants pris en charge dans l&#8217;abonnement Azure :</p>
+</div>
+<div class="sect3">
+<h4 id="espace-de-travail-cloud">Espace de travail cloud</h4>
+<div class="paragraph">
+<p>Il s&#8217;agit de l&#8217;autorisation accordée par les administrateurs d&#8217;applications entreprise initiaux à et est utilisé pendant le processus de déploiement de l&#8217;Assistant d&#8217;installation VDS.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;application Cloud Workspace Enterprise demande un ensemble spécifique d&#8217;autorisations pendant le processus d&#8217;installation VDS. Ces autorisations sont les suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Accès au répertoire en tant qu&#8217;utilisateur connecté (délégué)</p>
+</li>
+<li>
+<p>Lecture et écriture de données de répertoire (déléguée)</p>
+</li>
+<li>
+<p>Se connecter et lire le profil utilisateur (délégué)</p>
+</li>
+<li>
+<p>Connexion des utilisateurs (déléguée)</p>
+</li>
+<li>
+<p>Afficher le profil de base des utilisateurs (délégué)</p>
+</li>
+<li>
+<p>Accès à la gestion des services Azure en tant qu&#8217;utilisateurs de l&#8217;entreprise (délégués)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="api-cloud-workspace">API Cloud Workspace</h4>
+<div class="paragraph">
+<p>Gestion des appels de gestion généraux pour les fonctions PaaS d&#8217;Azure. Les fonctions PaaS d&#8217;Azure sont notamment les suivantes : Azure Compute, Azure Backup, Azure Files, etc. Ce Service principal requiert des droits de propriétaire pour l&#8217;abonnement Azure cible lors du déploiement initial, et des droits de Contributor pour la gestion continue (remarque : L&#8217;utilisation d&#8217;Azure Files nécessite des droits de propriétaire d&#8217;abonnement pour définir les autorisations par utilisateur sur les objets Azure File).</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;API Cloud Workspace Enterprise application demande un ensemble spécifique d&#8217;autorisations pendant le processus d&#8217;installation VDS. Ces autorisations sont les suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Contributeur d&#8217;abonnement (ou propriétaire de l&#8217;abonnement si des fichiers Azure sont utilisés)</p>
+</li>
+<li>
+<p>Graphique AD Azure</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Lecture et écriture de toutes les applications (application)</p>
+</li>
+<li>
+<p>Gérer les applications que cette application crée ou possède (application)</p>
+</li>
+<li>
+<p>Périphériques de lecture et d&#8217;écriture (application)</p>
+</li>
+<li>
+<p>Accéder au répertoire en tant qu&#8217;utilisateur connecté (délégué)</p>
+</li>
+<li>
+<p>Lire les données d&#8217;annuaire (application)</p>
+</li>
+<li>
+<p>Lecture des données du répertoire (déléguée)</p>
+</li>
+<li>
+<p>Lecture et écriture de données de répertoire (application)</p>
+</li>
+<li>
+<p>Lecture et écriture de données de répertoire (déléguée)</p>
+</li>
+<li>
+<p>Domaines de lecture et d&#8217;écriture (application)</p>
+</li>
+<li>
+<p>Lire tous les groupes (délégués)</p>
+</li>
+<li>
+<p>Lecture et écriture de tous les groupes (délégués)</p>
+</li>
+<li>
+<p>Lire toutes les adhésions masquées (application)</p>
+</li>
+<li>
+<p>Lire les adhésions masquées (déléguée)</p>
+</li>
+<li>
+<p>Se connecter et lire le profil utilisateur (délégué)</p>
+</li>
+<li>
+<p>Lire tous les profils des utilisateurs (délégués)</p>
+</li>
+<li>
+<p>Lecture des profils de base de tous les utilisateurs (délégués)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Gestion de services Azure</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Accès à la gestion des services Azure en tant qu&#8217;utilisateurs de l&#8217;entreprise (délégués)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vds-netapp">VDS NetApp</h3>
+<div class="paragraph">
+<p>Les composants VDS NetApp sont utilisés via le plan de contrôle VDS pour automatiser le déploiement et la configuration des rôles, services et ressources AVD.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rôle-personnalisé">Rôle personnalisé</h3>
+<div class="paragraph">
+<p>Le rôle Automation Contributor est créé pour faciliter les déploiements par le biais de méthodologies les moins privilégiées. Ce rôle permet à la machine virtuelle CWMGR1 d&#8217;accéder au compte d&#8217;automatisation Azure.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compte-dautomatisation">Compte d&#8217;automatisation</h3>
+<div class="paragraph">
+<p>Un compte Automation est créé lors du déploiement et il est un composant requis lors du processus de provisionnement. Le compte Automation contient des variables, des informations d&#8217;identification, des modules et des configurations d&#8217;état souhaitées et fait référence au coffre-fort de clés.</p>
+</div>
+<div class="sect3">
+<h4 id="configuration-de-létat-souhaité">Configuration de l&#8217;état souhaité</h4>
+<div class="paragraph">
+<p>Il s&#8217;agit de la méthode utilisée pour générer la configuration de CWMGR1. Le fichier de configuration est téléchargé sur la machine virtuelle et appliqué via local Configuration Manager sur la machine virtuelle. Voici des exemples d&#8217;éléments de configuration :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Installation des fonctionnalités Windows</p>
+</li>
+<li>
+<p>Installation du logiciel</p>
+</li>
+<li>
+<p>Application de configurations logicielles</p>
+</li>
+<li>
+<p>S&#8217;assurer que les ensembles d&#8217;autorisations appropriés sont appliqués</p>
+</li>
+<li>
+<p>Application du certificat Let’s Encrypt</p>
+</li>
+<li>
+<p>S&#8217;assurer que les enregistrements DNS sont corrects</p>
+</li>
+<li>
+<p>S&#8217;assurer que CWMGR1 est joint au domaine</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="modules">Modules :</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>ActiveDirectoryDsc : ressource de configuration de l&#8217;état souhaitée pour le déploiement et la configuration d&#8217;Active Directory. Ces ressources vous permettent de configurer de nouveaux domaines, domaines enfants et contrôleurs de domaine haute disponibilité, d&#8217;établir des approbations inter-domaines et de gérer les utilisateurs, les groupes et les UO.</p>
+</li>
+<li>
+<p>AZ.Accounts : module fourni par Microsoft utilisé pour gérer les identifiants et les éléments de configuration communs pour les modules Azure</p>
+</li>
+<li>
+<p>AZ.Automation : module fourni par Microsoft pour les applets de commande Azure Automation</p>
+</li>
+<li>
+<p>Az.Compute:A module fourni par Microsoft pour les applets de commande Azure Compute</p>
+</li>
+<li>
+<p>AZ.KeyVault : module fourni par Microsoft pour les applets de commande Azure Key Vault</p>
+</li>
+<li>
+<p>AZ.Resources : module fourni par Microsoft pour les applets de commande Azure Resource Manager</p>
+</li>
+<li>
+<p>CChoco : ressource de configuration de l&#8217;état souhaité pour le téléchargement et l&#8217;installation de packages à l&#8217;aide de Chocolatey</p>
+</li>
+<li>
+<p>CjAz : ce module créé par NetApp fournit des outils d&#8217;automatisation au module d&#8217;automatisation Azure</p>
+</li>
+<li>
+<p>CjAzACS : ce module créé par NetApp contient les fonctions d&#8217;automatisation de l&#8217;environnement et les processus PowerShell s&#8217;exécutant depuis le contexte utilisateur.</p>
+</li>
+<li>
+<p>CjAzBuild : ce module créé par NetApp contient les processus de création et d&#8217;automatisation de la maintenance et des processus PowerShell exécutés à partir du contexte système.</p>
+</li>
+<li>
+<p>CNtfsAccessControl : ressource de configuration de l&#8217;état souhaitée pour la gestion du contrôle d&#8217;accès NTFS</p>
+</li>
+<li>
+<p>ComputerManagementDsc : ressource de configuration de l&#8217;état souhaitée qui permet des tâches de gestion de l&#8217;ordinateur telles que l&#8217;ajout d&#8217;un domaine et la planification de tâches, ainsi que la configuration d&#8217;éléments tels que la mémoire virtuelle, les journaux d&#8217;événements, les fuseaux horaires et les paramètres d&#8217;alimentation.</p>
+</li>
+<li>
+<p>CUserRightsAssignment : ressource de configuration d&#8217;état souhaitée permettant la gestion des droits d&#8217;utilisateur tels que les droits et privilèges d&#8217;ouverture de session</p>
+</li>
+<li>
+<p>NetworkingDsc : t ressource de configuration de l&#8217;état souhaitée pour le réseau</p>
+</li>
+<li>
+<p>XCertificate : ressource de configuration de l&#8217;état souhaitée pour simplifier la gestion des certificats sur Windows Server.</p>
+</li>
+<li>
+<p>XDnsServer : ressource de configuration de l&#8217;état souhaité pour la configuration et la gestion de Windows Server DNS Server</p>
+</li>
+<li>
+<p>XNetworking : ressource de configuration de l&#8217;état souhaitée associée à la mise en réseau.</p>
+</li>
+<li>
+<p><a href="https://github.com/PowerShell/xRemoteDesktopAdmin">"XRemoteDesktopAdmin"</a>: Ce module utilise un référentiel qui contient les ressources de configuration de l&#8217;état souhaitées pour configurer les paramètres de bureau à distance et le pare-feu Windows sur un ordinateur local ou distant.</p>
+</li>
+<li>
+<p>XRemoteDesktopSessionHost : ressource de configuration de l&#8217;état souhaité (xRDSessionDeployment, xRDSessionCollection, xRDSessionCollectionConfiguration et xRRemoteApp) permettant la création et la configuration d&#8217;une instance Remote Desktop session Host (RDSH)</p>
+</li>
+<li>
+<p>XSmbShare : ressource de configuration de l&#8217;état souhaitée pour la configuration et la gestion d&#8217;un partage SMB</p>
+</li>
+<li>
+<p>XSystemSecurity : ressource de configuration de l&#8217;état souhaitée pour la gestion des UAC et IE Esc</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Azure Virtual Desktop installe également les composants Azure, notamment les applications d&#8217;entreprise et les enregistrements d&#8217;applications pour Azure Virtual Desktop et Azure Virtual Desktop client, le locataire AVD, les pools d&#8217;hôtes AVD, les groupes d&#8217;applications AVD et les machines virtuelles enregistrées AVD. Alors que les composants VDS Automation gèrent ces composants, AVD contrôle leur configuration par défaut et leur jeu d&#8217;attributs. Consultez donc la documentation AVD pour plus de détails.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="composants-ad-hybrides">Composants AD hybrides</h3>
+<div class="paragraph">
+<p>Pour faciliter l&#8217;intégration avec l&#8217;infrastructure AD existante sur site ou exécutée dans le cloud public, d&#8217;autres composants et autorisations sont requis dans l&#8217;environnement AD existant.</p>
+</div>
+<div class="sect3">
+<h4 id="contrôleur-de-domaine">Contrôleur de domaine</h4>
+<div class="paragraph">
+<p>Le contrôleur de domaine existant peut être intégré à un déploiement AVD via AD Connect et/ou un VPN site à site (ou Azure ExpressRoute).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ad-connect">AD Connect</h4>
+<div class="paragraph">
+<p>Pour faciliter l&#8217;authentification des utilisateurs via les services PaaS AVD, AD Connect peut être utilisé pour synchroniser le contrôleur de domaine avec Azure AD.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="groupe-de-sécurité">Groupe de sécurité</h4>
+<div class="paragraph">
+<p>VDS utilise un groupe de sécurité Active Directory appelé CW-Infrastructure pour contenir les autorisations nécessaires à l&#8217;automatisation des tâches dépendantes d&#8217;Active Directory telles que la jointure de domaine et la pièce jointe de stratégie GPO.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="compte-de-service">Compte de service</h4>
+<div class="paragraph">
+<p>VDS utilise un compte de service Active Directory appelé CloudworkspaceSVC utilisé comme identité pour les services Windows VDS et le service d&#8217;application IIS. Ce compte n&#8217;est pas interactif (ne permet pas la connexion RDP) et est le membre principal du compte CW-Infrastructure</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="vpn-ou-expressroute">VPN ou ExpressRoute</h4>
+<div class="paragraph">
+<p>Un VPN site à site ou Azure ExpressRoute peut être utilisé pour relier directement les machines virtuelles Azure au domaine existant. Il s&#8217;agit d&#8217;une configuration facultative disponible lorsque les exigences du projet le requièrent.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="délégation-dautorisation-ad-locale">Délégation d&#8217;autorisation AD locale</h4>
+<div class="paragraph">
+<p>NetApp propose un outil en option permettant de rationaliser le processus AD hybride. Si vous utilisez l&#8217;outil en option de NetApp, il doit :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Exécutez sur un système d&#8217;exploitation de serveur plutôt que sur un système d&#8217;exploitation de poste de travail</p>
+</li>
+<li>
+<p>Exécutez sur un serveur qui est joint au domaine ou qui est un contrôleur de domaine</p>
+</li>
+<li>
+<p>Disposez de PowerShell 5.0 ou supérieur sur le serveur exécutant l&#8217;outil (s&#8217;il n&#8217;est pas exécuté sur le contrôleur de domaine) et sur le contrôleur de domaine</p>
+</li>
+<li>
+<p>Être exécuté par un utilisateur avec des privilèges d&#8217;administrateur de domaine OU être exécuté par un utilisateur avec des autorisations d&#8217;administrateur local et la capacité de fournir des informations d&#8217;identification d&#8217;administrateur de domaine (pour une utilisation avec des RunAs)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Qu&#8217;elles soient créées manuellement ou appliquées par l&#8217;outil NetApp, les autorisations requises sont les suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Groupe CW-Infrastructure</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Le groupe de sécurité Infrastructure de l&#8217;espace de travail de Cloud (<strong>CW-Infrastructure</strong>) bénéficie d&#8217;un contrôle total du niveau ou de l&#8217;espace de travail de Cloud et de tous les objets descendants</p>
+</li>
+<li>
+<p>&lt;code de déploiement&gt;.cloudWorkspace.app DNS zone – CW-Infrastructure group EntitCreateChild, DeleteChild, ListChildren, ReadProperty, DeleteTree, ExtendedRight, Delete, GenericWrite</p>
+</li>
+<li>
+<p>Serveur DNS – Groupe CW-Infrastructure, ReadProperty, GenericExecute</p>
+</li>
+<li>
+<p>Accès administrateur local pour les VM créées (CWMGR1, VM de session AVD) (effectué par stratégie de groupe sur les systèmes AVD gérés)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Groupe CW-CWMGRAccess ce groupe fournit des droits d&#8217;administration locaux à CWMGR1 sur tous les modèles, le serveur unique, le nouveau modèle Active Directory natif utilise les groupes intégrés opérateurs de serveur utilisateurs de bureau à distance et opérateurs de configuration réseau.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="composants-environnementaux-avd-et-autorisations">Composants environnementaux AVD et autorisations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Une fois le processus d&#8217;automatisation du déploiement terminé, l&#8217;utilisation et l&#8217;administration continues des déploiements et des espaces de travail nécessitent l&#8217;installation d&#8217;un ensemble distinct de composants et d&#8217;autorisations, tel que défini ci-après. Bon nombre des composants et autorisations ci-dessus restent pertinents, mais cette section a pour objectif de définir la structure d&#8217;un déploiement.</p>
+</div>
+<div class="paragraph">
+<p>Les composants des déploiements VDS et des espaces de travail peuvent être organisés en plusieurs catégories logiques :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clients utilisateur final</p>
+</li>
+<li>
+<p>Composants du plan de contrôle VDS</p>
+</li>
+<li>
+<p>Composants de Microsoft Azure AVD-PaaS</p>
+</li>
+<li>
+<p>Composants de la plate-forme VDS</p>
+</li>
+<li>
+<p>Composants de l&#8217;espace de travail VDS dans le locataire Azure</p>
+</li>
+<li>
+<p>Composants AD hybrides</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="clients-utilisateur-final">Clients utilisateur final</h3>
+<div class="paragraph">
+<p>Les utilisateurs peuvent se connecter à leur bureau AVD et/ou à partir de divers types de points de terminaison. Microsoft a publié des applications client pour Windows, MacOS, Android et iOS. En outre, un client Web est disponible pour un accès sans client.</p>
+</div>
+<div class="paragraph">
+<p>Il existe des fournisseurs de clients légers Linux qui ont publié un client de noeuds finaux pour AVD. Ils sont répertoriés à l&#8217;adresse <a href="https://docs.microsoft.com/en-us/azure/virtual-desktop/linux-overview" class="bare">https://docs.microsoft.com/en-us/azure/virtual-desktop/linux-overview</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="composants-du-plan-de-contrôle-vds">Composants du plan de contrôle VDS</h3>
+<div class="sect3">
+<h4 id="api-rest-vds">API REST VDS</h4>
+<div class="paragraph">
+<p>VDS est basée sur des API REST entièrement documentées afin que toutes les actions disponibles dans l&#8217;application Web soient également disponibles via l&#8217;API. La documentation de l&#8217;API est ici : <a href="https://api.cloudworkspace.com/5.4/swagger/ui/index#" class="bare">https://api.cloudworkspace.com/5.4/swagger/ui/index#</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="application-web-vds">Application web VDS</h4>
+<div class="paragraph">
+<p>Les administrateurs VDS peuvent interagir avec l&#8217;application ADS via l&#8217;application web VDS. Ce portail Web est à : <a href="https://manage.cloudworkspace.com" class="bare">https://manage.cloudworkspace.com</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="base-de-données-du-plan-de-contrôle">Base de données du plan de contrôle</h4>
+<div class="paragraph">
+<p>Les données et paramètres VDS sont stockés dans la base de données SQL du plan de contrôle, hébergée et gérée par NetApp.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="communications-vds">Communications VDS</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="composants-des-locataires-azure">Composants des locataires Azure</h3>
+<div class="paragraph">
+<p>L&#8217;automatisation du déploiement VDS crée un groupe de ressources Azure unique contenant les autres composants AVD, notamment les VM, les sous-réseaux, les groupes de sécurité du réseau et les conteneurs Azure Files ou les pools de capacité Azure NetApp Files. Remarque – la valeur par défaut est un groupe de ressources unique, mais VDS dispose d&#8217;outils permettant de créer des ressources dans des groupes de ressources supplémentaires si nécessaire.</p>
+</div>
+<div class="sect3">
+<h4 id="composants-de-microsoft-azure-avd-paas">Composants de Microsoft Azure AVD-PaaS</h4>
+<div class="sect4">
+<h5 id="api-rest-avd">API REST AVD</h5>
+<div class="paragraph">
+<p>Microsoft AVD peut être géré via API. VDS a largement utilisé ces API pour automatiser et gérer les environnements AVD. La documentation se trouve à l&#8217;adresse suivante : <a href="https://docs.microsoft.com/en-us/rest/api/desktopvirtualization/" class="bare">https://docs.microsoft.com/en-us/rest/api/desktopvirtualization/</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="courtier-de-session">Courtier de session</h5>
+<div class="paragraph">
+<p>Le courtier détermine les ressources autorisées pour l&#8217;utilisateur et orchestre la connexion de l&#8217;utilisateur à la passerelle.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="diagnostics-azure">Diagnostics Azure</h5>
+<div class="paragraph">
+<p>Azure Diagnostics a été spécialement conçu pour prendre en charge les déploiements AVD.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="client-web-avd">Client web AVD</h5>
+<div class="paragraph">
+<p>Microsoft a fourni un client Web pour permettre aux utilisateurs de se connecter à leurs ressources AVD sans avoir installé un client local.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="passerelle-de-session">Passerelle de session</h5>
+<div class="paragraph">
+<p>Le client RD installé localement se connecte à la passerelle pour communiquer en toute sécurité dans l&#8217;environnement AVD.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="composants-de-la-plate-forme-vds">Composants de la plate-forme VDS</h4>
+<div class="sect4">
+<h5 id="cwmgr1">CWMGR1</h5>
+<div class="paragraph">
+<p>CMWGR1 est la VM de contrôle VDS pour chaque déploiement. Par défaut, il est créé en tant que machine virtuelle Windows 2019 Server dans l&#8217;abonnement Azure cible. Consultez la section déploiement local pour obtenir la liste des composants VDS et tiers installés sur CWMGR1.</p>
+</div>
+<div class="paragraph">
+<p>AVD nécessite que les machines virtuelles AVD soient jointes à un domaine Active Directory. Pour faciliter ce processus et fournir les outils d&#8217;automatisation pour la gestion de l&#8217;environnement VDS, plusieurs composants sont installés sur la machine virtuelle CWMGR1 décrite ci-dessus et plusieurs composants sont ajoutés à l&#8217;instance AD. Ses composants sont les suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Windows Services</strong> - VDS utilise les services Windows pour effectuer des actions d&#8217;automatisation et de gestion à partir d&#8217;un déploiement :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CW Automation Service</strong> est un service Windows déployé sur CWMGR1 dans chaque déploiement AVD qui exécute de nombreuses tâches d&#8217;automatisation en contact avec l&#8217;utilisateur dans l&#8217;environnement. Ce service s&#8217;exécute sous le compte AD <strong>CloudWorkspaceSVC</strong>.</p>
+</li>
+<li>
+<p><strong>CW VM Automation Service</strong> est un service Windows déployé sur CWMGR1 dans chaque déploiement AVD qui exécute les fonctions de gestion de la machine virtuelle. Ce service s&#8217;exécute sous le compte AD <strong>CloudWorkspaceSVC</strong>.</p>
+</li>
+<li>
+<p><strong>CW Agent Service</strong> est un service Windows déployé sur chaque machine virtuelle sous gestion VDS, y compris CWMGR1. Ce service s&#8217;exécute sous le contexte <strong>LocalSystem</strong> sur la machine virtuelle.</p>
+</li>
+<li>
+<p><strong>CWManagerX API</strong> est un écouteur basé sur un pool d&#8217;applications IIS installé sur CWMGR1 dans chaque déploiement AVD. Cela traite les demandes entrantes du plan de contrôle global et est exécuté sous le compte AD <strong>CloudWorkspaceSVC</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>SQL Server 2017 Express</strong> – VDS crée une instance SQL Server Express sur la machine virtuelle CWMGR1 pour gérer les métadonnées générées par les composants d&#8217;automatisation.</p>
+</li>
+<li>
+<p><strong>Internet information Services (IIS)</strong> – IIS est activé sur CWMGR1 pour héberger l&#8217;application CWManagerX et CWApps IIS (uniquement si la fonctionnalité RDS RemoteApp est activée). VDS requiert la version 7.5 ou ultérieure d&#8217;IIS.</p>
+</li>
+<li>
+<p><strong>Portail HTML5 (facultatif)</strong> – VDS installe le service Spark Gateway pour fournir un accès HTML5 aux machines virtuelles dans le déploiement et à partir de l&#8217;application Web VDS. Il s&#8217;agit d&#8217;une application Java qui peut être désactivée et supprimée si cette méthode d&#8217;accès n&#8217;est pas souhaitée.</p>
+</li>
+<li>
+<p><strong>RD Gateway (en option)</strong> – VDS permet au rôle de passerelle RD sur CWMGR1 de fournir un accès RDP aux pools de ressources basés sur la collecte RDS. Ce rôle peut être désactivé/désinstallé si seul l&#8217;accès AVD Reverse Connect est souhaité.</p>
+</li>
+<li>
+<p><strong>RD Web (facultatif)</strong> – VDS active le rôle Web RD et crée l&#8217;application Web IIS CWApps. Ce rôle peut être désactivé si seul l&#8217;accès AVD est souhaité.</p>
+</li>
+<li>
+<p><strong>DC Config</strong> – application Windows utilisée pour effectuer des tâches de configuration spécifique au site VDS et déploiement et au site VDS ainsi que des tâches de configuration avancée.</p>
+</li>
+<li>
+<p><strong>Outils de test VDC</strong> : application Windows prenant en charge l&#8217;exécution directe des tâches pour les changements de configuration au niveau des ordinateurs virtuels et des clients utilisés dans les rares cas où les tâches d&#8217;API ou d&#8217;application Web doivent être modifiées à des fins de dépannage.</p>
+</li>
+<li>
+<p><strong>Encryptons le certificat générique (facultatif)</strong> – créé et géré par VDS – toutes les machines virtuelles nécessitant un trafic HTTPS sur TLS sont mises à jour avec le certificat chaque nuit. Le renouvellement est également géré par tâche automatisée (les certificats sont 90 jours, donc le renouvellement commence peu avant). Le client peut fournir son propre certificat de caractère générique si nécessaire. VDS nécessite également plusieurs composants Active Directory pour prendre en charge les tâches d&#8217;automatisation. L&#8217;objectif de la conception est d&#8217;utiliser un nombre minimum de composants AD et d&#8217;ajouts d&#8217;autorisations tout en continuant de prendre en charge l&#8217;environnement pour la gestion automatisée. Ces composants comprennent :</p>
+</li>
+<li>
+<p><strong>Unité organisationnelle (ou) de l&#8217;espace de travail Cloud</strong> – cette unité organisationnelle agira comme conteneur AD principal pour les composants enfants requis. Les autorisations pour les groupes d&#8217;accès DHP client et CW-Infrastructure seront définies à ce niveau et pour ses composants enfants. Voir l&#8217;annexe A pour les sous-UO créés dans cette UO.</p>
+</li>
+<li>
+<p><strong>Cloud Workspace Infrastructure Group (CW-Infrastructure)</strong> est un groupe de sécurité créé dans l&#8217;AD local pour permettre l&#8217;affectation des autorisations déléguées requises au compte de service VDS (<strong>CloudWorkspaceSVC</strong>)</p>
+</li>
+<li>
+<p><strong>Client DHP Access Group (ClientDHPAccess)</strong> est un groupe de sécurité créé dans l&#8217;AD local pour permettre à VDS de gérer l&#8217;emplacement dans lequel les données de profil, de domicile utilisateur et partagées de la société résident.</p>
+</li>
+<li>
+<p><strong>Compte de service CloudWorkspaceSVC</strong> (membre du groupe Cloud Workspace Infrastructure Group)</p>
+</li>
+<li>
+<p><strong>Zone DNS pour &lt;code de déploiement&gt;.cloudWorkspace.app domain</strong> (ce domaine gère les noms DNS créés automatiquement pour les VM hôtes de session ) – créé par la configuration du déploiement.</p>
+</li>
+<li>
+<p><strong>GPO</strong> propres à NetApp liés à plusieurs UO enfant de l&#8217;unité organisationnelle de Cloud Workspace. Ces stratégies de groupe sont les suivantes :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cloud Workspace GPO (associé à Cloud Workspace ou)</strong> – définit les protocoles et méthodes d&#8217;accès pour les membres du groupe CW-Infrastructure. Ajoute également le groupe au groupe d&#8217;administrateurs local sur les hôtes de session AVD.</p>
+</li>
+<li>
+<p><strong>Objet GPO</strong> du pare-feu de l&#8217;espace de travail Cloud (associé aux serveurs des clients dédiés, aux unités de bureau à distance et aux unités de stockage à distance) - crée une stratégie qui assure et isole les connexions aux hôtes des sessions à partir du ou des serveurs de plate-forme.</p>
+</li>
+<li>
+<p><strong>Cloud Workspace RDS</strong> (serveurs de clients dédiés, unités de bureau à distance et unités de stockage à distance) - la stratégie définit les limites de qualité de session, de fiabilité, de déconnexion des limites de délai d&#8217;attente. Pour les sessions RDS, la valeur TS Licensing Server est définie.</p>
+</li>
+<li>
+<p><strong>Cloud Workspace Companies</strong> (NON LIÉES par défaut) – GPO facultatif à « verrouiller » une session utilisateur/un espace de travail en empêchant l&#8217;accès aux outils et zones d&#8217;administration. Peut être lié/activé pour fournir un espace de travail d&#8217;activité restreinte.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Des configurations de paramètres de stratégie de groupe par défaut peuvent être fournies sur demande.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="composants-de-lespace-de-travail-vds">Composants de l&#8217;espace de travail VDS</h4>
+<div class="sect4">
+<h5 id="la-couche-de-données">La couche de données</h5>
+<div class="sect5">
+<h6 id="azure-netapp-files">Azure NetApp Files</h6>
+<div class="paragraph">
+<p>Un pool de capacité Azure NetApp Files et un ou plusieurs volumes associés seront créés si vous choisissez Azure NetApp Files comme option de couche de données dans la configuration VDS. Le volume héberge le stockage classé partagé des profils utilisateur (via des conteneurs FSLogix), des dossiers personnels utilisateur et le dossier de partage des données d&#8217;entreprise.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="azure-files">Azure Files</h6>
+<div class="paragraph">
+<p>Un partage de fichiers Azure et son compte de stockage Azure associé seront créés si vous choisissez des fichiers Azure comme option de couche de données dans CWS Setup. Le partage de fichiers Azure héberge le stockage partagé des profils utilisateur (via des conteneurs FSLogix), les dossiers personnels des utilisateurs et le dossier de partage des données d&#8217;entreprise.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="serveur-de-fichiers-avec-disque-géré">Serveur de fichiers avec disque géré</h6>
+<div class="paragraph">
+<p>Une machine virtuelle Windows Server est créée avec un disque géré si vous choisissez l&#8217;option serveur de fichiers comme couche de données dans la configuration VDS. Le serveur de fichiers héberge le stockage classé partagé pour les profils utilisateur (via les conteneurs FSLogix), les dossiers personnels utilisateur et le dossier de partage des données d&#8217;entreprise.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="la-mise-en-réseau-dazure">La mise en réseau d&#8217;Azure</h5>
+<div class="sect5">
+<h6 id="réseau-virtuel-azure">Réseau virtuel Azure</h6>
+<div class="paragraph">
+<p>VDS crée un réseau virtuel Azure et prend en charge les sous-réseaux. VDS requiert un sous-réseau séparé pour les machines hôtes CWMGR1, AVD et les contrôleurs de domaine Azure et le peering entre les sous-réseaux. Notez que le sous-réseau du contrôleur AD existe généralement déjà. Les sous-réseaux VDS déployés doivent donc être associés au sous-réseau existant.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="groupes-de-sécurité-du-réseau">Groupes de sécurité du réseau</h6>
+<div class="paragraph">
+<p>Un groupe de sécurité réseau est créé pour contrôler l&#8217;accès à la machine virtuelle CWMGR1.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Locataire : contient des adresses IP à utiliser par hôte de session et par VM de données</p>
+</li>
+<li>
+<p>Services : contient les adresses IP utilisées par les services PaaS (Azure NetApp Files, par exemple)</p>
+</li>
+<li>
+<p>Plateforme : contient des adresses IP à utiliser en tant que VM de plateforme NetApp (CWMGR1 et tous les serveurs de passerelle)</p>
+</li>
+<li>
+<p>Répertoire : contient les adresses IP à utiliser comme machines virtuelles Active Directory</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="azure-ad">Azure AD</h5>
+<div class="paragraph">
+<p>L&#8217;automatisation et l&#8217;orchestration VDS déploient les machines virtuelles dans une instance Active Directory ciblée, puis rejoint les machines au pool hôte désigné. Les machines virtuelles AVD sont gérées au niveau de l&#8217;ordinateur par la structure AD (unités organisationnelles, stratégie de groupe, autorisations d&#8217;administrateur informatique local, etc.) et par l&#8217;appartenance à la structure AVD (pools d&#8217;hôtes, appartenance à un groupe d&#8217;applications d&#8217;espace de travail), qui sont régies par des entités et des autorisations Azure AD. VDS gère cet environnement « double contrôle » en utilisant l&#8217;application VDS Enterprise/Azure Service principal pour les actions AVD et le compte de service AD local (CloudWorkspaceSVC) pour les actions AD et informatiques locales.</p>
+</div>
+<div class="paragraph">
+<p>Les étapes spécifiques de la création d&#8217;une machine virtuelle AVD et de son ajout au pool hôte AVD sont les suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Création d&#8217;une machine virtuelle à partir d&#8217;un modèle Azure visible par l&#8217;abonnement Azure associé à AVD (utilise les autorisations Azure Service principal)</p>
+</li>
+<li>
+<p>Vérifier/configurer l&#8217;adresse DNS pour la nouvelle machine virtuelle à l&#8217;aide d&#8217;Azure VNet désigné pendant le déploiement VDS (nécessite des autorisations AD locales (tout délégué à CW-Infrastructure ci-dessus) définit le nom de la machine virtuelle à l&#8217;aide du schéma de nommage VDS standard <strong><em>{Code société}TS{sequencenumber}</em></strong>. Exemple : XYZTS3. (Autorisations AD locales requises (placées dans la structure ou que nous avons créée sur site (poste de travail distant/code société/partagé) (même autorisation/description de groupe que ci-dessus)</p>
+</li>
+<li>
+<p>Place la machine virtuelle dans l&#8217;unité organisationnelle Active Directory désignée (AD) (nécessite les autorisations déléguées à la structure UO (désignée lors du processus manuel ci-dessus)</p>
+</li>
+<li>
+<p>Mettre à jour le répertoire DNS AD interne avec le nouveau nom de machine/adresse IP (nécessite des autorisations AD locales)</p>
+</li>
+<li>
+<p>Relier la nouvelle machine virtuelle au domaine AD local (autorisations AD locales requises)</p>
+</li>
+<li>
+<p>Mettre à jour la base de données locale VDS avec de nouvelles informations sur le serveur (ne nécessite pas d&#8217;autorisations supplémentaires)</p>
+</li>
+<li>
+<p>Associer VM au pool hôte AVD désigné (nécessite des autorisations AVD Service principal)</p>
+</li>
+<li>
+<p>Installation des composants Chocolatey sur la nouvelle machine virtuelle (nécessite un privilège d&#8217;administration informatique local pour le compte <strong>CloudWorkspaceSVC</strong>)</p>
+</li>
+<li>
+<p>Installer les composants FSLogix pour l&#8217;instance AVD (nécessite des autorisations administratives locales sur l&#8217;UO AVD dans l&#8217;AD local)</p>
+</li>
+<li>
+<p>Mettre à jour l&#8217;objet GPO de pare-feu AD Windows pour autoriser le trafic vers la nouvelle machine virtuelle (nécessite la création/modification de GPO AD pour les stratégies associées à l&#8217;unité d&#8217;organisation AVD et à ses machines virtuelles associées. Nécessite la création/modification de stratégie de GPO AD sur l&#8217;UO AVD dans l&#8217;AD local. Peut être désactivé après installation si vous ne gérez pas les machines virtuelles via VDS).</p>
+</li>
+<li>
+<p>Définir l&#8217;indicateur « Autoriser les nouvelles connexions » sur la nouvelle machine virtuelle (nécessite les autorisations du principal de service Azure)</p>
+</li>
+</ul>
+</div>
+<div class="sect5">
+<h6 id="ajout-de-machines-virtuelles-à-azure-ad">Ajout de machines virtuelles à Azure AD</h6>
+<div class="paragraph">
+<p>Les machines virtuelles du locataire Azure doivent être jointes au domaine, mais les VM ne peuvent pas se joindre directement à Azure AD. Par conséquent, VDS déploie le rôle de contrôleur de domaine dans la plateforme VDS et ensuite nous synchronisons ce DC avec Azure AD en utilisant AD Connect. Il est également possible d&#8217;utiliser Azure AD Domain Services (ADDS), de synchroniser un data Center hybride (une machine virtuelle sur site ou ailleurs) avec AD Connect, ou de joindre directement les machines virtuelles à un data Center hybride via un VPN de site à site ou Azure ExpressRoute.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="pools-hôtes-avd">Pools hôtes AVD</h5>
+<div class="paragraph">
+<p>Les pools hôtes sont un ensemble d&#8217;une ou plusieurs machines virtuelles identiques dans les environnements Azure Virtual Desktop. Chaque pool hôte peut contenir un groupe d&#8217;applications avec lequel les utilisateurs peuvent interagir comme ils le feraient sur un poste de travail physique.</p>
+</div>
+<div class="sect5">
+<h6 id="hôtes-de-session">Hôtes de session</h6>
+<div class="paragraph">
+<p>Au sein d&#8217;un pool hôte se trouve une ou plusieurs machines virtuelles identiques. Ces sessions utilisateur se connectant à ce pool hôte sont équilibrées par le service d&#8217;équilibreur de charge AVD.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="groupes-dapplications">Groupes d&#8217;applications</h6>
+<div class="paragraph">
+<p>Par défaut, le groupe d&#8217;applications <em>Desktop Users</em> est créé lors du déploiement. Tous les utilisateurs de ce groupe d&#8217;applications bénéficient d&#8217;une expérience Windows complète. En outre, des groupes d&#8217;applications peuvent être créés pour servir les services d&#8217;applications en streaming.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="espace-de-travail-danalyse-des-journaux">Espace de travail d&#8217;analyse des journaux</h5>
+<div class="paragraph">
+<p>Un espace de travail Log Analytics est créé pour stocker les journaux à partir des processus de déploiement et DSC ainsi que d&#8217;autres services. Ceci peut être supprimé après le déploiement, mais ce n&#8217;est pas recommandé car il active d&#8217;autres fonctionnalités. Les journaux sont conservés pendant 30 jours par défaut, sans frais de conservation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="ensembles-de-disponibilité">Ensembles de disponibilité</h5>
+<div class="paragraph">
+<p>Un ensemble de disponibilité fait partie du processus de déploiement afin de permettre la séparation des machines virtuelles partagées (pools hôtes AVD partagés, pools de ressources RDS) sur les domaines de pannes. Cette opération peut être supprimée après le déploiement, mais désactivez l&#8217;option pour offrir une tolérance de panne supplémentaire pour les machines virtuelles partagées.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="coffre-fort-de-restauration-azure">Coffre-fort de restauration Azure</h5>
+<div class="paragraph">
+<p>Un coffre-fort de service de récupération est créé par VDS Automation pendant le déploiement. Elle est actuellement activée par défaut, car Azure Backup est appliqué à CWMGR1 pendant le processus de déploiement. Cette option peut être désactivée et supprimée si vous le souhaitez, mais elle sera recréée si Azure Backup est activé dans l&#8217;environnement.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="coffre-fort-de-clés-azure">Coffre-fort de clés Azure</h5>
+<div class="paragraph">
+<p>Un coffre-fort Azure Key Vault est créé pendant le processus de déploiement et utilisé pour stocker les certificats, les clés API et les identifiants utilisés par les comptes Azure Automation lors du déploiement.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="annexe-a-structure-dunité-organisationnelle-par-défaut-de-cloud-workspace">Annexe A – structure d&#8217;unité organisationnelle par défaut de Cloud Workspace</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Espace de travail cloud</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Entreprises Cloud Workspace</p>
+</li>
+<li>
+<p>Serveurs d&#8217;espace de travail cloud</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Serveurs client dédiés</p>
+</li>
+<li>
+<p>Infrastructures</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Serveurs CWMGR</p>
+</li>
+<li>
+<p>Serveurs de passerelle</p>
+</li>
+<li>
+<p>Serveurs FTP</p>
+</li>
+<li>
+<p>Machines virtuelles modèles</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bureau à distance</p>
+</li>
+<li>
+<p>Staging</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Comptes de services Cloud Workspace</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Comptes de service client</p>
+</li>
+<li>
+<p>Comptes de services d&#8217;infrastructure</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Utilisateurs techniques de Cloud Workspace</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Groupes</p>
+</li>
+<li>
+<p>Techniciens Tech 3</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Conditions générales</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Privacy Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Paramètres de cookies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Envoyer un avis à propos de cette page</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/virtual-desktop-service/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/prism.js'></script>
+      <script type="text/javascript" src='/fr-fr/virtual-desktop-service/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/fr-fr/virtual-desktop-service/js/www-ntap.js'></script>
+    <script src='/fr-fr/virtual-desktop-service/js/tabbed-blocks.js'></script>
+    <script src='/fr-fr/virtual-desktop-service/js/sidebar.js'></script>
+  </body></html>
