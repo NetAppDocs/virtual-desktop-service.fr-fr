@@ -10,6 +10,19 @@ keywords:
 
 
 
+== Version VDS v6 : jeudi 17 novembre 2020 à 23 h, heure de l'est
+
+_Impact:_ les utilisateurs verront la mise à jour du client VDS pour Windows lors de son prochain lancement
+
+
+
+=== Améliorations
+
+* Corriger un problème de syntaxe avec le paramètre "utiliser le nom du serveur de redirection" lors de la création de fichiers de connexion client. Mettre à jour le certificat de signature de code utilisé pour le client VDS
+
+
+
+
 == Version 6 VDS : jeudi 6 février 2022
 
 _Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _impact:_ l'accès aux postes de travail et aux services d'application pour les utilisateurs finaux restera ininterrompu. L'accès au service Virtual Desktop Service restera disponible.

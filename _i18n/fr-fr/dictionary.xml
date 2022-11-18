@@ -4792,4 +4792,6 @@
   <block id="40b4efb37895d327a4e6134b05f98845" category="sidebar">Gestion des ressources et réduction des coûts</block>
   <block id="b0e9038d535164893f7c6af3eac68b19" category="sidebar">Automatisation de la gestion des applications pour AVD et RDS</block>
   <block id="160a4c43add4282278f715aef7950d51" category="sidebar">Mettez à niveau le pool hôte AVD v1 vers v2</block>
+  <block id="9aed81e863bfdb7e494068bdc2480d25" category="doc">Version VDS v6 : jeudi 17 novembre 2020 à 23 h, heure de l'est</block>
+  <block id="f65ca5ce599727cf81a452e9c6f12a61" category="list-text">Corriger un problème de syntaxe avec le paramètre "utiliser le nom du serveur de redirection" lors de la création de fichiers de connexion client. Mettre à jour le certificat de signature de code utilisé pour le client VDS</block>
 </blocks>
