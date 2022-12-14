@@ -30,10 +30,10 @@ Le service NetApp Virtual Desktop Service (VDS) comprend un service MFA basé su
 Ce guide vous guide tout au long de la configuration de l'authentification multifacteur, ainsi qu'une illustration de l'expérience utilisateur
 
 .Ce guide aborde les sujets suivants :
-.  MFA for Individual Users,Activation de l'authentification multifacteur pour les utilisateurs individuels
-.  MFA for All Users,Nécessite MFA pour tous les utilisateurs
-.  MFA for Individual Administrators ,Activation de l'authentification multifacteur pour les administrateurs individuels
-.  User Initial Setup,Configuration initiale de l'utilisateur final
+. <<Activation de l'authentification multifacteur pour les utilisateurs individuels,Activation de l'authentification multifacteur pour les utilisateurs individuels>>
+. <<Nécessite MFA pour tous les utilisateurs,Nécessite MFA pour tous les utilisateurs>>
+. <<Enabling MFA for Individual Administrators ,Activation de l'authentification multifacteur pour les administrateurs individuels>>
+. <<Configuration initiale de l'utilisateur final,Configuration initiale de l'utilisateur final>>
 
 
 

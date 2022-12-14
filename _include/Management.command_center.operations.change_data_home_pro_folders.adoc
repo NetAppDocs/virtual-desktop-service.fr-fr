@@ -4,7 +4,7 @@
 
 
 
-== Vue d'ensemble des dossiers de modification de données/Pro/Home
+== *Vue d'ensemble des dossiers de modification de données/Pro/Home*
 
 image::Management.command_center.operations.change_data_home_pro_folders-678cd.png[Management.command center.operations.change dossiers professionnels de données 678cd]
 

@@ -87,6 +87,7 @@ Les journaux restants suivent l'installation des services Windows et de l'applic
 
 === Accès aux journaux et consultation des informations
 
+.Lorsque des actions demandées telles que le clonage d'un serveur, l'ajout d'un utilisateur ou la restauration d'une sauvegarde vous obtiendrez des informations dans l'interface utilisateur VDS.
 +image:troubleshooting1.png[""]
 
 . VDS conserve des journaux détaillés et expose certains d'entre eux dans la section Historique des tâches de la page déploiements dans VDS. Cliquez sur Afficher pour afficher les détails des tâches répertoriées.

@@ -39,7 +39,7 @@ Activation des approbations au niveau client
 
 Si le déploiement d'une organisation nécessite également la possibilité d'approuver l'accès, les partenaires Software Master peuvent activer les approbations au niveau du client en accédant au module déploiements et en allant jusqu'à la section Détails du déploiement.
 
-Cochez ensuite la case demander l'approbation du client pour les demandes d'accès PAM et cliquez sur mettre à jour. Ceci envoie les demandes que le partenaire principal de logiciel demande aux administrateurs VDS pour le déploiement. Remarque : les utilisateurs doivent donc être configurés en tant qu'administrateurs VDS ainsi que via ces étapes. < to Admin Access for Users
+Cochez ensuite la case demander l'approbation du client pour les demandes d'accès PAM et cliquez sur mettre à jour. Ceci envoie les demandes que le partenaire principal de logiciel demande aux administrateurs VDS pour le déploiement. Remarque : les utilisateurs doivent donc être configurés en tant qu'administrateurs VDS ainsi que via ces étapes. <<<Link to Admin Access for Users>>
 
 image:PAM3.png[""]
 

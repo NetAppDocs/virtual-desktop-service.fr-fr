@@ -4,7 +4,7 @@
 
 
 
-== Présentation du modèle de copie vers la galerie
+== *Copier le modèle vers la Gallery* Présentation
 
 image::Management.command_center.operations.copy_template_to_gallery-67ea4.png[Management.command Center.Operations.copy template to galerie 67ea4]
 

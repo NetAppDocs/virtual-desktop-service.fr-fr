@@ -46,21 +46,21 @@ Azure Virtual Desktop est un poste de travail complet et un service de virtualis
 Ce guide vous présente le déploiement d'AVD à l'aide de la technologie VDS NetApp du point de vue de l'administrateur Azure et VDS. Vous bénéficiez de l'abonnement et du locataire Azure sans préconfiguration. Ce guide vous aide à configurer AVD de bout en bout
 
 .Ce guide aborde les étapes suivantes :
-.  Prerequisites,Vérifiez les prérequis du locataire Azure, de l'abonnement Azure et des autorisations de compte d'administrateur Azure
-.  Discovery Details,Rassembler les informations requises pour la découverte
-.  Setup Sections,Créez l'environnement Azure à l'aide de l'assistant d'installation VDS pour Azure spécialement conçu
-.  AVD Host Pool,Créez le premier pool hôte avec une image Windows 10 EVD standard
-.  VDS desktops to users,Attribution de postes de travail virtuels aux utilisateurs Azure AD
-.  app group,Ajoutez des utilisateurs au groupe d'applications par défaut pour fournir l'environnement de bureau aux utilisateurs. En option,  Additional AVD App Group(s),Créez un ou plusieurs pools d'hôtes supplémentaires pour la fourniture des services RemoteApp
-.  User AVD Access,Connectez-vous en tant qu'utilisateur final via un logiciel client et/ou un client Web
-.  connection options,Connectez-vous à la plate-forme et aux services client en tant qu'administrateur local et de domaine
-.  Authentication (MFA),Activez en option l'authentification multi-facteurs VDS pour les administrateurs VDS et les utilisateurs finaux AVD
-.  Entitlement Workflow,Vous pouvez également parcourir l'intégralité du workflow de droits d'application, y compris le remplissage de la bibliothèque d'applications, l'automatisation de l'installation des applications, le masquage des applications par les utilisateurs et les groupes de sécurité
-.  AD Security Groups,Vous avez la possibilité de créer et de gérer des groupes de sécurité Active Directory, des autorisations de dossier et des droits d'application par groupe.
-.  Cost Optimization Options,Vous pouvez également configurer des technologies d'optimisation des coûts, notamment la planification de la charge de travail et l'évolutivité dynamique
-.  and Manage VM Images,Vous pouvez créer, mettre à jour et Sysprep une image de machine virtuelle pour les futurs déploiements
-.  Azure Cloud Backup Service,Configurez en option Azure Cloud Backup
-.  App Management/Policy Mode,Vous pouvez éventuellement désactiver les stratégies de groupe de contrôle de sécurité par défaut
+. <<Prérequis Azure,Vérifiez les prérequis du locataire Azure, de l'abonnement Azure et des autorisations de compte d'administrateur Azure>>
+. <<Rassembler les informations de découverte,Rassembler les informations requises pour la découverte>>
+. <<Sections de configuration VDS,Créez l'environnement Azure à l'aide de l'assistant d'installation VDS pour Azure spécialement conçu>>
+. <<Create AVD Host Pool,Créez le premier pool hôte avec une image Windows 10 EVD standard>>
+. <<Enable VDS desktops to users,Attribution de postes de travail virtuels aux utilisateurs Azure AD>>
+. <<Groupe d'applications par défaut,Ajoutez des utilisateurs au groupe d'applications par défaut pour fournir l'environnement de bureau aux utilisateurs.>> En option, <<Create Additional AVD App Group(s),Créez un ou plusieurs pools d'hôtes supplémentaires pour la fourniture des services RemoteApp>>
+. <<End User AVD Access,Connectez-vous en tant qu'utilisateur final via un logiciel client et/ou un client Web>>
+. <<Options de connexion Admin,Connectez-vous à la plate-forme et aux services client en tant qu'administrateur local et de domaine>>
+. <<Authentification multifacteur (MFA),Activez en option l'authentification multi-facteurs VDS pour les administrateurs VDS et les utilisateurs finaux AVD>>
+. <<Application Entitlement Workflow,Vous pouvez également parcourir l'intégralité du workflow de droits d'application, y compris le remplissage de la bibliothèque d'applications, l'automatisation de l'installation des applications, le masquage des applications par les utilisateurs et les groupes de sécurité>>
+. <<Azure AD Security Groups,Vous avez la possibilité de créer et de gérer des groupes de sécurité Active Directory, des autorisations de dossier et des droits d'application par groupe.>>
+. <<Configure Cost Optimization Options,Vous pouvez également configurer des technologies d'optimisation des coûts, notamment la planification de la charge de travail et l'évolutivité dynamique>>
+. <<Create and Manage VM Images,Vous pouvez créer, mettre à jour et Sysprep une image de machine virtuelle pour les futurs déploiements>>
+. <<Configure Azure Cloud Backup Service,Configurez en option Azure Cloud Backup>>
+. <<Select App Management/Policy Mode,Vous pouvez éventuellement désactiver les stratégies de groupe de contrôle de sécurité par défaut>>
 
 
 
